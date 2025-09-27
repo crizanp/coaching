@@ -17,16 +17,20 @@
                             <div class="col-lg-8">
                                 <div class="hero-content">
                                     <div class="meditation-icon mb-4">
-                                        <i class="fas fa-leaf"></i>
+                                        <i class="fas fa-seedling"></i>
                                     </div>
                                     <h1 class="hero-title">{{ __('messages.home.hero.title') }}</h1>
                                     <p class="hero-subtitle">{{ __('messages.home.hero.subtitle') }}</p>
+                                    <p class="hero-description mb-4">{{ __('messages.home.hero.description') }}</p>
+                                    <div class="hero-cta-text mb-4">
+                                        <h3>{{ __('messages.home.hero.cta') }}</h3>
+                                    </div>
                                     <div class="hero-buttons">
-                                        <a href="{{ route('services.index', app()->getLocale()) }}" class="btn btn-hero-primary">
-                                            {{ __('messages.home.hero.cta') }}
+                                        <a href="{{ route('booking.index', app()->getLocale()) }}" class="btn btn-hero-primary">
+                                            {{ __('messages.home.hero.cta_book') }}
                                         </a>
-                                        <a href="{{ route('booking.index', app()->getLocale()) }}" class="btn btn-hero-outline">
-                                            {{ __('messages.nav.book') }}
+                                        <a href="{{ route('contact.index', app()->getLocale()) }}" class="btn btn-hero-outline">
+                                            {{ __('messages.home.hero.cta_contact') }}
                                         </a>
                                     </div>
                                 </div>
@@ -107,47 +111,6 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
-    </div>
-</section>
-
-<!-- Quote Section with Black Background -->
-<section class="quote-section py-5" style="background-color: #1a1a1a; color: white;">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="text-center">
-                    <div class="quote-icon mb-4">
-                        <i class="fas fa-quote-left" style="font-size: 3rem; color: #d4b3d6; opacity: 0.8;"></i>
-                    </div>
-                    <h2 class="quote-title mb-4" style="font-size: 2.2rem; font-weight: 300; line-height: 1.4; color: #f8f9fa;">
-                        {{ __('messages.home.quote.title') }}
-                    </h2>
-                    <p class="quote-subtitle mb-4" style="font-size: 1.3rem; color: #e9ecef; line-height: 1.6;">
-                        {{ __('messages.home.quote.subtitle') }}
-                    </p>
-                    <p class="quote-description mb-4" style="font-size: 1.1rem; color: #ced4da; line-height: 1.6;">
-                        {{ __('messages.home.quote.description') }}
-                    </p>
-                    <p class="quote-welcome mb-5" style="font-size: 1.1rem; color: #ced4da; font-style: italic; line-height: 1.6;">
-                        {{ __('messages.home.quote.welcome') }}
-                    </p>
-                    
-                    <div class="quote-cta">
-                        <h3 class="mb-4" style="color: #d4b3d6; font-size: 1.5rem; font-weight: 500;">
-                            {{ __('messages.home.quote.cta') }}
-                        </h3>
-                        <div class="quote-buttons">
-                            <a href="{{ route('booking.index', app()->getLocale()) }}" class="btn btn-lg me-3 mb-2" style="background-color: #d4b3d6; color: #1a1a1a; border: none; border-radius: 50px; padding: 15px 35px; font-weight: 600;">
-                                {{ __('messages.home.quote.cta_book') }}
-                            </a>
-                            <a href="{{ route('contact.index', app()->getLocale()) }}" class="btn btn-outline-light btn-lg mb-2" style="border-radius: 50px; padding: 15px 35px; font-weight: 600;">
-                                {{ __('messages.home.quote.cta_contact') }}
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </section>
 

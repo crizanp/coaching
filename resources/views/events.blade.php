@@ -163,26 +163,26 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
 @push('structured-data')
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "Event",
+    "@@context": "https://schema.org",
+    "@@type": "Event",
   "name": "{{ __('messages.events.workshop.title') }}",
   "description": "{{ __('messages.events.workshop.description') }}",
   "organizer": {
-    "@type": "Person",
+    "@@type": "Person",
     "name": "Sandrine - SSJCHRYSALIDE",
     "url": "{{ url('/') }}"
   },
-  "location": {
-    "@type": "Place",
+    "location": {
+        "@@type": "Place",
     "name": "{{ __('messages.events.details.location_value') }}",
-    "address": {
-      "@type": "PostalAddress",
+        "address": {
+            "@@type": "PostalAddress",
       "addressRegion": "Martinique",
       "addressCountry": "FR"
     }
   },
-  "offers": {
-    "@type": "Offer",
+    "offers": {
+        "@@type": "Offer",
     "price": "{{ __('messages.events.details.price_value') }}",
     "priceCurrency": "EUR"
   }
@@ -190,8 +190,7 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
 </script>
 @endpush
 
-@endsection
-
+@push('styles')
 <style>
 .benefit-card {
     transition: transform 0.3s ease;
@@ -245,3 +244,6 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
     font-size: 1.3rem;
 }
 </style>
+@endpush
+
+@endsection
