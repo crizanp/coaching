@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
+            $table->string('client_name');
+            $table->string('client_location')->nullable();
+            $table->json('testimonial'); // {"fr": "Témoignage français", "en": "English testimonial"}
+            $table->integer('rating')->default(5); // 1-5 stars
+            $table->foreignId('service_id')->nullable()->constrained()->nullOnDelete();
+            $table->boolean('is_featured')->default(false);
+            $table->boolean('is_active')->default(true);
+            $table->date('testimonial_date')->nullable();
             $table->timestamps();
         });
     }
