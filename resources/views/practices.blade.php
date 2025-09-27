@@ -147,20 +147,20 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
 @push('structured-data')
 <script type="application/ld+json">
 {
-    "@@context": "https://schema.org",
-    "@@type": "MedicalBusiness",
+  "@context": "https://schema.org",
+  "@type": "MedicalBusiness",
   "name": "SSJCHRYSALIDE",
   "description": "{{ __('messages.practices.description') }}",
   "url": "{{ url()->current() }}",
   "telephone": "+596 696 103 622",
   "email": "contact@ssjchrysalide.com",
-    "address": {
-        "@@type": "PostalAddress",
+  "address": {
+    "@type": "PostalAddress",
     "addressRegion": "Martinique",
     "addressCountry": "FR"
   },
-    "geo": {
-        "@@type": "GeoCoordinates",
+  "geo": {
+    "@type": "GeoCoordinates",
     "latitude": "14.641528",
     "longitude": "-61.024174"
   },
