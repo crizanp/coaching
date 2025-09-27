@@ -13,12 +13,18 @@ return [
     'nav.language' => 'English',
 
     // Homepage
-    'home.hero.title' => 'Comme la chrysalide se transforme en papillon, chaque étape de vie est une opportunité de métamorphose.',
-    'home.hero.subtitle' => 'Parce que chaque parcours est unique, j\'accompagne celles et ceux qui souhaitent dépasser leurs blocages, retrouver leur énergie et avancer vers une vie plus épanouie. Grâce à la sophrologie, la PNL et l\'hypnose, je vous propose des méthodes douces et puissantes pour transformer durablement votre quotidien.',
-    'home.hero.description' => 'Bienvenue dans un espace de confiance et de changement où chaque séance, pensée pour vous, est une étape concrète vers plus de liberté intérieure.',
-    'home.hero.cta' => 'Et si vous commenciez dès aujourd\'hui ?',
-    'home.hero.cta_book' => 'Prendre rendez-vous',
-    'home.hero.cta_contact' => 'Me contacter',
+    'home.hero.title' => 'Votre bien-être commence ici',
+    'home.hero.subtitle' => 'Découvrez la sophrologie, l\'hypnose et le coaching PNL pour retrouver équilibre et sérénité',
+    'home.hero.cta' => 'Découvrir mes services',
+    
+    // Quote Section
+    'home.quote.title' => 'Comme la chrysalide se transforme en papillon, chaque étape de vie est une opportunité de métamorphose.',
+    'home.quote.subtitle' => 'Parce que chaque parcours est unique, j\'accompagne celles et ceux qui souhaitent dépasser leurs blocages, retrouver leur énergie et avancer vers une vie plus épanouie.',
+    'home.quote.description' => 'Grâce à la sophrologie, la PNL et l\'hypnose, je vous propose des méthodes douces et puissantes pour transformer durablement votre quotidien.',
+    'home.quote.welcome' => 'Bienvenue dans un espace de confiance et de changement où chaque séance, pensée pour vous, est une étape concrète vers plus de liberté intérieure.',
+    'home.quote.cta' => 'Et si vous commenciez dès aujourd\'hui ?',
+    'home.quote.cta_book' => 'Prendre rendez-vous',
+    'home.quote.cta_contact' => 'Me contacter',
     'home.services.title' => 'Mes Services',
     'home.services.subtitle' => 'Des accompagnements personnalisés pour votre épanouissement',
     'home.testimonials.title' => 'Témoignages',

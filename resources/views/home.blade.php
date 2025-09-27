@@ -17,20 +17,16 @@
                             <div class="col-lg-8">
                                 <div class="hero-content">
                                     <div class="meditation-icon mb-4">
-                                        <i class="fas fa-seedling"></i>
+                                        <i class="fas fa-leaf"></i>
                                     </div>
                                     <h1 class="hero-title">{{ __('messages.home.hero.title') }}</h1>
                                     <p class="hero-subtitle">{{ __('messages.home.hero.subtitle') }}</p>
-                                    <p class="hero-description mb-4">{{ __('messages.home.hero.description') }}</p>
-                                    <div class="hero-cta-text mb-4">
-                                        <h3>{{ __('messages.home.hero.cta') }}</h3>
-                                    </div>
                                     <div class="hero-buttons">
-                                        <a href="{{ route('booking.index', app()->getLocale()) }}" class="btn btn-hero-primary">
-                                            {{ __('messages.home.hero.cta_book') }}
+                                        <a href="{{ route('services.index', app()->getLocale()) }}" class="btn btn-hero-primary">
+                                            {{ __('messages.home.hero.cta') }}
                                         </a>
-                                        <a href="{{ route('contact.index', app()->getLocale()) }}" class="btn btn-hero-outline">
-                                            {{ __('messages.home.hero.cta_contact') }}
+                                        <a href="{{ route('booking.index', app()->getLocale()) }}" class="btn btn-hero-outline">
+                                            {{ __('messages.nav.book') }}
                                         </a>
                                     </div>
                                 </div>
@@ -111,6 +107,47 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
+    </div>
+</section>
+
+<!-- Quote Section with Black Background -->
+<section class="quote-section py-5" style="background-color: #1a1a1a; color: white;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="text-center">
+                    <div class="quote-icon mb-4">
+                        <i class="fas fa-quote-left" style="font-size: 3rem; color: #d4b3d6; opacity: 0.8;"></i>
+                    </div>
+                    <h2 class="quote-title mb-4" style="font-size: 2.2rem; font-weight: 300; line-height: 1.4; color: #f8f9fa;">
+                        {{ __('messages.home.quote.title') }}
+                    </h2>
+                    <p class="quote-subtitle mb-4" style="font-size: 1.3rem; color: #e9ecef; line-height: 1.6;">
+                        {{ __('messages.home.quote.subtitle') }}
+                    </p>
+                    <p class="quote-description mb-4" style="font-size: 1.1rem; color: #ced4da; line-height: 1.6;">
+                        {{ __('messages.home.quote.description') }}
+                    </p>
+                    <p class="quote-welcome mb-5" style="font-size: 1.1rem; color: #ced4da; font-style: italic; line-height: 1.6;">
+                        {{ __('messages.home.quote.welcome') }}
+                    </p>
+                    
+                    <div class="quote-cta">
+                        <h3 class="mb-4" style="color: #d4b3d6; font-size: 1.5rem; font-weight: 500;">
+                            {{ __('messages.home.quote.cta') }}
+                        </h3>
+                        <div class="quote-buttons">
+                            <a href="{{ route('booking.index', app()->getLocale()) }}" class="btn btn-lg me-3 mb-2" style="background-color: #d4b3d6; color: #1a1a1a; border: none; border-radius: 50px; padding: 15px 35px; font-weight: 600;">
+                                {{ __('messages.home.quote.cta_book') }}
+                            </a>
+                            <a href="{{ route('contact.index', app()->getLocale()) }}" class="btn btn-outline-light btn-lg mb-2" style="border-radius: 50px; padding: 15px 35px; font-weight: 600;">
+                                {{ __('messages.home.quote.cta_contact') }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -294,110 +331,115 @@
 @endsection
 
 @push('structured-data')
+@php
+        $currentLocale = app()->getLocale();
+        $siteTagline = \App\Models\Setting::get('site_tagline');
+        $structuredData = [
+                '@context' => 'https://schema.org',
+                '@graph' => [
+                        [
+                                '@type' => 'LocalBusiness',
+                                '@id' => url('/') . '#business',
+                                'name' => 'SSJCHRYSALIDE',
+                                'description' => $siteTagline[$currentLocale] ?? 'Thérapie brève en Martinique - Sophrologie, PNL, Hypnose',
+                                'url' => url('/'),
+                                'telephone' => '+596 696 103 622',
+                                'email' => 'contact@ssjchrysalide.com',
+                                'address' => [
+                                        '@type' => 'PostalAddress',
+                                        'addressLocality' => 'Martinique',
+                                        'addressRegion' => 'Martinique',
+                                        'addressCountry' => 'FR',
+                                ],
+                                'geo' => [
+                                        '@type' => 'GeoCoordinates',
+                                        'latitude' => '14.641528',
+                                        'longitude' => '-61.024174',
+                                ],
+                                'sameAs' => [
+                                        'https://instagram.com/ssjchrysalide',
+                                        'https://ssjchrysalide.com',
+                                ],
+                                'serviceType' => [
+                                        'Sophrologie',
+                                        'Hypnothérapie',
+                                        'PNL',
+                                        'Thérapie brève',
+                                        'Développement personnel',
+                                ],
+                                'medicalSpecialty' => [
+                                        'Sophrology',
+                                        'Hypnotherapy',
+                                        'NLP Coaching',
+                                ],
+                                'areaServed' => [
+                                        '@type' => 'Place',
+                                        'name' => 'Martinique, French West Indies',
+                                ],
+                        ],
+                        [
+                                '@type' => 'Person',
+                                '@id' => url('/') . '#person',
+                                'name' => 'Sandrine',
+                                'jobTitle' => 'Sophrologue RNCP, Praticienne Hypnose et PNL',
+                                'description' => 'Sophrologue certifiée RNCP et praticienne en Hypnose et PNL certifiée IN',
+                                'url' => url('/'),
+                                'telephone' => '+596 696 103 622',
+                                'email' => 'contact@ssjchrysalide.com',
+                                'address' => [
+                                        '@type' => 'PostalAddress',
+                                        'addressLocality' => 'Martinique',
+                                        'addressRegion' => 'Martinique',
+                                        'addressCountry' => 'FR',
+                                ],
+                                'sameAs' => [
+                                        'https://instagram.com/ssjchrysalide',
+                                ],
+                                'knowsAbout' => [
+                                        'Sophrologie',
+                                        'Hypnose',
+                                        'PNL',
+                                        'Thérapie brève',
+                                        'Gestion du stress',
+                                        'Troubles du sommeil',
+                                        'Développement personnel',
+                                ],
+                                'hasCredential' => [
+                                        'RNCP Sophrologue',
+                                        'Praticienne Hypnose certifiée IN',
+                                        'Praticienne PNL certifiée IN',
+                                ],
+                        ],
+                        [
+                                '@type' => 'MedicalBusiness',
+                                '@id' => url('/') . '#medical',
+                                'name' => 'SSJCHRYSALIDE',
+                                'description' => 'Centre de thérapie brève spécialisé en sophrologie, hypnose et PNL en Martinique',
+                                'medicalSpecialty' => [
+                                        'Sophrology',
+                                        'Hypnotherapy',
+                                        'NLP Therapy',
+                                ],
+                                'serviceType' => [
+                                        'Gestion du stress',
+                                        'Troubles du sommeil',
+                                        'Blocages personnels',
+                                        'Fatigue émotionnelle',
+                                        'Développement personnel',
+                                ],
+                                'address' => [
+                                        '@type' => 'PostalAddress',
+                                        'addressLocality' => 'Martinique',
+                                        'addressRegion' => 'Martinique',
+                                        'addressCountry' => 'FR',
+                                ],
+                                'telephone' => '+596 696 103 622',
+                                'email' => 'contact@ssjchrysalide.com',
+                        ],
+                ],
+        ];
+@endphp
 <script type="application/ld+json">
-{
-    "@@context": "https://schema.org",
-    "@@graph": [
-    {
-            "@@type": "LocalBusiness",
-            "@@id": "{{ url('/') }}#business",
-      "name": "SSJCHRYSALIDE",
-      "description": "{{ \App\Models\Setting::get('site_tagline')[app()->getLocale()] ?? 'Thérapie brève en Martinique - Sophrologie, PNL, Hypnose' }}",
-      "url": "{{ url('/') }}",
-      "telephone": "+596 696 103 622",
-      "email": "contact@ssjchrysalide.com",
-            "address": {
-                "@@type": "PostalAddress",
-        "addressLocality": "Martinique",
-        "addressRegion": "Martinique",
-        "addressCountry": "FR"
-      },
-            "geo": {
-                "@@type": "GeoCoordinates",
-        "latitude": "14.641528",
-        "longitude": "-61.024174"
-      },
-      "sameAs": [
-        "https://instagram.com/ssjchrysalide",
-        "https://ssjchrysalide.com"
-      ],
-      "serviceType": [
-        "Sophrologie",
-        "Hypnothérapie", 
-        "PNL",
-        "Thérapie brève",
-        "Développement personnel"
-      ],
-      "medicalSpecialty": [
-        "Sophrology",
-        "Hypnotherapy",
-        "NLP Coaching"
-      ],
-            "areaServed": {
-                "@@type": "Place",
-        "name": "Martinique, French West Indies"
-      }
-    },
-    {
-            "@@type": "Person",
-            "@@id": "{{ url('/') }}#person",
-      "name": "Sandrine",
-      "jobTitle": "Sophrologue RNCP, Praticienne Hypnose et PNL",
-      "description": "Sophrologue certifiée RNCP et praticienne en Hypnose et PNL certifiée IN",
-      "url": "{{ url('/') }}",
-      "telephone": "+596 696 103 622",
-      "email": "contact@ssjchrysalide.com",
-            "address": {
-                "@@type": "PostalAddress",
-        "addressLocality": "Martinique",
-        "addressRegion": "Martinique", 
-        "addressCountry": "FR"
-      },
-      "sameAs": [
-        "https://instagram.com/ssjchrysalide"
-      ],
-      "knowsAbout": [
-        "Sophrologie",
-        "Hypnose",
-        "PNL",
-        "Thérapie brève",
-        "Gestion du stress",
-        "Troubles du sommeil",
-        "Développement personnel"
-      ],
-      "hasCredential": [
-        "RNCP Sophrologue",
-        "Praticienne Hypnose certifiée IN",
-        "Praticienne PNL certifiée IN"
-      ]
-    },
-    {
-            "@@type": "MedicalBusiness",
-            "@@id": "{{ url('/') }}#medical",
-      "name": "SSJCHRYSALIDE",
-      "description": "Centre de thérapie brève spécialisé en sophrologie, hypnose et PNL en Martinique",
-      "medicalSpecialty": [
-        "Sophrology",
-        "Hypnotherapy",
-        "NLP Therapy"
-      ],
-      "serviceType": [
-        "Gestion du stress",
-        "Troubles du sommeil",
-        "Blocages personnels",
-        "Fatigue émotionnelle",
-        "Développement personnel"
-      ],
-            "address": {
-                "@@type": "PostalAddress",
-        "addressLocality": "Martinique",
-        "addressRegion": "Martinique",
-        "addressCountry": "FR"
-      },
-      "telephone": "+596 696 103 622",
-      "email": "contact@ssjchrysalide.com"
-    }
-  ]
-}
+{!! json_encode($structuredData, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
 </script>
 @endpush

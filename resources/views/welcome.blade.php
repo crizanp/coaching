@@ -270,6 +270,20 @@
             </main>
         </div>
 
+        <section class="w-full mt-8 flex justify-center px-6 lg:px-8">
+            <div class="w-full max-w-4xl rounded-lg bg-black text-white px-6 py-10 lg:px-14 lg:py-14 shadow-[0_20px_40px_-24px_rgba(0,0,0,0.6)]">
+                <p class="text-base lg:text-lg leading-relaxed font-medium mb-4">
+                    “Just as the chrysalis transforms into a butterfly, every stage of life invites metamorphosis. I support those who wish to dissolve their blockages, revive their energy, and move toward a more fulfilling life.”
+                </p>
+                <p class="text-sm lg:text-base leading-relaxed text-[#d6d6d6]">
+                    Through sophrology, NLP, and hypnosis, each session becomes a gentle yet powerful step toward lasting change. Welcome to a space of trust, tailored for you, where a little more inner freedom is always within reach.
+                </p>
+                <p class="text-sm lg:text-base mt-6 font-semibold tracking-wide text-[#f0b90b]">
+                    What if you started today?
+                </p>
+            </div>
+        </section>
+
         @if (Route::has('login'))
             <div class="h-14.5 hidden lg:block"></div>
         @endif

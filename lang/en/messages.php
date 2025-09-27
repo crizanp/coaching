@@ -13,12 +13,18 @@ return [
     'nav.language' => 'Français',
 
     // Homepage
-    'home.hero.title' => 'Just as the chrysalis transforms into a butterfly, every stage of life is an opportunity for metamorphosis.',
-    'home.hero.subtitle' => 'Because every journey is unique, I support those who wish to overcome their blockages, regain their energy, and move toward a more fulfilling life. Through sophrology, NLP, and hypnosis, I offer gentle yet powerful methods to create lasting transformation in your daily life.',
-    'home.hero.description' => 'Welcome to a space of trust and change, where each session, tailored for you, is a concrete step toward more inner freedom.',
-    'home.hero.cta' => 'What if you started today?',
-    'home.hero.cta_book' => 'Book an appointment',
-    'home.hero.cta_contact' => 'Contact me',
+    'home.hero.title' => 'Your wellness starts here',
+    'home.hero.subtitle' => 'Discover sophrology, hypnosis and NLP coaching to find balance and serenity',
+    'home.hero.cta' => 'Discover my services',
+    
+    // Quote Section
+    'home.quote.title' => 'Just as the chrysalis transforms into a butterfly, every stage of life is an opportunity for metamorphosis.',
+    'home.quote.subtitle' => 'Because every journey is unique, I support those who wish to overcome their blockages, regain their energy, and move toward a more fulfilling life.',
+    'home.quote.description' => 'Through sophrology, NLP, and hypnosis, I offer gentle yet powerful methods to create lasting transformation in your daily life.',
+    'home.quote.welcome' => 'Welcome to a space of trust and change, where each session, tailored for you, is a concrete step toward more inner freedom.',
+    'home.quote.cta' => 'What if you started today?',
+    'home.quote.cta_book' => 'Book an appointment',
+    'home.quote.cta_contact' => 'Contact me',
     'home.services.title' => 'My Services',
     'home.services.subtitle' => 'Personalized support for your fulfillment',
     'home.testimonials.title' => 'Testimonials',
