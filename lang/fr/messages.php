@@ -21,6 +21,18 @@ return [
     'home.cta.title' => 'Prêt(e) à commencer votre transformation ?',
     'home.cta.subtitle' => 'Prenez rendez-vous pour un premier échange gratuit',
     'home.cta.button' => 'Réserver maintenant',
+    'home.faq.title' => 'Questions Fréquemment Posées',
+    'home.faq.subtitle' => 'Trouvez les réponses aux questions les plus courantes sur nos services',
+    'home.faq.q1.question' => 'Qu\'est-ce que la sophrologie et comment peut-elle m\'aider ?',
+    'home.faq.q1.answer' => 'La sophrologie est une méthode de relaxation et de développement personnel qui combine des techniques de respiration, de relâchement musculaire et de visualisation positive. Elle aide à gérer le stress, améliorer le sommeil, renforcer la confiance en soi et mieux faire face aux défis de la vie.',
+    'home.faq.q2.question' => 'Combien de séances vais-je avoir besoin ?',
+    'home.faq.q2.answer' => 'Le nombre de séances varie selon vos objectifs et besoins. Généralement, 3 à 5 séances suffisent pour apprendre les techniques de base, tandis qu\'un travail plus approfondi peut nécessiter 8 à 12 séances. Nous évaluerons ensemble vos progrès.',
+    'home.faq.q3.question' => 'L\'hypnose est-elle sans danger ? Vais-je perdre le contrôle ?',
+    'home.faq.q3.answer' => 'L\'hypnose est totalement sécurisée lorsqu\'elle est pratiquée par un professionnel qualifié. Vous restez conscient(e) et gardez le contrôle durant toute la séance. Vous ne pouvez être forcé(e) à faire quoi que ce soit contre votre volonté ou vos valeurs.',
+    'home.faq.q4.question' => 'Quelle est la différence entre les séances individuelles et de groupe ?',
+    'home.faq.q4.answer' => 'Les séances individuelles sont personnalisées et se concentrent spécifiquement sur vos besoins et objectifs. Les séances de groupe offrent une expérience partagée et sont plus abordables, tout en restant efficaces pour l\'apprentissage des techniques de base.',
+    'home.faq.q5.question' => 'Comment dois-je me préparer pour ma première séance ?',
+    'home.faq.q5.answer' => 'Aucune préparation particulière n\'est nécessaire. Venez simplement avec des vêtements confortables et l\'esprit ouvert. Nous commencerons par un échange pour comprendre vos besoins et attentes avant de débuter tout travail pratique.',
 
     // Services
     'services.title' => 'Mes Services',

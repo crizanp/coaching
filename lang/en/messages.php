@@ -21,6 +21,18 @@ return [
     'home.cta.title' => 'Ready to start your transformation?',
     'home.cta.subtitle' => 'Book an appointment for a free initial consultation',
     'home.cta.button' => 'Book now',
+    'home.faq.title' => 'Frequently Asked Questions',
+    'home.faq.subtitle' => 'Find answers to the most common questions about our services',
+    'home.faq.q1.question' => 'What is sophrology and how can it help me?',
+    'home.faq.q1.answer' => 'Sophrology is a relaxation and personal development method that combines breathing techniques, muscle relaxation, and positive visualization. It helps manage stress, improve sleep, build self-confidence, and better cope with life\'s challenges.',
+    'home.faq.q2.question' => 'How many sessions will I need?',
+    'home.faq.q2.answer' => 'The number of sessions varies depending on your goals and needs. Generally, 3-5 sessions are sufficient to learn the basic techniques, while deeper work may require 8-12 sessions. We will evaluate your progress together.',
+    'home.faq.q3.question' => 'Is hypnosis safe? Will I lose control?',
+    'home.faq.q3.answer' => 'Hypnosis is completely safe when practiced by a qualified professional. You remain conscious and in control throughout the session. You cannot be forced to do anything against your will or values.',
+    'home.faq.q4.question' => 'What is the difference between individual and group sessions?',
+    'home.faq.q4.answer' => 'Individual sessions are personalized and focus specifically on your needs and goals. Group sessions offer a shared experience and are more affordable, while still being effective for learning basic techniques.',
+    'home.faq.q5.question' => 'How should I prepare for my first session?',
+    'home.faq.q5.answer' => 'No special preparation is needed. Just come with comfortable clothing and an open mind. We will start with a discussion to understand your needs and expectations before beginning any practical work.',
 
     // Services
     'services.title' => 'My Services',

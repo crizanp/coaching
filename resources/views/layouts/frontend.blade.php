@@ -494,10 +494,86 @@
             }
         }
 
+        /* FAQ Accordion Styles */
+        .accordion {
+            --bs-accordion-border-radius: 15px;
+            --bs-accordion-border-color: rgba(247, 178, 189, 0.2);
+        }
+
+        .accordion-item {
+            border: 1px solid rgba(247, 178, 189, 0.2);
+            border-radius: 15px !important;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(247, 178, 189, 0.1);
+            overflow: hidden;
+        }
+
+        .accordion-item:not(:first-of-type) {
+            border-top: 1px solid rgba(247, 178, 189, 0.2);
+        }
+
+        .accordion-header {
+            border-radius: 15px;
+        }
+
+        .accordion-button {
+            background: white;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 20px 25px;
+            border: none;
+            border-radius: 15px;
+            box-shadow: none;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background: var(--primary-pink);
+            color: white;
+            box-shadow: none;
+        }
+
+        .accordion-button:focus {
+            box-shadow: 0 0 0 0.25rem rgba(247, 178, 189, 0.3);
+            border: none;
+        }
+
+        .accordion-button::after {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23666'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-button:not(.collapsed)::after {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+            transform: rotate(180deg);
+        }
+
+        .accordion-collapse {
+            border-top: 1px solid rgba(247, 178, 189, 0.2);
+        }
+
+        .accordion-body {
+            background: white;
+            padding: 25px;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+
         .footer {
-            background: var(--text-dark);
+            background: black;
             color: white;
             padding: 60px 0 30px;
+        }
+
+        /* Ensure footer container matches navbar container width */
+        .footer .container,
+        .navbar .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 15px;
+            padding-right: 15px;
         }
 
         .language-switcher {
