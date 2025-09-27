@@ -7,13 +7,11 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "filament/filament": "*",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
-        "livewire/livewire": "*",
-        "spatie/laravel-medialibrary": "*",
-        "spatie/laravel-permission": "*",
-        "spatie/laravel-translatable": "*"
+        "livewire/livewire": "^3.6",
+        "spatie/laravel-medialibrary": "^11.15",
+        "spatie/laravel-translatable": "^6.11"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
