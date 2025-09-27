@@ -9,7 +9,7 @@ use App\Models\Setting;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index($locale)
     {
         $services = Service::active()->featured()->orderBy('sort_order')->get();
         $testimonials = Testimonial::active()->featured()->with('service')->latest()->take(3)->get();

@@ -25,11 +25,21 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])->middleware('set.l
     Route::get('/{page:slug}', [PageController::class, 'show'])->name('pages.show');
 });
 
-// Language switching routes
+// Language switching route helper
 Route::get('/lang/{locale}', function ($locale) {
     if (in_array($locale, ['fr', 'en'])) {
-        session(['locale' => $locale]);
-        return redirect()->back();
+        $currentUrl = url()->previous();
+        $currentLocale = app()->getLocale();
+        
+        // Replace current locale with new locale in URL
+        $newUrl = str_replace("/{$currentLocale}", "/{$locale}", $currentUrl);
+        
+        // If URL doesn't contain locale, add it
+        if (!str_contains($newUrl, "/{$locale}")) {
+            $newUrl = url("/{$locale}");
+        }
+        
+        return redirect($newUrl);
     }
     return redirect()->back();
 })->name('lang.switch');

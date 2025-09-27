@@ -5,7 +5,7 @@
 
 @section('content')
 <!-- Service Hero -->
-<section class="gradient-bg py-5" style="margin-top: -80px; padding-top: 140px;">
+<section class="gradient-bg py-5" style="padding-top: 140px;">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-8">

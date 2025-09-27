@@ -7,7 +7,7 @@ use App\Models\Page;
 
 class PageController extends Controller
 {
-    public function show(Page $page)
+    public function show($locale, Page $page)
     {
         if (!$page->is_active) {
             abort(404);

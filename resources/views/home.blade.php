@@ -140,32 +140,22 @@
 @endsection
 
 @push('scripts')
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "{{ \App\Models\Setting::get('site_name')[app()->getLocale()] ?? 'Coaching' }}",
-  "description": "{{ __('messages.seo.home.description') }}",
-  "url": "{{ url('/') }}",
-  "telephone": "{{ \App\Models\Setting::get('contact_phone') }}",
-  "email": "{{ \App\Models\Setting::get('contact_email') }}",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "{{ \App\Models\Setting::get('address')[app()->getLocale()] ?? '' }}"
-  },
-  "sameAs": [
-    @if(\App\Models\Setting::get('social_facebook'))
-    "{{ \App\Models\Setting::get('social_facebook') }}"{{ \App\Models\Setting::get('social_instagram') ? ',' : '' }}
-    @endif
-    @if(\App\Models\Setting::get('social_instagram'))
-    "{{ \App\Models\Setting::get('social_instagram') }}"
-    @endif
-  ],
-  "serviceType": [
-    @foreach($services as $index => $service)
-    "{{ $service->getTranslation('name', app()->getLocale()) }}"{{ $index < $services->count() - 1 ? ',' : '' }}
-    @endforeach
-  ]
-}
-</script>
+@php
+        $business = [
+                '@context' => 'https://schema.org',
+                '@type' => 'LocalBusiness',
+                'name' => \App\Models\Setting::get('site_name')[app()->getLocale()] ?? 'Coaching',
+                'description' => __('messages.seo.home.description'),
+                'url' => url('/'),
+                'telephone' => \App\Models\Setting::get('contact_phone'),
+                'email' => \App\Models\Setting::get('contact_email'),
+                'address' => [
+                        '@type' => 'PostalAddress',
+                        'streetAddress' => \App\Models\Setting::get('address')[app()->getLocale()] ?? '',
+                ],
+                'sameAs' => array_values(array_filter([\App\Models\Setting::get('social_facebook'), \App\Models\Setting::get('social_instagram')])),
+                'serviceType' => $services->map(function($service){ return $service->getTranslation('name', app()->getLocale()); })->toArray(),
+        ];
+@endphp
+<script type="application/ld+json">{!! json_encode($business, JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT) !!}</script>
 @endpush

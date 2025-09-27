@@ -8,13 +8,13 @@ use App\Models\Appointment;
 
 class BookingController extends Controller
 {
-    public function index()
+    public function index($locale)
     {
         $services = Service::active()->orderBy('sort_order')->get();
         return view('booking.index', compact('services'));
     }
 
-    public function store(Request $request)
+    public function store($locale, Request $request)
     {
         $request->validate([
             'service_id' => 'required|exists:services,id',

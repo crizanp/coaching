@@ -8,13 +8,13 @@ use App\Models\Setting;
 
 class ContactController extends Controller
 {
-    public function index()
+    public function index($locale)
     {
         $services = Service::active()->orderBy('sort_order')->get();
         return view('contact.index', compact('services'));
     }
 
-    public function store(Request $request)
+    public function store($locale, Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',

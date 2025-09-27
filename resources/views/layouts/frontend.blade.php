@@ -308,18 +308,33 @@
                 
                 <!-- Language Switcher -->
                 <div class="language-switcher">
-                    @if(app()->getLocale() == 'fr')
-                        <a href="{{ route('lang.switch', 'en') }}">{{ __('messages.nav.language') }}</a>
-                    @else
-                        <a href="{{ route('lang.switch', 'fr') }}">{{ __('messages.nav.language') }}</a>
-                    @endif
+                    @php
+                        $currentRoute = request()->route()->getName();
+                        $routeParams = request()->route()->parameters();
+                        $otherLocale = app()->getLocale() == 'fr' ? 'en' : 'fr';
+                        
+                        // Generate URL for same page in other language
+                        if ($currentRoute && $currentRoute !== 'lang.switch') {
+                            unset($routeParams['locale']);
+                            $switchUrl = route($currentRoute, array_merge(['locale' => $otherLocale], $routeParams));
+                        } else {
+                            $switchUrl = url("/{$otherLocale}");
+                        }
+                    @endphp
+                    <a href="{{ $switchUrl }}" class="language-link">
+                        @if(app()->getLocale() == 'fr')
+                            EN
+                        @else
+                            FR
+                        @endif
+                    </a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main style="margin-top: 80px;">
+    <main style="margin-top: 64px;">
         @yield('content')
     </main>
 
