@@ -6,6 +6,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Auth;
 
 // Redirect root to French
@@ -17,6 +18,8 @@ Route::get('/', function () {
 Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])->middleware('set.locale')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/about', function() { return view('about'); })->name('about');
+    Route::get('/practices', function() { return view('practices'); })->name('practices');
+    Route::get('/events', function() { return view('events'); })->name('events');
     Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
     Route::get('/services/{service:slug}', [ServiceController::class, 'show'])->name('services.show');
     Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
@@ -55,3 +58,6 @@ Auth::routes(['register' => false, 'reset' => false, 'verify' => false]);
 Route::get('/home', function () {
     return redirect()->route('admin.dashboard');
 });
+
+// SEO Routes
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');

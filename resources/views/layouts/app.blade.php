@@ -7,7 +7,61 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- SEO Meta Tags -->
+    <title>@yield('title', (\App\Models\Setting::get('site_name')[app()->getLocale()] ?? 'SSJCHRYSALIDE') . ' - ' . (\App\Models\Setting::get('site_tagline')[app()->getLocale()] ?? 'Thérapie Brève Martinique'))</title>
+    <meta name="description" content="@yield('description', \App\Models\Setting::get('site_tagline')[app()->getLocale()] ?? 'Accompagner les personnes qui traversent des périodes de stress, de fatigue émotionnelle, de troubles du sommeil, de blocages personnels, ou qui souhaitent simplement opérer des changements et atteindre de nouveaux objectifs.')">
+    <meta name="keywords" content="@yield('keywords', __('sophrologie, PNL, hypnose, thérapie brève, Martinique, stress, blocages, développement personnel'))">
+    <meta name="author" content="Sandrine - SSJCHRYSALIDE">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Geo Location Meta -->
+    <meta name="geo.region" content="MQ">
+    <meta name="geo.placename" content="Martinique">
+    <meta name="geo.position" content="14.641528;-61.024174">
+    <meta name="ICBM" content="14.641528, -61.024174">
+    
+    <!-- Multilingual Meta -->
+    @if(app()->getLocale() == 'fr')
+        <link rel="alternate" hreflang="en" href="{{ url()->current() }}?lang=en">
+        <link rel="alternate" hreflang="fr" href="{{ url()->current() }}?lang=fr">
+    @else
+        <link rel="alternate" hreflang="fr" href="{{ url()->current() }}?lang=fr">
+        <link rel="alternate" hreflang="en" href="{{ url()->current() }}?lang=en">
+    @endif
+    <link rel="alternate" hreflang="x-default" href="{{ url()->current() }}">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="@yield('og:title', \App\Models\Setting::get('site_name')[app()->getLocale()] ?? 'SSJCHRYSALIDE')">
+    <meta property="og:description" content="@yield('og:description', \App\Models\Setting::get('site_tagline')[app()->getLocale()] ?? 'Thérapie Brève en Martinique')">
+    <meta property="og:type" content="@yield('og:type', 'website')">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:image" content="@yield('og:image', asset('images/og-image.jpg'))">
+    <meta property="og:site_name" content="SSJCHRYSALIDE">
+    <meta property="og:locale" content="{{ app()->getLocale() == 'fr' ? 'fr_FR' : 'en_US' }}">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@yield('twitter:title', \App\Models\Setting::get('site_name')[app()->getLocale()] ?? 'SSJCHRYSALIDE')">
+    <meta name="twitter:description" content="@yield('twitter:description', \App\Models\Setting::get('site_tagline')[app()->getLocale()] ?? 'Thérapie Brève en Martinique')">
+    <meta name="twitter:image" content="@yield('twitter:image', asset('images/og-image.jpg'))">
+    <meta name="twitter:site" content="@ssjchrysalide">
+    
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#d4b3d6">
+    <meta name="msapplication-TileColor" content="#d4b3d6">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="@yield('canonical', url()->current())">
+    
+    <!-- Structured Data -->
+    @stack('structured-data')
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">

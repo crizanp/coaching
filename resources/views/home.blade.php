@@ -17,16 +17,20 @@
                             <div class="col-lg-8">
                                 <div class="hero-content">
                                     <div class="meditation-icon mb-4">
-                                        <i class="fas fa-leaf"></i>
+                                        <i class="fas fa-seedling"></i>
                                     </div>
                                     <h1 class="hero-title">{{ __('messages.home.hero.title') }}</h1>
                                     <p class="hero-subtitle">{{ __('messages.home.hero.subtitle') }}</p>
+                                    <p class="hero-description mb-4">{{ __('messages.home.hero.description') }}</p>
+                                    <div class="hero-cta-text mb-4">
+                                        <h3>{{ __('messages.home.hero.cta') }}</h3>
+                                    </div>
                                     <div class="hero-buttons">
-                                        <a href="{{ route('services.index', app()->getLocale()) }}" class="btn btn-hero-primary">
-                                            {{ __('messages.home.hero.cta') }}
+                                        <a href="{{ route('booking.index', app()->getLocale()) }}" class="btn btn-hero-primary">
+                                            {{ __('messages.home.hero.cta_book') }}
                                         </a>
-                                        <a href="{{ route('booking.index', app()->getLocale()) }}" class="btn btn-hero-outline">
-                                            {{ __('messages.nav.book') }}
+                                        <a href="{{ route('contact.index', app()->getLocale()) }}" class="btn btn-hero-outline">
+                                            {{ __('messages.home.hero.cta_contact') }}
                                         </a>
                                     </div>
                                 </div>
@@ -289,23 +293,111 @@
 </section>
 @endsection
 
-@push('scripts')
-@php
-        $business = [
-                '@context' => 'https://schema.org',
-                '@type' => 'LocalBusiness',
-                'name' => \App\Models\Setting::get('site_name')[app()->getLocale()] ?? 'Coaching',
-                'description' => __('messages.seo.home.description'),
-                'url' => url('/'),
-                'telephone' => \App\Models\Setting::get('contact_phone'),
-                'email' => \App\Models\Setting::get('contact_email'),
-                'address' => [
-                        '@type' => 'PostalAddress',
-                        'streetAddress' => \App\Models\Setting::get('address')[app()->getLocale()] ?? '',
-                ],
-                'sameAs' => array_values(array_filter([\App\Models\Setting::get('social_facebook'), \App\Models\Setting::get('social_instagram')])),
-                'serviceType' => $services->map(function($service){ return $service->getTranslation('name', app()->getLocale()); })->toArray(),
-        ];
-@endphp
-<script type="application/ld+json">{!! json_encode($business, JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT) !!}</script>
+@push('structured-data')
+<script type="application/ld+json">
+{
+    "@@context": "https://schema.org",
+    "@@graph": [
+    {
+            "@@type": "LocalBusiness",
+            "@@id": "{{ url('/') }}#business",
+      "name": "SSJCHRYSALIDE",
+      "description": "{{ \App\Models\Setting::get('site_tagline')[app()->getLocale()] ?? 'Thérapie brève en Martinique - Sophrologie, PNL, Hypnose' }}",
+      "url": "{{ url('/') }}",
+      "telephone": "+596 696 103 622",
+      "email": "contact@ssjchrysalide.com",
+            "address": {
+                "@@type": "PostalAddress",
+        "addressLocality": "Martinique",
+        "addressRegion": "Martinique",
+        "addressCountry": "FR"
+      },
+            "geo": {
+                "@@type": "GeoCoordinates",
+        "latitude": "14.641528",
+        "longitude": "-61.024174"
+      },
+      "sameAs": [
+        "https://instagram.com/ssjchrysalide",
+        "https://ssjchrysalide.com"
+      ],
+      "serviceType": [
+        "Sophrologie",
+        "Hypnothérapie", 
+        "PNL",
+        "Thérapie brève",
+        "Développement personnel"
+      ],
+      "medicalSpecialty": [
+        "Sophrology",
+        "Hypnotherapy",
+        "NLP Coaching"
+      ],
+            "areaServed": {
+                "@@type": "Place",
+        "name": "Martinique, French West Indies"
+      }
+    },
+    {
+            "@@type": "Person",
+            "@@id": "{{ url('/') }}#person",
+      "name": "Sandrine",
+      "jobTitle": "Sophrologue RNCP, Praticienne Hypnose et PNL",
+      "description": "Sophrologue certifiée RNCP et praticienne en Hypnose et PNL certifiée IN",
+      "url": "{{ url('/') }}",
+      "telephone": "+596 696 103 622",
+      "email": "contact@ssjchrysalide.com",
+            "address": {
+                "@@type": "PostalAddress",
+        "addressLocality": "Martinique",
+        "addressRegion": "Martinique", 
+        "addressCountry": "FR"
+      },
+      "sameAs": [
+        "https://instagram.com/ssjchrysalide"
+      ],
+      "knowsAbout": [
+        "Sophrologie",
+        "Hypnose",
+        "PNL",
+        "Thérapie brève",
+        "Gestion du stress",
+        "Troubles du sommeil",
+        "Développement personnel"
+      ],
+      "hasCredential": [
+        "RNCP Sophrologue",
+        "Praticienne Hypnose certifiée IN",
+        "Praticienne PNL certifiée IN"
+      ]
+    },
+    {
+            "@@type": "MedicalBusiness",
+            "@@id": "{{ url('/') }}#medical",
+      "name": "SSJCHRYSALIDE",
+      "description": "Centre de thérapie brève spécialisé en sophrologie, hypnose et PNL en Martinique",
+      "medicalSpecialty": [
+        "Sophrology",
+        "Hypnotherapy",
+        "NLP Therapy"
+      ],
+      "serviceType": [
+        "Gestion du stress",
+        "Troubles du sommeil",
+        "Blocages personnels",
+        "Fatigue émotionnelle",
+        "Développement personnel"
+      ],
+            "address": {
+                "@@type": "PostalAddress",
+        "addressLocality": "Martinique",
+        "addressRegion": "Martinique",
+        "addressCountry": "FR"
+      },
+      "telephone": "+596 696 103 622",
+      "email": "contact@ssjchrysalide.com"
+    }
+  ]
+}
+</script>
 @endpush
