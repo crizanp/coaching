@@ -80,6 +80,9 @@ return [
     'common.close' => 'Close',
     'common.yes' => 'Yes',
     'common.no' => 'No',
+    
+    // Messages
+    'contact.success' => 'Your message has been sent successfully. We will contact you soon.',
 
     // SEO
     'seo.home.title' => 'Wellness Coaching - Sophrology, Hypnosis & NLP',

@@ -80,6 +80,9 @@ return [
     'common.close' => 'Fermer',
     'common.yes' => 'Oui',
     'common.no' => 'Non',
+    
+    // Messages
+    'contact.success' => 'Votre message a été envoyé avec succès. Nous vous contacterons bientôt.',
 
     // SEO
     'seo.home.title' => 'Coaching Bien-être - Sophrologie, Hypnose & PNL',
