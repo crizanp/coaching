@@ -137,6 +137,7 @@
             background: var(--primary-pink);
             color: white;
             transform: translateY(-2px);
+            border: none;
         }
 
         /* Meditative Hero Slider Styles */
@@ -259,7 +260,7 @@
             height: 60px;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.4);
             border-radius: 50%;
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
@@ -274,7 +275,7 @@
         }
 
         .carousel-control-prev:hover, .carousel-control-next:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.6);
         }
 
         .carousel-control-prev-icon, .carousel-control-next-icon {
@@ -361,7 +362,7 @@
         }
 
         .card {
-            border: none;
+            border: 2px solid transparent;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(247, 178, 189, 0.1);
             transition: all 0.3s ease;
@@ -369,8 +370,9 @@
         }
 
         .card:hover {
-            transform: translateY(-10px);
+            /* transform: translateY(-10px); */
             box-shadow: 0 20px 40px rgba(247, 178, 189, 0.2);
+            /* border-color: #0da9c2; */
         }
 
         .card-body {
@@ -439,7 +441,7 @@
             height: 50px;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.1);
+            background: rgba(0, 0, 0, 0.4);
             border-radius: 50%;
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
@@ -447,15 +449,15 @@
 
         #testimonialsCarousel .carousel-control-prev:hover,
         #testimonialsCarousel .carousel-control-next:hover {
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.6);
         }
 
         #testimonialsCarousel .carousel-control-prev {
-            left: -80px;
+            left: 15px;
         }
 
         #testimonialsCarousel .carousel-control-next {
-            right: -80px;
+            right: 15px;
         }
 
         #testimonialsCarousel .carousel-indicators {

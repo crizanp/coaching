@@ -213,13 +213,6 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
-            
-            <!-- Carousel Indicators -->
-            <div class="carousel-indicators">
-                @foreach($testimonials->take(6) as $index => $testimonial)
-                <button type="button" data-bs-target="#testimonialsCarousel" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
-                @endforeach
-            </div>
             @endif
         </div>
     </div>
