@@ -652,7 +652,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('pages.show', [app()->getLocale(), 'about']) }}">
+                        <a class="nav-link" href="{{ route('about', app()->getLocale()) }}">
                             {{ __('messages.nav.about') }}
                         </a>
                     </li>

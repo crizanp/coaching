@@ -16,6 +16,7 @@ Route::get('/', function () {
 // Language routes
 Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])->middleware('set.locale')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/about', function() { return view('about'); })->name('about');
     Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
     Route::get('/services/{service:slug}', [ServiceController::class, 'show'])->name('services.show');
     Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');

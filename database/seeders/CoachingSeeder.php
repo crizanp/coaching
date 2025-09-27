@@ -204,8 +204,8 @@ class CoachingSeeder extends Seeder
             [
                 'key' => 'site_name',
                 'value' => [
-                    'fr' => 'Coaching Bien-être',
-                    'en' => 'Wellness Coaching'
+                    'fr' => 'SSJCHRYSALIDE',
+                    'en' => 'SSJCHRYSALIDE'
                 ],
                 'type' => 'json',
                 'group' => 'general',
@@ -213,8 +213,8 @@ class CoachingSeeder extends Seeder
             [
                 'key' => 'site_tagline',
                 'value' => [
-                    'fr' => 'Sophrologie • Hypnose • Coaching PNL',
-                    'en' => 'Sophrology • Hypnosis • NLP Coaching'
+                    'fr' => 'Accompagnement de personnes qui traversent des périodes de stress, fatigue émotionnelle, troubles du sommeil, blocages personnels ou qui veulent simplement opérer des changements et atteindre de nouveaux objectifs.',
+                    'en' => 'Supporting people who are going through periods of stress, emotional fatigue, sleep disorders, personal blockages, or who simply want to make changes and reach new goals.'
                 ],
                 'type' => 'json',
                 'group' => 'general',
