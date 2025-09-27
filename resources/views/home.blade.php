@@ -65,7 +65,7 @@
 
             <!-- Slide 3: Coaching -->
             <div class="carousel-item">
-                <div class="hero-slide" style="background: linear-gradient(135deg, rgba(236, 227, 197, 0.8), rgba(39, 149, 14, 0.8)), url('https://images.unsplash.com/photo-1518611012118-696072aa579a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;">
+                <div class="hero-slide" style="background: linear-gradient(135deg, rgba(59, 55, 39, 0.8), rgba(255, 185, 254, 0.8)), url('https://images.unsplash.com/photo-1518611012118-696072aa579a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;">
                     <div class="container h-100">
                         <div class="row h-100 align-items-center justify-content-center text-center">
                             <div class="col-lg-8">

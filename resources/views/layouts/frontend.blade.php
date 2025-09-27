@@ -109,19 +109,27 @@
             transform: translateY(-2px);
         }
 
+        /* Navbar Layout: Logo left, Menu center-left, Book+Language right */
+        .language-switcher {
+            margin-left: 0;
+        }
+
         .btn-primary {
-            background: linear-gradient(45deg, var(--primary-pink), var(--dark-teal));
+            background: #F7B2BD;
             border: none;
             border-radius: 25px;
             padding: 12px 30px;
             font-weight: 600;
-            box-shadow: 0 4px 15px rgba(247, 178, 189, 0.4);
+            color: #131313ff;
+            box-shadow: 0 4px 15px rgba(214, 169, 164, 0.4);
             transition: all 0.3s ease;
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(247, 178, 189, 0.6);
+            color: #362c2cff;
+            background: #F7B2BD;
+            box-shadow: 0 8px 25px rgba(214, 169, 164, 0.6);
         }
 
         .btn-outline-primary {
@@ -577,14 +585,20 @@
         }
 
         .language-switcher {
-            background: var(--light-pink);
+            background: rgba(0, 0, 0, 1);
+            border-radius: 20px;
+            padding: 5px 15px;
+            margin-left: 20px;
+        }.language-switcher:hover{
+            background: rgba(50, 49, 49, 1);
             border-radius: 20px;
             padding: 5px 15px;
             margin-left: 20px;
         }
 
         .language-switcher a {
-            color: var(--text-dark);
+            color: white;
+            
             text-decoration: none;
             font-weight: 500;
         }
@@ -617,17 +631,21 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
+            <!-- Logo on the left -->
             <a class="navbar-brand d-flex align-items-center" href="{{ route('home', app()->getLocale()) }}">
                 <img src="{{ asset('images/assets/SSJchrysalis-first.png') }}" alt="SSJ Symbol" class="navbar-logo-symbol">
                 <img src="{{ asset('images/assets/SSJchrysalis-second.png') }}" alt="Chrysalide" class="navbar-logo-text">
             </a>
             
+            <!-- Mobile Toggle Button -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             
+            <!-- Navigation Menu + Right Side Items -->
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <!-- Main Navigation Menu -->
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('home', app()->getLocale()) }}">
                             {{ __('messages.nav.home') }}
@@ -648,36 +666,15 @@
                             {{ __('messages.nav.contact') }}
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="btn btn-primary nav-link text-white" href="{{ route('booking.index', app()->getLocale()) }}">
-                            {{ __('messages.nav.book') }}
-                        </a>
-                    </li>
                 </ul>
                 
-                <!-- Language Switcher -->
-                <div class="language-switcher">
-                    @php
-                        $currentRoute = request()->route()->getName();
-                        $routeParams = request()->route()->parameters();
-                        $otherLocale = app()->getLocale() == 'fr' ? 'en' : 'fr';
-                        
-                        // Generate URL for same page in other language
-                        if ($currentRoute && $currentRoute !== 'lang.switch') {
-                            unset($routeParams['locale']);
-                            $switchUrl = route($currentRoute, array_merge(['locale' => $otherLocale], $routeParams));
-                        } else {
-                            $switchUrl = url("/{$otherLocale}");
-                        }
-                    @endphp
-                    <a href="{{ $switchUrl }}" class="language-link">
-                        @if(app()->getLocale() == 'fr')
-                            EN
-                        @else
-                            FR
-                        @endif
+                <!-- Right Side: Book Now -->
+                <div class="d-flex align-items-center">
+                    <a class="btn btn-primary" href="{{ route('booking.index', app()->getLocale()) }}">
+                        {{ __('messages.nav.book') }}
                     </a>
                 </div>
+            </div>
             </div>
         </div>
     </nav>
@@ -735,8 +732,33 @@
             </div>
             <hr class="my-4">
             <div class="row">
-                <div class="col-12 text-center">
+                <div class="col-md-6 text-center text-md-start">
                     <p>&copy; {{ date('Y') }} {{ \App\Models\Setting::get('site_name')[app()->getLocale()] ?? 'Coaching' }}. Tous droits réservés.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <!-- Language Switcher -->
+                    <div class="language-switcher d-inline-block">
+                        @php
+                            $currentRoute = request()->route()->getName();
+                            $routeParams = request()->route()->parameters();
+                            $otherLocale = app()->getLocale() == 'fr' ? 'en' : 'fr';
+                            
+                            // Generate URL for same page in other language
+                            if ($currentRoute && $currentRoute !== 'lang.switch') {
+                                unset($routeParams['locale']);
+                                $switchUrl = route($currentRoute, array_merge(['locale' => $otherLocale], $routeParams));
+                            } else {
+                                $switchUrl = url("/{$otherLocale}");
+                            }
+                        @endphp
+                        <a href="{{ $switchUrl }}" class="language-link">
+                            @if(app()->getLocale() == 'fr')
+                                🌐 English
+                            @else
+                                🌐 Français
+                            @endif
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

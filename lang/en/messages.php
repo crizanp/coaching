@@ -7,7 +7,7 @@ return [
     'nav.services' => 'Services',
     'nav.testimonials' => 'Testimonials',
     'nav.contact' => 'Contact',
-    'nav.book' => 'Book',
+    'nav.book' => 'Book Now',
     'nav.language' => 'Français',
 
     // Homepage
