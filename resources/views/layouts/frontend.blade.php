@@ -7,6 +7,25 @@
 
     <title>@yield('title', __('messages.seo.home.title'))</title>
     <meta name="description" content="@yield('description', __('messages.seo.home.description'))">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="keywords" content="sophrologie, hypnose, coaching, PNL, bien-être, relaxation, développement personnel">
+    <meta name="author" content="{{ \App\Models\Setting::get('site_name')[app()->getLocale()] ?? 'Coaching' }}">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ url()->current() }}">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="@yield('title', __('messages.seo.home.title'))">
+    <meta property="og:description" content="@yield('description', __('messages.seo.home.description'))">
+    <meta property="og:locale" content="{{ app()->getLocale() == 'fr' ? 'fr_FR' : 'en_US' }}">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:title" content="@yield('title', __('messages.seo.home.title'))">
+    <meta property="twitter:description" content="@yield('description', __('messages.seo.home.description'))">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
