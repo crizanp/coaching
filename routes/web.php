@@ -47,9 +47,10 @@ Route::get('/lang/{locale}', function ($locale) {
 // Include admin routes
 require __DIR__.'/admin.php';
 
-// Auth routes
-Auth::routes();
+// Auth routes (login only - no registration or password reset)
+Auth::routes(['register' => false, 'reset' => false, 'verify' => false]);
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Redirect /home to admin dashboard after login
+Route::get('/home', function () {
+    return redirect()->route('admin.dashboard');
+});

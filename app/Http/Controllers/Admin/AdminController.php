@@ -8,6 +8,7 @@ use App\Models\Service;
 use App\Models\Appointment;
 use App\Models\Testimonial;
 use App\Models\Setting;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -90,5 +91,37 @@ class AdminController extends Controller
         Setting::set('social_instagram', $validated['social_instagram']);
 
         return redirect()->route('admin.settings')->with('success', 'Settings updated successfully!');
+    }
+
+    /**
+     * Show the change password form.
+     */
+    public function changePassword()
+    {
+        return view('admin.change-password');
+    }
+
+    /**
+     * Update the admin password.
+     */
+    public function updatePassword(Request $request)
+    {
+        $validated = $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|string|min:8|confirmed',
+        ]);
+
+        // Check if current password is correct
+        if (!Hash::check($validated['current_password'], auth()->user()->password)) {
+            return back()->withErrors(['current_password' => 'Current password is incorrect.']);
+        }
+
+        // Update password
+        auth()->user()->update([
+            'password' => Hash::make($validated['new_password'])
+        ]);
+
+        return redirect()->route('admin.dashboard')
+            ->with('success', 'Password updated successfully!');
     }
 }

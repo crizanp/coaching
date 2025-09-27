@@ -5,9 +5,14 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header">{{ __('Admin Login') }}</div>
 
                 <div class="card-body">
+                    <div class="alert alert-info mb-4">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Administrator Access Only</strong><br>
+                        This login is restricted to website administrators. Regular users can book appointments and contact us through the main website.
+                    </div>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
@@ -57,11 +62,7 @@
                                     {{ __('Login') }}
                                 </button>
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
+                                {{-- Password reset disabled for security --}}
                             </div>
                         </div>
                     </form>

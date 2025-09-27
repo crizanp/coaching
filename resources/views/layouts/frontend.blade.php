@@ -80,6 +80,21 @@
             font-size: 1.5rem;
         }
 
+        .navbar-logo-symbol {
+            height: 68px;
+            width: auto;
+            max-width: 75px;
+            object-fit: contain;
+            margin-right: -11px;
+        }
+
+        .navbar-logo-text {
+            height: 55px;
+            width: auto;
+            max-width: 140px;
+            object-fit: contain;
+        }
+
         .navbar-nav .nav-link {
             color: var(--text-dark) !important;
             font-weight: 500;
@@ -124,24 +139,206 @@
             transform: translateY(-2px);
         }
 
-        .hero-section {
-            background: var(--gradient-main);
-            min-height: 80vh;
-            display: flex;
-            align-items: center;
+        /* Meditative Hero Slider Styles */
+        .hero-slider {
+            height: 100vh;
             position: relative;
             overflow: hidden;
         }
 
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
-            opacity: 0.5;
+        .hero-slide {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .meditation-icon {
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.9);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-hero-primary {
+            background: rgba(255, 255, 255, 0.9);
+            color: #2c3e50;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 35px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-hero-primary:hover {
+            background: white;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+            color: #2c3e50;
+        }
+
+        .btn-hero-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50px;
+            padding: 13px 35px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-hero-outline:hover {
+            background: rgba(255, 255, 255, 0.9);
+            color: #2c3e50;
+            border-color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Carousel Custom Styles */
+        .carousel-indicators {
+            bottom: 30px;
+            margin-bottom: 0;
+        }
+
+        .carousel-indicators [data-bs-target] {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            background: transparent;
+            margin: 0 8px;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-indicators .active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        .carousel-control-prev, .carousel-control-next {
+            width: 60px;
+            height: 60px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .carousel-control-prev {
+            left: 30px;
+        }
+
+        .carousel-control-next {
+            right: 30px;
+        }
+
+        .carousel-control-prev:hover, .carousel-control-next:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .carousel-control-prev-icon, .carousel-control-next-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .meditation-icon {
+                font-size: 3rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn-hero-primary, .btn-hero-outline {
+                width: 250px;
+                text-align: center;
+            }
+            
+            .carousel-control-prev, .carousel-control-next {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .carousel-control-prev {
+                left: 15px;
+            }
+            
+            .carousel-control-next {
+                right: 15px;
+            }
         }
 
         .section-padding {
@@ -199,6 +396,8 @@
             padding: 30px;
             margin: 20px 0;
             position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
         .testimonial-card::before {
@@ -214,6 +413,83 @@
         .stars {
             color: #ffc107;
             margin-bottom: 15px;
+        }
+
+        /* Testimonials Carousel Styles */
+        #testimonialsCarousel .carousel-item {
+            padding: 40px 0;
+        }
+
+        #testimonialsCarousel .testimonial-card {
+            max-width: 100%;
+            margin: 0 auto;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .testimonial-author {
+            margin-top: 20px;
+        }
+
+        #testimonialsCarousel .carousel-control-prev,
+        #testimonialsCarousel .carousel-control-next {
+            width: 50px;
+            height: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        #testimonialsCarousel .carousel-control-prev:hover,
+        #testimonialsCarousel .carousel-control-next:hover {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        #testimonialsCarousel .carousel-control-prev {
+            left: -80px;
+        }
+
+        #testimonialsCarousel .carousel-control-next {
+            right: -80px;
+        }
+
+        #testimonialsCarousel .carousel-indicators {
+            bottom: -50px;
+            margin-bottom: 0;
+        }
+
+        #testimonialsCarousel .carousel-indicators [data-bs-target] {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid var(--primary-pink);
+            background: transparent;
+            margin: 0 8px;
+            transition: all 0.3s ease;
+        }
+
+        #testimonialsCarousel .carousel-indicators .active {
+            background: var(--primary-pink);
+            transform: scale(1.2);
+        }
+
+        .testimonial-author {
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            #testimonialsCarousel .carousel-control-prev {
+                left: 10px;
+            }
+            
+            #testimonialsCarousel .carousel-control-next {
+                right: 10px;
+            }
         }
 
         .footer {
@@ -251,11 +527,6 @@
                 font-size: 2rem;
             }
             
-            .hero-section {
-                min-height: 60vh;
-                text-align: center;
-            }
-            
             .section-padding {
                 padding: 50px 0;
             }
@@ -268,9 +539,9 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="{{ route('home', app()->getLocale()) }}">
-                <i class="fas fa-lotus"></i>
-                {{ \App\Models\Setting::get('site_name')[app()->getLocale()] ?? 'Coaching' }}
+            <a class="navbar-brand d-flex align-items-center" href="{{ route('home', app()->getLocale()) }}">
+                <img src="{{ asset('images/assets/SSJchrysalis-first.png') }}" alt="SSJ Symbol" class="navbar-logo-symbol">
+                <img src="{{ asset('images/assets/SSJchrysalis-second.png') }}" alt="Chrysalide" class="navbar-logo-text">
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -334,7 +605,7 @@
     </nav>
 
     <!-- Main Content -->
-    <main style="margin-top: 64px;">
+    <main style="margin-top: 0;">
         @yield('content')
     </main>
 

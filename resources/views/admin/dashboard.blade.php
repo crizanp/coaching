@@ -91,6 +91,9 @@
                                 <a href="{{ route('admin.settings') }}" class="btn btn-outline-info">
                                     <i class="fas fa-cog"></i> Settings
                                 </a>
+                                <a href="{{ route('admin.change-password') }}" class="btn btn-outline-warning">
+                                    <i class="fas fa-key"></i> Change Password
+                                </a>
                                 <a href="{{ url('/fr') }}" class="btn btn-outline-secondary" target="_blank">
                                     <i class="fas fa-external-link-alt"></i> View Site
                                 </a>

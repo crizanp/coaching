@@ -4,32 +4,109 @@
 @section('description', __('messages.seo.home.description'))
 
 @section('content')
-<!-- Hero Section -->
-<section class="hero-section">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <h1 class="display-4 fw-bold text-dark mb-4 fade-in">
-                    {{ __('messages.home.hero.title') }}
-                </h1>
-                <p class="lead mb-5 text-dark-50 fade-in">
-                    {{ __('messages.home.hero.subtitle') }}
-                </p>
-                <div class="fade-in">
-                    <a href="{{ route('services.index', app()->getLocale()) }}" class="btn btn-primary btn-lg me-3">
-                        {{ __('messages.home.hero.cta') }}
-                    </a>
-                    <a href="{{ route('booking.index', app()->getLocale()) }}" class="btn btn-outline-primary btn-lg">
-                        {{ __('messages.nav.book') }}
-                    </a>
+<!-- Meditative Hero Slider -->
+<section class="hero-slider">
+    <div id="meditativeSlider" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+        <!-- Slides -->
+        <div class="carousel-inner">
+            <!-- Slide 1: Sophrologie -->
+            <div class="carousel-item active">
+                <div class="hero-slide" style="background: linear-gradient(135deg, rgba(72, 147, 165, 0.8), rgba(231, 88, 112, 0.8)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center justify-content-center text-center">
+                            <div class="col-lg-8">
+                                <div class="hero-content">
+                                    <div class="meditation-icon mb-4">
+                                        <i class="fas fa-leaf"></i>
+                                    </div>
+                                    <h1 class="hero-title">{{ __('messages.home.hero.title') }}</h1>
+                                    <p class="hero-subtitle">{{ __('messages.home.hero.subtitle') }}</p>
+                                    <div class="hero-buttons">
+                                        <a href="{{ route('services.index', app()->getLocale()) }}" class="btn btn-hero-primary">
+                                            {{ __('messages.home.hero.cta') }}
+                                        </a>
+                                        <a href="{{ route('booking.index', app()->getLocale()) }}" class="btn btn-hero-outline">
+                                            {{ __('messages.nav.book') }}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-6 text-center fade-in">
-                <div style="font-size: 15rem; color: rgba(255,255,255,0.3);">
-                    <i class="fas fa-lotus"></i>
+
+            <!-- Slide 2: Hypnose -->
+            <div class="carousel-item">
+                <div class="hero-slide" style="background: linear-gradient(135deg, rgba(134, 37, 158, 0.7), rgba(63, 111, 31, 0.7)), url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center justify-content-center text-center">
+                            <div class="col-lg-8">
+                                <div class="hero-content">
+                                    <div class="meditation-icon mb-4">
+                                        <i class="fas fa-moon"></i>
+                                    </div>
+                                    <h1 class="hero-title">Trouvez la Paix Intérieure</h1>
+                                    <p class="hero-subtitle">Laissez-vous guider vers un état de sérénité profonde et de bien-être durable</p>
+                                    <div class="hero-buttons">
+                                        <a href="{{ route('services.show', [app()->getLocale(), 'hypnose']) }}" class="btn btn-hero-primary">
+                                            Découvrir l'Hypnose
+                                        </a>
+                                        <a href="{{ route('booking.index', app()->getLocale()) }}" class="btn btn-hero-outline">
+                                            Réserver
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Coaching -->
+            <div class="carousel-item">
+                <div class="hero-slide" style="background: linear-gradient(135deg, rgba(236, 227, 197, 0.8), rgba(39, 149, 14, 0.8)), url('https://images.unsplash.com/photo-1518611012118-696072aa579a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center justify-content-center text-center">
+                            <div class="col-lg-8">
+                                <div class="hero-content">
+                                    <div class="meditation-icon mb-4">
+                                        <i class="fas fa-lotus"></i>
+                                    </div>
+                                    <h1 class="hero-title">Transformez Votre Vie</h1>
+                                    <p class="hero-subtitle">Développez vos ressources intérieures et créez la vie que vous désirez vraiment</p>
+                                    <div class="hero-buttons">
+                                        <a href="{{ route('services.show', [app()->getLocale(), 'coaching-pnl']) }}" class="btn btn-hero-primary">
+                                            Explorer le Coaching
+                                        </a>
+                                        <a href="{{ route('contact.index', app()->getLocale()) }}" class="btn btn-hero-outline">
+                                            Nous Contacter
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Navigation Dots -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#meditativeSlider" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#meditativeSlider" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#meditativeSlider" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+
+        <!-- Navigation Arrows -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#meditativeSlider" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#meditativeSlider" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
 </section>
 
@@ -85,52 +162,76 @@
 
 <!-- Testimonials Section -->
 @if($testimonials->count() > 0)
-<section class="section-padding" style="background: var(--light-pink);">
+<section class="section-padding" style="background: white;">
     <div class="container">
         <div class="fade-in">
             <h2 class="section-title">{{ __('messages.home.testimonials.title') }}</h2>
             <p class="section-subtitle">{{ __('messages.home.testimonials.subtitle') }}</p>
         </div>
         
-        <div class="row">
-            @foreach($testimonials as $testimonial)
-            <div class="col-lg-4 mb-4 fade-in">
-                <div class="testimonial-card">
-                    <div class="stars mb-3">
-                        @for($i = 1; $i <= 5; $i++)
-                            @if($i <= $testimonial->rating)
-                                <i class="fas fa-star"></i>
-                            @else
-                                <i class="far fa-star"></i>
-                            @endif
-                        @endfor
-                    </div>
-                    <p class="mb-3">{{ $testimonial->getTranslation('testimonial', app()->getLocale()) }}</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <strong>{{ $testimonial->client_name }}</strong>
-                            @if($testimonial->client_location)
-                                <br><small class="text-muted">{{ $testimonial->client_location }}</small>
-                            @endif
+        <!-- Testimonials Carousel -->
+        <div id="testimonialsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+            <div class="carousel-inner">
+                @foreach($testimonials->take(6) as $index => $testimonial)
+                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 col-md-10">
+                            <div class="testimonial-card text-center">
+                                <div class="stars mb-3">
+                                    @for($i = 1; $i <= 5; $i++)
+                                        @if($i <= $testimonial->rating)
+                                            <i class="fas fa-star"></i>
+                                        @else
+                                            <i class="far fa-star"></i>
+                                        @endif
+                                    @endfor
+                                </div>
+                                <p class="mb-4 fs-5">{{ $testimonial->getTranslation('testimonial', app()->getLocale()) }}</p>
+                                <div class="testimonial-author">
+                                    <strong class="d-block">{{ $testimonial->client_name }}</strong>
+                                    @if($testimonial->client_location)
+                                        <small class="text-muted">{{ $testimonial->client_location }}</small>
+                                    @endif
+                                    @if($testimonial->service)
+                                        <br><small class="text-muted">{{ $testimonial->service->getTranslation('name', app()->getLocale()) }}</small>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
-                        @if($testimonial->service)
-                            <small class="text-muted">{{ $testimonial->service->getTranslation('name', app()->getLocale()) }}</small>
-                        @endif
                     </div>
                 </div>
+                @endforeach
             </div>
-            @endforeach
+            
+            <!-- Carousel Controls -->
+            @if($testimonials->take(6)->count() > 1)
+            <button class="carousel-control-prev" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+            
+            <!-- Carousel Indicators -->
+            <div class="carousel-indicators">
+                @foreach($testimonials->take(6) as $index => $testimonial)
+                <button type="button" data-bs-target="#testimonialsCarousel" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
+                @endforeach
+            </div>
+            @endif
         </div>
     </div>
 </section>
 @endif
 
 <!-- CTA Section -->
-<section class="section-padding gradient-bg">
+<section class="section-padding">
     <div class="container text-center">
         <div class="fade-in">
-            <h2 class="section-title text-dark">{{ __('messages.home.cta.title') }}</h2>
-            <p class="section-subtitle text-dark-50">{{ __('messages.home.cta.subtitle') }}</p>
+            <h2 class="section-title">{{ __('messages.home.cta.title') }}</h2>
+            <p class="section-subtitle">{{ __('messages.home.cta.subtitle') }}</p>
             <a href="{{ route('booking.index', app()->getLocale()) }}" class="btn btn-primary btn-lg">
                 {{ __('messages.home.cta.button') }}
             </a>
