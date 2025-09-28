@@ -66,7 +66,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="fade-in mb-5">
-                    <h2 class="section-title text-center">{{ __('messages.about.practices.title') }}</h2>
+                    <h2 class="section-title text-center"style="color: #000000ff;">{{ __('messages.about.practices.title') }}</h2>
                     <p class="section-subtitle text-left">{{ __('messages.about.practices.subtitle') }}</p>
                 </div>
             </div>
@@ -76,11 +76,14 @@
             <!-- Sophrology -->
             <div class="col-lg-4 mb-4">
                 <div class="practice-card-textured h-100">
-                    <div class="practice-icon-left">
-                        <i class="fas fa-leaf"></i>
+                    <div class="practice-card-body">
+                        <div class="practice-icon-left">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <div class="practice-card-content">
+                            <h4>{{ __('messages.about.practices.sophrology.title') }}</h4>
+                        </div>
                     </div>
-                    <h4>{{ __('messages.about.practices.sophrology.title') }}</h4>
-                    <p>{{ __('messages.about.practices.sophrology.description') }}</p>
                     <blockquote class="practice-quote-textured">
                         <em>"{{ __('messages.about.practices.sophrology.quote') }}"</em>
                     </blockquote>
@@ -90,11 +93,14 @@
             <!-- NLP -->
             <div class="col-lg-4 mb-4">
                 <div class="practice-card-textured h-100">
-                    <div class="practice-icon-left">
-                        <i class="fas fa-brain"></i>
+                    <div class="practice-card-body">
+                        <div class="practice-icon-left">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="practice-card-content">
+                            <h4>{{ __('messages.about.practices.nlp.title') }}</h4>
+                        </div>
                     </div>
-                    <h4>{{ __('messages.about.practices.nlp.title') }}</h4>
-                    <p>{{ __('messages.about.practices.nlp.description') }}</p>
                     <blockquote class="practice-quote-textured">
                         <em>"{{ __('messages.about.practices.nlp.quote') }}"</em>
                     </blockquote>
@@ -104,11 +110,14 @@
             <!-- Hypnosis -->
             <div class="col-lg-4 mb-4">
                 <div class="practice-card-textured h-100">
-                    <div class="practice-icon-left">
-                        <i class="fas fa-moon"></i>
+                    <div class="practice-card-body">
+                        <div class="practice-icon-left">
+                            <i class="fas fa-moon"></i>
+                        </div>
+                        <div class="practice-card-content">
+                            <h4>{{ __('messages.about.practices.hypnosis.title') }}</h4>
+                        </div>
                     </div>
-                    <h4>{{ __('messages.about.practices.hypnosis.title') }}</h4>
-                    <p>{{ __('messages.about.practices.hypnosis.description') }}</p>
                     <blockquote class="practice-quote-textured">
                         <em>"{{ __('messages.about.practices.hypnosis.quote') }}"</em>
                     </blockquote>
@@ -146,7 +155,7 @@
 <style>
     /* Ensure all containers match navbar width */
     .container {
-        max-width: 1345px;;
+        max-width: 1345px;
         margin: 0 auto;
         padding-left: 15px;
         padding-right: 15px;
@@ -200,76 +209,82 @@
         margin-top: 3rem;
     }
     
+    /* Light practice card: white background, black border, no shadows */
     .practice-card-textured {
-        background: white;
+        background: #ffffff;
         border-radius: 20px;
         padding: 30px;
         text-align: left;
-        border: 2px solid rgba(212, 179, 214, 0.3);
+        border: 1px solid #000000;
         position: relative;
         overflow: hidden;
-        transition: all 0.3s ease;
+        transition: transform 0.25s ease;
+        color: var(--text-dark);
     }
-    
+
     .practice-card-textured::before {
+        /* very subtle paper grain */
         content: '';
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: repeating-linear-gradient(
+        background-image: repeating-linear-gradient(
             45deg,
-            transparent,
-            transparent 10px,
-            rgba(212, 179, 214, 0.02) 10px,
-            rgba(212, 179, 214, 0.02) 20px
+            rgba(0,0,0,0.01),
+            rgba(0,0,0,0.01) 12px,
+            rgba(255,255,255,0.01) 12px,
+            rgba(255,255,255,0.01) 24px
         );
+        opacity: 0.08;
         pointer-events: none;
     }
-    
+
     .practice-card-textured:hover {
-        transform: translateY(-5px);
-        border-color: rgba(212, 179, 214, 0.5);
+        transform: translateY(-4px);
+        border-color: rgba(0,0,0,0.85);
     }
-    
+
+    /* Icon: black glyph on transparent background (no heavy white circle), no shadow */
     .practice-icon-left {
         width: 60px;
         height: 60px;
-        background: rgba(247, 178, 189, 0.2);
+        background: transparent;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 1.8rem;
-        color: #F7B2BD;
-        margin-bottom: 20px;
+        color: #000000;
+        margin-bottom: 0;
         position: relative;
         z-index: 1;
+        box-shadow: none;
     }
-    
+
     .practice-card-textured h4 {
-        color: var(--text-dark);
+        color: #1e1d1dff;
         font-weight: 600;
         font-size: 1.3rem;
         margin-bottom: 15px;
         position: relative;
         z-index: 1;
     }
-    
+
     .practice-card-textured p {
-        color: var(--text-muted);
+        color: rgba(235,235,235,0.85);
         font-size: 1rem;
         line-height: 1.7;
         margin-bottom: 20px;
         position: relative;
         z-index: 1;
     }
-    
+
     .practice-quote-textured {
-        background: rgba(247, 178, 189, 0.1);
-        border-left: 4px solid #F7B2BD;
-        border-radius: 0 10px 10px 0;
+        background: rgba(255,255,255,0.02);
+        border-left: none;
+        border-radius: 6px;
         padding: 15px 20px;
         margin: 0;
         font-size: 0.95rem;
@@ -278,9 +293,37 @@
         position: relative;
         z-index: 1;
     }
+
+    /* Layout: icon left, content right */
+    .practice-card-body {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+    }
+
+    .practice-card-content {
+        flex: 1 1 auto;
+    }
+
+    @media (max-width: 767px) {
+        .practice-card-body {
+            flex-direction: column;
+            gap: 12px;
+        }
+        .practice-icon-left {
+            width: 56px;
+            height: 56px;
+            font-size: 1.6rem;
+        }
+    }
     
     .cta-buttons .btn {
         min-width: 200px;
+    }
+
+    /* Section subtitle should be black on the pale background */
+    .section-subtitle {
+        color: #000000;
     }
     
     @media (max-width: 768px) {

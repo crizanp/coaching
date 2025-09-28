@@ -81,21 +81,21 @@
                     <div class="row mb-4">
                         <div class="col-md-12">
                             <h5>Quick Actions</h5>
-                            <div class="btn-group" role="group">
+                            <div class="d-flex flex-wrap gap-2">
                                 <a href="{{ route('admin.services.index') }}" class="btn btn-outline-primary">
-                                    <i class="fas fa-concierge-bell"></i> Manage Services
+                                    <i class="fas fa-concierge-bell"></i> <span class="d-none d-sm-inline">Manage Services</span>
                                 </a>
                                 <a href="{{ route('admin.appointments.index') }}" class="btn btn-outline-success">
-                                    <i class="fas fa-calendar-alt"></i> View Appointments
+                                    <i class="fas fa-calendar-alt"></i> <span class="d-none d-sm-inline">View Appointments</span>
                                 </a>
                                 <a href="{{ route('admin.settings') }}" class="btn btn-outline-info">
-                                    <i class="fas fa-cog"></i> Settings
+                                    <i class="fas fa-cog"></i> <span class="d-none d-sm-inline">Settings</span>
                                 </a>
                                 <a href="{{ route('admin.change-password') }}" class="btn btn-outline-warning">
-                                    <i class="fas fa-key"></i> Change Password
+                                    <i class="fas fa-key"></i> <span class="d-none d-sm-inline">Change Password</span>
                                 </a>
                                 <a href="{{ url('/fr') }}" class="btn btn-outline-secondary" target="_blank">
-                                    <i class="fas fa-external-link-alt"></i> View Site
+                                    <i class="fas fa-external-link-alt"></i> <span class="d-none d-sm-inline">View Site</span>
                                 </a>
                             </div>
                         </div>
