@@ -30,74 +30,14 @@
     </div>
 </section>
 
-@if($featuredBlogs->count() > 0)
-<!-- Featured Posts Section -->
-<section class="featured-posts section-padding" style="background: white;">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-header text-center mb-5">
-                    <h2 class="section-title">{{ __('messages.blog.featured.title') }}</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            @foreach($featuredBlogs as $featured)
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <article class="blog-card featured-card">
-                        <div class="blog-card-image">
-                            @if($featured->featured_image)
-                                <img src="{{ Storage::url($featured->featured_image) }}" 
-                                     alt="{{ $featured->title }}" class="img-fluid">
-                            @else
-                                <div class="placeholder-image">
-                                    <i class="fas fa-image"></i>
-                                </div>
-                            @endif
-                            <div class="blog-card-badge">
-                                <i class="fas fa-star"></i> {{ __('messages.blog.featured.badge') }}
-                            </div>
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-meta">
-                                <span class="blog-date">
-                                    <i class="fas fa-calendar-alt me-1"></i>{{ $featured->formatted_published_at }}
-                                </span>
-                                <span class="blog-reading-time">
-                                    <i class="fas fa-clock me-1"></i>{{ $featured->reading_time }} {{ __('messages.blog.reading_time') }}
-                                </span>
-                            </div>
-                            <h3 class="blog-card-title">
-                                <a href="{{ route('blog.show', ['locale' => app()->getLocale(), 'blog' => $featured->slug]) }}">
-                                    {{ $featured->title }}
-                                </a>
-                            </h3>
-                            <p class="blog-card-excerpt">{{ $featured->excerpt }}</p>
-                            <div class="blog-card-stats">
-                                <span class="blog-views">
-                                    <i class="fas fa-eye me-1"></i>{{ number_format($featured->views_count) }}
-                                </span>
-                                <span class="blog-likes">
-                                    <i class="fas fa-heart me-1"></i>{{ $featured->likes_count }}
-                                </span>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-@endif
-
-<!-- Latest Posts Section -->
-<section class="latest-posts section-padding" style="background: var(--light-pink);">
+<!-- All Posts Section -->
+<section class="all-posts section-padding" style="background: white;">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="section-header text-center mb-5">
                     <h2 class="section-title">
-                        {{ request('search') ? __('messages.blog.search.results') : __('messages.blog.latest.title') }}
+                        {{ request('search') ? __('messages.blog.search.results') : __('messages.blog.all.title') }}
                     </h2>
                     @if(request('search'))
                         <p class="text-muted">{{ __('messages.blog.search.query') }}: "{{ request('search') }}"</p>
@@ -108,16 +48,21 @@
 
         @if($blogs->count() > 0)
             <div class="row">
-                @foreach($blogs as $blog)
+                @foreach($blogs as $index => $blog)
                     <div class="col-lg-4 col-md-6 mb-4">
-                        <article class="blog-card">
+                        <article class="blog-card {{ $index < 3 && !request('search') ? 'featured-card' : '' }}">
                             <div class="blog-card-image">
-                                @if($blog->featured_image)
+                                @if($blog->featured_image && Storage::disk('public')->exists($blog->featured_image))
                                     <img src="{{ Storage::url($blog->featured_image) }}" 
                                          alt="{{ $blog->title }}" class="img-fluid">
                                 @else
                                     <div class="placeholder-image">
                                         <i class="fas fa-image"></i>
+                                    </div>
+                                @endif
+                                @if($index < 3 && !request('search'))
+                                    <div class="blog-card-badge">
+                                        <i class="fas fa-star"></i> {{ __('messages.blog.featured.badge') }}
                                     </div>
                                 @endif
                             </div>

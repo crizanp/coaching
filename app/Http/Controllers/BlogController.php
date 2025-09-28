@@ -25,16 +25,18 @@ class BlogController extends Controller
                   ->orWhere('excerpt', 'like', "%{$search}%")
                   ->orWhere('content', 'like', "%{$search}%");
             });
+            
+            // When searching, don't separate featured from regular blogs
+            $blogs = $query->recent()->paginate(12);
+            $featuredBlogs = collect(); // Empty collection for search results
+        } else {
+            // Get all blogs ordered by: featured first (by views/likes), then by recent
+            $blogs = $query->orderByDesc('views_count')
+                          ->orderByDesc('likes_count') 
+                          ->orderByDesc('published_at')
+                          ->paginate(12);
+            $featuredBlogs = collect(); // No separate featured section
         }
-
-        $blogs = $query->recent()->paginate(9);
-        $featuredBlogs = Cache::remember('featured_blogs', 3600, function () {
-            return Blog::published()
-                      ->orderBy('views_count', 'desc')
-                      ->orderBy('likes_count', 'desc')
-                      ->limit(3)
-                      ->get();
-        });
 
         return view('blog.index', compact('blogs', 'featuredBlogs'));
     }

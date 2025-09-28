@@ -213,6 +213,7 @@ return [
     'blog.featured.title' => 'Featured Articles',
     'blog.featured.badge' => 'Featured',
     'blog.latest.title' => 'Latest Articles',
+    'blog.all.title' => 'All Articles',
     'blog.reading_time' => 'min read',
     'blog.views' => 'views',
     'blog.no_posts.title' => 'No articles found',

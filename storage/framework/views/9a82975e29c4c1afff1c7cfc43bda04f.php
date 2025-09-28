@@ -30,80 +30,14 @@
     </div>
 </section>
 
-<?php if($featuredBlogs->count() > 0): ?>
-<!-- Featured Posts Section -->
-<section class="featured-posts section-padding" style="background: white;">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-header text-center mb-5">
-                    <h2 class="section-title"><?php echo e(__('messages.blog.featured.title')); ?></h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <?php $__currentLoopData = $featuredBlogs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $featured): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <article class="blog-card featured-card">
-                        <div class="blog-card-image">
-                            <?php if($featured->featured_image): ?>
-                                <img src="<?php echo e(Storage::url($featured->featured_image)); ?>" 
-                                     alt="<?php echo e($featured->title); ?>" class="img-fluid">
-                            <?php else: ?>
-                                <div class="placeholder-image">
-                                    <i class="fas fa-image"></i>
-                                </div>
-                            <?php endif; ?>
-                            <div class="blog-card-badge">
-                                <i class="fas fa-star"></i> <?php echo e(__('messages.blog.featured.badge')); ?>
-
-                            </div>
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-meta">
-                                <span class="blog-date">
-                                    <i class="fas fa-calendar-alt me-1"></i><?php echo e($featured->formatted_published_at); ?>
-
-                                </span>
-                                <span class="blog-reading-time">
-                                    <i class="fas fa-clock me-1"></i><?php echo e($featured->reading_time); ?> <?php echo e(__('messages.blog.reading_time')); ?>
-
-                                </span>
-                            </div>
-                            <h3 class="blog-card-title">
-                                <a href="<?php echo e(route('blog.show', ['locale' => app()->getLocale(), 'blog' => $featured->slug])); ?>">
-                                    <?php echo e($featured->title); ?>
-
-                                </a>
-                            </h3>
-                            <p class="blog-card-excerpt"><?php echo e($featured->excerpt); ?></p>
-                            <div class="blog-card-stats">
-                                <span class="blog-views">
-                                    <i class="fas fa-eye me-1"></i><?php echo e(number_format($featured->views_count)); ?>
-
-                                </span>
-                                <span class="blog-likes">
-                                    <i class="fas fa-heart me-1"></i><?php echo e($featured->likes_count); ?>
-
-                                </span>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        </div>
-    </div>
-</section>
-<?php endif; ?>
-
-<!-- Latest Posts Section -->
-<section class="latest-posts section-padding" style="background: var(--light-pink);">
+<!-- All Posts Section -->
+<section class="all-posts section-padding" style="background: white;">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="section-header text-center mb-5">
                     <h2 class="section-title">
-                        <?php echo e(request('search') ? __('messages.blog.search.results') : __('messages.blog.latest.title')); ?>
+                        <?php echo e(request('search') ? __('messages.blog.search.results') : __('messages.blog.all.title')); ?>
 
                     </h2>
                     <?php if(request('search')): ?>
@@ -115,16 +49,22 @@
 
         <?php if($blogs->count() > 0): ?>
             <div class="row">
-                <?php $__currentLoopData = $blogs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $blog): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php $__currentLoopData = $blogs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $blog): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="col-lg-4 col-md-6 mb-4">
-                        <article class="blog-card">
+                        <article class="blog-card <?php echo e($index < 3 && !request('search') ? 'featured-card' : ''); ?>">
                             <div class="blog-card-image">
-                                <?php if($blog->featured_image): ?>
+                                <?php if($blog->featured_image && Storage::disk('public')->exists($blog->featured_image)): ?>
                                     <img src="<?php echo e(Storage::url($blog->featured_image)); ?>" 
                                          alt="<?php echo e($blog->title); ?>" class="img-fluid">
                                 <?php else: ?>
                                     <div class="placeholder-image">
                                         <i class="fas fa-image"></i>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if($index < 3 && !request('search')): ?>
+                                    <div class="blog-card-badge">
+                                        <i class="fas fa-star"></i> <?php echo e(__('messages.blog.featured.badge')); ?>
+
                                     </div>
                                 <?php endif; ?>
                             </div>
