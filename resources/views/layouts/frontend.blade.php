@@ -668,6 +668,11 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('blog.index', app()->getLocale()) }}">
+                            {{ __('messages.nav.blog') }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('contact.index', app()->getLocale()) }}">
                             {{ __('messages.nav.contact') }}
                         </a>

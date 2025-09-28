@@ -6,6 +6,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,6 +27,11 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])->middleware('set.l
     Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
     Route::get('/booking', [BookingController::class, 'index'])->name('booking.index');
     Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
+    
+    // Blog routes
+    Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+    Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
+    Route::post('/blog/{blog}/react', [BlogController::class, 'react'])->name('blog.react');
     Route::get('/{page:slug}', [PageController::class, 'show'])->name('pages.show');
 });
 
@@ -61,3 +67,4 @@ Route::get('/home', function () {
 
 // SEO Routes
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+Route::get('/blog-sitemap.xml', [BlogController::class, 'sitemap'])->name('blog.sitemap');

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\AppointmentController;
+use App\Http\Controllers\Admin\BlogController;
 
 Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function () {
     Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
@@ -14,6 +15,10 @@ Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function ()
     // Appointments management
     Route::resource('appointments', AppointmentController::class);
     Route::patch('appointments/{appointment}/status', [AppointmentController::class, 'updateStatus'])->name('appointments.status');
+    
+    // Blog management
+    Route::resource('blogs', BlogController::class);
+    Route::patch('blogs/{blog}/toggle-publish', [BlogController::class, 'togglePublish'])->name('blogs.toggle-publish');
     
     // Settings
     Route::get('settings', [AdminController::class, 'settings'])->name('settings');
