@@ -16,11 +16,13 @@ return [
     'home.hero.title' => 'Votre bien-être commence ici',
     'home.hero.subtitle' => 'Découvrez la sophrologie, l\'hypnose et le coaching PNL pour retrouver équilibre et sérénité',
     'home.hero.cta' => 'Découvrir mes services',
+    'home.hero.cta_book' => 'Réserver',
+    'home.hero.cta_contact' => 'Me Contacter',
     
     // Quote Section
-    'home.quote.title' => 'Comme la chrysalide se transforme en papillon, chaque étape de vie est une opportunité de métamorphose.',
+    'home.quote.title' => 'Tout comme la chrysalide se transforme en papillon, chaque étape de la vie est une opportunité de métamorphose.',
     'home.quote.subtitle' => 'Parce que chaque parcours est unique, j\'accompagne celles et ceux qui souhaitent dépasser leurs blocages, retrouver leur énergie et avancer vers une vie plus épanouie.',
-    'home.quote.description' => 'Grâce à la sophrologie, la PNL et l\'hypnose, je vous propose des méthodes douces et puissantes pour transformer durablement votre quotidien.',
+    'home.quote.description' => 'Grâce à la sophrologie, la PNL et l\'hypnose, je propose des méthodes douces et puissantes pour transformer durablement votre quotidien.',
     'home.quote.welcome' => 'Bienvenue dans un espace de confiance et de changement où chaque séance, pensée pour vous, est une étape concrète vers plus de liberté intérieure.',
     'home.quote.cta' => 'Et si vous commenciez dès aujourd\'hui ?',
     'home.quote.cta_book' => 'Prendre rendez-vous',

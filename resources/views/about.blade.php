@@ -61,23 +61,27 @@
 </section>
 
 <!-- Practices Section -->
-<section class="section-padding" style="background: var(--light-pink);">
+<section class="section-padding" style="background-color: #F8E8EA;">
     <div class="container">
-        <div class="fade-in text-center mb-5">
-            <h2 class="section-title">{{ __('messages.about.practices.title') }}</h2>
-            <p class="section-subtitle">{{ __('messages.about.practices.subtitle') }}</p>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="fade-in mb-5">
+                    <h2 class="section-title text-center">{{ __('messages.about.practices.title') }}</h2>
+                    <p class="section-subtitle text-left">{{ __('messages.about.practices.subtitle') }}</p>
+                </div>
+            </div>
         </div>
         
         <div class="row">
             <!-- Sophrology -->
             <div class="col-lg-4 mb-4">
-                <div class="practice-card h-100">
-                    <div class="practice-icon">
+                <div class="practice-card-textured h-100">
+                    <div class="practice-icon-left">
                         <i class="fas fa-leaf"></i>
                     </div>
                     <h4>{{ __('messages.about.practices.sophrology.title') }}</h4>
                     <p>{{ __('messages.about.practices.sophrology.description') }}</p>
-                    <blockquote class="practice-quote">
+                    <blockquote class="practice-quote-textured">
                         <em>"{{ __('messages.about.practices.sophrology.quote') }}"</em>
                     </blockquote>
                 </div>
@@ -85,13 +89,13 @@
             
             <!-- NLP -->
             <div class="col-lg-4 mb-4">
-                <div class="practice-card h-100">
-                    <div class="practice-icon">
+                <div class="practice-card-textured h-100">
+                    <div class="practice-icon-left">
                         <i class="fas fa-brain"></i>
                     </div>
                     <h4>{{ __('messages.about.practices.nlp.title') }}</h4>
                     <p>{{ __('messages.about.practices.nlp.description') }}</p>
-                    <blockquote class="practice-quote">
+                    <blockquote class="practice-quote-textured">
                         <em>"{{ __('messages.about.practices.nlp.quote') }}"</em>
                     </blockquote>
                 </div>
@@ -99,13 +103,13 @@
             
             <!-- Hypnosis -->
             <div class="col-lg-4 mb-4">
-                <div class="practice-card h-100">
-                    <div class="practice-icon">
+                <div class="practice-card-textured h-100">
+                    <div class="practice-icon-left">
                         <i class="fas fa-moon"></i>
                     </div>
                     <h4>{{ __('messages.about.practices.hypnosis.title') }}</h4>
                     <p>{{ __('messages.about.practices.hypnosis.description') }}</p>
-                    <blockquote class="practice-quote">
+                    <blockquote class="practice-quote-textured">
                         <em>"{{ __('messages.about.practices.hypnosis.quote') }}"</em>
                     </blockquote>
                 </div>
@@ -142,7 +146,7 @@
 <style>
     /* Ensure all containers match navbar width */
     .container {
-        max-width: 1200px;
+        max-width: 1345px;;
         margin: 0 auto;
         padding-left: 15px;
         padding-right: 15px;
@@ -196,55 +200,83 @@
         margin-top: 3rem;
     }
     
-    .practice-card {
+    .practice-card-textured {
         background: white;
         border-radius: 20px;
-        padding: 40px 30px;
-        text-align: center;
-        border: 1px solid rgba(247, 178, 189, 0.2);
-        box-shadow: 0 10px 25px rgba(247, 178, 189, 0.1);
-        transition: all 0.3s ease;
+        padding: 30px;
+        text-align: left;
+        border: 2px solid rgba(212, 179, 214, 0.3);
         position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
     }
     
-    .practice-card:hover {
+    .practice-card-textured::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 10px,
+            rgba(212, 179, 214, 0.02) 10px,
+            rgba(212, 179, 214, 0.02) 20px
+        );
+        pointer-events: none;
+    }
+    
+    .practice-card-textured:hover {
         transform: translateY(-5px);
-        box-shadow: 0 20px 40px rgba(247, 178, 189, 0.2);
+        border-color: rgba(212, 179, 214, 0.5);
     }
     
-    .practice-icon {
-        width: 80px;
-        height: 80px;
-        background: var(--light-pink);
+    .practice-icon-left {
+        width: 60px;
+        height: 60px;
+        background: rgba(247, 178, 189, 0.2);
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 auto 25px;
-        font-size: 2rem;
-        color: var(--primary-pink);
+        font-size: 1.8rem;
+        color: #F7B2BD;
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 1;
     }
     
-    .practice-card h4 {
+    .practice-card-textured h4 {
         color: var(--text-dark);
-        margin-bottom: 20px;
         font-weight: 600;
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        position: relative;
+        z-index: 1;
     }
     
-    .practice-card p {
+    .practice-card-textured p {
         color: var(--text-muted);
-        line-height: 1.6;
+        font-size: 1rem;
+        line-height: 1.7;
         margin-bottom: 20px;
+        position: relative;
+        z-index: 1;
     }
     
-    .practice-quote {
+    .practice-quote-textured {
         background: rgba(247, 178, 189, 0.1);
-        border-radius: 15px;
-        padding: 20px;
-        margin-top: 20px;
+        border-left: 4px solid #F7B2BD;
+        border-radius: 0 10px 10px 0;
+        padding: 15px 20px;
+        margin: 0;
         font-size: 0.95rem;
-        color: var(--primary-pink);
-        border-left: none;
+        color: #F7B2BD;
+        font-style: italic;
+        position: relative;
+        z-index: 1;
     }
     
     .cta-buttons .btn {

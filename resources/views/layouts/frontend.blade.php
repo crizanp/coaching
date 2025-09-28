@@ -78,6 +78,7 @@
             font-weight: 600;
             color: var(--text-dark) !important;
             font-size: 1.5rem;
+                margin-left: -20px;
         }
 
         .navbar-logo-symbol {
@@ -396,7 +397,7 @@
             align-items: center;
             justify-content: center;
             font-size: 2rem;
-            color: var(--primary-pink);
+            color: #000000;
             margin: 0 auto 30px;
         }
 
@@ -578,7 +579,7 @@
         /* Ensure footer container matches navbar container width */
         .footer .container,
         .navbar .container {
-            max-width: 1200px;
+            max-width: 1345px;;
             margin: 0 auto;
             padding-left: 15px;
             padding-right: 15px;

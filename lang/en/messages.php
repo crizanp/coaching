@@ -16,6 +16,8 @@ return [
     'home.hero.title' => 'Your wellness starts here',
     'home.hero.subtitle' => 'Discover sophrology, hypnosis and NLP coaching to find balance and serenity',
     'home.hero.cta' => 'Discover my services',
+    'home.hero.cta_book' => 'Book Now',
+    'home.hero.cta_contact' => 'Contact Me',
     
     // Quote Section
     'home.quote.title' => 'Just as the chrysalis transforms into a butterfly, every stage of life is an opportunity for metamorphosis.',

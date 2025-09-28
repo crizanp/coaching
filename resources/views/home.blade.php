@@ -21,10 +21,7 @@
                                     </div>
                                     <h1 class="hero-title">{{ __('messages.home.hero.title') }}</h1>
                                     <p class="hero-subtitle">{{ __('messages.home.hero.subtitle') }}</p>
-                                    <p class="hero-description mb-4">{{ __('messages.home.hero.description') }}</p>
-                                    <div class="hero-cta-text mb-4">
-                                        <h3>{{ __('messages.home.hero.cta') }}</h3>
-                                    </div>
+                                   
                                     <div class="hero-buttons">
                                         <a href="{{ route('booking.index', app()->getLocale()) }}" class="btn btn-hero-primary">
                                             {{ __('messages.home.hero.cta_book') }}
@@ -114,8 +111,30 @@
     </div>
 </section>
 
+<!-- Quote Section -->
+<section class="section-padding" style="background-color: white;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 text-center">
+                <div class="fade-in">
+                    <h2 class="section-title mb-4" style="color: #333; font-style: italic; font-size: 2.2rem; line-height: 1.4;">
+                        "{{ __('messages.home.quote.title') }}"
+                    </h2>
+                    <div class="quote-content" style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem; color: #555;">
+                        <p class="mb-4">{{ __('messages.home.quote.subtitle') }}</p>
+                        <p class="mb-4">{{ __('messages.home.quote.description') }}</p>
+                        <p class="mb-0" style="font-style: italic; color: #F7B2BD;">
+                            → {{ __('messages.home.quote.welcome') }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Services Section -->
-<section class="section-padding">
+<section class="section-padding" style="background-color: #F8E8EA;">
     <div class="container">
         <div class="fade-in">
             <h2 class="section-title">{{ __('messages.home.services.title') }}</h2>
@@ -224,7 +243,7 @@
 @endif
 
 <!-- FAQ Section -->
-<section class="section-padding">
+<section class="section-padding" style="background-color: #F8E8EA;">
     <div class="container">
         <div class="fade-in">
             <h2 class="section-title">{{ __('messages.home.faq.title') }}</h2>

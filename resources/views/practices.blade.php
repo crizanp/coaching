@@ -13,23 +13,45 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
 @endsection
 
 @section('content')
+<style>
+    /* Ensure all containers match navbar max-width */
+    .container {
+        max-width: 1345px; !important;
+        margin: 0 auto;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    /* Add top margin to account for fixed navbar */
+    .practices-hero {
+        margin-top: 80px;
+    }
+    
+    @media (max-width: 768px) {
+        .practices-hero {
+            margin-top: 60px;
+        }
+    }
+</style>
+
 <!-- Hero Section -->
-<section class="practices-hero py-5" style="background: linear-gradient(135deg, rgba(212, 179, 214, 0.9), rgba(248, 245, 255, 0.9)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;">
-    <div class="container">
+<section class="practices-hero py-5" style="background: linear-gradient(135deg, rgba(247, 178, 189, 0.8), rgba(212, 179, 214, 0.8)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; position: relative;">
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.4);"></div>
+    <div class="container" style="position: relative; z-index: 2;">
         <div class="row justify-content-center text-center">
             <div class="col-lg-8">
                 <div class="meditation-icon mb-4">
-                    <i class="fas fa-spa" style="font-size: 3rem; color: #d4b3d6;"></i>
+                    <i class="fas fa-spa" style="font-size: 3rem; color: #ffffff;"></i>
                 </div>
-                <h1 class="hero-title mb-4">{{ __('messages.practices.title') }}</h1>
-                <p class="hero-subtitle">{{ __('messages.practices.subtitle') }}</p>
+                <h1 class="hero-title mb-4" style="color: #ffffff;">{{ __('messages.practices.title') }}</h1>
+                <p class="hero-subtitle" style="color: #ffffff;">{{ __('messages.practices.subtitle') }}</p>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Approach Section -->
-<section class="approach-section py-5">
+<section class="approach-section py-5" style="background-color: white;">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10">
@@ -43,16 +65,18 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
 </section>
 
 <!-- Practices Grid -->
-<section class="practices-grid py-5" style="background-color: #f8f5ff;">
+<section class="practices-grid py-5" style="background-color: white;">
     <div class="container">
         <div class="row g-4">
             <!-- Sophrologie -->
             <div class="col-lg-4 col-md-6">
-                <div class="practice-card h-100" style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(212, 179, 214, 0.1); border: 1px solid rgba(212, 179, 214, 0.2);">
-                    <div class="practice-icon text-center mb-4">
-                        <i class="fas fa-leaf" style="font-size: 3rem; color: #d4b3d6;"></i>
-                    </div>
-                    <h3 class="practice-title text-center mb-3">{{ __('messages.practices.sophrology.title') }}</h3>
+                <div class="practice-card h-100" style="background: white; border-radius: 20px; padding: 2rem; border: 2px solid rgba(212, 179, 214, 0.3); position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(212, 179, 214, 0.02) 10px, rgba(212, 179, 214, 0.02) 20px); pointer-events: none;"></div>
+                    <div style="position: relative; z-index: 1;">
+                        <div class="practice-icon text-center mb-4">
+                            <i class="fas fa-leaf" style="font-size: 3rem; color: #d4b3d6;"></i>
+                        </div>
+                    <h3 class="practice-title text-left mb-3">{{ __('messages.practices.sophrology.title') }}</h3>
                     <p class="practice-description mb-4">{{ __('messages.practices.sophrology.description') }}</p>
                     
                     <div class="practice-benefits mb-4">
@@ -64,23 +88,26 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
                         </ul>
                     </div>
                     
-                    <div class="practice-techniques">
-                        <h5>{{ __('messages.practices.techniques') }}:</h5>
-                        <p class="small text-muted">{{ __('messages.practices.sophrology.techniques') }}</p>
+                        <div class="practice-techniques">
+                            <h5>{{ __('messages.practices.techniques') }}:</h5>
+                            <p class="small text-muted">{{ __('messages.practices.sophrology.techniques') }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- PNL -->
             <div class="col-lg-4 col-md-6">
-                <div class="practice-card h-100" style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(212, 179, 214, 0.1); border: 1px solid rgba(212, 179, 214, 0.2);">
-                    <div class="practice-icon text-center mb-4">
-                        <i class="fas fa-brain" style="font-size: 3rem; color: #d4b3d6;"></i>
-                    </div>
-                    <h3 class="practice-title text-center mb-3">{{ __('messages.practices.nlp.title') }}</h3>
-                    <p class="practice-description mb-4">{{ __('messages.practices.nlp.description') }}</p>
-                    
-                    <div class="practice-benefits mb-4">
+                <div class="practice-card h-100" style="background: white; border-radius: 20px; padding: 2rem; border: 2px solid rgba(212, 179, 214, 0.3); position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(212, 179, 214, 0.02) 10px, rgba(212, 179, 214, 0.02) 20px); pointer-events: none;"></div>
+                    <div style="position: relative; z-index: 1;">
+                        <div class="practice-icon text-center mb-4">
+                            <i class="fas fa-brain" style="font-size: 3rem; color: #d4b3d6;"></i>
+                        </div>
+                        <h3 class="practice-title text-left mb-3">{{ __('messages.practices.nlp.title') }}</h3>
+                        <p class="practice-description mb-4">{{ __('messages.practices.nlp.description') }}</p>
+                        
+                        <div class="practice-benefits mb-4">
                         <h5>{{ __('messages.practices.benefits') }}:</h5>
                         <ul class="practice-list">
                             @foreach(__('messages.practices.nlp.benefits') as $benefit)
@@ -89,23 +116,26 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
                         </ul>
                     </div>
                     
-                    <div class="practice-techniques">
-                        <h5>{{ __('messages.practices.techniques') }}:</h5>
-                        <p class="small text-muted">{{ __('messages.practices.nlp.techniques') }}</p>
+                        <div class="practice-techniques">
+                            <h5>{{ __('messages.practices.techniques') }}:</h5>
+                            <p class="small text-muted">{{ __('messages.practices.nlp.techniques') }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Hypnose -->
             <div class="col-lg-4 col-md-6">
-                <div class="practice-card h-100" style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(212, 179, 214, 0.1); border: 1px solid rgba(212, 179, 214, 0.2);">
-                    <div class="practice-icon text-center mb-4">
-                        <i class="fas fa-moon" style="font-size: 3rem; color: #d4b3d6;"></i>
-                    </div>
-                    <h3 class="practice-title text-center mb-3">{{ __('messages.practices.hypnosis.title') }}</h3>
-                    <p class="practice-description mb-4">{{ __('messages.practices.hypnosis.description') }}</p>
-                    
-                    <div class="practice-benefits mb-4">
+                <div class="practice-card h-100" style="background: white; border-radius: 20px; padding: 2rem; border: 2px solid rgba(212, 179, 214, 0.3); position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(212, 179, 214, 0.02) 10px, rgba(212, 179, 214, 0.02) 20px); pointer-events: none;"></div>
+                    <div style="position: relative; z-index: 1;">
+                        <div class="practice-icon text-center mb-4">
+                            <i class="fas fa-moon" style="font-size: 3rem; color: #d4b3d6;"></i>
+                        </div>
+                        <h3 class="practice-title text-left mb-3">{{ __('messages.practices.hypnosis.title') }}</h3>
+                        <p class="practice-description mb-4">{{ __('messages.practices.hypnosis.description') }}</p>
+                        
+                        <div class="practice-benefits mb-4">
                         <h5>{{ __('messages.practices.benefits') }}:</h5>
                         <ul class="practice-list">
                             @foreach(__('messages.practices.hypnosis.benefits') as $benefit)
@@ -114,9 +144,10 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
                         </ul>
                     </div>
                     
-                    <div class="practice-techniques">
-                        <h5>{{ __('messages.practices.techniques') }}:</h5>
-                        <p class="small text-muted">{{ __('messages.practices.hypnosis.techniques') }}</p>
+                        <div class="practice-techniques">
+                            <h5>{{ __('messages.practices.techniques') }}:</h5>
+                            <p class="small text-muted">{{ __('messages.practices.hypnosis.techniques') }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -125,17 +156,17 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
 </section>
 
 <!-- Call to Action -->
-<section class="practices-cta py-5" style="background: linear-gradient(135deg, #d4b3d6, #f8f5ff);">
+<section class="practices-cta py-5" style="background-color: #F8E8EA;">
     <div class="container">
         <div class="row justify-content-center text-center">
             <div class="col-lg-8">
-                <h2 class="text-white mb-4">{{ __('messages.practices.cta.title') }}</h2>
-                <p class="text-white mb-4">{{ __('messages.practices.cta.description') }}</p>
+                <h2 class="text-dark mb-4">{{ __('messages.practices.cta.title') }}</h2>
+                <p class="text-dark mb-4">{{ __('messages.practices.cta.description') }}</p>
                 <div class="cta-buttons">
-                    <a href="{{ route('booking.index', app()->getLocale()) }}" class="btn btn-light btn-lg me-3 mb-2">
+                    <a href="{{ route('booking.index', app()->getLocale()) }}" class="btn btn-primary btn-lg me-3 mb-2">
                         {{ __('messages.practices.cta.book') }}
                     </a>
-                    <a href="{{ route('contact.index', app()->getLocale()) }}" class="btn btn-outline-light btn-lg mb-2">
+                    <a href="{{ route('contact.index', app()->getLocale()) }}" class="btn btn-outline-primary btn-lg mb-2">
                         {{ __('messages.practices.cta.contact') }}
                     </a>
                 </div>
@@ -147,20 +178,20 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
 @push('structured-data')
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "MedicalBusiness",
+    "@@context": "https://schema.org",
+    "@@type": "MedicalBusiness",
   "name": "SSJCHRYSALIDE",
   "description": "{{ __('messages.practices.description') }}",
   "url": "{{ url()->current() }}",
   "telephone": "+596 696 103 622",
   "email": "contact@ssjchrysalide.com",
-  "address": {
-    "@type": "PostalAddress",
+    "address": {
+        "@@type": "PostalAddress",
     "addressRegion": "Martinique",
     "addressCountry": "FR"
   },
-  "geo": {
-    "@type": "GeoCoordinates",
+    "geo": {
+        "@@type": "GeoCoordinates",
     "latitude": "14.641528",
     "longitude": "-61.024174"
   },

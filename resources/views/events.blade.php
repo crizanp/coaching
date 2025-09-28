@@ -13,6 +13,27 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
 @endsection
 
 @section('content')
+<style>
+    /* Ensure all containers match navbar max-width */
+    .container {
+        max-width: 1345px; !important;
+        margin: 0 auto;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    /* Add top margin to account for fixed navbar */
+    .events-hero {
+        margin-top: 80px;
+    }
+    
+    @media (max-width: 768px) {
+        .events-hero {
+            margin-top: 60px;
+        }
+    }
+</style>
+
 <!-- Hero Section -->
 <section class="events-hero py-5" style="background: linear-gradient(135deg, rgba(212, 179, 214, 0.9), rgba(248, 245, 255, 0.9)), url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;">
     <div class="container">
@@ -163,26 +184,26 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
 @push('structured-data')
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "Event",
+    "@@context": "https://schema.org",
+    "@@type": "Event",
   "name": "{{ __('messages.events.workshop.title') }}",
   "description": "{{ __('messages.events.workshop.description') }}",
   "organizer": {
-    "@type": "Person",
+    "@@type": "Person",
     "name": "Sandrine - SSJCHRYSALIDE",
     "url": "{{ url('/') }}"
   },
-  "location": {
-    "@type": "Place",
+    "location": {
+        "@@type": "Place",
     "name": "{{ __('messages.events.details.location_value') }}",
-    "address": {
-      "@type": "PostalAddress",
+        "address": {
+            "@@type": "PostalAddress",
       "addressRegion": "Martinique",
       "addressCountry": "FR"
     }
   },
-  "offers": {
-    "@type": "Offer",
+    "offers": {
+        "@@type": "Offer",
     "price": "{{ __('messages.events.details.price_value') }}",
     "priceCurrency": "EUR"
   }
