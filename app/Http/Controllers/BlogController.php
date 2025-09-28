@@ -6,6 +6,7 @@ use App\Models\Blog;
 use App\Models\BlogReaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class BlogController extends Controller
 {
@@ -75,48 +76,73 @@ class BlogController extends Controller
     /**
      * Handle blog post reactions (like/dislike)
      */
-    public function react(Request $request, Blog $blog)
+    public function react(Request $request, $locale, Blog $blog)
     {
-        $request->validate([
-            'type' => 'required|in:like,dislike',
-        ]);
-
-        $ipAddress = $request->ip();
-        $type = $request->get('type');
-
-        // Check if user already reacted
-        $existingReaction = $blog->getReactionByIp($ipAddress);
-
-        if ($existingReaction) {
-            if ($existingReaction->type === $type) {
-                // Remove reaction if clicking the same type
-                $blog->removeReaction($ipAddress);
-                $message = 'Reaction removed';
-            } else {
-                // Change reaction type
-                $blog->removeReaction($ipAddress);
-                $blog->addReaction($type, $ipAddress);
-                $message = 'Reaction updated';
-            }
-        } else {
-            // Add new reaction
-            $blog->addReaction($type, $ipAddress);
-            $message = 'Reaction added';
-        }
-
-        // Return JSON response for AJAX requests
-        if ($request->expectsJson()) {
-            $blog->refresh();
-            return response()->json([
-                'success' => true,
-                'message' => $message,
-                'likes_count' => $blog->likes_count,
-                'dislikes_count' => $blog->dislikes_count,
-                'user_reaction' => $blog->getReactionByIp($ipAddress)?->type,
+        try {
+            $request->validate([
+                'type' => 'required|in:like,dislike',
             ]);
-        }
 
-        return redirect()->back()->with('success', $message);
+            $ipAddress = $request->ip();
+            $type = $request->get('type');
+            $message = '';
+
+            // Check if user already reacted
+            $existingReaction = $blog->getReactionByIp($ipAddress);
+
+            if ($existingReaction) {
+                if ($existingReaction->type === $type) {
+                    // Remove reaction if clicking the same type
+                    $result = $blog->removeReaction($ipAddress);
+                    $message = $result ? 'Reaction removed' : 'Failed to remove reaction';
+                } else {
+                    // Change reaction type
+                    $removeResult = $blog->removeReaction($ipAddress);
+                    if ($removeResult) {
+                        $addResult = $blog->addReaction($type, $ipAddress);
+                        $message = $addResult ? 'Reaction updated' : 'Failed to update reaction';
+                    } else {
+                        $message = 'Failed to change reaction';
+                    }
+                }
+            } else {
+                // Add new reaction
+                $result = $blog->addReaction($type, $ipAddress);
+                $message = $result ? 'Reaction added' : 'Failed to add reaction';
+            }
+
+            // Return JSON response for AJAX requests
+            if ($request->expectsJson()) {
+                $blog->refresh();
+                return response()->json([
+                    'success' => true,
+                    'message' => $message,
+                    'likes_count' => $blog->likes_count,
+                    'dislikes_count' => $blog->dislikes_count,
+                    'user_reaction' => $blog->getReactionByIp($ipAddress)?->type,
+                ]);
+            }
+
+            return redirect()->back()->with('success', $message);
+
+        } catch (\Exception $e) {
+            // Log the error for debugging
+            Log::error('Blog reaction error: ' . $e->getMessage(), [
+                'blog_id' => $blog->id,
+                'ip_address' => $request->ip(),
+                'type' => $request->get('type'),
+                'trace' => $e->getTraceAsString()
+            ]);
+
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'An error occurred while processing your reaction. Please try again.',
+                ], 500);
+            }
+
+            return redirect()->back()->with('error', 'An error occurred while processing your reaction.');
+        }
     }
 
     /**

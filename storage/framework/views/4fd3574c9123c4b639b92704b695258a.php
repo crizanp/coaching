@@ -571,10 +571,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 body: JSON.stringify({ type })
             })
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
                 .then(data => {
-                    if (!data.success) {
-                        throw new Error('Reaction failed');
+                    if (data.success === false) {
+                        showToast(data.message || `<?php echo e(__('messages.blog.reactions.error')); ?>`, 'error');
+                        return;
                     }
 
                     document.querySelector('.like-count').textContent = data.likes_count;
@@ -587,7 +593,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     showToast(data.message, 'success');
                 })
-                .catch(() => showToast(`<?php echo e(__('messages.blog.reactions.error')); ?>`, 'error'));
+                .catch(error => {
+                    console.error('Blog reaction error:', error);
+                    showToast(`<?php echo e(__('messages.blog.reactions.error')); ?>`, 'error');
+                });
         });
     });
 

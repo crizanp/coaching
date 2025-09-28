@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
 
 class Blog extends Model
@@ -121,40 +122,60 @@ class Blog extends Model
 
     public function addReaction($type, $ipAddress)
     {
-        if (!$this->canReact($ipAddress)) {
+        try {
+            // Check if user already has a reaction
+            $existingReaction = $this->reactions()->where('ip_address', $ipAddress)->first();
+            
+            if ($existingReaction) {
+                return false; // User already has a reaction
+            }
+
+            $reaction = $this->reactions()->create([
+                'type' => $type,
+                'ip_address' => $ipAddress,
+            ]);
+
+            // Update counters
+            if ($type === 'like') {
+                $this->increment('likes_count');
+            } else {
+                $this->increment('dislikes_count');
+            }
+
+            return $reaction;
+        } catch (\Exception $e) {
+            Log::error('Error adding blog reaction: ' . $e->getMessage(), [
+                'blog_id' => $this->id,
+                'type' => $type,
+                'ip_address' => $ipAddress
+            ]);
             return false;
         }
-
-        $reaction = $this->reactions()->create([
-            'type' => $type,
-            'ip_address' => $ipAddress,
-        ]);
-
-        // Update counters
-        if ($type === 'like') {
-            $this->increment('likes_count');
-        } else {
-            $this->increment('dislikes_count');
-        }
-
-        return $reaction;
     }
 
     public function removeReaction($ipAddress)
     {
-        $reaction = $this->reactions()->where('ip_address', $ipAddress)->first();
-        
-        if ($reaction) {
-            if ($reaction->type === 'like') {
-                $this->decrement('likes_count');
-            } else {
-                $this->decrement('dislikes_count');
+        try {
+            $reaction = $this->reactions()->where('ip_address', $ipAddress)->first();
+            
+            if ($reaction) {
+                if ($reaction->type === 'like') {
+                    $this->decrement('likes_count');
+                } else {
+                    $this->decrement('dislikes_count');
+                }
+                
+                $reaction->delete();
+                return true;
             }
             
-            $reaction->delete();
-            return true;
+            return false;
+        } catch (\Exception $e) {
+            Log::error('Error removing blog reaction: ' . $e->getMessage(), [
+                'blog_id' => $this->id,
+                'ip_address' => $ipAddress
+            ]);
+            return false;
         }
-        
-        return false;
     }
 }
