@@ -60,7 +60,7 @@ class BlogController extends Controller
             'slug' => 'nullable|string|max:255|unique:blogs,slug',
             'excerpt' => 'required|string|max:500',
             'content' => 'required|string',
-            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'featured_image' => 'nullable|file|image|mimes:jpeg,jpg,png,gif,webp|max:5120',
             'meta_title' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string|max:160',
             'meta_keywords' => 'nullable|string',
@@ -83,7 +83,13 @@ class BlogController extends Controller
 
         // Handle featured image upload
         if ($request->hasFile('featured_image')) {
-            $validated['featured_image'] = $request->file('featured_image')->store('blog-images', 'public');
+            try {
+                $validated['featured_image'] = $request->file('featured_image')->store('blog-images', 'public');
+            } catch (\Exception $e) {
+                return redirect()->back()
+                    ->withInput()
+                    ->withErrors(['featured_image' => 'Failed to upload image. Please try again.']);
+            }
         }
 
         // Convert meta keywords to array
@@ -128,7 +134,7 @@ class BlogController extends Controller
             'slug' => ['nullable', 'string', 'max:255', Rule::unique('blogs')->ignore($blog->id)],
             'excerpt' => 'required|string|max:500',
             'content' => 'required|string',
-            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'featured_image' => 'nullable|file|image|mimes:jpeg,jpg,png,gif,webp|max:5120',
             'meta_title' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string|max:160',
             'meta_keywords' => 'nullable|string',
@@ -151,11 +157,17 @@ class BlogController extends Controller
 
         // Handle featured image upload
         if ($request->hasFile('featured_image')) {
-            // Delete old image
-            if ($blog->featured_image) {
-                Storage::disk('public')->delete($blog->featured_image);
+            try {
+                // Delete old image
+                if ($blog->featured_image) {
+                    Storage::disk('public')->delete($blog->featured_image);
+                }
+                $validated['featured_image'] = $request->file('featured_image')->store('blog-images', 'public');
+            } catch (\Exception $e) {
+                return redirect()->back()
+                    ->withInput()
+                    ->withErrors(['featured_image' => 'Failed to upload image. Please try again.']);
             }
-            $validated['featured_image'] = $request->file('featured_image')->store('blog-images', 'public');
         }
 
         // Convert meta keywords to array

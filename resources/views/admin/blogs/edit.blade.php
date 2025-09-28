@@ -194,8 +194,12 @@
                                 {{ $blog->featured_image ? 'Replace Image' : 'Upload Image' }}
                             </label>
                             <input type="file" class="form-control @error('featured_image') is-invalid @enderror" 
-                                   id="featured_image" name="featured_image" accept="image/*">
-                            <small class="form-text text-muted">Recommended size: 1200x630px</small>
+                                   id="featured_image" name="featured_image" 
+                                   accept=".jpg,.jpeg,.png,.gif,.webp,image/jpeg,image/png,image/gif,image/webp">
+                            <small class="form-text text-muted">
+                                Formats supportés: JPG, JPEG, PNG, GIF, WebP<br>
+                                Taille recommandée: 1200x630px | Taille max: 5MB
+                            </small>
                             @error('featured_image')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
