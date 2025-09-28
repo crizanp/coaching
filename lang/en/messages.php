@@ -227,6 +227,7 @@ return [
     'blog.share.title' => 'Share this article',
     'blog.share.copy' => 'Copy Link',
     'blog.share.copied' => 'Link copied to clipboard!',
+    'blog.share.error' => 'Unable to copy the link. Please try again.',
 
     // SEO
     'seo.home.title' => 'Wellness Coaching - Sophrology, Hypnosis & NLP',

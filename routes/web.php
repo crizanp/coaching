@@ -30,9 +30,9 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])->middleware('set.l
     
     // Blog routes
     Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
-    Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
+        Route::get('/blog/{blog:slug}', [BlogController::class, 'show'])->name('blog.show');
     Route::post('/blog/{blog}/react', [BlogController::class, 'react'])->name('blog.react');
-    Route::get('/{page:slug}', [PageController::class, 'show'])->name('pages.show');
+    Route::get('/{page:slug}', [PageController::class, 'show'])->where('page:slug', 'not-like', '%/%')->name('pages.show');
 });
 
 // Language switching route helper

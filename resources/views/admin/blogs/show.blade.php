@@ -15,7 +15,7 @@
             <a href="{{ route('admin.blogs.edit', $blog) }}" class="btn btn-primary me-2">
                 <i class="fas fa-edit me-2"></i>Edit Post
             </a>
-            <a href="{{ route('blog.show', ['locale' => 'en', 'slug' => $blog->slug]) }}" 
+            <a href="{{ route('blog.show', ['locale' => 'en', 'blog' => $blog->slug]) }}" 
                class="btn btn-outline-light" target="_blank">
                 <i class="fas fa-external-link-alt me-2"></i>View Live
             </a>

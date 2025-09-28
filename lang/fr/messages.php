@@ -227,6 +227,7 @@ return [
     'blog.share.title' => 'Partager cet article',
     'blog.share.copy' => 'Copier le Lien',
     'blog.share.copied' => 'Lien copié dans le presse-papiers !',
+    'blog.share.error' => 'Impossible de copier le lien. Veuillez réessayer.',
 
     // SEO
     'seo.home.title' => 'Coaching Bien-être - Sophrologie, Hypnose & PNL',

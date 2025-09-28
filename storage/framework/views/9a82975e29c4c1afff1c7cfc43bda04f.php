@@ -1,24 +1,24 @@
-@extends('layouts.frontend')
 
-@section('title', __('messages.blog.page.title'))
-@section('description', __('messages.blog.page.description'))
 
-@section('content')
+<?php $__env->startSection('title', __('messages.blog.page.title')); ?>
+<?php $__env->startSection('description', __('messages.blog.page.description')); ?>
+
+<?php $__env->startSection('content'); ?>
 <!-- Blog Hero Section -->
 <section class="blog-hero section-padding" style="background: linear-gradient(135deg, var(--light-pink) 0%, var(--soft-teal) 100%); margin-top: 94px;">
     <div class="container">
         <div class="row justify-content-center text-center">
             <div class="col-lg-8">
                 <div class="fade-in">
-                    <h1 class="hero-title">{{ __('messages.blog.hero.title') }}</h1>
-                    <p class="hero-subtitle">{{ __('messages.blog.hero.subtitle') }}</p>
+                    <h1 class="hero-title"><?php echo e(__('messages.blog.hero.title')); ?></h1>
+                    <p class="hero-subtitle"><?php echo e(__('messages.blog.hero.subtitle')); ?></p>
                     
                     <!-- Search Form -->
-                    <form method="GET" action="{{ route('blog.index', app()->getLocale()) }}" class="blog-search-form mt-4">
+                    <form method="GET" action="<?php echo e(route('blog.index', app()->getLocale())); ?>" class="blog-search-form mt-4">
                         <div class="input-group">
                             <input type="text" class="form-control" name="search" 
-                                   placeholder="{{ __('messages.blog.search.placeholder') }}" 
-                                   value="{{ request('search') }}">
+                                   placeholder="<?php echo e(__('messages.blog.search.placeholder')); ?>" 
+                                   value="<?php echo e(request('search')); ?>">
                             <button class="btn btn-primary" type="submit">
                                 <i class="fas fa-search"></i>
                             </button>
@@ -30,65 +30,71 @@
     </div>
 </section>
 
-@if($featuredBlogs->count() > 0)
+<?php if($featuredBlogs->count() > 0): ?>
 <!-- Featured Posts Section -->
 <section class="featured-posts section-padding" style="background: white;">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="section-header text-center mb-5">
-                    <h2 class="section-title">{{ __('messages.blog.featured.title') }}</h2>
+                    <h2 class="section-title"><?php echo e(__('messages.blog.featured.title')); ?></h2>
                 </div>
             </div>
         </div>
         <div class="row">
-            @foreach($featuredBlogs as $featured)
+            <?php $__currentLoopData = $featuredBlogs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $featured): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="col-lg-4 col-md-6 mb-4">
                     <article class="blog-card featured-card">
                         <div class="blog-card-image">
-                            @if($featured->featured_image)
-                                <img src="{{ Storage::url($featured->featured_image) }}" 
-                                     alt="{{ $featured->title }}" class="img-fluid">
-                            @else
+                            <?php if($featured->featured_image): ?>
+                                <img src="<?php echo e(Storage::url($featured->featured_image)); ?>" 
+                                     alt="<?php echo e($featured->title); ?>" class="img-fluid">
+                            <?php else: ?>
                                 <div class="placeholder-image">
                                     <i class="fas fa-image"></i>
                                 </div>
-                            @endif
+                            <?php endif; ?>
                             <div class="blog-card-badge">
-                                <i class="fas fa-star"></i> {{ __('messages.blog.featured.badge') }}
+                                <i class="fas fa-star"></i> <?php echo e(__('messages.blog.featured.badge')); ?>
+
                             </div>
                         </div>
                         <div class="blog-card-content">
                             <div class="blog-meta">
                                 <span class="blog-date">
-                                    <i class="fas fa-calendar-alt me-1"></i>{{ $featured->formatted_published_at }}
+                                    <i class="fas fa-calendar-alt me-1"></i><?php echo e($featured->formatted_published_at); ?>
+
                                 </span>
                                 <span class="blog-reading-time">
-                                    <i class="fas fa-clock me-1"></i>{{ $featured->reading_time }} {{ __('messages.blog.reading_time') }}
+                                    <i class="fas fa-clock me-1"></i><?php echo e($featured->reading_time); ?> <?php echo e(__('messages.blog.reading_time')); ?>
+
                                 </span>
                             </div>
                             <h3 class="blog-card-title">
-                                <a href="{{ route('blog.show', ['locale' => app()->getLocale(), 'blog' => $featured->slug]) }}">
-                                    {{ $featured->title }}
+                                <a href="<?php echo e(route('blog.show', ['locale' => app()->getLocale(), 'blog' => $featured->slug])); ?>">
+                                    <?php echo e($featured->title); ?>
+
                                 </a>
                             </h3>
-                            <p class="blog-card-excerpt">{{ $featured->excerpt }}</p>
+                            <p class="blog-card-excerpt"><?php echo e($featured->excerpt); ?></p>
                             <div class="blog-card-stats">
                                 <span class="blog-views">
-                                    <i class="fas fa-eye me-1"></i>{{ number_format($featured->views_count) }}
+                                    <i class="fas fa-eye me-1"></i><?php echo e(number_format($featured->views_count)); ?>
+
                                 </span>
                                 <span class="blog-likes">
-                                    <i class="fas fa-heart me-1"></i>{{ $featured->likes_count }}
+                                    <i class="fas fa-heart me-1"></i><?php echo e($featured->likes_count); ?>
+
                                 </span>
                             </div>
                         </div>
                     </article>
                 </div>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </div>
 </section>
-@endif
+<?php endif; ?>
 
 <!-- Latest Posts Section -->
 <section class="latest-posts section-padding" style="background: var(--light-pink);">
@@ -97,88 +103,96 @@
             <div class="col-12">
                 <div class="section-header text-center mb-5">
                     <h2 class="section-title">
-                        {{ request('search') ? __('messages.blog.search.results') : __('messages.blog.latest.title') }}
+                        <?php echo e(request('search') ? __('messages.blog.search.results') : __('messages.blog.latest.title')); ?>
+
                     </h2>
-                    @if(request('search'))
-                        <p class="text-muted">{{ __('messages.blog.search.query') }}: "{{ request('search') }}"</p>
-                    @endif
+                    <?php if(request('search')): ?>
+                        <p class="text-muted"><?php echo e(__('messages.blog.search.query')); ?>: "<?php echo e(request('search')); ?>"</p>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
 
-        @if($blogs->count() > 0)
+        <?php if($blogs->count() > 0): ?>
             <div class="row">
-                @foreach($blogs as $blog)
+                <?php $__currentLoopData = $blogs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $blog): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="col-lg-4 col-md-6 mb-4">
                         <article class="blog-card">
                             <div class="blog-card-image">
-                                @if($blog->featured_image)
-                                    <img src="{{ Storage::url($blog->featured_image) }}" 
-                                         alt="{{ $blog->title }}" class="img-fluid">
-                                @else
+                                <?php if($blog->featured_image): ?>
+                                    <img src="<?php echo e(Storage::url($blog->featured_image)); ?>" 
+                                         alt="<?php echo e($blog->title); ?>" class="img-fluid">
+                                <?php else: ?>
                                     <div class="placeholder-image">
                                         <i class="fas fa-image"></i>
                                     </div>
-                                @endif
+                                <?php endif; ?>
                             </div>
                             <div class="blog-card-content">
                                 <div class="blog-meta">
                                     <span class="blog-date">
-                                        <i class="fas fa-calendar-alt me-1"></i>{{ $blog->formatted_published_at }}
+                                        <i class="fas fa-calendar-alt me-1"></i><?php echo e($blog->formatted_published_at); ?>
+
                                     </span>
                                     <span class="blog-reading-time">
-                                        <i class="fas fa-clock me-1"></i>{{ $blog->reading_time }} {{ __('messages.blog.reading_time') }}
+                                        <i class="fas fa-clock me-1"></i><?php echo e($blog->reading_time); ?> <?php echo e(__('messages.blog.reading_time')); ?>
+
                                     </span>
                                 </div>
                                 <h3 class="blog-card-title">
-                                    <a href="{{ route('blog.show', ['locale' => app()->getLocale(), 'blog' => $blog->slug]) }}">
-                                        {{ $blog->title }}
+                                    <a href="<?php echo e(route('blog.show', ['locale' => app()->getLocale(), 'blog' => $blog->slug])); ?>">
+                                        <?php echo e($blog->title); ?>
+
                                     </a>
                                 </h3>
-                                <p class="blog-card-excerpt">{{ $blog->excerpt }}</p>
+                                <p class="blog-card-excerpt"><?php echo e($blog->excerpt); ?></p>
                                 <div class="blog-card-stats">
                                     <span class="blog-views">
-                                        <i class="fas fa-eye me-1"></i>{{ number_format($blog->views_count) }}
+                                        <i class="fas fa-eye me-1"></i><?php echo e(number_format($blog->views_count)); ?>
+
                                     </span>
                                     <span class="blog-likes">
-                                        <i class="fas fa-heart me-1"></i>{{ $blog->likes_count }}
+                                        <i class="fas fa-heart me-1"></i><?php echo e($blog->likes_count); ?>
+
                                     </span>
                                 </div>
                             </div>
                         </article>
                     </div>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
 
             <!-- Pagination -->
             <div class="row">
                 <div class="col-12">
                     <div class="d-flex justify-content-center mt-5">
-                        {{ $blogs->appends(request()->query())->links() }}
+                        <?php echo e($blogs->appends(request()->query())->links()); ?>
+
                     </div>
                 </div>
             </div>
-        @else
+        <?php else: ?>
             <div class="row">
                 <div class="col-12 text-center">
                     <div class="no-posts">
                         <i class="fas fa-search fa-3x text-muted mb-3"></i>
-                        <h4 class="text-muted">{{ __('messages.blog.no_posts.title') }}</h4>
-                        <p class="text-muted">{{ __('messages.blog.no_posts.message') }}</p>
-                        @if(request('search'))
-                            <a href="{{ route('blog.index', app()->getLocale()) }}" class="btn btn-primary">
-                                {{ __('messages.blog.no_posts.view_all') }}
+                        <h4 class="text-muted"><?php echo e(__('messages.blog.no_posts.title')); ?></h4>
+                        <p class="text-muted"><?php echo e(__('messages.blog.no_posts.message')); ?></p>
+                        <?php if(request('search')): ?>
+                            <a href="<?php echo e(route('blog.index', app()->getLocale())); ?>" class="btn btn-primary">
+                                <?php echo e(__('messages.blog.no_posts.view_all')); ?>
+
                             </a>
-                        @endif
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
-        @endif
+        <?php endif; ?>
     </div>
 </section>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('styles')
+<?php $__env->startPush('styles'); ?>
 <style>
     .blog-hero {
         position: relative;
@@ -360,4 +374,5 @@
         }
     }
 </style>
-@endpush
+<?php $__env->stopPush(); ?>
+<?php echo $__env->make('layouts.frontend', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH D:\client-fiverr\coaching\resources\views/blog/index.blade.php ENDPATH**/ ?>

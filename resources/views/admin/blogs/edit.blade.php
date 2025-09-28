@@ -12,7 +12,7 @@
             <a href="{{ route('admin.blogs.index') }}" class="btn btn-outline-light me-2">
                 <i class="fas fa-arrow-left me-2"></i>Back to Posts
             </a>
-            <a href="{{ route('blog.show', ['locale' => 'en', 'slug' => $blog->slug]) }}" 
+            <a href="{{ route('blog.show', ['locale' => 'en', 'blog' => $blog->slug]) }}" 
                class="btn btn-outline-light" target="_blank">
                 <i class="fas fa-external-link-alt me-2"></i>View Post
             </a>

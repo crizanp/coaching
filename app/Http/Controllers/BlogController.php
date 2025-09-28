@@ -41,10 +41,17 @@ class BlogController extends Controller
     /**
      * Display the specified blog post
      */
-    public function show(Request $request, $slug)
+    public function show($locale, Blog $blog)
     {
-        $blog = Blog::where('slug', $slug)->published()->firstOrFail();
-        
+        // $locale is provided by the route prefix; we keep it if needed for further logic
+        // Route model binding will resolve the Blog by slug (route uses {blog:slug})
+        // Ensure the blog is published
+        if (! $blog->is_published || $blog->published_at > now()) {
+            abort(404);
+        }
+
+        $request = request();
+
         // Increment view count (limit one per session to prevent abuse)
         $viewKey = "blog_viewed_{$blog->id}_" . session()->getId();
         if (!Cache::has($viewKey)) {
@@ -54,7 +61,7 @@ class BlogController extends Controller
 
         // Get user's reaction if any
         $userReaction = $blog->getReactionByIp($request->ip());
-        
+
         // Get related posts
         $relatedBlogs = Blog::published()
                            ->where('id', '!=', $blog->id)
