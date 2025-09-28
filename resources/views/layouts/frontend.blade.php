@@ -658,8 +658,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('practices', app()->getLocale()) }}">
-                            {{ __('messages.nav.practices') }}
+                        <a class="nav-link" href="{{ route('services.index', app()->getLocale()) }}">
+                            {{ __('messages.nav.services') }}
                         </a>
                     </li>
                     <li class="nav-item">
