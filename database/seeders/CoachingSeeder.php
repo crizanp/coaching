@@ -124,6 +124,7 @@ class CoachingSeeder extends Seeder
 
         // Create testimonials
         $testimonials = [
+            // Sophrologie testimonials (service_id = 1)
             [
                 'client_name' => 'Marie D.',
                 'client_location' => 'Paris',
@@ -138,6 +139,34 @@ class CoachingSeeder extends Seeder
                 'testimonial_date' => now()->subDays(30),
             ],
             [
+                'client_name' => 'Claire B.',
+                'client_location' => 'Martinique',
+                'testimonial' => [
+                    'fr' => 'Grâce à la sophrologie, j\'ai retrouvé un sommeil réparateur et je gère mieux mes émotions. Une méthode douce et efficace.',
+                    'en' => 'Thanks to sophrology, I found restorative sleep and I manage my emotions better. A gentle and effective method.'
+                ],
+                'rating' => 5,
+                'service_id' => 1,
+                'is_featured' => true,
+                'is_active' => true,
+                'testimonial_date' => now()->subDays(45),
+            ],
+            [
+                'client_name' => 'Antoine R.',
+                'client_location' => 'Fort-de-France',
+                'testimonial' => [
+                    'fr' => 'Les techniques de respiration et de relaxation m\'ont aidé à préparer mon examen. Je recommande vivement !',
+                    'en' => 'The breathing and relaxation techniques helped me prepare for my exam. I highly recommend!'
+                ],
+                'rating' => 4,
+                'service_id' => 1,
+                'is_featured' => false,
+                'is_active' => true,
+                'testimonial_date' => now()->subDays(60),
+            ],
+            
+            // Hypnose testimonials (service_id = 2)
+            [
                 'client_name' => 'Jean-Pierre L.',
                 'client_location' => 'Lyon',
                 'testimonial' => [
@@ -151,6 +180,34 @@ class CoachingSeeder extends Seeder
                 'testimonial_date' => now()->subDays(15),
             ],
             [
+                'client_name' => 'Isabelle T.',
+                'client_location' => 'Schoelcher',
+                'testimonial' => [
+                    'fr' => 'L\'hypnose m\'a libérée de ma phobie des araignées. Je peux enfin vivre normalement. Merci infiniment !',
+                    'en' => 'Hypnosis freed me from my spider phobia. I can finally live normally. Thank you so much!'
+                ],
+                'rating' => 5,
+                'service_id' => 2,
+                'is_featured' => true,
+                'is_active' => true,
+                'testimonial_date' => now()->subDays(20),
+            ],
+            [
+                'client_name' => 'David M.',
+                'client_location' => 'Le Lamentin',
+                'testimonial' => [
+                    'fr' => 'Séances d\'hypnose pour perdre du poids : j\'ai perdu 12 kg et j\'ai changé ma relation à la nourriture. Excellent !',
+                    'en' => 'Hypnosis sessions to lose weight: I lost 12 kg and changed my relationship with food. Excellent!'
+                ],
+                'rating' => 5,
+                'service_id' => 2,
+                'is_featured' => false,
+                'is_active' => true,
+                'testimonial_date' => now()->subDays(40),
+            ],
+            
+            // Coaching PNL testimonials (service_id = 3)
+            [
                 'client_name' => 'Sophie M.',
                 'client_location' => 'Marseille',
                 'testimonial' => [
@@ -162,6 +219,32 @@ class CoachingSeeder extends Seeder
                 'is_featured' => true,
                 'is_active' => true,
                 'testimonial_date' => now()->subDays(7),
+            ],
+            [
+                'client_name' => 'Lucie F.',
+                'client_location' => 'Sainte-Anne',
+                'testimonial' => [
+                    'fr' => 'Grâce au coaching PNL, j\'ai amélioré ma communication et mes relations au travail. Je me sens plus épanouie.',
+                    'en' => 'Thanks to NLP coaching, I improved my communication and relationships at work. I feel more fulfilled.'
+                ],
+                'rating' => 4,
+                'service_id' => 3,
+                'is_featured' => true,
+                'is_active' => true,
+                'testimonial_date' => now()->subDays(25),
+            ],
+            [
+                'client_name' => 'Pierre C.',
+                'client_location' => 'Saint-Pierre',
+                'testimonial' => [
+                    'fr' => 'Le coaching m\'a aidé à surmonter mes blocages et à créer ma propre entreprise. Un accompagnement de qualité !',
+                    'en' => 'The coaching helped me overcome my blockages and create my own business. Quality support!'
+                ],
+                'rating' => 5,
+                'service_id' => 3,
+                'is_featured' => false,
+                'is_active' => true,
+                'testimonial_date' => now()->subDays(50),
             ],
         ];
 

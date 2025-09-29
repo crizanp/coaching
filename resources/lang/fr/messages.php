@@ -6,8 +6,8 @@ return [
     'nav.about' => 'À Propos',  
     'nav.services' => 'Services',
     'nav.events' => 'Événements',
-    'nav.blog' => 'Blog',
-    'nav.testimonials' => 'Témoignages',
+        'nav.blog' => 'Blog',
+        'nav.testimonials' => 'Témoignages',
     'nav.contact' => 'Contact',
     'nav.book' => 'Réserver',
     'nav.language' => 'English',
@@ -231,7 +231,7 @@ return [
     'blog.share.error' => 'Impossible de copier le lien. Veuillez réessayer.',
 
     // Footer
-    'footer.links' => 'Liens',
+    'footer.links' => 'Plus de liens',
     'footer.my_practices' => 'Mes Pratiques',
     'footer.privacy_policy' => 'Politique de Confidentialité',
     'footer.terms_conditions' => 'Conditions Générales',

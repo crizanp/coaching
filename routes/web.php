@@ -28,11 +28,15 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])->middleware('set.l
     Route::get('/booking', [BookingController::class, 'index'])->name('booking.index');
     Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
     
+    // Legal pages
+    Route::get('/privacy-policy', function() { return view('privacy-policy'); })->name('privacy-policy');
+    Route::get('/terms-conditions', function() { return view('terms-conditions'); })->name('terms-conditions');
+    
     // Blog routes
     Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
         Route::get('/blog/{blog:slug}', [BlogController::class, 'show'])->name('blog.show');
     Route::post('/blog/{blog}/react', [BlogController::class, 'react'])->name('blog.react');
-    Route::get('/{page:slug}', [PageController::class, 'show'])->where('page:slug', 'not-like', '%/%')->name('pages.show');
+    Route::get('/{page:slug}', [PageController::class, 'show'])->where('page', '[^/]+')->name('pages.show');
 });
 
 // Language switching route helper

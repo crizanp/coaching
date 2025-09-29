@@ -699,7 +699,7 @@
     <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 mb-4">
+                <div class="col-lg-3 mb-4">
                     <h5>{{ \App\Models\Setting::get('site_name')[app()->getLocale()] ?? 'Coaching' }}</h5>
                     <p>{{ \App\Models\Setting::get('site_tagline')[app()->getLocale()] ?? '' }}</p>
                     <div class="social-links">
@@ -715,7 +715,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="col-lg-4 mb-4">
+                <div class="col-lg-3 mb-4">
                     <h5>{{ __('messages.contact.info.title') }}</h5>
                     <p>
                         <i class="fas fa-envelope me-2"></i>
@@ -730,7 +730,7 @@
                         {{ \App\Models\Setting::get('address')[app()->getLocale()] ?? '' }}
                     </p>
                 </div>
-                <div class="col-lg-4 mb-4">
+                <div class="col-lg-3 mb-4">
                     <h5>{{ __('messages.nav.services') }}</h5>
                     @foreach(\App\Models\Service::active()->orderBy('sort_order')->get() as $service)
                         <p>
@@ -739,6 +739,24 @@
                             </a>
                         </p>
                     @endforeach
+                </div>
+                <div class="col-lg-3 mb-4">
+                    <h5>{{ __('messages.footer.links') }}</h5>
+                    <p>
+                        <a href="{{ route('practices', app()->getLocale()) }}" class="text-light text-decoration-none">
+                            {{ __('messages.footer.my_practices') }}
+                        </a>
+                    </p>
+                    <p>
+                        <a href="{{ route('privacy-policy', app()->getLocale()) }}" class="text-light text-decoration-none">
+                            {{ __('messages.footer.privacy_policy') }}
+                        </a>
+                    </p>
+                    <p>
+                        <a href="{{ route('terms-conditions', app()->getLocale()) }}" class="text-light text-decoration-none">
+                            {{ __('messages.footer.terms_conditions') }}
+                        </a>
+                    </p>
                 </div>
             </div>
             <hr class="my-4">

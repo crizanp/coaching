@@ -230,6 +230,12 @@ return [
     'blog.share.copied' => 'Link copied to clipboard!',
     'blog.share.error' => 'Unable to copy the link. Please try again.',
 
+    // Footer
+    'footer.links' => 'More Links',
+    'footer.my_practices' => 'My Practices',
+    'footer.privacy_policy' => 'Privacy Policy',
+    'footer.terms_conditions' => 'Terms and Conditions',
+
     // SEO
     'seo.home.title' => 'Wellness Coaching - Sophrology, Hypnosis & NLP',
     'seo.home.description' => 'Certified coach in sophrology, hypnosis and NLP. Personalized support for your well-being and personal development.',
