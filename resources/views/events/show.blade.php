@@ -49,7 +49,7 @@ atelier, événement, {{ $event->type }}, développement personnel, bien-être, 
             <!-- Main Content -->
             <div class="col-lg-8 mb-4">
                 <!-- Featured Image -->
-                @if($event->featured_image)
+                @if($event->featured_image && file_exists(storage_path('app/public/' . $event->featured_image)))
                 <div class="practice-card-textured mb-4" style="border-radius: 20px; overflow: hidden;">
                     <img src="{{ asset('storage/' . $event->featured_image) }}" 
                          alt="{{ $event->getTranslation('title', app()->getLocale()) }}"
@@ -149,7 +149,17 @@ atelier, événement, {{ $event->type }}, développement personnel, bien-être, 
                 @endif
                 
                 <!-- Gallery -->
-                @if($event->gallery && count($event->gallery) > 0)
+                @php
+                    $validGalleryImages = [];
+                    if($event->gallery && count($event->gallery) > 0) {
+                        foreach($event->gallery as $image) {
+                            if($image && file_exists(storage_path('app/public/' . $image))) {
+                                $validGalleryImages[] = $image;
+                            }
+                        }
+                    }
+                @endphp
+                @if(count($validGalleryImages) > 0)
                 <div class="practice-card-textured">
                     <div class="practice-card-body">
                         <div class="practice-icon-left">
@@ -161,7 +171,7 @@ atelier, événement, {{ $event->type }}, développement personnel, bien-être, 
                     </div>
                     <div class="content-description">
                         <div class="row">
-                            @foreach($event->gallery as $image)
+                            @foreach($validGalleryImages as $image)
                             <div class="col-md-4 mb-3">
                                 <div class="gallery-item" style="border-radius: 15px; overflow: hidden; transition: transform 0.3s ease;">
                                     <img src="{{ asset('storage/' . $image) }}" 

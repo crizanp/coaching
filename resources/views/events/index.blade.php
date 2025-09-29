@@ -48,7 +48,7 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
             <div class="col-lg-6 mb-4">
                 <div class="practice-card-textured h-100">
                     <div class="position-relative">
-                        @if($event->featured_image)
+                        @if($event->featured_image && file_exists(storage_path('app/public/' . $event->featured_image)))
                         <div class="practice-image">
                             <img src="{{ asset('storage/' . $event->featured_image) }}" 
                                  alt="{{ $event->getTranslation('title', app()->getLocale()) }}"
@@ -124,7 +124,7 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
             <div class="col-lg-4 mb-4">
                 <div class="practice-card-textured h-100">
                     <div class="position-relative">
-                        @if($event->featured_image)
+                        @if($event->featured_image && file_exists(storage_path('app/public/' . $event->featured_image)))
                         <div class="practice-image">
                             <img src="{{ asset('storage/' . $event->featured_image) }}" 
                                  alt="{{ $event->getTranslation('title', app()->getLocale()) }}"
@@ -225,7 +225,7 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
             <div class="col-lg-6 mb-4">
                 <div class="practice-card-textured h-100">
                     <div class="position-relative">
-                        @if($event->featured_image)
+                        @if($event->featured_image && file_exists(storage_path('app/public/' . $event->featured_image)))
                         <div class="practice-image">
                             <img src="{{ asset('storage/' . $event->featured_image) }}" 
                                  alt="{{ $event->getTranslation('title', app()->getLocale()) }}"
