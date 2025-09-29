@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('title', __('messages.blog.page.title')); ?>
 <?php $__env->startSection('description', __('messages.blog.page.description')); ?>
 
@@ -10,20 +8,16 @@
         <div class="row justify-content-center text-center">
             <div class="col-lg-8">
                 <div class="fade-in">
-                    <div class="hero-icon mb-4">
-                        <i class="fas fa-blog" style="font-size: 3rem; color: var(--primary-pink);"></i>
-                    </div>
                     <h1 class="section-title"><?php echo e(__('messages.blog.hero.title')); ?></h1>
                     <p class="lead mb-4"><?php echo e(__('messages.blog.hero.subtitle')); ?></p>
                     
                     <!-- Search Form -->
                     <form method="GET" action="<?php echo e(route('blog.index', app()->getLocale())); ?>" class="blog-search-form mt-4">
-                        <div class="input-group" style="max-width: 500px; margin: 0 auto;">
+                        <div class="input-group">
                             <input type="text" class="form-control" name="search" 
                                    placeholder="<?php echo e(__('messages.blog.search.placeholder')); ?>" 
-                                   value="<?php echo e(request('search')); ?>"
-                                   style="border-radius: 25px 0 0 25px; padding: 12px 20px;">
-                            <button class="btn btn-primary" type="submit" style="border-radius: 0 25px 25px 0; padding: 12px 20px;">
+                                   value="<?php echo e(request('search')); ?>">
+                            <button class="btn btn-primary" type="submit">
                                 <i class="fas fa-search"></i>
                             </button>
                         </div>
@@ -55,63 +49,50 @@
             <div class="row">
                 <?php $__currentLoopData = $blogs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $blog): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="col-lg-4 col-md-6 mb-4">
-                        <article class="practice-card-textured h-100">
-                            <?php if($blog->featured_image && Storage::disk('public')->exists($blog->featured_image)): ?>
-                            <div class="position-relative">
-                                <div class="blog-image">
+                        <article class="blog-card <?php echo e($index < 3 && !request('search') ? 'featured-card' : ''); ?>">
+                            <div class="blog-card-image">
+                                <?php if($blog->featured_image && Storage::disk('public')->exists($blog->featured_image)): ?>
                                     <img src="<?php echo e(Storage::url($blog->featured_image)); ?>" 
-                                         alt="<?php echo e($blog->title); ?>" 
-                                         class="w-100" style="height: 200px; object-fit: cover; border-radius: 15px 15px 0 0;">
-                                </div>
+                                         alt="<?php echo e($blog->title); ?>" class="img-fluid">
+                                <?php else: ?>
+                                    <div class="placeholder-image">
+                                        <i class="fas fa-image"></i>
+                                    </div>
+                                <?php endif; ?>
                                 <?php if($index < 3 && !request('search')): ?>
-                                    <div class="badge bg-primary position-absolute top-0 end-0 m-3">
-                                        <i class="fas fa-star me-1"></i><?php echo e(__('messages.blog.featured.badge')); ?>
+                                    <div class="blog-card-badge">
+                                        <i class="fas fa-star"></i> <?php echo e(__('messages.blog.featured.badge')); ?>
 
                                     </div>
                                 <?php endif; ?>
                             </div>
-                            <?php endif; ?>
-                            
-                            <div class="practice-card-body">
-                                <div class="practice-icon-left">
-                                    <i class="fas fa-newspaper"></i>
-                                </div>
-                                <div class="practice-card-content">
-                                    <h4>
-                                        <a href="<?php echo e(route('blog.show', ['locale' => app()->getLocale(), 'blog' => $blog->slug])); ?>" 
-                                           style="text-decoration: none; color: inherit;">
-                                            <?php echo e($blog->title); ?>
+                            <div class="blog-card-content">
+                                <div class="blog-meta">
+                                    <span class="blog-date">
+                                        <i class="fas fa-calendar-alt me-1"></i><?php echo e($blog->formatted_published_at); ?>
 
-                                        </a>
-                                    </h4>
-                                </div>
-                            </div>
-                            
-                            <p class="service-description mb-4"><?php echo e($blog->excerpt); ?></p>
-                            
-                            <div class="service-details mb-4">
-                                <div class="service-detail-item mb-2">
-                                    <strong><?php echo e(__('messages.blog.published')); ?>:</strong> <?php echo e($blog->formatted_published_at); ?>
+                                    </span>
+                                    <span class="blog-reading-time">
+                                        <i class="fas fa-clock me-1"></i><?php echo e($blog->reading_time); ?> <?php echo e(__('messages.blog.reading_time')); ?>
 
+                                    </span>
                                 </div>
-                                <div class="service-detail-item mb-2">
-                                    <strong><?php echo e(__('messages.blog.reading_time')); ?>:</strong> <?php echo e($blog->reading_time); ?> min
-                                </div>
-                                <div class="service-detail-item mb-2">
-                                    <strong><?php echo e(__('messages.blog.views')); ?>:</strong> <?php echo e(number_format($blog->views_count)); ?>
+                                <h3 class="blog-card-title">
+                                    <a href="<?php echo e(route('blog.show', ['locale' => app()->getLocale(), 'blog' => $blog->slug])); ?>">
+                                        <?php echo e($blog->title); ?>
 
-                                </div>
-                            </div>
-                            
-                            <div class="service-actions">
-                                <a href="<?php echo e(route('blog.show', ['locale' => app()->getLocale(), 'blog' => $blog->slug])); ?>" 
-                                   class="btn btn-outline-primary btn-sm me-2 mb-2">
-                                    <?php echo e(__('messages.blog.read_more')); ?>
+                                    </a>
+                                </h3>
+                                <p class="blog-card-excerpt"><?php echo e($blog->excerpt); ?></p>
+                                <div class="blog-card-stats">
+                                    <span class="blog-views">
+                                        <i class="fas fa-eye me-1"></i><?php echo e(number_format($blog->views_count)); ?>
 
-                                </a>
-                                <div class="btn btn-sm mb-2" style="background: var(--light-pink); border: none;">
-                                    <i class="fas fa-heart me-1"></i><?php echo e($blog->likes_count); ?>
+                                    </span>
+                                    <span class="blog-likes">
+                                        <i class="fas fa-heart me-1"></i><?php echo e($blog->likes_count); ?>
 
+                                    </span>
                                 </div>
                             </div>
                         </article>
@@ -129,15 +110,15 @@
                 </div>
             </div>
         <?php else: ?>
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="text-center fade-in">
-                        <i class="fas fa-search mb-4" style="font-size: 3rem; color: var(--warm-gray); opacity: 0.6;"></i>
-                        <h3 class="mb-3"><?php echo e(__('messages.blog.no_posts.title')); ?></h3>
-                        <p class="lead mb-4"><?php echo e(__('messages.blog.no_posts.message')); ?></p>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="no-posts">
+                        <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                        <h4 class="text-muted"><?php echo e(__('messages.blog.no_posts.title')); ?></h4>
+                        <p class="text-muted"><?php echo e(__('messages.blog.no_posts.message')); ?></p>
                         <?php if(request('search')): ?>
-                            <a href="<?php echo e(route('blog.index', app()->getLocale())); ?>" class="btn btn-primary btn-lg">
-                                <i class="fas fa-arrow-left me-2"></i><?php echo e(__('messages.blog.no_posts.view_all')); ?>
+                            <a href="<?php echo e(route('blog.index', app()->getLocale())); ?>" class="btn btn-primary">
+                                <?php echo e(__('messages.blog.no_posts.view_all')); ?>
 
                             </a>
                         <?php endif; ?>
@@ -151,22 +132,12 @@
 
 <?php $__env->startPush('styles'); ?>
 <style>
-    .blog-hero {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .hero-title {
-        font-size: 3rem;
-        font-weight: 700;
-        color: var(--text-dark);
-        margin-bottom: 1rem;
-    }
-
-    .hero-subtitle {
-        font-size: 1.3rem;
-        color: var(--text-muted);
-        margin-bottom: 2rem;
+    /* Ensure all containers match navbar width */
+    .container {
+        max-width: 1345px;
+        margin: 0 auto;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 
     .blog-search-form {

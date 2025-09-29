@@ -5,13 +5,13 @@
 
 @section('content')
 <!-- Blog Hero Section -->
-<section class="blog-hero section-padding" style="background: linear-gradient(135deg, var(--light-pink) 0%, var(--soft-teal) 100%); margin-top: 94px;">
+<section class="section-padding" style="background: var(--light-pink); margin-top: 94px;">
     <div class="container">
         <div class="row justify-content-center text-center">
             <div class="col-lg-8">
                 <div class="fade-in">
-                    <h1 class="hero-title">{{ __('messages.blog.hero.title') }}</h1>
-                    <p class="hero-subtitle">{{ __('messages.blog.hero.subtitle') }}</p>
+                    <h1 class="section-title">{{ __('messages.blog.hero.title') }}</h1>
+                    <p class="lead mb-4">{{ __('messages.blog.hero.subtitle') }}</p>
                     
                     <!-- Search Form -->
                     <form method="GET" action="{{ route('blog.index', app()->getLocale()) }}" class="blog-search-form mt-4">
@@ -125,22 +125,12 @@
 
 @push('styles')
 <style>
-    .blog-hero {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .hero-title {
-        font-size: 3rem;
-        font-weight: 700;
-        color: var(--text-dark);
-        margin-bottom: 1rem;
-    }
-
-    .hero-subtitle {
-        font-size: 1.3rem;
-        color: var(--text-muted);
-        margin-bottom: 2rem;
+    /* Ensure all containers match navbar width */
+    .container {
+        max-width: 1345px;
+        margin: 0 auto;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 
     .blog-search-form {

@@ -62,64 +62,84 @@
 <?php $__env->stopPush(); ?>
 
 <?php $__env->startSection('content'); ?>
-    <article class="blog-post" style="margin-top: 94px;">
-        <?php if($blog->featured_image): ?>
-            <div class="blog-hero-image">
-                <img src="<?php echo e(Storage::url($blog->featured_image)); ?>" alt="<?php echo e($blog->title); ?>" class="img-fluid">
-                <div class="blog-hero-overlay"></div>
-            </div>
-        <?php endif; ?>
-
-        <section class="blog-header section-padding" style="background: white;">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="blog-header-content">
-                            <nav aria-label="breadcrumb" class="mb-4">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item">
-                                        <a href="<?php echo e(route('home', app()->getLocale())); ?>"><?php echo e(__('messages.nav.home')); ?></a>
-                                    </li>
-                                    <li class="breadcrumb-item">
-                                        <a href="<?php echo e(route('blog.index', app()->getLocale())); ?>"><?php echo e(__('messages.nav.blog')); ?></a>
-                                    </li>
-                                    <li class="breadcrumb-item active" aria-current="page"><?php echo e($blog->title); ?></li>
-                                </ol>
-                            </nav>
-
-                            <div class="post-meta mb-4">
-                                <div class="meta-item">
-                                    <i class="fas fa-calendar-alt me-2"></i>
-                                    <time datetime="<?php echo e($blog->published_at->toISOString()); ?>">
-                                        <?php echo e($blog->formatted_published_at); ?>
-
-                                    </time>
-                                </div>
-                                <div class="meta-item">
-                                    <i class="fas fa-clock me-2"></i>
-                                    <?php echo e($blog->reading_time); ?> <?php echo e(__('messages.blog.reading_time')); ?>
-
-                                </div>
-                                <div class="meta-item">
-                                    <i class="fas fa-eye me-2"></i>
-                                    <?php echo e(number_format($blog->views_count)); ?> <?php echo e(__('messages.blog.views')); ?>
-
-                                </div>
+    <!-- Blog Hero Section -->
+    <section class="section-padding" style="background: var(--light-pink); margin-top: 94px;">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <div class="fade-in">
+                        <nav aria-label="breadcrumb" class="mb-4 d-flex justify-content-center">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="<?php echo e(route('home', app()->getLocale())); ?>"><?php echo e(__('messages.nav.home')); ?></a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="<?php echo e(route('blog.index', app()->getLocale())); ?>"><?php echo e(__('messages.nav.blog')); ?></a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page"><?php echo e($blog->title); ?></li>
+                            </ol>
+                        </nav>
+                        
+                        <?php if($blog->featured_image && Storage::disk('public')->exists($blog->featured_image)): ?>
+                            <div class="mb-4">
+                                <img src="<?php echo e(Storage::url($blog->featured_image)); ?>" 
+                                     alt="<?php echo e($blog->title); ?>" 
+                                     class="img-fluid rounded-3"
+                                     style="max-height: 300px; width: auto;">
                             </div>
+                        <?php endif; ?>
+                        
+                        <h1 class="section-title"><?php echo e($blog->title); ?></h1>
+                        <p class="lead mb-4"><?php echo e($blog->excerpt); ?></p>
+                        
+                        <div class="post-meta d-flex justify-content-center gap-4">
+                            <div class="meta-item">
+                                <i class="fas fa-calendar-alt me-2"></i>
+                                <time datetime="<?php echo e($blog->published_at->toISOString()); ?>">
+                                    <?php echo e($blog->formatted_published_at); ?>
 
-                            <h1 class="post-title"><?php echo e($blog->title); ?></h1>
+                                </time>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-eye me-2"></i>
+                                <?php echo e(number_format($blog->views_count)); ?> <?php echo e(__('messages.blog.views')); ?>
 
-                            <?php if($blog->excerpt): ?>
-                                <div class="post-excerpt">
-                                    <p class="lead"><?php echo e($blog->excerpt); ?></p>
-                                </div>
-                            <?php endif; ?>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
+    <!-- Sticky Share Sidebar -->
+    <div class="sticky-share-sidebar">
+        <div class="share-buttons-vertical">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo e(urlencode(url()->current())); ?>"
+               target="_blank"
+               class="share-btn facebook"
+               title="Share on Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://twitter.com/intent/tweet?url=<?php echo e(urlencode(url()->current())); ?>&text=<?php echo e(urlencode($blog->title)); ?>"
+               target="_blank"
+               class="share-btn twitter"
+               title="Share on Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=<?php echo e(urlencode(url()->current())); ?>"
+               target="_blank"
+               class="share-btn linkedin"
+               title="Share on LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <button type="button" class="share-btn copy" data-url="<?php echo e(url()->current()); ?>" title="Copy Link">
+                <i class="fas fa-link"></i>
+            </button>
+        </div>
+    </div>
+
+    <article class="blog-post">
         <section class="blog-content section-padding" style="background: var(--cream);">
             <div class="container">
                 <div class="row justify-content-center">
@@ -136,47 +156,28 @@
                                         class="btn reaction-btn <?php echo e($userReaction && $userReaction->type === 'like' ? 'active' : ''); ?>"
                                         data-type="like"
                                         data-blog-id="<?php echo e($blog->id); ?>">
-                                    <i class="fas fa-thumbs-up me-2"></i>
-                                    <span class="like-count"><?php echo e($blog->likes_count); ?></span>
+                                    <i class="fas fa-heart me-1"></i>
+                                    <span class="reaction-count" id="like-count"><?php echo e($blog->likes_count); ?></span>
                                     <?php echo e(__('messages.blog.reactions.like')); ?>
 
                                 </button>
+
                                 <button type="button"
                                         class="btn reaction-btn <?php echo e($userReaction && $userReaction->type === 'dislike' ? 'active' : ''); ?>"
                                         data-type="dislike"
                                         data-blog-id="<?php echo e($blog->id); ?>">
-                                    <i class="fas fa-thumbs-down me-2"></i>
-                                    <span class="dislike-count"><?php echo e($blog->dislikes_count); ?></span>
+                                    <i class="fas fa-thumbs-down me-1"></i>
+                                    <span class="reaction-count" id="dislike-count"><?php echo e($blog->dislikes_count); ?></span>
                                     <?php echo e(__('messages.blog.reactions.dislike')); ?>
 
                                 </button>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
 
-                        <div class="post-share">
-                            <h5><?php echo e(__('messages.blog.share.title')); ?></h5>
-                            <div class="share-buttons">
-                                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo e(urlencode(url()->current())); ?>"
-                                   target="_blank"
-                                   class="btn btn-facebook">
-                                    <i class="fab fa-facebook-f me-2"></i>Facebook
-                                </a>
-                                <a href="https://twitter.com/intent/tweet?url=<?php echo e(urlencode(url()->current())); ?>&text=<?php echo e(urlencode($blog->title)); ?>"
-                                   target="_blank"
-                                   class="btn btn-twitter">
-                                    <i class="fab fa-twitter me-2"></i>Twitter
-                                </a>
-                                <a href="https://www.linkedin.com/sharing/share-offsite/?url=<?php echo e(urlencode(url()->current())); ?>"
-                                   target="_blank"
-                                   class="btn btn-linkedin">
-                                    <i class="fab fa-linkedin-in me-2"></i>LinkedIn
-                                </a>
-                                <button type="button" class="btn btn-copy" data-url="<?php echo e(url()->current()); ?>">
-                                    <i class="fas fa-link me-2"></i><?php echo e(__('messages.blog.share.copy')); ?>
 
-                                </button>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -244,22 +245,38 @@
 
 <?php $__env->startPush('styles'); ?>
     <style>
-        .blog-hero-image {
+        /* Ensure all containers match navbar width */
+        .container {
+            max-width: 1345px;
+            margin: 0 auto;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .about-image-container {
             position: relative;
-            height: 400px;
-            overflow: hidden;
+            text-align: center;
         }
 
-        .blog-hero-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .about-image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
-        .blog-hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 100%);
+        .blog-icon-large {
+            width: 200px;
+            height: 200px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--text-dark);
+            margin: 0 auto;
+            border: 3px solid rgba(255,255,255,0.3);
         }
 
         .breadcrumb {
@@ -292,6 +309,96 @@
 
         .meta-item i {
             color: var(--primary-pink);
+        }
+
+        /* Sticky Share Sidebar */
+        .sticky-share-sidebar {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: none;
+        }
+
+        .share-buttons-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background: white;
+            padding: 15px 8px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border: 2px solid var(--light-pink);
+        }
+
+        .share-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .share-btn.facebook {
+            background: #1877f2;
+            color: white;
+        }
+
+        .share-btn.facebook:hover {
+            background: #166fe5;
+            transform: scale(1.1);
+        }
+
+        .share-btn.twitter {
+            background: #1da1f2;
+            color: white;
+        }
+
+        .share-btn.twitter:hover {
+            background: #1a91da;
+            transform: scale(1.1);
+        }
+
+        .share-btn.linkedin {
+            background: #0077b5;
+            color: white;
+        }
+
+        .share-btn.linkedin:hover {
+            background: #006ba1;
+            transform: scale(1.1);
+        }
+
+        .share-btn.copy {
+            background: var(--primary-pink);
+            color: white;
+        }
+
+        .share-btn.copy:hover {
+            background: var(--primary-pink-dark, #e91e63);
+            transform: scale(1.1);
+        }
+
+        /* Show sticky sidebar on larger screens */
+        @media (min-width: 1200px) {
+            .sticky-share-sidebar {
+                display: block;
+            }
+        }
+
+        /* Hide on smaller screens */
+        @media (max-width: 1199px) {
+            .sticky-share-sidebar {
+                display: none;
+            }
         }
 
         .post-title {
@@ -598,15 +705,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const copyButton = document.querySelector('.btn-copy');
-    if (copyButton) {
+    // Handle sticky sidebar copy button
+    const copyButtons = document.querySelectorAll('.share-btn.copy');
+    copyButtons.forEach(copyButton => {
         copyButton.addEventListener('click', () => {
             const url = copyButton.dataset.url;
             navigator.clipboard.writeText(url)
                 .then(() => showToast(`<?php echo e(__('messages.blog.share.copied')); ?>`, 'success'))
                 .catch(() => showToast(`<?php echo e(__('messages.blog.share.error')); ?>`, 'error'));
         });
-    }
+    });
 
     function showToast(message, type) {
         const toast = document.createElement('div');

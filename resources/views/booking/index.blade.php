@@ -3,13 +3,33 @@
 @section('title', __('messages.booking.title'))
 
 @section('content')
-<section class="section-padding">
+<!-- Booking Hero Section -->
+<section class="section-padding" style="background: var(--light-pink); margin-top: 94px;">
     <div class="container">
-        <div class="fade-in">
-            <h1 class="section-title">{{ __('messages.booking.title') }}</h1>
-            <p class="section-subtitle">{{ __('messages.booking.subtitle') }}</p>
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8">
+                <div class="fade-in">
+                    <div class="booking-icon mb-4">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h1 class="section-title">{{ __('messages.booking.title') }}</h1>
+                    <p class="lead mb-4">{{ __('messages.booking.subtitle') }}</p>
+                    <p class="text-muted">
+                        <i class="fas fa-clock me-2"></i>Réponse sous 24h
+                        <span class="mx-3">•</span>
+                        <i class="fas fa-shield-alt me-2"></i>Consultation confidentielle
+                        <span class="mx-3">•</span>
+                        <i class="fas fa-heart me-2"></i>Accompagnement personnalisé
+                    </p>
+                </div>
+            </div>
         </div>
-        
+    </div>
+</section>
+
+<!-- Booking Form Section -->
+<section class="section-padding" style="background: white;">
+    <div class="container">
         @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show fade-in" role="alert">
             <i class="fas fa-check-circle me-2"></i>
@@ -20,8 +40,7 @@
 
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <div class="card fade-in">
-                    <div class="card-body p-5">
+                <div class="booking-form-card fade-in">
                         <form method="POST" action="{{ route('booking.store', app()->getLocale()) }}">
                             @csrf
                             
@@ -125,14 +144,26 @@
                                 </button>
                             </div>
                         </form>
-                    </div>
                 </div>
 
-                <div class="text-center mt-4 fade-in">
-                    <p class="text-muted">
-                        <i class="fas fa-info-circle me-2"></i>
-                        Votre demande sera traitée sous 24h. Un email de confirmation vous sera envoyé.
-                    </p>
+                <div class="booking-info text-center fade-in">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <i class="fas fa-clock text-primary mb-2" style="font-size: 1.5rem;"></i>
+                            <h6 class="mb-1">Réponse rapide</h6>
+                            <small class="text-muted">Sous 24h maximum</small>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <i class="fas fa-shield-alt text-primary mb-2" style="font-size: 1.5rem;"></i>
+                            <h6 class="mb-1">Confidentialité</h6>
+                            <small class="text-muted">Données sécurisées</small>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <i class="fas fa-heart text-primary mb-2" style="font-size: 1.5rem;"></i>
+                            <h6 class="mb-1">Accompagnement</h6>
+                            <small class="text-muted">Personnalisé</small>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -169,4 +200,134 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
+@endpush
+
+@push('styles')
+<style>
+    /* Ensure all containers match navbar width */
+    .container {
+        max-width: 1345px;
+        margin: 0 auto;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .booking-icon {
+        width: 80px;
+        height: 80px;
+        background: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        color: var(--primary-pink);
+        margin: 0 auto;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        border: 3px solid rgba(255,255,255,0.8);
+    }
+
+    .booking-form-card {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        border: 1px solid #f1f1f1;
+        margin-top: -50px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-bottom: 8px;
+    }
+
+    .form-control, .form-select {
+        border: 2px solid #f1f1f1;
+        border-radius: 12px;
+        padding: 12px 16px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus, .form-select:focus {
+        border-color: var(--primary-pink);
+        box-shadow: 0 0 0 0.2rem rgba(233, 30, 99, 0.15);
+    }
+
+    .form-control.is-invalid, .form-select.is-invalid {
+        border-color: #dc3545;
+    }
+
+    .invalid-feedback {
+        font-size: 0.875rem;
+        margin-top: 5px;
+    }
+
+    .btn-primary {
+        background: var(--primary-pink);
+        border: none;
+        border-radius: 50px;
+        padding: 15px 40px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(233, 30, 99, 0.3);
+    }
+
+    .btn-primary:hover {
+        background: var(--primary-pink-dark, #e91e63);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(233, 30, 99, 0.4);
+    }
+
+    .alert {
+        border-radius: 15px;
+        border: none;
+        padding: 15px 20px;
+        margin-bottom: 30px;
+    }
+
+    .alert-success {
+        background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+        color: #155724;
+    }
+
+    .form-check-input:checked {
+        background-color: var(--primary-pink);
+        border-color: var(--primary-pink);
+    }
+
+    .form-check-input:focus {
+        border-color: var(--primary-pink);
+        box-shadow: 0 0 0 0.2rem rgba(233, 30, 99, 0.15);
+    }
+
+    .booking-info {
+        background: linear-gradient(135deg, var(--light-pink) 0%, rgba(255,255,255,0.8) 100%);
+        border-radius: 15px;
+        padding: 20px;
+        margin-top: 20px;
+        border: 1px solid rgba(233, 30, 99, 0.1);
+    }
+
+    @media (max-width: 768px) {
+        .booking-form-card {
+            padding: 25px;
+            margin-top: -30px;
+        }
+        
+        .booking-icon {
+            width: 60px;
+            height: 60px;
+            font-size: 2rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+        }
+    }
+</style>
 @endpush

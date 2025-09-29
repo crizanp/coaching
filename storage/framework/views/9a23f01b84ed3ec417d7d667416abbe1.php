@@ -53,7 +53,7 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
             <!-- Main Content -->
             <div class="col-lg-8 mb-4">
                 <!-- Featured Image -->
-                <?php if($event->featured_image): ?>
+                <?php if($event->featured_image && file_exists(storage_path('app/public/' . $event->featured_image))): ?>
                 <div class="practice-card-textured mb-4" style="border-radius: 20px; overflow: hidden;">
                     <img src="<?php echo e(asset('storage/' . $event->featured_image)); ?>" 
                          alt="<?php echo e($event->getTranslation('title', app()->getLocale())); ?>"
@@ -156,7 +156,17 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
                 <?php endif; ?>
                 
                 <!-- Gallery -->
-                <?php if($event->gallery && count($event->gallery) > 0): ?>
+                <?php
+                    $validGalleryImages = [];
+                    if($event->gallery && count($event->gallery) > 0) {
+                        foreach($event->gallery as $image) {
+                            if($image && file_exists(storage_path('app/public/' . $image))) {
+                                $validGalleryImages[] = $image;
+                            }
+                        }
+                    }
+                ?>
+                <?php if(count($validGalleryImages) > 0): ?>
                 <div class="practice-card-textured">
                     <div class="practice-card-body">
                         <div class="practice-icon-left">
@@ -168,7 +178,7 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
                     </div>
                     <div class="content-description">
                         <div class="row">
-                            <?php $__currentLoopData = $event->gallery; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php $__currentLoopData = $validGalleryImages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="col-md-4 mb-3">
                                 <div class="gallery-item" style="border-radius: 15px; overflow: hidden; transition: transform 0.3s ease;">
                                     <img src="<?php echo e(asset('storage/' . $image)); ?>" 
