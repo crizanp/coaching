@@ -666,7 +666,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo e(route('events', app()->getLocale())); ?>">
+                        <a class="nav-link" href="<?php echo e(route('events.index', app()->getLocale())); ?>">
                             <?php echo e(__('messages.nav.events')); ?>
 
                         </a>

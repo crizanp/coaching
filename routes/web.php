@@ -7,6 +7,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,7 +21,10 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])->middleware('set.l
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/about', function() { return view('about'); })->name('about');
     Route::get('/practices', function() { return view('practices'); })->name('practices');
-    Route::get('/events', function() { return view('events'); })->name('events');
+    Route::get('/events', [EventController::class, 'index'])->name('events.index');
+    Route::get('/events/{event:slug}', [EventController::class, 'show'])->name('events.show');
+    Route::get('/events/{event:slug}/apply', [EventController::class, 'apply'])->name('events.apply');
+    Route::post('/events/{event:slug}/apply', [EventController::class, 'storeApplication'])->name('events.store-application');
     Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
     Route::get('/services/{service:slug}', [ServiceController::class, 'show'])->name('services.show');
     Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');

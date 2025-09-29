@@ -663,7 +663,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('events', app()->getLocale()) }}">
+                        <a class="nav-link" href="{{ route('events.index', app()->getLocale()) }}">
                             {{ __('messages.nav.events') }}
                         </a>
                     </li>

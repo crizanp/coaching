@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CoachingSeeder::class,
             BlogSeeder::class,
+            EventSeeder::class,
         ]);
     }
 }
