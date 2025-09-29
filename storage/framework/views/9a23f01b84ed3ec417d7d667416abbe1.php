@@ -15,104 +15,46 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
-<style>
-    .container {
-        max-width: 1345px !important;
-        margin: 0 auto;
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-    
-    .event-hero {
-        margin-top: 80px;
-        background: linear-gradient(135deg, #d4b3d6 0%, #f8f5ff 100%);
-        border-radius: 0 0 50px 50px;
-    }
-    
-    .content-card {
-        background: white;
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(212, 179, 214, 0.15);
-        border: 1px solid rgba(212, 179, 214, 0.1);
-        overflow: hidden;
-    }
-    
-    .event-card-textured {
-        background-color: white;
-        background-image: 
-            radial-gradient(circle at 25% 25%, rgba(212, 179, 214, 0.05) 0%, transparent 50%),
-            radial-gradient(circle at 75% 75%, rgba(248, 245, 255, 0.1) 0%, transparent 50%);
-        background-size: 30px 30px;
-    }
-    
-    .gallery-item {
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: 0 5px 15px rgba(212, 179, 214, 0.1);
-        transition: transform 0.3s ease;
-    }
-    
-    .gallery-item:hover {
-        transform: scale(1.05);
-    }
-    
-    .application-form {
-        background: linear-gradient(135deg, rgba(212, 179, 214, 0.1), rgba(248, 245, 255, 0.2));
-        border-radius: 20px;
-    }
-    
-    @media (max-width: 768px) {
-        .event-hero {
-            margin-top: 60px;
-            border-radius: 0 0 30px 30px;
-        }
-    }
-</style>
-
-<!-- Hero Section -->
-<section class="event-hero py-5">
+<!-- Event Hero Section -->
+<section class="section-padding" style="background: var(--light-pink); margin-top: 94px;">
     <div class="container">
         <div class="row justify-content-center text-center">
             <div class="col-lg-10">
-                <div class="mb-3">
-                    <span class="badge px-3 py-2" style="background: rgba(255,255,255,0.2); color: white; border-radius: 20px;">
-                        <?php echo e(ucfirst($event->type)); ?> - <?php echo e(ucfirst($event->status)); ?>
+                <div class="fade-in">
+                    <div class="mb-3">
+                        <span class="badge bg-primary px-3 py-2">
+                            <?php echo e(ucfirst($event->type)); ?> - <?php echo e(ucfirst($event->status)); ?>
 
-                    </span>
+                        </span>
+                    </div>
+                    <h1 class="section-title"><?php echo e($event->getTranslation('title', app()->getLocale())); ?></h1>
+                    <p class="lead mb-4"><?php echo e($event->getTranslation('description', app()->getLocale())); ?></p>
+                    
+                    <?php if($event->can_register): ?>
+                    <div class="mt-4">
+                        <a href="<?php echo e(route('events.apply', ['locale' => app()->getLocale(), 'event' => $event->slug])); ?>" 
+                           class="btn btn-primary btn-lg px-5 py-3">
+                            <i class="fas fa-user-plus me-2"></i>
+                            <?php echo e(__('messages.events.register_now')); ?>
+
+                        </a>
+                    </div>
+                    <?php endif; ?>
                 </div>
-                <h1 class="display-4 fw-bold text-white mb-4">
-                    <?php echo e($event->getTranslation('title', app()->getLocale())); ?>
-
-                </h1>
-                <p class="lead text-white opacity-90">
-                    <?php echo e($event->getTranslation('description', app()->getLocale())); ?>
-
-                </p>
-                
-                <?php if($event->can_register): ?>
-                <div class="mt-4">
-                    <a href="<?php echo e(route('events.apply', ['locale' => app()->getLocale(), 'event' => $event->slug])); ?>" 
-                       class="btn btn-light btn-lg px-5 py-3" style="border-radius: 50px;">
-                        <i class="fas fa-user-plus me-2"></i>
-                        <?php echo e(__('messages.events.register_now')); ?>
-
-                    </a>
-                </div>
-                <?php endif; ?>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Event Details -->
-<section class="event-details py-5">
+<section class="section-padding" style="background: white;">
     <div class="container">
         <div class="row">
             <!-- Main Content -->
             <div class="col-lg-8 mb-4">
                 <!-- Featured Image -->
                 <?php if($event->featured_image): ?>
-                <div class="content-card mb-4">
+                <div class="practice-card-textured mb-4" style="border-radius: 20px; overflow: hidden;">
                     <img src="<?php echo e(asset('storage/' . $event->featured_image)); ?>" 
                          alt="<?php echo e($event->getTranslation('title', app()->getLocale())); ?>"
                          class="w-100" style="height: 400px; object-fit: cover;">
@@ -120,12 +62,16 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
                 <?php endif; ?>
                 
                 <!-- Content -->
-                <div class="content-card event-card-textured p-4 mb-4">
-                    <h2 class="h3 fw-bold mb-4" style="color: #d4b3d6;">
-                        <?php echo e(__('messages.events.about_event')); ?>
-
-                    </h2>
-                    <div class="content">
+                <div class="practice-card-textured mb-4">
+                    <div class="practice-card-body">
+                        <div class="practice-icon-left">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <div class="practice-card-content">
+                            <h4><?php echo e(__('messages.events.about_event')); ?></h4>
+                        </div>
+                    </div>
+                    <div class="content-description">
                         <?php echo nl2br(e($event->getTranslation('content', app()->getLocale()))); ?>
 
                     </div>
@@ -133,81 +79,105 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
                 
                 <!-- Benefits -->
                 <?php if($event->benefits && count($event->getTranslation('benefits', app()->getLocale())) > 0): ?>
-                <div class="content-card event-card-textured p-4 mb-4">
-                    <h3 class="h4 fw-bold mb-4" style="color: #d4b3d6;">
-                        <?php echo e(__('messages.events.benefits')); ?>
-
-                    </h3>
-                    <div class="row">
-                        <?php $__currentLoopData = $event->getTranslation('benefits', app()->getLocale()); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $benefit): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <div class="col-md-6 mb-3">
-                            <div class="d-flex align-items-start">
-                                <i class="fas fa-check-circle me-3 mt-1" style="color: #d4b3d6;"></i>
-                                <span><?php echo e($benefit); ?></span>
-                            </div>
+                <div class="practice-card-textured mb-4">
+                    <div class="practice-card-body">
+                        <div class="practice-icon-left">
+                            <i class="fas fa-check-circle"></i>
                         </div>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <div class="practice-card-content">
+                            <h4><?php echo e(__('messages.events.benefits')); ?></h4>
+                        </div>
+                    </div>
+                    <div class="content-description">
+                        <div class="row">
+                            <?php $__currentLoopData = $event->getTranslation('benefits', app()->getLocale()); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $benefit): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex align-items-start">
+                                    <i class="fas fa-check me-3 mt-1" style="color: var(--primary-pink);"></i>
+                                    <span><?php echo e($benefit); ?></span>
+                                </div>
+                            </div>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </div>
                     </div>
                 </div>
                 <?php endif; ?>
                 
                 <!-- Program -->
                 <?php if($event->program && count($event->getTranslation('program', app()->getLocale())) > 0): ?>
-                <div class="content-card event-card-textured p-4 mb-4">
-                    <h3 class="h4 fw-bold mb-4" style="color: #d4b3d6;">
-                        <?php echo e(__('messages.events.program')); ?>
-
-                    </h3>
-                    <div class="program-list">
-                        <?php $__currentLoopData = $event->getTranslation('program', app()->getLocale()); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <div class="program-item d-flex align-items-start mb-3">
-                            <span class="badge me-3 mt-1" style="background: #d4b3d6; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;">
-                                <?php echo e($index + 1); ?>
-
-                            </span>
-                            <span><?php echo e($item); ?></span>
+                <div class="practice-card-textured mb-4">
+                    <div class="practice-card-body">
+                        <div class="practice-icon-left">
+                            <i class="fas fa-list-ol"></i>
                         </div>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <div class="practice-card-content">
+                            <h4><?php echo e(__('messages.events.program')); ?></h4>
+                        </div>
+                    </div>
+                    <div class="content-description">
+                        <div class="program-list">
+                            <?php $__currentLoopData = $event->getTranslation('program', app()->getLocale()); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <div class="program-item d-flex align-items-start mb-3">
+                                <span class="badge bg-primary me-3 mt-1" style="border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;">
+                                    <?php echo e($index + 1); ?>
+
+                                </span>
+                                <span><?php echo e($item); ?></span>
+                            </div>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </div>
                     </div>
                 </div>
                 <?php endif; ?>
                 
                 <!-- Requirements -->
                 <?php if($event->requirements && count($event->getTranslation('requirements', app()->getLocale())) > 0): ?>
-                <div class="content-card event-card-textured p-4 mb-4">
-                    <h3 class="h4 fw-bold mb-4" style="color: #d4b3d6;">
-                        <?php echo e(__('messages.events.requirements')); ?>
+                <div class="practice-card-textured mb-4">
+                    <div class="practice-card-body">
+                        <div class="practice-icon-left">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="practice-card-content">
+                            <h4><?php echo e(__('messages.events.requirements')); ?></h4>
+                        </div>
+                    </div>
+                    <div class="content-description">
+                        <ul class="list-unstyled">
+                            <?php $__currentLoopData = $event->getTranslation('requirements', app()->getLocale()); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $requirement): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <li class="mb-2">
+                                <i class="fas fa-dot-circle me-2" style="color: var(--primary-pink);"></i>
+                                <?php echo e($requirement); ?>
 
-                    </h3>
-                    <ul class="list-unstyled">
-                        <?php $__currentLoopData = $event->getTranslation('requirements', app()->getLocale()); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $requirement): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <li class="mb-2">
-                            <i class="fas fa-info-circle me-2" style="color: #d4b3d6;"></i>
-                            <?php echo e($requirement); ?>
-
-                        </li>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </ul>
+                            </li>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </ul>
+                    </div>
                 </div>
                 <?php endif; ?>
                 
                 <!-- Gallery -->
                 <?php if($event->gallery && count($event->gallery) > 0): ?>
-                <div class="content-card p-4">
-                    <h3 class="h4 fw-bold mb-4" style="color: #d4b3d6;">
-                        <?php echo e(__('messages.events.gallery')); ?>
-
-                    </h3>
-                    <div class="row">
-                        <?php $__currentLoopData = $event->gallery; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <div class="col-md-4 mb-3">
-                            <div class="gallery-item">
-                                <img src="<?php echo e(asset('storage/' . $image)); ?>" 
-                                     alt="<?php echo e($event->getTranslation('title', app()->getLocale())); ?>"
-                                     class="w-100" style="height: 200px; object-fit: cover;">
-                            </div>
+                <div class="practice-card-textured">
+                    <div class="practice-card-body">
+                        <div class="practice-icon-left">
+                            <i class="fas fa-images"></i>
                         </div>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <div class="practice-card-content">
+                            <h4><?php echo e(__('messages.events.gallery')); ?></h4>
+                        </div>
+                    </div>
+                    <div class="content-description">
+                        <div class="row">
+                            <?php $__currentLoopData = $event->gallery; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <div class="col-md-4 mb-3">
+                                <div class="gallery-item" style="border-radius: 15px; overflow: hidden; transition: transform 0.3s ease;">
+                                    <img src="<?php echo e(asset('storage/' . $image)); ?>" 
+                                         alt="<?php echo e($event->getTranslation('title', app()->getLocale())); ?>"
+                                         class="w-100" style="height: 200px; object-fit: cover;">
+                                </div>
+                            </div>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </div>
                     </div>
                 </div>
                 <?php endif; ?>
@@ -216,104 +186,92 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
             <!-- Sidebar -->
             <div class="col-lg-4">
                 <!-- Event Info -->
-                <div class="content-card event-card-textured p-4 mb-4">
-                    <h3 class="h5 fw-bold mb-4" style="color: #d4b3d6;">
-                        <?php echo e(__('messages.events.event_info')); ?>
+                <div class="practice-card-textured mb-4">
+                    <div class="practice-card-body">
+                        <div class="practice-icon-left">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="practice-card-content">
+                            <h4><?php echo e(__('messages.events.event_info')); ?></h4>
+                        </div>
+                    </div>
+                    <div class="content-description"style="padding: 0 20px 20px 20px;">
+                    
+                        <?php if($event->event_date): ?>
+                        <div class="service-detail-item mb-3">
+                            <strong><?php echo e(__('messages.events.date')); ?>:</strong> <?php echo e($event->event_date->format('d/m/Y')); ?>
 
-                    </h3>
-                    
-                    <?php if($event->event_date): ?>
-                    <div class="info-item d-flex align-items-center mb-3">
-                        <i class="fas fa-calendar-alt me-3" style="color: #d4b3d6; width: 20px;"></i>
-                        <div>
-                            <small class="text-muted d-block"><?php echo e(__('messages.events.date')); ?></small>
-                            <strong><?php echo e($event->event_date->format('d/m/Y')); ?></strong>
                         </div>
-                    </div>
-                    <div class="info-item d-flex align-items-center mb-3">
-                        <i class="fas fa-clock me-3" style="color: #d4b3d6; width: 20px;"></i>
-                        <div>
-                            <small class="text-muted d-block"><?php echo e(__('messages.events.time')); ?></small>
-                            <strong><?php echo e($event->event_date->format('H:i')); ?></strong>
+                        <div class="service-detail-item mb-3">
+                            <strong><?php echo e(__('messages.events.time')); ?>:</strong> <?php echo e($event->event_date->format('H:i')); ?>
+
                         </div>
-                    </div>
-                    <?php endif; ?>
-                    
-                    <?php if($event->duration): ?>
-                    <div class="info-item d-flex align-items-center mb-3">
-                        <i class="fas fa-hourglass-half me-3" style="color: #d4b3d6; width: 20px;"></i>
-                        <div>
-                            <small class="text-muted d-block"><?php echo e(__('messages.events.duration')); ?></small>
-                            <strong><?php echo e($event->duration); ?></strong>
+                        <?php endif; ?>
+                        
+                        <?php if($event->duration): ?>
+                        <div class="service-detail-item mb-3">
+                            <strong><?php echo e(__('messages.events.duration')); ?>:</strong> <?php echo e($event->duration); ?>
+
                         </div>
-                    </div>
-                    <?php endif; ?>
-                    
-                    <?php if($event->price): ?>
-                    <div class="info-item d-flex align-items-center mb-3">
-                        <i class="fas fa-euro-sign me-3" style="color: #d4b3d6; width: 20px;"></i>
-                        <div>
-                            <small class="text-muted d-block"><?php echo e(__('messages.events.price')); ?></small>
-                            <strong><?php echo e(number_format($event->price, 2)); ?>€</strong>
+                        <?php endif; ?>
+                        
+                        <?php if($event->price): ?>
+                        <div class="service-detail-item mb-3">
+                            <strong><?php echo e(__('messages.events.price')); ?>:</strong> <?php echo e(number_format($event->price, 2)); ?>€
                         </div>
-                    </div>
-                    <?php endif; ?>
-                    
-                    <?php if($event->max_participants): ?>
-                    <div class="info-item d-flex align-items-center mb-3">
-                        <i class="fas fa-users me-3" style="color: #d4b3d6; width: 20px;"></i>
-                        <div>
-                            <small class="text-muted d-block"><?php echo e(__('messages.events.participants')); ?></small>
-                            <strong><?php echo e($event->current_participants); ?>/<?php echo e($event->max_participants); ?></strong>
-                            <small class="text-success d-block"><?php echo e($event->available_spots); ?> <?php echo e(__('messages.events.spots_left')); ?></small>
+                        <?php endif; ?>
+                        
+                        <?php if($event->max_participants): ?>
+                        <div class="service-detail-item mb-3">
+                            <strong><?php echo e(__('messages.events.participants')); ?>:</strong> <?php echo e($event->current_participants); ?>/<?php echo e($event->max_participants); ?>
+
+                            <br><small class="text-success"><?php echo e($event->available_spots); ?> <?php echo e(__('messages.events.spots_left')); ?></small>
                         </div>
-                    </div>
-                    <?php endif; ?>
-                    
-                    <?php if($event->location): ?>
-                    <div class="info-item d-flex align-items-start mb-3">
-                        <i class="fas fa-map-marker-alt me-3 mt-1" style="color: #d4b3d6; width: 20px;"></i>
-                        <div>
-                            <small class="text-muted d-block"><?php echo e(__('messages.events.location')); ?></small>
+                        <?php endif; ?>
+                        
+                        <?php if($event->location): ?>
+                        <div class="service-detail-item mb-3">
+                            <strong><?php echo e(__('messages.events.location')); ?>:</strong>
                             <?php if(is_array($event->getTranslation('location', app()->getLocale()))): ?>
                                 <?php $__currentLoopData = $event->getTranslation('location', app()->getLocale()); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <div><?php echo e($value); ?></div>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             <?php else: ?>
-                                <strong><?php echo e($event->getTranslation('location', app()->getLocale())); ?></strong>
+                                <?php echo e($event->getTranslation('location', app()->getLocale())); ?>
+
                             <?php endif; ?>
                         </div>
-                    </div>
-                    <?php endif; ?>
-                    
-                    <?php if($event->registration_deadline): ?>
-                    <div class="info-item d-flex align-items-center mb-3">
-                        <i class="fas fa-exclamation-triangle me-3" style="color: #ff6b6b; width: 20px;"></i>
-                        <div>
-                            <small class="text-muted d-block"><?php echo e(__('messages.events.deadline')); ?></small>
-                            <strong class="text-danger"><?php echo e($event->registration_deadline->format('d/m/Y')); ?></strong>
+                        <?php endif; ?>
+                        
+                        <?php if($event->registration_deadline): ?>
+                        <div class="service-detail-item mb-3">
+                            <strong><?php echo e(__('messages.events.deadline')); ?>:</strong> 
+                            <span class="text-danger"><?php echo e($event->registration_deadline->format('d/m/Y')); ?></span>
                         </div>
+                        <?php endif; ?>
                     </div>
-                    <?php endif; ?>
                 </div>
                 
                 <!-- Registration Card -->
                 <?php if($event->can_register): ?>
-                <div class="application-form p-4 mb-4">
-                    <h3 class="h5 fw-bold mb-3" style="color: #d4b3d6;">
-                        <?php echo e(__('messages.events.quick_register')); ?>
+                <div class="practice-card-textured mb-4" style="background: var(--light-pink);">
+                    <div class="practice-card-body">
+                        <div class="practice-icon-left">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <div class="practice-card-content">
+                            <h4><?php echo e(__('messages.events.quick_register')); ?></h4>
+                        </div>
+                    </div>
+                    <div class="content-description">
+                        <p class="mb-4"><?php echo e(__('messages.events.register_description')); ?></p>
+                        <a href="<?php echo e(route('events.apply', ['locale' => app()->getLocale(), 'event' => $event->slug])); ?>" 
+                           class="btn btn-primary w-100">
+                            <i class="fas fa-user-plus me-2"></i>
+                            <?php echo e(__('messages.events.register_button')); ?>
 
-                    </h3>
-                    <p class="text-muted small mb-4">
-                        <?php echo e(__('messages.events.register_description')); ?>
-
-                    </p>
-                    <a href="<?php echo e(route('events.apply', ['locale' => app()->getLocale(), 'event' => $event->slug])); ?>" 
-                       class="btn btn-primary w-100">
-                        <i class="fas fa-user-plus me-2"></i>
-                        <?php echo e(__('messages.events.register_button')); ?>
-
-                    </a>
+                        </a>
+                    </div>
                 </div>
                 <?php elseif($event->is_full): ?>
                 <div class="alert alert-warning">
@@ -328,26 +286,135 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
                 <?php endif; ?>
                 
                 <!-- Contact Card -->
-                <div class="content-card event-card-textured p-4">
-                    <h3 class="h5 fw-bold mb-3" style="color: #d4b3d6;">
-                        <?php echo e(__('messages.events.need_help')); ?>
+                <div class="practice-card-textured">
+                    <div class="practice-card-body">
+                        <div class="practice-icon-left">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="practice-card-content">
+                            <h4><?php echo e(__('messages.events.need_help')); ?></h4>
+                        </div>
+                    </div>
+                    <div class="content-description">
+                        <p class="mb-3"><?php echo e(__('messages.events.contact_description')); ?></p>
+                        <a href="<?php echo e(route('contact.index', app()->getLocale())); ?>" 
+                           class="btn btn-outline-primary w-100">
+                            <i class="fas fa-envelope me-2"></i>
+                            <?php echo e(__('messages.events.contact_us')); ?>
 
-                    </h3>
-                    <p class="text-muted small mb-3">
-                        <?php echo e(__('messages.events.contact_description')); ?>
-
-                    </p>
-                    <a href="<?php echo e(route('contact.index', app()->getLocale())); ?>" 
-                       class="btn btn-outline-primary w-100">
-                        <i class="fas fa-envelope me-2"></i>
-                        <?php echo e(__('messages.events.contact_us')); ?>
-
-                    </a>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<?php $__env->startPush('styles'); ?>
+<style>
+    .practice-card-textured {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 30px;
+        text-align: left;
+        border: 1px solid #000000;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.25s ease;
+        color: var(--text-dark);
+    }
+
+    .practice-card-textured::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: repeating-linear-gradient(
+            45deg,
+            rgba(0,0,0,0.01),
+            rgba(0,0,0,0.01) 12px,
+            rgba(255,255,255,0.01) 12px,
+            rgba(255,255,255,0.01) 24px
+        );
+        opacity: 0.08;
+        pointer-events: none;
+    }
+
+    .practice-card-textured:hover {
+        transform: translateY(-4px);
+        border-color: rgba(0,0,0,0.85);
+    }
+
+    .practice-icon-left {
+        width: 60px;
+        height: 60px;
+        background: transparent;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        color: #000000;
+        margin-bottom: 0;
+        position: relative;
+        z-index: 1;
+        box-shadow: none;
+    }
+
+    .practice-card-textured h4 {
+        color: #1e1d1dff;
+        font-weight: 600;
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .practice-card-body {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .practice-card-content {
+        flex: 1 1 auto;
+    }
+
+    .content-description {
+        color: #6c757d;
+        font-size: 1rem;
+        line-height: 1.7;
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 1;
+        padding: 0 20px 20px 20px;
+    }
+
+    .service-detail-item {
+        color: #6c757d;
+        font-size: 0.95rem;
+    }
+
+    .gallery-item:hover {
+        transform: scale(1.05);
+    }
+
+    @media (max-width: 767px) {
+        .practice-card-body {
+            flex-direction: column;
+            gap: 12px;
+        }
+        .practice-icon-left {
+            width: 56px;
+            height: 56px;
+            font-size: 1.6rem;
+        }
+    }
+</style>
+<?php $__env->stopPush(); ?>
 
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.frontend', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH D:\client-fiverr\coaching\resources\views/events/show.blade.php ENDPATH**/ ?>

@@ -13,89 +13,18 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
 @endsection
 
 @section('content')
-<style>
-    .container {
-        max-width: 1345px !important;
-        margin: 0 auto;
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-    
-    .events-hero {
-        margin-top: 80px;
-        background: linear-gradient(135deg, #d4b3d6 0%, #f8f5ff 100%);
-        border-radius: 0 0 50px 50px;
-    }
-    
-    .event-card {
-        background: white;
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(212, 179, 214, 0.15);
-        border: 1px solid rgba(212, 179, 214, 0.1);
-        transition: all 0.3s ease;
-        overflow: hidden;
-    }
-    
-    .event-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 40px rgba(212, 179, 214, 0.2);
-    }
-    
-    .event-card-textured {
-        background-color: white;
-        background-image: 
-            radial-gradient(circle at 25% 25%, rgba(212, 179, 214, 0.05) 0%, transparent 50%),
-            radial-gradient(circle at 75% 75%, rgba(248, 245, 255, 0.1) 0%, transparent 50%);
-        background-size: 30px 30px;
-    }
-    
-    .section-divider {
-        height: 4px;
-        background: linear-gradient(135deg, #d4b3d6, #f8f5ff);
-        border-radius: 2px;
-        margin: 2rem auto;
-        width: 100px;
-    }
-    
-    .event-status {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        padding: 5px 15px;
-        border-radius: 20px;
-        font-size: 0.75rem;
-        font-weight: 600;
-        text-transform: uppercase;
-    }
-    
-    .status-active {
-        background: linear-gradient(135deg, #d4b3d6, #e8d4ea);
-        color: white;
-    }
-    
-    .status-upcoming {
-        background: linear-gradient(135deg, #6c63ff, #a855f7);
-        color: white;
-    }
-    
-    @media (max-width: 768px) {
-        .events-hero {
-            margin-top: 60px;
-            border-radius: 0 0 30px 30px;
-        }
-    }
-</style>
-
-<!-- Hero Section -->
-<section class="events-hero py-5">
+<!-- Events Hero Section -->
+<section class="section-padding" style="background: var(--light-pink); margin-top: 94px;">
     <div class="container">
         <div class="row justify-content-center text-center">
             <div class="col-lg-8">
-                <div class="hero-icon mb-4">
-                    <i class="fas fa-calendar-alt" style="font-size: 3rem; color: white;"></i>
+                <div class="fade-in">
+                    <div class="hero-icon mb-4">
+                        <i class="fas fa-calendar-alt" style="font-size: 3rem; color: var(--primary-pink);"></i>
+                    </div>
+                    <h1 class="section-title">{{ __('messages.events.hero.title') }}</h1>
+                    <p class="lead mb-4">{{ __('messages.events.hero.subtitle') }}</p>
                 </div>
-                <h1 class="display-4 fw-bold text-white mb-4">{{ __('messages.events.hero.title') }}</h1>
-                <p class="lead text-white opacity-90">{{ __('messages.events.hero.subtitle') }}</p>
             </div>
         </div>
     </div>
@@ -103,14 +32,13 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
 
 <!-- Practical Information Section -->
 @if($practicalEvents->count() > 0)
-<section class="practical-events py-5">
+<section class="section-padding" style="background: white;">
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="text-center mb-5">
-                    <h2 class="display-5 fw-bold mb-3" style="color: #d4b3d6;">{{ __('messages.events.practical.title') }}</h2>
-                    <div class="section-divider"></div>
-                    <p class="lead text-muted">{{ __('messages.events.practical.subtitle') }}</p>
+                <div class="text-center mb-5 fade-in">
+                    <h2 class="section-title">{{ __('messages.events.practical.title') }}</h2>
+                    <p class="lead mb-4">{{ __('messages.events.practical.subtitle') }}</p>
                 </div>
             </div>
         </div>
@@ -118,46 +46,57 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
         <div class="row">
             @foreach($practicalEvents as $event)
             <div class="col-lg-6 mb-4">
-                <div class="event-card event-card-textured h-100 position-relative">
-                    <div class="event-status status-active">
-                        {{ __('messages.events.status.active') }}
+                <div class="practice-card-textured h-100">
+                    <div class="position-relative">
+                        @if($event->featured_image)
+                        <div class="practice-image">
+                            <img src="{{ asset('storage/' . $event->featured_image) }}" 
+                                 alt="{{ $event->getTranslation('title', app()->getLocale()) }}"
+                                 class="w-100" style="height: 200px; object-fit: cover; border-radius: 15px 15px 0 0;">
+                        </div>
+                        @endif
+                        
+                        <div class="badge bg-primary position-absolute top-0 end-0 m-3">
+                            {{ __('messages.events.status.active') }}
+                        </div>
                     </div>
                     
-                    @if($event->featured_image)
-                    <div class="event-image">
-                        <img src="{{ asset('storage/' . $event->featured_image) }}" 
-                             alt="{{ $event->getTranslation('title', app()->getLocale()) }}"
-                             class="w-100" style="height: 200px; object-fit: cover;">
+                    <div class="practice-card-body">
+                        <div class="practice-icon-left">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="practice-card-content">
+                            <h4>{{ $event->getTranslation('title', app()->getLocale()) }}</h4>
+                        </div>
                     </div>
-                    @endif
                     
-                    <div class="p-4">
-                        <h3 class="h4 fw-bold mb-3" style="color: #d4b3d6;">
-                            {{ $event->getTranslation('title', app()->getLocale()) }}
-                        </h3>
-                        
-                        <p class="text-muted mb-3">
-                            {{ $event->getTranslation('description', app()->getLocale()) }}
-                        </p>
-                        
+                    <p class="service-description mb-4">{{ $event->getTranslation('description', app()->getLocale()) }}</p>
+                    
+                    <div class="service-details mb-4">
                         @if($event->duration)
-                        <div class="d-flex align-items-center mb-2">
-                            <i class="fas fa-clock me-2" style="color: #d4b3d6;"></i>
-                            <small class="text-muted">{{ $event->duration }}</small>
+                        <div class="service-detail-item mb-2">
+                            <strong>{{ __('messages.events.duration') }}:</strong> {{ $event->duration }}
                         </div>
                         @endif
                         
                         @if($event->price)
-                        <div class="d-flex align-items-center mb-3">
-                            <i class="fas fa-euro-sign me-2" style="color: #d4b3d6;"></i>
-                            <small class="text-muted">{{ number_format($event->price, 2) }}€</small>
+                        <div class="service-detail-item mb-2">
+                            <strong>{{ __('messages.events.price') }}:</strong> {{ number_format($event->price, 2) }}€
                         </div>
                         @endif
-                        
+                    </div>
+                    
+                    <div class="service-actions">
                         <a href="{{ route('events.show', ['locale' => app()->getLocale(), 'event' => $event->slug]) }}" 
-                           class="btn btn-outline-primary btn-sm">
+                           class="btn btn-outline-primary btn-sm me-2 mb-2">
                             {{ __('messages.events.read_more') }}
                         </a>
+                        @if($event->can_register)
+                        <a href="{{ route('events.apply', ['locale' => app()->getLocale(), 'event' => $event->slug]) }}" 
+                           class="btn btn-primary btn-sm mb-2">
+                            <i class="fas fa-user-plus me-1"></i>{{ __('messages.events.register') }}
+                        </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -169,14 +108,13 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
 
 <!-- Upcoming Workshops Section -->
 @if($upcomingWorkshops->count() > 0)
-<section class="upcoming-workshops py-5" style="background-color: #f8f5ff;">
+<section class="section-padding" style="background: var(--light-pink);">
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="text-center mb-5">
-                    <h2 class="display-5 fw-bold mb-3" style="color: #d4b3d6;">{{ __('messages.events.upcoming.title') }}</h2>
-                    <div class="section-divider"></div>
-                    <p class="lead text-muted">{{ __('messages.events.upcoming.subtitle') }}</p>
+                <div class="text-center mb-5 fade-in">
+                    <h2 class="section-title">{{ __('messages.events.upcoming.title') }}</h2>
+                    <p class="lead mb-4">{{ __('messages.events.upcoming.subtitle') }}</p>
                 </div>
             </div>
         </div>
@@ -184,65 +122,63 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
         <div class="row">
             @foreach($upcomingWorkshops as $event)
             <div class="col-lg-4 mb-4">
-                <div class="event-card h-100 position-relative">
-                    <div class="event-status status-upcoming">
-                        {{ __('messages.events.status.upcoming') }}
+                <div class="practice-card-textured h-100">
+                    <div class="position-relative">
+                        @if($event->featured_image)
+                        <div class="practice-image">
+                            <img src="{{ asset('storage/' . $event->featured_image) }}" 
+                                 alt="{{ $event->getTranslation('title', app()->getLocale()) }}"
+                                 class="w-100" style="height: 200px; object-fit: cover; border-radius: 15px 15px 0 0;">
+                        </div>
+                        @endif
+                        
+                        <div class="badge bg-success position-absolute top-0 end-0 m-3">
+                            {{ __('messages.events.status.upcoming') }}
+                        </div>
                     </div>
                     
-                    @if($event->featured_image)
-                    <div class="event-image">
-                        <img src="{{ asset('storage/' . $event->featured_image) }}" 
-                             alt="{{ $event->getTranslation('title', app()->getLocale()) }}"
-                             class="w-100" style="height: 200px; object-fit: cover;">
+                    <div class="practice-card-body">
+                        <div class="practice-icon-left">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="practice-card-content">
+                            <h4>{{ $event->getTranslation('title', app()->getLocale()) }}</h4>
+                        </div>
                     </div>
-                    @endif
                     
-                    <div class="p-4">
-                        <h3 class="h5 fw-bold mb-3" style="color: #d4b3d6;">
-                            {{ $event->getTranslation('title', app()->getLocale()) }}
-                        </h3>
-                        
-                        <p class="text-muted mb-3 small">
-                            {{ Str::limit($event->getTranslation('description', app()->getLocale()), 100) }}
-                        </p>
-                        
-                        <div class="event-details mb-3">
-                            @if($event->event_date)
-                            <div class="d-flex align-items-center mb-2">
-                                <i class="fas fa-calendar me-2" style="color: #d4b3d6;"></i>
-                                <small class="text-muted">{{ $event->event_date->format('d/m/Y H:i') }}</small>
-                            </div>
-                            @endif
-                            
-                            @if($event->max_participants)
-                            <div class="d-flex align-items-center mb-2">
-                                <i class="fas fa-users me-2" style="color: #d4b3d6;"></i>
-                                <small class="text-muted">
-                                    {{ $event->available_spots }} {{ __('messages.events.spots_available') }}
-                                </small>
-                            </div>
-                            @endif
-                            
-                            @if($event->price)
-                            <div class="d-flex align-items-center mb-2">
-                                <i class="fas fa-euro-sign me-2" style="color: #d4b3d6;"></i>
-                                <small class="text-muted">{{ number_format($event->price, 2) }}€</small>
-                            </div>
-                            @endif
+                    <p class="service-description mb-4">{{ Str::limit($event->getTranslation('description', app()->getLocale()), 100) }}</p>
+                    
+                    <div class="service-details mb-4">
+                        @if($event->event_date)
+                        <div class="service-detail-item mb-2">
+                            <strong>{{ __('messages.events.date') }}:</strong> {{ $event->event_date->format('d/m/Y H:i') }}
                         </div>
+                        @endif
                         
-                        <div class="d-flex gap-2">
-                            <a href="{{ route('events.show', ['locale' => app()->getLocale(), 'event' => $event->slug]) }}" 
-                               class="btn btn-outline-primary btn-sm flex-fill">
-                                {{ __('messages.events.learn_more') }}
-                            </a>
-                            @if($event->can_register)
-                            <a href="{{ route('events.apply', ['locale' => app()->getLocale(), 'event' => $event->slug]) }}" 
-                               class="btn btn-primary btn-sm">
-                                {{ __('messages.events.register') }}
-                            </a>
-                            @endif
+                        @if($event->max_participants)
+                        <div class="service-detail-item mb-2">
+                            <strong>{{ __('messages.events.spots_available') }}:</strong> {{ $event->available_spots }}
                         </div>
+                        @endif
+                        
+                        @if($event->price)
+                        <div class="service-detail-item mb-2">
+                            <strong>{{ __('messages.events.price') }}:</strong> {{ number_format($event->price, 2) }}€
+                        </div>
+                        @endif
+                    </div>
+                    
+                    <div class="service-actions">
+                        <a href="{{ route('events.show', ['locale' => app()->getLocale(), 'event' => $event->slug]) }}" 
+                           class="btn btn-outline-primary btn-sm me-2 mb-2">
+                            {{ __('messages.events.learn_more') }}
+                        </a>
+                        @if($event->can_register)
+                        <a href="{{ route('events.apply', ['locale' => app()->getLocale(), 'event' => $event->slug]) }}" 
+                           class="btn btn-primary btn-sm mb-2">
+                            <i class="fas fa-user-plus me-1"></i>{{ __('messages.events.register') }}
+                        </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -252,17 +188,17 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
 </section>
 @else
 <!-- No Upcoming Workshops Notice -->
-<section class="no-upcoming py-5" style="background-color: #f8f5ff;">
+<section class="section-padding" style="background: var(--light-pink);">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <div class="text-center">
-                    <i class="fas fa-calendar-times mb-4" style="font-size: 3rem; color: #d4b3d6; opacity: 0.5;"></i>
-                    <h3 class="mb-3" style="color: #d4b3d6;">{{ __('messages.events.no_upcoming.title') }}</h3>
-                    <p class="text-muted mb-4">{{ __('messages.events.no_upcoming.description') }}</p>
+                <div class="text-center fade-in">
+                    <i class="fas fa-calendar-times mb-4" style="font-size: 3rem; color: var(--warm-gray); opacity: 0.6;"></i>
+                    <h3 class="mb-3">{{ __('messages.events.no_upcoming.title') }}</h3>
+                    <p class="lead mb-4">{{ __('messages.events.no_upcoming.description') }}</p>
                     <a href="{{ route('contact.index', app()->getLocale()) }}" 
-                       class="btn btn-primary">
-                        {{ __('messages.events.no_upcoming.contact') }}
+                       class="btn btn-primary btn-lg">
+                        <i class="fas fa-envelope me-2"></i>{{ __('messages.events.no_upcoming.contact') }}
                     </a>
                 </div>
             </div>
@@ -273,14 +209,13 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
 
 <!-- Workshop On Demand Section -->
 @if($activeWorkshops->count() > 0)
-<section class="workshop-demand py-5">
+<section class="section-padding" style="background: white;">
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="text-center mb-5">
-                    <h2 class="display-5 fw-bold mb-3" style="color: #d4b3d6;">{{ __('messages.events.workshops.title') }}</h2>
-                    <div class="section-divider"></div>
-                    <p class="lead text-muted">{{ __('messages.events.workshops.subtitle') }}</p>
+                <div class="text-center mb-5 fade-in">
+                    <h2 class="section-title">{{ __('messages.events.workshops.title') }}</h2>
+                    <p class="lead mb-4">{{ __('messages.events.workshops.subtitle') }}</p>
                 </div>
             </div>
         </div>
@@ -288,63 +223,64 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
         <div class="row">
             @foreach($activeWorkshops as $event)
             <div class="col-lg-6 mb-4">
-                <div class="event-card event-card-textured h-100 position-relative">
-                    <div class="event-status status-active">
-                        {{ __('messages.events.status.on_demand') }}
-                    </div>
-                    
-                    @if($event->featured_image)
-                    <div class="event-image">
-                        <img src="{{ asset('storage/' . $event->featured_image) }}" 
-                             alt="{{ $event->getTranslation('title', app()->getLocale()) }}"
-                             class="w-100" style="height: 200px; object-fit: cover;">
-                    </div>
-                    @endif
-                    
-                    <div class="p-4">
-                        <h3 class="h4 fw-bold mb-3" style="color: #d4b3d6;">
-                            {{ $event->getTranslation('title', app()->getLocale()) }}
-                        </h3>
-                        
-                        <p class="text-muted mb-3">
-                            {{ $event->getTranslation('description', app()->getLocale()) }}
-                        </p>
-                        
-                        @if($event->gallery && count($event->gallery) > 0)
-                        <div class="event-gallery mb-3">
-                            <small class="text-muted d-block mb-2">
-                                <i class="fas fa-images me-1"></i>
-                                {{ __('messages.events.gallery_available') }}
-                            </small>
+                <div class="practice-card-textured h-100">
+                    <div class="position-relative">
+                        @if($event->featured_image)
+                        <div class="practice-image">
+                            <img src="{{ asset('storage/' . $event->featured_image) }}" 
+                                 alt="{{ $event->getTranslation('title', app()->getLocale()) }}"
+                                 class="w-100" style="height: 200px; object-fit: cover; border-radius: 15px 15px 0 0;">
                         </div>
                         @endif
                         
-                        <div class="event-meta mb-3">
-                            @if($event->duration)
-                            <div class="d-flex align-items-center mb-2">
-                                <i class="fas fa-clock me-2" style="color: #d4b3d6;"></i>
-                                <small class="text-muted">{{ $event->duration }}</small>
-                            </div>
-                            @endif
-                            
-                            @if($event->price)
-                            <div class="d-flex align-items-center mb-2">
-                                <i class="fas fa-euro-sign me-2" style="color: #d4b3d6;"></i>
-                                <small class="text-muted">{{ number_format($event->price, 2) }}€</small>
-                            </div>
-                            @endif
+                        <div class="badge bg-info position-absolute top-0 end-0 m-3">
+                            {{ __('messages.events.status.on_demand') }}
                         </div>
+                    </div>
+                    
+                    <div class="practice-card-body">
+                        <div class="practice-icon-left">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="practice-card-content">
+                            <h4>{{ $event->getTranslation('title', app()->getLocale()) }}</h4>
+                        </div>
+                    </div>
+                    
+                    <p class="service-description mb-4">{{ $event->getTranslation('description', app()->getLocale()) }}</p>
+                    
+                    @if($event->gallery && count($event->gallery) > 0)
+                    <div class="mb-3">
+                        <small class="text-muted d-block mb-2">
+                            <i class="fas fa-images me-1"></i>
+                            {{ __('messages.events.gallery_available') }}
+                        </small>
+                    </div>
+                    @endif
+                    
+                    <div class="service-details mb-4">
+                        @if($event->duration)
+                        <div class="service-detail-item mb-2">
+                            <strong>{{ __('messages.events.duration') }}:</strong> {{ $event->duration }}
+                        </div>
+                        @endif
                         
-                        <div class="d-flex gap-2">
-                            <a href="{{ route('events.show', ['locale' => app()->getLocale(), 'event' => $event->slug]) }}" 
-                               class="btn btn-outline-primary btn-sm flex-fill">
-                                {{ __('messages.events.learn_more') }}
-                            </a>
-                            <a href="{{ route('contact.index', app()->getLocale()) }}" 
-                               class="btn btn-primary btn-sm">
-                                {{ __('messages.events.request') }}
-                            </a>
+                        @if($event->price)
+                        <div class="service-detail-item mb-2">
+                            <strong>{{ __('messages.events.price') }}:</strong> {{ number_format($event->price, 2) }}€
                         </div>
+                        @endif
+                    </div>
+                    
+                    <div class="service-actions">
+                        <a href="{{ route('events.show', ['locale' => app()->getLocale(), 'event' => $event->slug]) }}" 
+                           class="btn btn-outline-primary btn-sm me-2 mb-2">
+                            {{ __('messages.events.learn_more') }}
+                        </a>
+                        <a href="{{ route('contact.index', app()->getLocale()) }}" 
+                           class="btn btn-primary btn-sm mb-2">
+                            <i class="fas fa-envelope me-1"></i>{{ __('messages.events.request') }}
+                        </a>
                     </div>
                 </div>
             </div>
@@ -354,17 +290,21 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
 </section>
 @endif
 
-<!-- CTA Section -->
-<section class="events-cta py-5" style="background: linear-gradient(135deg, #d4b3d6, #f8f5ff);">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8 text-center">
-                <h2 class="display-6 fw-bold text-white mb-4">{{ __('messages.events.cta.title') }}</h2>
-                <p class="text-white opacity-90 mb-4">{{ __('messages.events.cta.description') }}</p>
-                <a href="{{ route('contact.index', app()->getLocale()) }}" 
-                   class="btn btn-light btn-lg px-5 py-3" style="border-radius: 50px;">
-                    {{ __('messages.events.cta.contact') }}
-                </a>
+<!-- Call to Action Section -->
+<section class="section-padding" style="background: var(--light-pink);">
+    <div class="container text-center">
+        <div class="fade-in">
+            <h2 class="section-title">{{ __('messages.events.cta.title') }}</h2>
+            <p class="lead mb-5">{{ __('messages.events.cta.description') }}</p>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="cta-buttons">
+                        <a href="{{ route('contact.index', app()->getLocale()) }}" class="btn btn-primary btn-lg me-3 mb-3">
+                            <i class="fas fa-envelope me-2"></i>{{ __('messages.events.cta.contact') }}
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -373,4 +313,116 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
 @push('structured-data')
 {{-- Structured data will be added here --}}
 @endpush
+
+@push('styles')
+<style>
+    .practice-card-textured {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 30px;
+        text-align: left;
+        border: 1px solid #000000;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.25s ease;
+        color: var(--text-dark);
+    }
+
+    .practice-card-textured::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: repeating-linear-gradient(
+            45deg,
+            rgba(0,0,0,0.01),
+            rgba(0,0,0,0.01) 12px,
+            rgba(255,255,255,0.01) 12px,
+            rgba(255,255,255,0.01) 24px
+        );
+        opacity: 0.08;
+        pointer-events: none;
+    }
+
+    .practice-card-textured:hover {
+        transform: translateY(-4px);
+        border-color: rgba(0,0,0,0.85);
+    }
+
+    .practice-icon-left {
+        width: 60px;
+        height: 60px;
+        background: transparent;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        color: #000000;
+        margin-bottom: 0;
+        position: relative;
+        z-index: 1;
+        box-shadow: none;
+    }
+
+    .practice-card-textured h4 {
+        color: #1e1d1dff;
+        font-weight: 600;
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .practice-card-body {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .practice-card-content {
+        flex: 1 1 auto;
+    }
+
+    .service-description {
+        color: #6c757d;
+        font-size: 1rem;
+        line-height: 1.7;
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .service-details {
+        position: relative;
+        z-index: 1;
+    }
+
+    .service-detail-item {
+        color: #6c757d;
+        font-size: 0.95rem;
+    }
+
+    .service-actions {
+        position: relative;
+        z-index: 1;
+    }
+
+    @media (max-width: 767px) {
+        .practice-card-body {
+            flex-direction: column;
+            gap: 12px;
+        }
+        .practice-icon-left {
+            width: 56px;
+            height: 56px;
+            font-size: 1.6rem;
+        }
+    }
+</style>
+@endpush
+
 @endsection
