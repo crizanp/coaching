@@ -48,9 +48,11 @@
                         <h2>{{ __('messages.terms.section5.title') }}</h2>
                         <p>{{ __('messages.terms.section5.content') }}</p>
                         <ul>
-                            @foreach(__('messages.terms.section5.list') as $item)
-                            <li>{{ $item }}</li>
-                            @endforeach
+                            @if(is_array(__('messages.terms.section5.list')))
+                                @foreach(__('messages.terms.section5.list') as $item)
+                                <li>{{ $item }}</li>
+                                @endforeach
+                            @endif
                         </ul>
 
                         <h2>{{ __('messages.terms.section6.title') }}</h2>
