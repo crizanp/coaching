@@ -633,6 +633,8 @@
                                     <li><a class="dropdown-item" href="{{ route('admin.services.index') }}"><i class="fas fa-concierge-bell"></i> Services</a></li>
                                     <li><a class="dropdown-item" href="{{ route('admin.appointments.index') }}"><i class="fas fa-calendar-alt"></i> Appointments</a></li>
                                     <li><a class="dropdown-item" href="{{ route('admin.blogs.index') }}"><i class="fas fa-blog"></i> Blog Posts</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('admin.guides.index') }}"><i class="fas fa-book"></i> Guides</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('admin.guide-downloads.index') }}"><i class="fas fa-download"></i> Guide Downloads</a></li>
                                     <li><a class="dropdown-item" href="{{ route('admin.settings') }}"><i class="fas fa-cog"></i> Settings</a></li>
                                     <li><a class="dropdown-item" href="{{ route('admin.change-password') }}"><i class="fas fa-key"></i> Change Password</a></li>
                                     <li><hr class="dropdown-divider"></li>

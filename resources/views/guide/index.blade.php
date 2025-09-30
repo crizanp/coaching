@@ -123,7 +123,7 @@
             <div class="modal-body">
                 <form id="downloadForm">
                     @csrf
-                    <input type="hidden" id="guide_title" name="guide_title">
+                    <input type="hidden" id="guide_slug" name="guide_slug">
                     
                     <div class="row mb-4">
                         <div class="col-md-6">
@@ -359,7 +359,7 @@ function displayGuides(guides) {
 
 function openDownloadModal(guideId, title, description, benefits) {
     $('#downloadModalTitle').text('{{ __("messages.guides.download") }}: ' + title);
-    $('#guide_title').val(guideId);
+    $('#guide_slug').val(guideId);
     
     let previewHtml = `
         <h6>${title}</h6>

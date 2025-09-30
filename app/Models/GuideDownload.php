@@ -15,6 +15,7 @@ class GuideDownload extends Model
         'email',
         'phone',
         'ip_address',
+        'guide_slug',
         'guide_title',
         'guide_description',
         'guide_file_path',
@@ -45,6 +46,12 @@ class GuideDownload extends Model
     public function scopeSent($query)
     {
         return $query->where('status', 'sent');
+    }
+
+    // Relationships
+    public function guide()
+    {
+        return $this->belongsTo(Guide::class, 'guide_slug', 'slug');
     }
 
     // Accessors
@@ -88,11 +95,11 @@ class GuideDownload extends Model
         ]);
     }
 
-    // Check if IP has already requested this guide recently (24 hours)
-    public static function hasRecentRequest($ip, $guideTitle, $hours = 24)
+    // Check if IP has already requested this specific guide recently (24 hours)
+    public static function hasRecentRequest($ip, $guideSlug, $hours = 24)
     {
         return self::where('ip_address', $ip)
-            ->where('guide_title', $guideTitle)
+            ->where('guide_slug', $guideSlug)
             ->where('created_at', '>=', Carbon::now()->subHours($hours))
             ->exists();
     }
