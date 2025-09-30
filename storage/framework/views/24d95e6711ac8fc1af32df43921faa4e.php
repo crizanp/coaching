@@ -20,8 +20,8 @@
             <div class="col-lg-6">
                 <div class="fade-in">
                     <div class="about-image-container">
-                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                             alt="Sandrine - Sophrologue" class="img-fluid rounded-circle about-image">
+                        <img src="<?php echo e(asset('images/assets/SSJchrysalis.png')); ?>" 
+                             alt="Sandrine - Sophrologue Logo" class="img-fluid rounded-circle about-image">
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <div class="fade-in text-start">
+                <!-- <div class="fade-in text-start">
                     <h2 class="section-title"><?php echo e(__('messages.about.story.title')); ?></h2>
                     <div class="about-content">
                         <p class="lead"><?php echo e(__('messages.about.story.intro')); ?></p>
@@ -42,7 +42,7 @@
                         <p><?php echo e(__('messages.about.story.discovery')); ?></p>
                         <p><?php echo e(__('messages.about.story.mission')); ?></p>
                     </div>
-                    
+                     -->
                     <div class="contact-cta mt-5">
                         <h4><?php echo e(__('messages.about.contact.title')); ?></h4>
                         <div class="d-flex justify-content-start gap-3 flex-wrap mt-3">
@@ -50,8 +50,8 @@
                                 <i class="fas fa-envelope me-2"></i><?php echo e(__('messages.about.contact.email')); ?>
 
                             </a>
-                            <a href="tel:<?php echo e(\App\Models\Setting::get('contact_phone')); ?>" class="btn btn-outline-primary">
-                                <i class="fas fa-phone me-2"></i><?php echo e(__('messages.about.contact.phone')); ?>
+                            <a href="https://wa.me/<?php echo e(str_replace(['+', ' ', '-', '(', ')'], '', \App\Models\Setting::get('contact_phone'))); ?>" target="_blank" class="btn btn-outline-primary">
+                                <i class="fab fa-whatsapp me-2"></i><?php echo e(__('messages.about.contact.phone')); ?>
 
                             </a>
                         </div>
@@ -134,7 +134,7 @@
     <div class="container text-center">
         <div class="fade-in">
             <h2 class="section-title"><?php echo e(__('messages.about.mission.title')); ?></h2>
-            <p class="lead mb-5"><?php echo e(__('messages.about.mission.description')); ?></p>
+            <p class="lead mb-5"><?php echo __('messages.about.mission.description'); ?></p>
             
             <div class="row justify-content-center">
                 <div class="col-lg-8">

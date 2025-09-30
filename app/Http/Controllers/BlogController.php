@@ -156,7 +156,10 @@ class BlogController extends Controller
                     ->select('slug', 'updated_at')
                     ->get();
 
-        return response()->view('blog.sitemap', compact('blogs'))
+        $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+        $xml .= view('blog.sitemap', compact('blogs'))->render();
+
+        return response($xml)
                         ->header('Content-Type', 'text/xml');
     }
 }
