@@ -1,8 +1,8 @@
-@extends('layouts.frontend')
 
-@section('title', __('messages.contact.title'))
 
-@section('content')
+<?php $__env->startSection('title', __('messages.contact.title')); ?>
+
+<?php $__env->startSection('content'); ?>
 <!-- Contact Hero Section -->
 <section class="section-padding" style="background: var(--light-pink); margin-top: 94px;">
     <div class="container">
@@ -12,8 +12,8 @@
                     <div class="contact-icon mb-4">
                         <i class="fas fa-comments"></i>
                     </div>
-                    <h1 class="section-title">{{ __('messages.contact.title') }}</h1>
-                    <p class="lead mb-4">{{ __('messages.contact.subtitle') }}</p>
+                    <h1 class="section-title"><?php echo e(__('messages.contact.title')); ?></h1>
+                    <p class="lead mb-4"><?php echo e(__('messages.contact.subtitle')); ?></p>
                     <div class="hero-features">
                         <span class="feature-item">
                             <i class="fas fa-reply me-2"></i>Réponse rapide
@@ -36,13 +36,14 @@
 <!-- Contact Options Section -->
 <section class="section-padding" style="background: white;">
     <div class="container">
-        @if(session('success'))
+        <?php if(session('success')): ?>
         <div class="alert alert-success alert-dismissible fade show fade-in" role="alert">
             <i class="fas fa-check-circle me-2"></i>
-            {{ session('success') }}
+            <?php echo e(session('success')); ?>
+
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
-        @endif
+        <?php endif; ?>
 
         <!-- Calendly Integration -->
         <div class="row mb-5">
@@ -64,72 +65,144 @@
                     <h3 class="form-title mb-4">
                         <i class="fas fa-envelope me-2"></i>Envoyez-moi un message
                     </h3>
-                    <form method="POST" action="{{ route('contact.store', app()->getLocale()) }}">
-                            @csrf
+                    <form method="POST" action="<?php echo e(route('contact.store', app()->getLocale())); ?>">
+                            <?php echo csrf_field(); ?>
                             
                             <div class="row">
                                 <div class="col-md-6 mb-4">
-                                    <label for="name" class="form-label">{{ __('messages.contact.form.name') }} *</label>
-                                    <input type="text" class="form-control @error('name') is-invalid @enderror" 
+                                    <label for="name" class="form-label"><?php echo e(__('messages.contact.form.name')); ?> *</label>
+                                    <input type="text" class="form-control <?php $__errorArgs = ['name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
                                            id="name" name="name" 
-                                           value="{{ old('name') }}" required>
-                                    @error('name')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                                           value="<?php echo e(old('name')); ?>" required>
+                                    <?php $__errorArgs = ['name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                        <div class="invalid-feedback"><?php echo e($message); ?></div>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                 </div>
 
                                 <div class="col-md-6 mb-4">
-                                    <label for="email" class="form-label">{{ __('messages.contact.form.email') }} *</label>
-                                    <input type="email" class="form-control @error('email') is-invalid @enderror" 
+                                    <label for="email" class="form-label"><?php echo e(__('messages.contact.form.email')); ?> *</label>
+                                    <input type="email" class="form-control <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
                                            id="email" name="email" 
-                                           value="{{ old('email') }}" required>
-                                    @error('email')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                                           value="<?php echo e(old('email')); ?>" required>
+                                    <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                        <div class="invalid-feedback"><?php echo e($message); ?></div>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-6 mb-4">
-                                    <label for="phone" class="form-label">{{ __('messages.contact.form.phone') }}</label>
-                                    <input type="tel" class="form-control @error('phone') is-invalid @enderror" 
+                                    <label for="phone" class="form-label"><?php echo e(__('messages.contact.form.phone')); ?></label>
+                                    <input type="tel" class="form-control <?php $__errorArgs = ['phone'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
                                            id="phone" name="phone" 
-                                           value="{{ old('phone') }}">
-                                    @error('phone')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                                           value="<?php echo e(old('phone')); ?>">
+                                    <?php $__errorArgs = ['phone'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                        <div class="invalid-feedback"><?php echo e($message); ?></div>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                 </div>
 
                                 <div class="col-md-6 mb-4">
-                                    <label for="service_id" class="form-label">{{ __('messages.contact.form.service') }}</label>
-                                    <select class="form-select @error('service_id') is-invalid @enderror" id="service_id" name="service_id">
-                                        <option value="">{{ __('messages.contact.form.service_select') }}</option>
-                                        @foreach($services as $service)
-                                            <option value="{{ $service->id }}" {{ old('service_id') == $service->id ? 'selected' : '' }}>
-                                                {{ $service->getTranslation('name', app()->getLocale()) }}
+                                    <label for="service_id" class="form-label"><?php echo e(__('messages.contact.form.service')); ?></label>
+                                    <select class="form-select <?php $__errorArgs = ['service_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="service_id" name="service_id">
+                                        <option value=""><?php echo e(__('messages.contact.form.service_select')); ?></option>
+                                        <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($service->id); ?>" <?php echo e(old('service_id') == $service->id ? 'selected' : ''); ?>>
+                                                <?php echo e($service->getTranslation('name', app()->getLocale())); ?>
+
                                             </option>
-                                        @endforeach
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
-                                    @error('service_id')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                                    <?php $__errorArgs = ['service_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                        <div class="invalid-feedback"><?php echo e($message); ?></div>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
 
                             <div class="mb-4">
-                                <label for="message" class="form-label">{{ __('messages.contact.form.message') }} *</label>
-                                <textarea class="form-control @error('message') is-invalid @enderror" 
+                                <label for="message" class="form-label"><?php echo e(__('messages.contact.form.message')); ?> *</label>
+                                <textarea class="form-control <?php $__errorArgs = ['message'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
                                           id="message" name="message" rows="5" 
-                                          placeholder="Décrivez votre demande, vos questions ou ce que vous aimeriez savoir..." required>{{ old('message') }}</textarea>
-                                @error('message')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                                          placeholder="Décrivez votre demande, vos questions ou ce que vous aimeriez savoir..." required><?php echo e(old('message')); ?></textarea>
+                                <?php $__errorArgs = ['message'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <div class="invalid-feedback"><?php echo e($message); ?></div>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
 
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary btn-lg px-5">
                                     <i class="fas fa-paper-plane me-2"></i>
-                                    {{ __('messages.contact.form.submit') }}
+                                    <?php echo e(__('messages.contact.form.submit')); ?>
+
                                 </button>
                             </div>
                         </form>
@@ -173,7 +246,7 @@
                         <div class="info-content">
                             <h6>Address</h6>
                             <span class="info-text">
-                                Route de Schoelcher,<br>97233 Schoelcher, Martinique
+                                123 Rue de la Paix,<br>75001 Paris
                             </span>
                         </div>
                     </div>
@@ -204,9 +277,9 @@
 </section>
 
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('styles')
+<?php $__env->startPush('styles'); ?>
 <style>
     /* Ensure all containers match navbar width */
     .container {
@@ -486,9 +559,9 @@
         }
     }
 </style>
-@endpush
+<?php $__env->stopPush(); ?>
 
-@push('scripts')
+<?php $__env->startPush('scripts'); ?>
 <!-- Calendly badge widget begin -->
 <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
@@ -521,4 +594,5 @@ function scrollToForm() {
     });
 }
 </script>
-@endpush
+<?php $__env->stopPush(); ?>
+<?php echo $__env->make('layouts.frontend', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH D:\client-fiverr\coaching\resources\views/contact/index.blade.php ENDPATH**/ ?>

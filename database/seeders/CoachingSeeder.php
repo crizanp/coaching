@@ -127,7 +127,7 @@ class CoachingSeeder extends Seeder
             // Sophrologie testimonials (service_id = 1)
             [
                 'client_name' => 'Marie D.',
-                'client_location' => 'Paris',
+                'client_location' => 'Schoelcher',
                 'testimonial' => [
                     'fr' => 'Les séances de sophrologie m\'ont vraiment aidée à gérer mon stress au travail. Je me sens plus sereine et confiante. Merci !',
                     'en' => 'The sophrology sessions really helped me manage my work stress. I feel more serene and confident. Thank you!'
@@ -317,8 +317,8 @@ class CoachingSeeder extends Seeder
             [
                 'key' => 'address',
                 'value' => [
-                    'fr' => '123 Rue de la Paix, 75001 Paris',
-                    'en' => '123 Peace Street, 75001 Paris'
+                    'fr' => 'Route de Schoelcher, 97233 Schoelcher',
+                    'en' => 'Schoelcher Road, 97233 Schoelcher'
                 ],
                 'type' => 'json',
                 'group' => 'contact',

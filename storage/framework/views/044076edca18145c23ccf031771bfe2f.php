@@ -1,9 +1,7 @@
-@extends('layouts.frontend')
+<?php $__env->startSection('title', __('messages.seo.home.title')); ?>
+<?php $__env->startSection('description', __('messages.seo.home.description')); ?>
 
-@section('title', __('messages.seo.home.title'))
-@section('description', __('messages.seo.home.description'))
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <!-- Meditative Hero Slider -->
 <section class="hero-slider">
     <div id="meditativeSlider" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
@@ -19,15 +17,17 @@
                                     <div class="meditation-icon mb-4">
                                         <i class="fas fa-seedling"></i>
                                     </div>
-                                    <h1 class="hero-title">{{ __('messages.home.hero.title') }}</h1>
-                                    <p class="hero-subtitle">{{ __('messages.home.hero.subtitle') }}</p>
+                                    <h1 class="hero-title"><?php echo e(__('messages.home.hero.title')); ?></h1>
+                                    <p class="hero-subtitle"><?php echo e(__('messages.home.hero.subtitle')); ?></p>
                                    
                                     <div class="hero-buttons">
-                                        <a href="{{ route('booking.index', app()->getLocale()) }}" class="btn btn-hero-primary">
-                                            {{ __('messages.home.hero.cta_book') }}
+                                        <a href="<?php echo e(route('booking.index', app()->getLocale())); ?>" class="btn btn-hero-primary">
+                                            <?php echo e(__('messages.home.hero.cta_book')); ?>
+
                                         </a>
-                                        <a href="{{ route('contact.index', app()->getLocale()) }}" class="btn btn-hero-outline">
-                                            {{ __('messages.home.hero.cta_contact') }}
+                                        <a href="<?php echo e(route('contact.index', app()->getLocale())); ?>" class="btn btn-hero-outline">
+                                            <?php echo e(__('messages.home.hero.cta_contact')); ?>
+
                                         </a>
                                     </div>
                                 </div>
@@ -50,10 +50,10 @@
                                     <h1 class="hero-title">Trouvez la Paix Intérieure</h1>
                                     <p class="hero-subtitle">Laissez-vous guider vers un état de sérénité profonde et de bien-être durable</p>
                                     <div class="hero-buttons">
-                                        <a href="{{ route('services.show', [app()->getLocale(), 'hypnose']) }}" class="btn btn-hero-primary">
+                                        <a href="<?php echo e(route('services.show', [app()->getLocale(), 'hypnose'])); ?>" class="btn btn-hero-primary">
                                             Découvrir l'Hypnose
                                         </a>
-                                        <a href="{{ route('booking.index', app()->getLocale()) }}" class="btn btn-hero-outline">
+                                        <a href="<?php echo e(route('booking.index', app()->getLocale())); ?>" class="btn btn-hero-outline">
                                             Réserver
                                         </a>
                                     </div>
@@ -77,10 +77,10 @@
                                     <h1 class="hero-title">Transformez Votre Vie</h1>
                                     <p class="hero-subtitle">Développez vos ressources intérieures et créez la vie que vous désirez vraiment</p>
                                     <div class="hero-buttons">
-                                        <a href="{{ route('services.show', [app()->getLocale(), 'coaching-pnl']) }}" class="btn btn-hero-primary">
+                                        <a href="<?php echo e(route('services.show', [app()->getLocale(), 'coaching-pnl'])); ?>" class="btn btn-hero-primary">
                                             Explorer le Coaching
                                         </a>
-                                        <a href="{{ route('contact.index', app()->getLocale()) }}" class="btn btn-hero-outline">
+                                        <a href="<?php echo e(route('contact.index', app()->getLocale())); ?>" class="btn btn-hero-outline">
                                             Nous Contacter
                                         </a>
                                     </div>
@@ -118,13 +118,14 @@
             <div class="col-lg-10 text-center">
                 <div class="fade-in">
                     <h2 class="section-title mb-4" style="color: #333; font-style: italic; font-size: 3.2rem; line-height: 1.4;">
-                        "{{ __('messages.home.quote.title') }}"
+                        "<?php echo e(__('messages.home.quote.title')); ?>"
                     </h2>
                     <div class="quote-content" style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem; color: #555;">
-                        <p class="mb-4">{{ __('messages.home.quote.subtitle') }}</p>
-                        <p class="mb-4">{{ __('messages.home.quote.description') }}</p>
+                        <p class="mb-4"><?php echo e(__('messages.home.quote.subtitle')); ?></p>
+                        <p class="mb-4"><?php echo e(__('messages.home.quote.description')); ?></p>
                         <p class="mb-0" style="font-style: italic; color: #F7B2BD;">
-                            → {{ __('messages.home.quote.welcome') }}
+                            → <?php echo e(__('messages.home.quote.welcome')); ?>
+
                         </p>
                     </div>
                 </div>
@@ -137,97 +138,98 @@
 <section class="section-padding" style="background-color: #F8E8EA;">
     <div class="container">
         <div class="fade-in">
-            <h2 class="section-title">{{ __('messages.home.services.title') }}</h2>
-            <p class="section-subtitle">{{ __('messages.home.services.subtitle') }}</p>
+            <h2 class="section-title"><?php echo e(__('messages.home.services.title')); ?></h2>
+            <p class="section-subtitle"><?php echo e(__('messages.home.services.subtitle')); ?></p>
         </div>
         
         <div class="row">
-            @foreach($services as $service)
+            <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="col-lg-4 col-md-6 mb-4 fade-in">
                 <div class="card h-100">
                     <div class="card-body text-center">
                         <div class="service-icon">
-                            @switch($service->icon)
-                                @case('leaf')
+                            <?php switch($service->icon):
+                                case ('leaf'): ?>
                                     <i class="fas fa-leaf"></i>
-                                    @break
-                                @case('moon')
+                                    <?php break; ?>
+                                <?php case ('moon'): ?>
                                     <i class="fas fa-moon"></i>
-                                    @break
-                                @case('brain')
+                                    <?php break; ?>
+                                <?php case ('brain'): ?>
                                     <i class="fas fa-brain"></i>
-                                    @break
-                                @default
+                                    <?php break; ?>
+                                <?php default: ?>
                                     <i class="fas fa-heart"></i>
-                            @endswitch
+                            <?php endswitch; ?>
                         </div>
-                        <h4 class="mb-3">{{ $service->getTranslation('name', app()->getLocale()) }}</h4>
-                        <p class="text-muted mb-4">{{ $service->getTranslation('description', app()->getLocale()) }}</p>
+                        <h4 class="mb-3"><?php echo e($service->getTranslation('name', app()->getLocale())); ?></h4>
+                        <p class="text-muted mb-4"><?php echo e($service->getTranslation('description', app()->getLocale())); ?></p>
                         
-                        @if($service->price_individual)
+                        <?php if($service->price_individual): ?>
                         <div class="mb-3">
                             <span class="badge bg-light text-dark">
-                                {{ __('messages.services.price_individual') }}: {{ number_format($service->price_individual, 0) }}€
+                                <?php echo e(__('messages.services.price_individual')); ?>: <?php echo e(number_format($service->price_individual, 0)); ?>€
                             </span>
                         </div>
-                        @endif
+                        <?php endif; ?>
                         
-                        <a href="{{ route('services.show', [app()->getLocale(), $service->slug]) }}" class="btn btn-outline-primary">
-                            {{ __('messages.services.learn_more') }}
+                        <a href="<?php echo e(route('services.show', [app()->getLocale(), $service->slug])); ?>" class="btn btn-outline-primary">
+                            <?php echo e(__('messages.services.learn_more')); ?>
+
                         </a>
                     </div>
                 </div>
             </div>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </div>
 </section>
 
 <!-- Testimonials Section -->
-@if($testimonials->count() > 0)
+<?php if($testimonials->count() > 0): ?>
 <section class="section-padding" style="background: white;">
     <div class="container">
         <div class="fade-in">
-            <h2 class="section-title">{{ __('messages.home.testimonials.title') }}</h2>
-            <p class="section-subtitle">{{ __('messages.home.testimonials.subtitle') }}</p>
+            <h2 class="section-title"><?php echo e(__('messages.home.testimonials.title')); ?></h2>
+            <p class="section-subtitle"><?php echo e(__('messages.home.testimonials.subtitle')); ?></p>
         </div>
         
         <!-- Testimonials Carousel -->
         <div id="testimonialsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
             <div class="carousel-inner">
-                @foreach($testimonials->take(6) as $index => $testimonial)
-                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                <?php $__currentLoopData = $testimonials->take(6); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $testimonial): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <div class="carousel-item <?php echo e($index === 0 ? 'active' : ''); ?>">
                     <div class="row justify-content-center">
                         <div class="col-lg-8 col-md-10">
                             <div class="testimonial-card text-center">
                                 <div class="stars mb-3">
-                                    @for($i = 1; $i <= 5; $i++)
-                                        @if($i <= $testimonial->rating)
+                                    <?php for($i = 1; $i <= 5; $i++): ?>
+                                        <?php if($i <= $testimonial->rating): ?>
                                             <i class="fas fa-star"></i>
-                                        @else
+                                        <?php else: ?>
                                             <i class="far fa-star"></i>
-                                        @endif
-                                    @endfor
+                                        <?php endif; ?>
+                                    <?php endfor; ?>
                                 </div>
-                                <p class="mb-4 fs-5">{{ $testimonial->getTranslation('testimonial', app()->getLocale()) }}</p>
+                                <p class="mb-4 fs-5"><?php echo e($testimonial->getTranslation('testimonial', app()->getLocale())); ?></p>
                                 <div class="testimonial-author">
-                                    <strong class="d-block">{{ $testimonial->client_name }}</strong>
-                                    @if($testimonial->client_location)
-                                        <small class="text-muted">{{ $testimonial->client_location }}</small>
-                                    @endif
-                                    @if($testimonial->service)
-                                        <br><small class="text-muted">{{ $testimonial->service->getTranslation('name', app()->getLocale()) }}</small>
-                                    @endif
+                                    <strong class="d-block"><?php echo e($testimonial->client_name); ?></strong>
+                                    <?php if($testimonial->client_location): ?>
+                                        <small class="text-muted"><?php echo e($testimonial->client_location); ?></small>
+                                    <?php endif; ?>
+                                    <?php if($testimonial->service): ?>
+                                        <br><small class="text-muted"><?php echo e($testimonial->service->getTranslation('name', app()->getLocale())); ?></small>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
             
             <!-- Carousel Controls -->
-            @if($testimonials->take(6)->count() > 1)
+            <?php if($testimonials->take(6)->count() > 1): ?>
             <button class="carousel-control-prev" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
@@ -236,24 +238,24 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
-            @endif
+            <?php endif; ?>
         </div>
     </div>
 </section>
-@endif
+<?php endif; ?>
 
 <!-- FAQ Section -->
 <section class="section-padding" style="background-color: #F8E8EA;">
     <div class="container">
         <div class="fade-in">
-            <h2 class="section-title">{{ __('messages.home.faq.title') }}</h2>
-            <p class="section-subtitle">{{ __('messages.home.faq.subtitle') }}</p>
+            <h2 class="section-title"><?php echo e(__('messages.home.faq.title')); ?></h2>
+            <p class="section-subtitle"><?php echo e(__('messages.home.faq.subtitle')); ?></p>
         </div>
         
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="accordion" id="faqAccordion">
-                    @php
+                    <?php
                         $faqs = [
                             [
                                 'question' => __('messages.home.faq.q1.question'),
@@ -276,22 +278,24 @@
                                 'answer' => __('messages.home.faq.q5.answer')
                             ]
                         ];
-                    @endphp
+                    ?>
                     
-                    @foreach($faqs as $index => $faq)
+                    <?php $__currentLoopData = $faqs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $faq): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="heading{{ $index }}">
-                            <button class="accordion-button {{ $index === 0 ? '' : 'collapsed' }}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $index }}" aria-expanded="{{ $index === 0 ? 'true' : 'false' }}" aria-controls="collapse{{ $index }}">
-                                {{ $faq['question'] }}
+                        <h2 class="accordion-header" id="heading<?php echo e($index); ?>">
+                            <button class="accordion-button <?php echo e($index === 0 ? '' : 'collapsed'); ?>" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?php echo e($index); ?>" aria-expanded="<?php echo e($index === 0 ? 'true' : 'false'); ?>" aria-controls="collapse<?php echo e($index); ?>">
+                                <?php echo e($faq['question']); ?>
+
                             </button>
                         </h2>
-                        <div id="collapse{{ $index }}" class="accordion-collapse collapse {{ $index === 0 ? 'show' : '' }}" aria-labelledby="heading{{ $index }}" data-bs-parent="#faqAccordion">
+                        <div id="collapse<?php echo e($index); ?>" class="accordion-collapse collapse <?php echo e($index === 0 ? 'show' : ''); ?>" aria-labelledby="heading<?php echo e($index); ?>" data-bs-parent="#faqAccordion">
                             <div class="accordion-body">
-                                {{ $faq['answer'] }}
+                                <?php echo e($faq['answer']); ?>
+
                             </div>
                         </div>
                     </div>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
             </div>
         </div>
@@ -302,18 +306,19 @@
 <section class="section-padding" style="background: white;">
     <div class="container text-center">
         <div class="fade-in">
-            <h2 class="section-title">{{ __('messages.home.cta.title') }}</h2>
-            <p class="section-subtitle">{{ __('messages.home.cta.subtitle') }}</p>
-            <a href="{{ route('booking.index', app()->getLocale()) }}" class="btn btn-primary btn-lg">
-                {{ __('messages.home.cta.button') }}
+            <h2 class="section-title"><?php echo e(__('messages.home.cta.title')); ?></h2>
+            <p class="section-subtitle"><?php echo e(__('messages.home.cta.subtitle')); ?></p>
+            <a href="<?php echo e(route('booking.index', app()->getLocale())); ?>" class="btn btn-primary btn-lg">
+                <?php echo e(__('messages.home.cta.button')); ?>
+
             </a>
         </div>
     </div>
 </section>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('structured-data')
-@php
+<?php $__env->startPush('structured-data'); ?>
+<?php
         $currentLocale = app()->getLocale();
         $siteTagline = \App\Models\Setting::get('site_tagline');
         $structuredData = [
@@ -420,8 +425,11 @@
                         ],
                 ],
         ];
-@endphp
+?>
 <script type="application/ld+json">
-{!! json_encode($structuredData, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+<?php echo json_encode($structuredData, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT); ?>
+
 </script>
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('layouts.frontend', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH D:\client-fiverr\coaching\resources\views/home.blade.php ENDPATH**/ ?>
