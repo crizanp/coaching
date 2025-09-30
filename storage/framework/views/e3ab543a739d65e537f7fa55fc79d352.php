@@ -53,19 +53,6 @@
                             <strong><?php echo e(__('messages.services.price_individual')); ?>:</strong> <?php echo e(number_format($service->price_individual, 0)); ?>€
                         </div>
                         <?php endif; ?>
-                        
-                        <?php if($service->price_group): ?>
-                        <div class="service-detail-item mb-2">
-                            <strong><?php echo e(__('messages.services.price_group')); ?>:</strong> <?php echo e(number_format($service->price_group, 0)); ?>€
-                        </div>
-                        <?php endif; ?>
-                        
-                        <?php if($service->duration): ?>
-                        <div class="service-detail-item mb-2">
-                            <strong><?php echo e(__('messages.services.duration')); ?>:</strong> <?php echo e($service->duration); ?>
-
-                        </div>
-                        <?php endif; ?>
                     </div>
                     
                     <div class="service-actions">
