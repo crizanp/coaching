@@ -1,18 +1,20 @@
-@extends('layouts.frontend')
 
-@section('title')
-{{ __('messages.practices.title') }} - {{ \App\Models\Setting::get('site_name')[app()->getLocale()] ?? 'SSJCHRYSALIDE' }}
-@endsection
 
-@section('description')
-{{ __('messages.practices.description') }}
-@endsection
+<?php $__env->startSection('title'); ?>
+<?php echo e(__('messages.practices.title')); ?> - <?php echo e(\App\Models\Setting::get('site_name')[app()->getLocale()] ?? 'SSJCHRYSALIDE'); ?>
 
-@section('keywords')
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('description'); ?>
+<?php echo e(__('messages.practices.description')); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('keywords'); ?>
 sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développement personnel, stress, émotions
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 
 <!-- Practices Hero Section -->
@@ -21,10 +23,10 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
         <div class="row align-items-center">
             <div class="col-lg-6 mb-4 mb-lg-0">
                 <div class="fade-in">
-                    <h1 class="section-title">{{ __('messages.practices.title') }}</h1>
-                    <p class="lead mb-4">{{ __('messages.practices.subtitle') }}</p>
+                    <h1 class="section-title"><?php echo e(__('messages.practices.title')); ?></h1>
+                    <p class="lead mb-4"><?php echo e(__('messages.practices.subtitle')); ?></p>
                     <blockquote class="blockquote">
-                        <p class="mb-0">"{{ __('messages.practices.description') }}"</p>
+                        <p class="mb-0">"<?php echo e(__('messages.practices.description')); ?>"</p>
                     </blockquote>
                 </div>
             </div>
@@ -63,8 +65,8 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="fade-in text-center">
-                    <h2 class="section-title">{{ __('messages.practices.approach.title') }}</h2>
-                    <p class="lead">{!! __('messages.practices.approach.description') !!}</p>
+                    <h2 class="section-title"><?php echo e(__('messages.practices.approach.title')); ?></h2>
+                    <p class="lead"><?php echo __('messages.practices.approach.description'); ?></p>
                 </div>
             </div>
         </div>
@@ -83,23 +85,23 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
                             <i class="fas fa-leaf"></i>
                         </div>
                         <div class="practice-card-content">
-                            <h4>{{ __('messages.practices.sophrology.title') }}</h4>
+                            <h4><?php echo e(__('messages.practices.sophrology.title')); ?></h4>
                         </div>
                     </div>
-                    <p class="practice-description mb-4">{{ __('messages.practices.sophrology.description') }}</p>
+                    <p class="practice-description mb-4"><?php echo e(__('messages.practices.sophrology.description')); ?></p>
                     
                     <div class="practice-benefits mb-4">
-                        <h5>{{ __('messages.practices.benefits') }}:</h5>
+                        <h5><?php echo e(__('messages.practices.benefits')); ?>:</h5>
                         <ul class="practice-list">
-                            @foreach(__('messages.practices.sophrology.benefits') as $benefit)
-                            <li>{{ $benefit }}</li>
-                            @endforeach
+                            <?php $__currentLoopData = __('messages.practices.sophrology.benefits'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $benefit): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <li><?php echo e($benefit); ?></li>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </ul>
                     </div>
                     
                     <div class="practice-techniques">
-                        <h5>{{ __('messages.practices.techniques') }}:</h5>
-                        <p class="small text-muted">{{ __('messages.practices.sophrology.techniques') }}</p>
+                        <h5><?php echo e(__('messages.practices.techniques')); ?>:</h5>
+                        <p class="small text-muted"><?php echo e(__('messages.practices.sophrology.techniques')); ?></p>
                     </div>
                 </div>
             </div>
@@ -112,23 +114,23 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
                             <i class="fas fa-brain"></i>
                         </div>
                         <div class="practice-card-content">
-                            <h4>{{ __('messages.practices.nlp.title') }}</h4>
+                            <h4><?php echo e(__('messages.practices.nlp.title')); ?></h4>
                         </div>
                     </div>
-                    <p class="practice-description mb-4">{{ __('messages.practices.nlp.description') }}</p>
+                    <p class="practice-description mb-4"><?php echo e(__('messages.practices.nlp.description')); ?></p>
                     
                     <div class="practice-benefits mb-4">
-                        <h5>{{ __('messages.practices.benefits') }}:</h5>
+                        <h5><?php echo e(__('messages.practices.benefits')); ?>:</h5>
                         <ul class="practice-list">
-                            @foreach(__('messages.practices.nlp.benefits') as $benefit)
-                            <li>{{ $benefit }}</li>
-                            @endforeach
+                            <?php $__currentLoopData = __('messages.practices.nlp.benefits'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $benefit): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <li><?php echo e($benefit); ?></li>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </ul>
                     </div>
                     
                     <div class="practice-techniques">
-                        <h5>{{ __('messages.practices.techniques') }}:</h5>
-                        <p class="small text-muted">{{ __('messages.practices.nlp.techniques') }}</p>
+                        <h5><?php echo e(__('messages.practices.techniques')); ?>:</h5>
+                        <p class="small text-muted"><?php echo e(__('messages.practices.nlp.techniques')); ?></p>
                     </div>
                 </div>
             </div>
@@ -141,23 +143,23 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
                             <i class="fas fa-moon"></i>
                         </div>
                         <div class="practice-card-content">
-                            <h4>{{ __('messages.practices.hypnosis.title') }}</h4>
+                            <h4><?php echo e(__('messages.practices.hypnosis.title')); ?></h4>
                         </div>
                     </div>
-                    <p class="practice-description mb-4">{{ __('messages.practices.hypnosis.description') }}</p>
+                    <p class="practice-description mb-4"><?php echo e(__('messages.practices.hypnosis.description')); ?></p>
                     
                     <div class="practice-benefits mb-4">
-                        <h5>{{ __('messages.practices.benefits') }}:</h5>
+                        <h5><?php echo e(__('messages.practices.benefits')); ?>:</h5>
                         <ul class="practice-list">
-                            @foreach(__('messages.practices.hypnosis.benefits') as $benefit)
-                            <li>{{ $benefit }}</li>
-                            @endforeach
+                            <?php $__currentLoopData = __('messages.practices.hypnosis.benefits'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $benefit): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <li><?php echo e($benefit); ?></li>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </ul>
                     </div>
                     
                     <div class="practice-techniques">
-                        <h5>{{ __('messages.practices.techniques') }}:</h5>
-                        <p class="small text-muted">{{ __('messages.practices.hypnosis.techniques') }}</p>
+                        <h5><?php echo e(__('messages.practices.techniques')); ?>:</h5>
+                        <p class="small text-muted"><?php echo e(__('messages.practices.hypnosis.techniques')); ?></p>
                     </div>
                 </div>
             </div>
@@ -171,8 +173,8 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="fade-in text-center mb-5">
-                    <h2 class="section-title">{{ __('messages.practices.transformation.title') }}</h2>
-                    <p class="lead">{{ __('messages.practices.transformation.subtitle') }}</p>
+                    <h2 class="section-title"><?php echo e(__('messages.practices.transformation.title')); ?></h2>
+                    <p class="lead"><?php echo e(__('messages.practices.transformation.subtitle')); ?></p>
                 </div>
             </div>
         </div>
@@ -183,23 +185,23 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
                     <div class="practice-icon-center mb-4">
                         <i class="fas fa-spa"></i>
                     </div>
-                    <h4>{{ __('messages.practices.transformation.multipack.title') }}</h4>
-                    <p>{{ __('messages.practices.transformation.multipack.description') }}</p>
+                    <h4><?php echo e(__('messages.practices.transformation.multipack.title')); ?></h4>
+                    <p><?php echo e(__('messages.practices.transformation.multipack.description')); ?></p>
                     
                     <div class="multipack-benefits mt-4">
                         <div class="row text-start">
-                            @php
+                            <?php
                                 $benefits = __('messages.practices.transformation.multipack.benefits');
                                 $benefits = is_array($benefits) ? $benefits : ['Holistic approach', 'Faster results', 'Personalized blend', 'Lasting transformation'];
-                            @endphp
-                            @foreach($benefits as $benefit)
+                            ?>
+                            <?php $__currentLoopData = $benefits; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $benefit): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="col-md-6 mb-3">
                                 <div class="d-flex align-items-center">
                                     <i class="fas fa-check-circle text-success me-3"></i>
-                                    <span>{{ $benefit }}</span>
+                                    <span><?php echo e($benefit); ?></span>
                                 </div>
                             </div>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>
                     </div>
                 </div>
@@ -212,17 +214,19 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
 <section class="section-padding" style="background: white;">
     <div class="container text-center">
         <div class="fade-in">
-            <h2 class="section-title">{{ __('messages.practices.cta.title') }}</h2>
-            <p class="lead mb-5">{{ __('messages.practices.cta.description') }}</p>
+            <h2 class="section-title"><?php echo e(__('messages.practices.cta.title')); ?></h2>
+            <p class="lead mb-5"><?php echo e(__('messages.practices.cta.description')); ?></p>
             
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="cta-buttons">
-                        <a href="{{ route('booking.index', app()->getLocale()) }}" class="btn btn-primary btn-lg me-3 mb-3">
-                            <i class="fas fa-calendar-check me-2"></i>{{ __('messages.practices.cta.book') }}
+                        <a href="<?php echo e(route('booking.index', app()->getLocale())); ?>" class="btn btn-primary btn-lg me-3 mb-3">
+                            <i class="fas fa-calendar-check me-2"></i><?php echo e(__('messages.practices.cta.book')); ?>
+
                         </a>
-                        <a href="{{ route('contact.index', app()->getLocale()) }}" class="btn btn-outline-primary btn-lg mb-3">
-                            <i class="fas fa-envelope me-2"></i>{{ __('messages.practices.cta.contact') }}
+                        <a href="<?php echo e(route('contact.index', app()->getLocale())); ?>" class="btn btn-outline-primary btn-lg mb-3">
+                            <i class="fas fa-envelope me-2"></i><?php echo e(__('messages.practices.cta.contact')); ?>
+
                         </a>
                     </div>
                 </div>
@@ -231,23 +235,23 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
     </div>
 </section>
 
-@push('structured-data')
+<?php $__env->startPush('structured-data'); ?>
 <script type="application/ld+json">
 {
-    "@@context": "https://schema.org",
-    "@@type": "MedicalBusiness",
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
   "name": "SSJCHRYSALIDE",
-  "description": "{{ __('messages.practices.description') }}",
-  "url": "{{ url()->current() }}",
+  "description": "<?php echo e(__('messages.practices.description')); ?>",
+  "url": "<?php echo e(url()->current()); ?>",
   "telephone": "+596 696 103 622",
   "email": "contact@ssjchrysalide.com",
     "address": {
-        "@@type": "PostalAddress",
+        "@type": "PostalAddress",
     "addressRegion": "Martinique",
     "addressCountry": "FR"
   },
     "geo": {
-        "@@type": "GeoCoordinates",
+        "@type": "GeoCoordinates",
     "latitude": "14.641528",
     "longitude": "-61.024174"
   },
@@ -263,9 +267,9 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
   ]
 }
 </script>
-@endpush
+<?php $__env->stopPush(); ?>
 
-@push('styles')
+<?php $__env->startPush('styles'); ?>
 <style>
     /* Ensure all containers match navbar width */
     .container {
@@ -520,9 +524,9 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
         }
     }
 </style>
-@endpush
+<?php $__env->stopPush(); ?>
 
-@push('scripts')
+<?php $__env->startPush('scripts'); ?>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const slides = document.querySelectorAll('.slide');
@@ -575,6 +579,7 @@ document.addEventListener('DOMContentLoaded', function() {
     startSlideshow();
 });
 </script>
-@endpush
+<?php $__env->stopPush(); ?>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.frontend', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH D:\client-fiverr\coaching\resources\views/practices.blade.php ENDPATH**/ ?>

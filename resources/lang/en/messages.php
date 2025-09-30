@@ -82,6 +82,11 @@ return [
     'practices.cta.description' => 'Choose the approach that suits you best or combine them for personalized support.',
     'practices.cta.book' => 'Book a session',
     'practices.cta.contact' => 'Ask a question',
+    'practices.transformation.title' => 'What can you transform?',
+    'practices.transformation.subtitle' => 'Discover the possibilities for change and growth through our combined approaches',
+    'practices.transformation.multipack.title' => 'Multi-Practice Pack',
+    'practices.transformation.multipack.description' => 'Combine sophrology, NLP, and hypnosis for comprehensive transformation tailored to your unique needs.',
+    'practices.transformation.multipack.benefits' => ['Holistic approach', 'Faster results', 'Personalized blend', 'Lasting transformation'],
 
     // Events
     'events.title' => 'Events',

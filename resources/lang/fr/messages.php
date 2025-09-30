@@ -82,6 +82,11 @@ return [
     'practices.cta.description' => 'Choisissez l\'approche qui vous correspond le mieux ou combinez-les pour un accompagnement personnalisé.',
     'practices.cta.book' => 'Réserver une séance',
     'practices.cta.contact' => 'Poser une question',
+    'practices.transformation.title' => 'Que pouvez-vous transformer ?',
+    'practices.transformation.subtitle' => 'Découvrez les possibilités de changement et de croissance à travers nos approches combinées',
+    'practices.transformation.multipack.title' => 'Pack Multi-Pratiques',
+    'practices.transformation.multipack.description' => 'Combinez sophrologie, PNL et hypnose pour une transformation complète adaptée à vos besoins uniques.',
+    'practices.transformation.multipack.benefits' => ['Approche holistique', 'Résultats plus rapides', 'Mélange personnalisé', 'Transformation durable'],
 
     // Events
     'events.title' => 'Événements',
