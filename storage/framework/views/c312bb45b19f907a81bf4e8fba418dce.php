@@ -678,6 +678,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="<?php echo e(route('guides.index', app()->getLocale())); ?>">
+                            <?php echo e(__('messages.nav.guides')); ?>
+
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="<?php echo e(route('contact.index', app()->getLocale())); ?>">
                             <?php echo e(__('messages.nav.contact')); ?>
 
@@ -809,6 +815,9 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
     <!-- Custom JS -->
     <script>

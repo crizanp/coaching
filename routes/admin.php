@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\AppointmentController;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\GuideDownloadController;
 
 Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function () {
     Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
@@ -19,6 +20,13 @@ Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function ()
     // Blog management
     Route::resource('blogs', BlogController::class);
     Route::patch('blogs/{blog}/toggle-publish', [BlogController::class, 'togglePublish'])->name('blogs.toggle-publish');
+    
+    // Guide Downloads management
+    Route::resource('guide-downloads', GuideDownloadController::class)->only(['index', 'show', 'destroy']);
+    Route::post('guide-downloads/{guideDownload}/approve', [GuideDownloadController::class, 'approve'])->name('guide-downloads.approve');
+    Route::post('guide-downloads/{guideDownload}/reject', [GuideDownloadController::class, 'reject'])->name('guide-downloads.reject');
+    Route::post('guide-downloads/{guideDownload}/send', [GuideDownloadController::class, 'sendGuide'])->name('guide-downloads.send');
+    Route::post('guide-downloads/bulk-action', [GuideDownloadController::class, 'bulkAction'])->name('guide-downloads.bulk-action');
     
     // Settings
     Route::get('settings', [AdminController::class, 'settings'])->name('settings');
