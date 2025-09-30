@@ -43,10 +43,8 @@ return [
     'home.faq.q2.answer' => 'Le nombre de séances varie selon vos objectifs et besoins. Généralement, 3 à 5 séances suffisent pour apprendre les techniques de base, tandis qu\'un travail plus approfondi peut nécessiter 8 à 12 séances. Nous évaluerons ensemble vos progrès.',
     'home.faq.q3.question' => 'L\'hypnose est-elle sans danger ? Vais-je perdre le contrôle ?',
     'home.faq.q3.answer' => 'L\'hypnose est totalement sécurisée lorsqu\'elle est pratiquée par un professionnel qualifié. Vous restez conscient(e) et gardez le contrôle durant toute la séance. Vous ne pouvez être forcé(e) à faire quoi que ce soit contre votre volonté ou vos valeurs.',
-    'home.faq.q4.question' => 'Quelle est la différence entre les séances individuelles et de groupe ?',
-    'home.faq.q4.answer' => 'Les séances individuelles sont personnalisées et se concentrent spécifiquement sur vos besoins et objectifs. Les séances de groupe offrent une expérience partagée et sont plus abordables, tout en restant efficaces pour l\'apprentissage des techniques de base.',
-    'home.faq.q5.question' => 'Comment dois-je me préparer pour ma première séance ?',
-    'home.faq.q5.answer' => 'Aucune préparation particulière n\'est nécessaire. Venez simplement avec des vêtements confortables et l\'esprit ouvert. Nous commencerons par un échange pour comprendre vos besoins et attentes avant de débuter tout travail pratique.',
+    'home.faq.q4.question' => 'Comment dois-je me préparer pour ma première séance ?',
+    'home.faq.q4.answer' => 'Aucune préparation particulière n\'est nécessaire. Venez simplement avec des vêtements confortables et l\'esprit ouvert. Nous commencerons par un échange pour comprendre vos besoins et attentes avant de débuter tout travail pratique.',
 
     // Services
     'services.title' => 'Mes Services',
@@ -54,7 +52,7 @@ return [
     'services.learn_more' => 'En savoir plus',
     'services.book_now' => 'Réserver',
     'services.price_individual' => 'Séance individuelle',
-    'services.price_group' => 'Séance de groupe',
+
     'services.duration' => 'Durée',
     'services.benefits' => 'Bénéfices',
     'services.format' => 'Format des séances',

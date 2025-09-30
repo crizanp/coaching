@@ -123,10 +123,6 @@
                                             <td><strong>Individual Price:</strong></td>
                                             <td>{{ $service->price_individual ? number_format($service->price_individual, 0) . '€' : 'Not set' }}</td>
                                         </tr>
-                                        <tr>
-                                            <td><strong>Group Price:</strong></td>
-                                            <td>{{ $service->price_group ? number_format($service->price_group, 0) . '€' : 'Not set' }}</td>
-                                        </tr>
                                     </table>
                                 </div>
                                 <div class="col-md-3">

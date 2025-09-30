@@ -47,11 +47,10 @@ class CoachingSeeder extends Seeder
                     'en' => ['Stress reduction', 'Sleep improvement', 'Self-confidence development', 'Emotion management']
                 ],
                 'session_format' => [
-                    'fr' => ['Séances individuelles : 60 minutes', 'Séances de groupe : 90 minutes', 'Suivi personnalisé', 'Exercices à pratiquer à domicile'],
-                    'en' => ['Individual sessions: 60 minutes', 'Group sessions: 90 minutes', 'Personalized follow-up', 'Home practice exercises']
+                    'fr' => ['Séances individuelles : 60 minutes', 'Suivi personnalisé', 'Exercices à pratiquer à domicile'],
+                    'en' => ['Individual sessions: 60 minutes', 'Personalized follow-up', 'Home practice exercises']
                 ],
                 'price_individual' => 70.00,
-                'price_group' => 25.00,
                 'duration' => '60 minutes',
                 'icon' => 'leaf',
                 'is_featured' => true,

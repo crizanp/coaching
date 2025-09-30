@@ -55,10 +55,7 @@
                                             @if($service->price_individual)
                                                 <span class="badge bg-primary">Individual: {{ number_format($service->price_individual, 0) }}€</span>
                                             @endif
-                                            @if($service->price_group)
-                                                <br><span class="badge bg-success">Group: {{ number_format($service->price_group, 0) }}€</span>
-                                            @endif
-                                            @if(!$service->price_individual && !$service->price_group)
+                                            @if(!$service->price_individual)
                                                 <span class="text-muted">No pricing set</span>
                                             @endif
                                         </td>

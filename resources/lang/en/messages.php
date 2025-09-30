@@ -43,10 +43,8 @@ return [
     'home.faq.q2.answer' => 'The number of sessions varies depending on your goals and needs. Generally, 3-5 sessions are sufficient to learn the basic techniques, while deeper work may require 8-12 sessions. We will evaluate your progress together.',
     'home.faq.q3.question' => 'Is hypnosis safe? Will I lose control?',
     'home.faq.q3.answer' => 'Hypnosis is completely safe when practiced by a qualified professional. You remain conscious and in control throughout the session. You cannot be forced to do anything against your will or values.',
-    'home.faq.q4.question' => 'What is the difference between individual and group sessions?',
-    'home.faq.q4.answer' => 'Individual sessions are personalized and focus specifically on your needs and goals. Group sessions offer a shared experience and are more affordable, while still being effective for learning basic techniques.',
-    'home.faq.q5.question' => 'How should I prepare for my first session?',
-    'home.faq.q5.answer' => 'No special preparation is needed. Just come with comfortable clothing and an open mind. We will start with a discussion to understand your needs and expectations before beginning any practical work.',
+    'home.faq.q4.question' => 'How should I prepare for my first session?',
+    'home.faq.q4.answer' => 'No special preparation is needed. Just come with comfortable clothing and an open mind. We will start with a discussion to understand your needs and expectations before beginning any practical work.',
 
     // Services
     'services.title' => 'My Services',
@@ -54,7 +52,7 @@ return [
     'services.learn_more' => 'Learn more',
     'services.book_now' => 'Book now',
     'services.price_individual' => 'Individual session',
-    'services.price_group' => 'Group session',
+
     'services.duration' => 'Duration',
     'services.benefits' => 'Benefits',
     'services.format' => 'Session format',

@@ -132,15 +132,7 @@
                                     <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="col-md-3">
-                                <label for="price_group" class="form-label">{{ __('Group Price (€)') }}</label>
-                                <input id="price_group" type="number" class="form-control @error('price_group') is-invalid @enderror" 
-                                       name="price_group" value="{{ old('price_group') }}" min="0" step="0.01">
-                                @error('price_group')
-                                    <span class="invalid-feedback">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <label for="duration" class="form-label">{{ __('Duration (minutes)') }}</label>
                                 <input id="duration" type="number" class="form-control @error('duration') is-invalid @enderror" 
                                        name="duration" value="{{ old('duration') }}" min="1">
