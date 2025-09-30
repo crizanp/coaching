@@ -36,6 +36,9 @@
                                 @case('brain')
                                     <i class="fas fa-brain"></i>
                                     @break
+                                @case('palette')
+                                    <i class="fas fa-palette"></i>
+                                    @break
                                 @default
                                     <i class="fas fa-heart"></i>
                             @endswitch
@@ -48,9 +51,13 @@
                     <p class="service-description mb-4">{{ $service->getTranslation('description', app()->getLocale()) }}</p>
                     
                     <div class="service-details mb-4">
-                        @if($service->price_individual)
+                        @if($service->price_individual > 0)
                         <div class="service-detail-item mb-2">
                             <strong>{{ __('messages.services.price_individual') }}:</strong> {{ number_format($service->price_individual, 0) }}€
+                        </div>
+                        @elseif($service->slug === 'accompagnement-sur-mesure')
+                        <div class="service-detail-item mb-2">
+                            <strong>{{ app()->getLocale() === 'fr' ? 'Tarification' : 'Pricing' }}:</strong> {{ app()->getLocale() === 'fr' ? 'Sur mesure' : 'Customized' }}
                         </div>
                         @endif
                     </div>

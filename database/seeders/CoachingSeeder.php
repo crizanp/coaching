@@ -50,7 +50,7 @@ class CoachingSeeder extends Seeder
                     'fr' => ['Séances individuelles : 60 minutes', 'Séances de groupe : 90 minutes', 'Suivi personnalisé', 'Exercices à pratiquer à domicile'],
                     'en' => ['Individual sessions: 60 minutes', 'Group sessions: 90 minutes', 'Personalized follow-up', 'Home practice exercises']
                 ],
-                'price_individual' => 65.00,
+                'price_individual' => 70.00,
                 'price_group' => 25.00,
                 'duration' => '60 minutes',
                 'icon' => 'leaf',
@@ -80,7 +80,7 @@ class CoachingSeeder extends Seeder
                     'fr' => ['Première consultation : 90 minutes', 'Séances de suivi : 60 minutes', 'Enregistrement des séances fourni', 'Suivi personnalisé'],
                     'en' => ['First consultation: 90 minutes', 'Follow-up sessions: 60 minutes', 'Session recordings provided', 'Personalized follow-up']
                 ],
-                'price_individual' => 75.00,
+                'price_individual' => 80.00,
                 'duration' => '60-90 minutes',
                 'icon' => 'moon',
                 'is_featured' => true,
@@ -109,12 +109,41 @@ class CoachingSeeder extends Seeder
                     'fr' => ['Séances individuelles : 90 minutes', 'Programmes sur mesure', 'Exercices pratiques', 'Outils à utiliser au quotidien'],
                     'en' => ['Individual sessions: 90 minutes', 'Customized programs', 'Practical exercises', 'Daily tools']
                 ],
-                'price_individual' => 85.00,
+                'price_individual' => 75.00,
                 'duration' => '90 minutes',
                 'icon' => 'brain',
                 'is_featured' => true,
                 'is_active' => true,
                 'sort_order' => 3,
+            ],
+            [
+                'name' => [
+                    'fr' => 'Accompagnement Sur Mesure',
+                    'en' => 'Tailored Support'
+                ],
+                'description' => [
+                    'fr' => 'Parce que chaque personne est unique, j\'adapte mes séances à vos besoins',
+                    'en' => 'Because every person is unique, I adapt my sessions to your needs'
+                ],
+                'content' => [
+                    'fr' => '<h2>Accompagnement Personnalisé</h2><p>Parce que chaque personne est unique, j\'adapte mes séances à vos besoins spécifiques. Nous pouvons travailler uniquement avec la sophrologie, la PNL, l\'hypnose... ou combiner plusieurs approches pour maximiser les bénéfices.</p><h3>Approche Flexible</h3><p>Cet accompagnement sur mesure vous permet de bénéficier d\'un programme entièrement personnalisé, conçu selon vos objectifs, votre rythme et vos préférences. Nous établissons ensemble un plan d\'accompagnement qui vous correspond parfaitement.</p><h3>Tarification</h3><ul><li>Sophrologie : 70€</li><li>PNL : 75€</li><li>Hypnose : 80€</li><li>Programme Sur Mesure : tarif dépendant du programme personnalisé que nous établissons ensemble</li></ul>',
+                    'en' => '<h2>Personalized Support</h2><p>Because every person is unique, I adapt my sessions to your specific needs. We can work solely with sophrology, NLP, hypnosis... or combine several approaches to maximize benefits.</p><h3>Flexible Approach</h3><p>This tailored support allows you to benefit from a fully personalized program, designed according to your goals, rhythm and preferences. Together we establish a support plan that perfectly suits you.</p><h3>Pricing</h3><ul><li>Sophrology: €70</li><li>NLP: €75</li><li>Hypnosis: €80</li><li>Tailored Support Package: price depends on the customized program we establish together</li></ul>'
+                ],
+                'slug' => 'accompagnement-sur-mesure',
+                'benefits' => [
+                    'fr' => ['Programme entièrement personnalisé', 'Combinaison de plusieurs approches', 'Flexibilité dans le suivi', 'Adaptation à vos objectifs spécifiques'],
+                    'en' => ['Fully personalized program', 'Combination of multiple approaches', 'Flexibility in follow-up', 'Adaptation to your specific goals']
+                ],
+                'session_format' => [
+                    'fr' => ['Évaluation initiale complète', 'Programme personnalisé', 'Séances adaptées à vos besoins', 'Suivi flexible et ajustable'],
+                    'en' => ['Complete initial assessment', 'Personalized program', 'Sessions adapted to your needs', 'Flexible and adjustable follow-up']
+                ],
+                'price_individual' => 0.00, // Variable pricing
+                'duration' => 'Variable',
+                'icon' => 'palette',
+                'is_featured' => true,
+                'is_active' => true,
+                'sort_order' => 4,
             ],
         ];
 

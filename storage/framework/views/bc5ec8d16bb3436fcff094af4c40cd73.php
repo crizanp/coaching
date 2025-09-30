@@ -1,39 +1,39 @@
-@extends('layouts.frontend')
 
-@section('title', $service->getTranslation('seo_title', app()->getLocale()) ?: $service->getTranslation('name', app()->getLocale()))
-@section('description', $service->getTranslation('seo_description', app()->getLocale()) ?: $service->getTranslation('description', app()->getLocale()))
 
-@section('content')
+<?php $__env->startSection('title', $service->getTranslation('seo_title', app()->getLocale()) ?: $service->getTranslation('name', app()->getLocale())); ?>
+<?php $__env->startSection('description', $service->getTranslation('seo_description', app()->getLocale()) ?: $service->getTranslation('description', app()->getLocale())); ?>
+
+<?php $__env->startSection('content'); ?>
 <!-- Service Hero -->
 <section class="section-padding" style="background: var(--light-pink); margin-top: 94px;">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-8">
                 <div class="fade-in">
-                    <h1 class="section-title">{{ $service->getTranslation('name', app()->getLocale()) }}</h1>
-                    <p class="lead mb-4">{{ $service->getTranslation('description', app()->getLocale()) }}</p>
+                    <h1 class="section-title"><?php echo e($service->getTranslation('name', app()->getLocale())); ?></h1>
+                    <p class="lead mb-4"><?php echo e($service->getTranslation('description', app()->getLocale())); ?></p>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="fade-in">
                     <div class="about-image-container">
                         <div class="service-icon-large">
-                            @switch($service->icon)
-                                @case('leaf')
+                            <?php switch($service->icon):
+                                case ('leaf'): ?>
                                     <i class="fas fa-leaf"></i>
-                                    @break
-                                @case('moon')
+                                    <?php break; ?>
+                                <?php case ('moon'): ?>
                                     <i class="fas fa-moon"></i>
-                                    @break
-                                @case('brain')
+                                    <?php break; ?>
+                                <?php case ('brain'): ?>
                                     <i class="fas fa-brain"></i>
-                                    @break
-                                @case('palette')
+                                    <?php break; ?>
+                                <?php case ('palette'): ?>
                                     <i class="fas fa-palette"></i>
-                                    @break
-                                @default
+                                    <?php break; ?>
+                                <?php default: ?>
                                     <i class="fas fa-heart"></i>
-                            @endswitch
+                            <?php endswitch; ?>
                         </div>
                     </div>
                 </div>
@@ -48,40 +48,41 @@
         <div class="row">
             <div class="col-lg-8 fade-in">
                 <div class="content mb-5">
-                    {!! $service->getTranslation('content', app()->getLocale()) !!}
+                    <?php echo $service->getTranslation('content', app()->getLocale()); ?>
+
                 </div>
                 
-                @if($service->getTranslation('benefits', app()->getLocale()))
+                <?php if($service->getTranslation('benefits', app()->getLocale())): ?>
                 <div class="mb-5">
-                    <h3 class="mb-4">{{ __('messages.services.benefits') }}</h3>
+                    <h3 class="mb-4"><?php echo e(__('messages.services.benefits')); ?></h3>
                     <div class="row">
-                        @foreach($service->getTranslation('benefits', app()->getLocale()) as $benefit)
+                        <?php $__currentLoopData = $service->getTranslation('benefits', app()->getLocale()); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $benefit): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <div class="col-md-6 mb-3">
                             <div class="d-flex align-items-center">
                                 <i class="fas fa-check-circle text-success me-3"></i>
-                                <span>{{ $benefit }}</span>
+                                <span><?php echo e($benefit); ?></span>
                             </div>
                         </div>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
                 </div>
-                @endif
+                <?php endif; ?>
                 
-                @if($service->getTranslation('session_format', app()->getLocale()))
+                <?php if($service->getTranslation('session_format', app()->getLocale())): ?>
                 <div class="mb-5">
-                    <h3 class="mb-4">{{ __('messages.services.format') }}</h3>
+                    <h3 class="mb-4"><?php echo e(__('messages.services.format')); ?></h3>
                     <div class="row">
-                        @foreach($service->getTranslation('session_format', app()->getLocale()) as $format)
+                        <?php $__currentLoopData = $service->getTranslation('session_format', app()->getLocale()); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $format): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <div class="col-md-6 mb-3">
                             <div class="d-flex align-items-center">
                                 <i class="fas fa-clock text-primary me-3"></i>
-                                <span>{{ $format }}</span>
+                                <span><?php echo e($format); ?></span>
                             </div>
                         </div>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
                 </div>
-                @endif
+                <?php endif; ?>
             </div>
             
             <div class="col-lg-4 fade-in">
@@ -89,24 +90,26 @@
                     <div class="card-body">
                         <h4 class="mb-4">Informations pratiques</h4>
                         
-                        @if($service->price_individual > 0)
+                        <?php if($service->price_individual > 0): ?>
                         <div class="mb-3">
-                            <strong>{{ __('messages.services.price_individual') }}:</strong><br>
-                            <span class="h5 text-primary">{{ number_format($service->price_individual, 0) }}€</span>
+                            <strong><?php echo e(__('messages.services.price_individual')); ?>:</strong><br>
+                            <span class="h5 text-primary"><?php echo e(number_format($service->price_individual, 0)); ?>€</span>
                         </div>
-                        @elseif($service->slug === 'accompagnement-sur-mesure')
+                        <?php elseif($service->slug === 'accompagnement-sur-mesure'): ?>
                         <div class="mb-3">
-                            <strong>{{ app()->getLocale() === 'fr' ? 'Tarification' : 'Pricing' }}:</strong><br>
-                            <span class="text-primary">{{ app()->getLocale() === 'fr' ? 'Programme personnalisé' : 'Customized program' }}</span>
+                            <strong><?php echo e(app()->getLocale() === 'fr' ? 'Tarification' : 'Pricing'); ?>:</strong><br>
+                            <span class="text-primary"><?php echo e(app()->getLocale() === 'fr' ? 'Programme personnalisé' : 'Customized program'); ?></span>
                         </div>
-                        @endif
+                        <?php endif; ?>
                         
                         <div class="d-grid gap-2">
-                            <a href="{{ route('booking.index', app()->getLocale()) }}?service={{ $service->id }}" class="btn btn-primary">
-                                <i class="fas fa-calendar-check me-2"></i>{{ __('messages.services.book_now') }}
+                            <a href="<?php echo e(route('booking.index', app()->getLocale())); ?>?service=<?php echo e($service->id); ?>" class="btn btn-primary">
+                                <i class="fas fa-calendar-check me-2"></i><?php echo e(__('messages.services.book_now')); ?>
+
                             </a>
-                            <a href="{{ route('contact.index', app()->getLocale()) }}" class="btn btn-outline-primary">
-                                <i class="fas fa-envelope me-2"></i>{{ __('messages.common.contact') }}
+                            <a href="<?php echo e(route('contact.index', app()->getLocale())); ?>" class="btn btn-outline-primary">
+                                <i class="fas fa-envelope me-2"></i><?php echo e(__('messages.common.contact')); ?>
+
                             </a>
                         </div>
                     </div>
@@ -117,46 +120,46 @@
 </section>
 
 <!-- Service Testimonials -->
-@if($testimonials->count() > 0)
+<?php if($testimonials->count() > 0): ?>
 <section class="section-padding" style="background: white;">
     <div class="container">
         <div class="fade-in">
-            <h2 class="section-title">{{ __('messages.testimonials.title') }}</h2>
-            <p class="section-subtitle">{{ __('messages.testimonials.subtitle') }}</p>
+            <h2 class="section-title"><?php echo e(__('messages.testimonials.title')); ?></h2>
+            <p class="section-subtitle"><?php echo e(__('messages.testimonials.subtitle')); ?></p>
         </div>
         
         <div class="row">
-            @foreach($testimonials as $testimonial)
+            <?php $__currentLoopData = $testimonials; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $testimonial): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="col-lg-4 mb-4 fade-in">
                 <div class="practice-card-textured">
                     <div class="stars mb-3">
-                        @for($i = 1; $i <= 5; $i++)
-                            @if($i <= $testimonial->rating)
+                        <?php for($i = 1; $i <= 5; $i++): ?>
+                            <?php if($i <= $testimonial->rating): ?>
                                 <i class="fas fa-star text-warning"></i>
-                            @else
+                            <?php else: ?>
                                 <i class="far fa-star text-muted"></i>
-                            @endif
-                        @endfor
+                            <?php endif; ?>
+                        <?php endfor; ?>
                     </div>
-                    <p class="mb-3">{{ $testimonial->getTranslation('testimonial', app()->getLocale()) }}</p>
+                    <p class="mb-3"><?php echo e($testimonial->getTranslation('testimonial', app()->getLocale())); ?></p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <strong>{{ $testimonial->client_name }}</strong>
-                            @if($testimonial->client_location)
-                                <br><small class="text-muted">{{ $testimonial->client_location }}</small>
-                            @endif
+                            <strong><?php echo e($testimonial->client_name); ?></strong>
+                            <?php if($testimonial->client_location): ?>
+                                <br><small class="text-muted"><?php echo e($testimonial->client_location); ?></small>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
             </div>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </div>
 </section>
-@endif
-@endsection
+<?php endif; ?>
+<?php $__env->stopSection(); ?>
 
-@push('styles')
+<?php $__env->startPush('styles'); ?>
 <style>
     /* Ensure all containers match navbar width */
     .container {
@@ -264,4 +267,5 @@
         }
     }
 </style>
-@endpush
+<?php $__env->stopPush(); ?>
+<?php echo $__env->make('layouts.frontend', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH D:\client-fiverr\coaching\resources\views/services/show.blade.php ENDPATH**/ ?>

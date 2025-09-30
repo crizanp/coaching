@@ -144,7 +144,7 @@
         
         <div class="row">
             <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <div class="col-lg-4 col-md-6 mb-4 fade-in">
+            <div class="col-lg-6 col-md-6 mb-4 fade-in">
                 <div class="card h-100">
                     <div class="card-body text-center">
                         <div class="service-icon">
@@ -158,6 +158,9 @@
                                 <?php case ('brain'): ?>
                                     <i class="fas fa-brain"></i>
                                     <?php break; ?>
+                                <?php case ('palette'): ?>
+                                    <i class="fas fa-palette"></i>
+                                    <?php break; ?>
                                 <?php default: ?>
                                     <i class="fas fa-heart"></i>
                             <?php endswitch; ?>
@@ -165,10 +168,17 @@
                         <h4 class="mb-3"><?php echo e($service->getTranslation('name', app()->getLocale())); ?></h4>
                         <p class="text-muted mb-4"><?php echo e($service->getTranslation('description', app()->getLocale())); ?></p>
                         
-                        <?php if($service->price_individual): ?>
+                        <?php if($service->price_individual > 0): ?>
                         <div class="mb-3">
                             <span class="badge bg-light text-dark">
                                 <?php echo e(__('messages.services.price_individual')); ?>: <?php echo e(number_format($service->price_individual, 0)); ?>€
+                            </span>
+                        </div>
+                        <?php elseif($service->slug === 'accompagnement-sur-mesure'): ?>
+                        <div class="mb-3">
+                            <span class="badge bg-light text-dark">
+                                <?php echo e(app()->getLocale() === 'fr' ? 'Tarif personnalisé' : 'Customized pricing'); ?>
+
                             </span>
                         </div>
                         <?php endif; ?>

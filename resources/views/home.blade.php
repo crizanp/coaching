@@ -143,7 +143,7 @@
         
         <div class="row">
             @foreach($services as $service)
-            <div class="col-lg-4 col-md-6 mb-4 fade-in">
+            <div class="col-lg-6 col-md-6 mb-4 fade-in">
                 <div class="card h-100">
                     <div class="card-body text-center">
                         <div class="service-icon">
@@ -157,6 +157,9 @@
                                 @case('brain')
                                     <i class="fas fa-brain"></i>
                                     @break
+                                @case('palette')
+                                    <i class="fas fa-palette"></i>
+                                    @break
                                 @default
                                     <i class="fas fa-heart"></i>
                             @endswitch
@@ -164,10 +167,16 @@
                         <h4 class="mb-3">{{ $service->getTranslation('name', app()->getLocale()) }}</h4>
                         <p class="text-muted mb-4">{{ $service->getTranslation('description', app()->getLocale()) }}</p>
                         
-                        @if($service->price_individual)
+                        @if($service->price_individual > 0)
                         <div class="mb-3">
                             <span class="badge bg-light text-dark">
                                 {{ __('messages.services.price_individual') }}: {{ number_format($service->price_individual, 0) }}€
+                            </span>
+                        </div>
+                        @elseif($service->slug === 'accompagnement-sur-mesure')
+                        <div class="mb-3">
+                            <span class="badge bg-light text-dark">
+                                {{ app()->getLocale() === 'fr' ? 'Tarif personnalisé' : 'Customized pricing' }}
                             </span>
                         </div>
                         @endif
