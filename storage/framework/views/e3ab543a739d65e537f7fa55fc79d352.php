@@ -1,16 +1,16 @@
-@extends('layouts.frontend')
 
-@section('title', __('messages.services.title'))
 
-@section('content')
+<?php $__env->startSection('title', __('messages.services.title')); ?>
+
+<?php $__env->startSection('content'); ?>
 <!-- Services Hero Section -->
 <section class="section-padding" style="background: var(--light-pink); margin-top: 94px;">
     <div class="container">
         <div class="row justify-content-center text-center">
             <div class="col-lg-8">
                 <div class="fade-in">
-                    <h1 class="section-title">{{ __('messages.services.title') }}</h1>
-                    <p class="lead mb-4">{{ __('messages.services.subtitle') }}</p>
+                    <h1 class="section-title"><?php echo e(__('messages.services.title')); ?></h1>
+                    <p class="lead mb-4"><?php echo e(__('messages.services.subtitle')); ?></p>
                 </div>
             </div>
         </div>
@@ -21,51 +21,66 @@
 <section class="section-padding" style="background: white;">
     <div class="container">
         <div class="row">
-            @foreach($services as $service)
+            <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="col-lg-4 mb-4">
                 <div class="practice-card-textured h-100">
                     <div class="practice-card-body">
                         <div class="practice-icon-left">
-                            @switch($service->icon)
-                                @case('leaf')
+                            <?php switch($service->icon):
+                                case ('leaf'): ?>
                                     <i class="fas fa-leaf"></i>
-                                    @break
-                                @case('moon')
+                                    <?php break; ?>
+                                <?php case ('moon'): ?>
                                     <i class="fas fa-moon"></i>
-                                    @break
-                                @case('brain')
+                                    <?php break; ?>
+                                <?php case ('brain'): ?>
                                     <i class="fas fa-brain"></i>
-                                    @break
-                                @default
+                                    <?php break; ?>
+                                <?php default: ?>
                                     <i class="fas fa-heart"></i>
-                            @endswitch
+                            <?php endswitch; ?>
                         </div>
                         <div class="practice-card-content">
-                            <h4>{{ $service->getTranslation('name', app()->getLocale()) }}</h4>
+                            <h4><?php echo e($service->getTranslation('name', app()->getLocale())); ?></h4>
                         </div>
                     </div>
                     
-                    <p class="service-description mb-4">{{ $service->getTranslation('description', app()->getLocale()) }}</p>
+                    <p class="service-description mb-4"><?php echo e($service->getTranslation('description', app()->getLocale())); ?></p>
                     
                     <div class="service-details mb-4">
-                        @if($service->price_individual)
+                        <?php if($service->price_individual): ?>
                         <div class="service-detail-item mb-2">
-                            <strong>{{ __('messages.services.price_individual') }}:</strong> {{ number_format($service->price_individual, 0) }}€
+                            <strong><?php echo e(__('messages.services.price_individual')); ?>:</strong> <?php echo e(number_format($service->price_individual, 0)); ?>€
                         </div>
-                        @endif
+                        <?php endif; ?>
+                        
+                        <?php if($service->price_group): ?>
+                        <div class="service-detail-item mb-2">
+                            <strong><?php echo e(__('messages.services.price_group')); ?>:</strong> <?php echo e(number_format($service->price_group, 0)); ?>€
+                        </div>
+                        <?php endif; ?>
+                        
+                        <?php if($service->duration): ?>
+                        <div class="service-detail-item mb-2">
+                            <strong><?php echo e(__('messages.services.duration')); ?>:</strong> <?php echo e($service->duration); ?>
+
+                        </div>
+                        <?php endif; ?>
                     </div>
                     
                     <div class="service-actions">
-                        <a href="{{ route('services.show', [app()->getLocale(), $service->slug]) }}" class="btn btn-outline-primary btn-sm me-2 mb-2">
-                            {{ __('messages.services.learn_more') }}
+                        <a href="<?php echo e(route('services.show', [app()->getLocale(), $service->slug])); ?>" class="btn btn-outline-primary btn-sm me-2 mb-2">
+                            <?php echo e(__('messages.services.learn_more')); ?>
+
                         </a>
-                        <a href="{{ route('booking.index', app()->getLocale()) }}?service={{ $service->id }}" class="btn btn-primary btn-sm mb-2">
-                            <i class="fas fa-calendar-check me-1"></i>{{ __('messages.services.book_now') }}
+                        <a href="<?php echo e(route('booking.index', app()->getLocale())); ?>?service=<?php echo e($service->id); ?>" class="btn btn-primary btn-sm mb-2">
+                            <i class="fas fa-calendar-check me-1"></i><?php echo e(__('messages.services.book_now')); ?>
+
                         </a>
                     </div>
                 </div>
             </div>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </div>
 </section>
@@ -80,10 +95,10 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="cta-buttons">
-                        <a href="{{ route('booking.index', app()->getLocale()) }}" class="btn btn-primary btn-lg me-3 mb-3">
+                        <a href="<?php echo e(route('booking.index', app()->getLocale())); ?>" class="btn btn-primary btn-lg me-3 mb-3">
                             <i class="fas fa-calendar-check me-2"></i>Réserver maintenant
                         </a>
-                        <a href="{{ route('contact.index', app()->getLocale()) }}" class="btn btn-outline-primary btn-lg mb-3">
+                        <a href="<?php echo e(route('contact.index', app()->getLocale())); ?>" class="btn btn-outline-primary btn-lg mb-3">
                             <i class="fas fa-envelope me-2"></i>Poser une question
                         </a>
                     </div>
@@ -92,9 +107,9 @@
         </div>
     </div>
 </section>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('styles')
+<?php $__env->startPush('styles'); ?>
 <style>
     /* Ensure all containers match navbar width */
     .container {
@@ -239,4 +254,5 @@
         }
     }
 </style>
-@endpush
+<?php $__env->stopPush(); ?>
+<?php echo $__env->make('layouts.frontend', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH D:\client-fiverr\coaching\resources\views/services/index.blade.php ENDPATH**/ ?>
