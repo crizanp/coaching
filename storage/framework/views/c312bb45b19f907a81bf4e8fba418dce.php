@@ -740,6 +740,15 @@
                         <?php echo e(\App\Models\Setting::get('contact_phone')); ?>
 
                     </p>
+                    <?php if(\App\Models\Setting::get('site_website')): ?>
+                    <p>
+                        <i class="fas fa-globe me-2"></i>
+                        <a href="<?php echo e(\App\Models\Setting::get('site_website')); ?>" class="text-light text-decoration-none">
+                            <?php echo e(str_replace(['https://', 'http://'], '', \App\Models\Setting::get('site_website'))); ?>
+
+                        </a>
+                    </p>
+                    <?php endif; ?>
                     <p>
                         <i class="fas fa-map-marker-alt me-2"></i>
                         <?php echo e(\App\Models\Setting::get('address')[app()->getLocale()] ?? ''); ?>

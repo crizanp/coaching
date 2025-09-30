@@ -730,6 +730,14 @@
                         <i class="fas fa-phone me-2"></i>
                         {{ \App\Models\Setting::get('contact_phone') }}
                     </p>
+                    @if(\App\Models\Setting::get('site_website'))
+                    <p>
+                        <i class="fas fa-globe me-2"></i>
+                        <a href="{{ \App\Models\Setting::get('site_website') }}" class="text-light text-decoration-none">
+                            {{ str_replace(['https://', 'http://'], '', \App\Models\Setting::get('site_website')) }}
+                        </a>
+                    </p>
+                    @endif
                     <p>
                         <i class="fas fa-map-marker-alt me-2"></i>
                         {{ \App\Models\Setting::get('address')[app()->getLocale()] ?? '' }}

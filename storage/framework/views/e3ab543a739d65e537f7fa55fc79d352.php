@@ -36,6 +36,9 @@
                                 <?php case ('brain'): ?>
                                     <i class="fas fa-brain"></i>
                                     <?php break; ?>
+                                <?php case ('palette'): ?>
+                                    <i class="fas fa-palette"></i>
+                                    <?php break; ?>
                                 <?php default: ?>
                                     <i class="fas fa-heart"></i>
                             <?php endswitch; ?>
@@ -48,9 +51,14 @@
                     <p class="service-description mb-4"><?php echo e($service->getTranslation('description', app()->getLocale())); ?></p>
                     
                     <div class="service-details mb-4">
-                        <?php if($service->price_individual): ?>
+                        <?php if($service->price_individual > 0): ?>
                         <div class="service-detail-item mb-2">
                             <strong><?php echo e(__('messages.services.price_individual')); ?>:</strong> <?php echo e(number_format($service->price_individual, 0)); ?>€
+                        </div>
+                        <?php elseif($service->slug === 'accompagnement-sur-mesure'): ?>
+                        <div class="service-detail-item mb-2">
+                            <strong><?php echo e(app()->getLocale() === 'fr' ? 'Tarification' : 'Pricing'); ?>:</strong> <?php echo e(app()->getLocale() === 'fr' ? 'Sur mesure' : 'Customized'); ?>
+
                         </div>
                         <?php endif; ?>
                     </div>

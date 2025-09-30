@@ -21,7 +21,7 @@ class CoachingSeeder extends Seeder
         // Create admin user
         User::create([
             'name' => 'Coach Admin',
-            'email' => 'admin@coaching.com',
+            'email' => 'admin@ssjchrysalide.com',
             'password' => Hash::make('password123'),
             'email_verified_at' => now(),
         ]);
@@ -332,13 +332,13 @@ class CoachingSeeder extends Seeder
             ],
             [
                 'key' => 'contact_email',
-                'value' => 'contact@coaching.com',
+                'value' => 'contact@ssjchrysalide.com',
                 'type' => 'text',
                 'group' => 'contact',
             ],
             [
                 'key' => 'contact_phone',
-                'value' => '+33 1 23 45 67 89',
+                'value' => '+596 696 103 622',
                 'type' => 'text',
                 'group' => 'contact',
             ],
@@ -359,9 +359,15 @@ class CoachingSeeder extends Seeder
             ],
             [
                 'key' => 'social_instagram',
-                'value' => 'https://instagram.com/coaching',
+                'value' => 'https://instagram.com/ssjchrysalide',
                 'type' => 'text',
                 'group' => 'social',
+            ],
+            [
+                'key' => 'site_website',
+                'value' => 'https://ssjchrysalide.com',
+                'type' => 'text',
+                'group' => 'general',
             ],
         ];
 
