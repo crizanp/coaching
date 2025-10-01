@@ -686,9 +686,9 @@
                 
                 <!-- Right Side: Book Now -->
                 <div class="d-flex align-items-center">
-                    <a class="btn btn-primary" href="{{ route('booking.index', app()->getLocale()) }}">
+                    <button class="btn btn-primary" onclick="openLocationModal()">
                         {{ __('messages.nav.book') }}
-                    </a>
+                    </button>
                 </div>
             </div>
             </div>
@@ -857,5 +857,8 @@
     </script>
 
     @stack('scripts')
+
+    <!-- Location Selection Modal -->
+    @include('partials.location-selection-modal')
 </body>
 </html>

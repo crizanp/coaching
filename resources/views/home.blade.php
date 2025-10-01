@@ -1,4 +1,6 @@
-@extends('layouts.frontend')
+@extends('layouts.front                                <button onclick="openLocationModal()" class="btn btn-hero-primary">
+                                    {{ __('messages.home.hero.cta_book') }}
+                                </button>')
 
 @section('title', __('messages.seo.home.title'))
 @section('description', __('messages.seo.home.description'))
@@ -21,9 +23,9 @@
                         <!-- Button at bottom -->
                         <div class="hero-button-bottom">
                             <div class="text-center">
-                                <a href="{{ route('booking.index', app()->getLocale()) }}" class="btn btn-hero-primary">
+                                <button onclick="openLocationModal()" class="btn btn-hero-primary">
                                     {{ __('messages.home.hero.slide1.button') }}
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -294,7 +296,7 @@
         <div class="fade-in">
             <h2 class="section-title">{{ __('messages.home.cta.title') }}</h2>
             <p class="section-subtitle">{{ __('messages.home.cta.subtitle') }}</p>
-            <a href="{{ route('booking.index', app()->getLocale()) }}" class="btn btn-primary btn-lg">
+            <button onclick="openLocationModal()" class="btn btn-primary btn-lg">
                 {{ __('messages.home.cta.button') }}
             </a>
         </div>

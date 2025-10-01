@@ -1,4 +1,6 @@
-<?php $__env->startSection('title', __('messages.booking.title')); ?>
+
+
+<?php $__env->startSection('title', __('messages.booking.title') . ' - ' . $locationData['display_name']); ?>
 
 <?php $__env->startSection('content'); ?>
 <!-- Booking Hero Section -->
@@ -8,10 +10,11 @@
             <div class="col-lg-8">
                 <div class="fade-in">
                     <div class="booking-icon mb-4">
-                        <i class="fas fa-calendar-check"></i>
+                        <i class="fas fa-map-marker-alt"></i>
                     </div>
                     <h1 class="section-title"><?php echo e(__('messages.booking.title')); ?></h1>
-                    <p class="lead mb-4"><?php echo e(__('messages.booking.subtitle')); ?></p>
+                    <p class="lead mb-3"><?php echo e($locationData['display_name']); ?></p>
+                    <p class="mb-4"><?php echo e($locationData['description']); ?></p>
                     <p class="text-muted">
                         <i class="fas fa-clock me-2"></i>Réponse sous 24h
                         <span class="mx-3">•</span>
@@ -25,7 +28,7 @@
     </div>
 </section>
 
-<!-- Booking Form Section -->
+<!-- Calendly Integration Section -->
 <section class="section-padding" style="background: white;">
     <div class="container">
         <?php if(session('success')): ?>
@@ -37,19 +40,63 @@
         </div>
         <?php endif; ?>
 
-        <?php if($errors->has('duplicate')): ?>
-        <div class="alert alert-warning alert-dismissible fade show fade-in" role="alert">
-            <i class="fas fa-exclamation-triangle me-2"></i>
-            <?php echo e($errors->first('duplicate')); ?>
-
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-        <?php endif; ?>
-
         <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="booking-form-card fade-in">
-                        <form method="POST" action="<?php echo e(route('booking.store', app()->getLocale())); ?>">
+            <div class="col-lg-10">
+                <!-- Location Info -->
+                <div class="card mb-4 fade-in">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h5 class="card-title">
+                                    <i class="fas fa-map-marker-alt text-primary me-2"></i>
+                                    <?php echo e($locationData['display_name']); ?>
+
+                                </h5>
+                                <p class="card-text"><?php echo e($locationData['address']); ?></p>
+                            </div>
+                            <div class="col-md-4 text-md-end">
+                                <a href="<?php echo e(route('booking.index', app()->getLocale())); ?>" class="btn btn-outline-primary">
+                                    <i class="fas fa-arrow-left me-2"></i>
+                                    Choisir un autre lieu
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calendly Widget -->
+                <div class="calendly-section fade-in">
+                    <div class="calendly-container">
+                        <div class="calendly-inline-widget" 
+                             data-url="<?php echo e($locationData['calendly_url']); ?>" 
+                             style="min-width:320px;height:630px;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alternative Booking Form -->
+                <div class="card mt-4 fade-in">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-form me-2"></i>
+                            Alternative: Formulaire de demande de rendez-vous
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted mb-4">
+                            Si vous préférez ne pas utiliser Calendly, vous pouvez remplir ce formulaire et nous vous contacterons.
+                        </p>
+
+                        <?php if($errors->has('duplicate')): ?>
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            <?php echo e($errors->first('duplicate')); ?>
+
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                        <?php endif; ?>
+
+                        <form method="POST" action="<?php echo e(route('booking.location.store', [app()->getLocale(), $location])); ?>">
                             <?php echo csrf_field(); ?>
                             
                             <div class="row">
@@ -243,25 +290,6 @@ unset($__errorArgs, $__bag); ?>
                                 </button>
                             </div>
                         </form>
-                </div>
-
-                <div class="booking-info text-center fade-in">
-                    <div class="row">
-                        <div class="col-md-4 mb-3">
-                            <i class="fas fa-clock text-primary mb-2" style="font-size: 1.5rem;"></i>
-                            <h6 class="mb-1">Réponse rapide</h6>
-                            <small class="text-muted">Sous 24h maximum</small>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <i class="fas fa-shield-alt text-primary mb-2" style="font-size: 1.5rem;"></i>
-                            <h6 class="mb-1">Confidentialité</h6>
-                            <small class="text-muted">Données sécurisées</small>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <i class="fas fa-heart text-primary mb-2" style="font-size: 1.5rem;"></i>
-                            <h6 class="mb-1">Accompagnement</h6>
-                            <small class="text-muted">Personnalisé</small>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -270,20 +298,67 @@ unset($__errorArgs, $__bag); ?>
 </section>
 <?php $__env->stopSection(); ?>
 
+<?php $__env->startPush('styles'); ?>
+<style>
+    /* Calendly Section */
+    .calendly-section {
+        padding: 2rem 0;
+        background: #f8f9fa;
+        border-radius: 15px;
+        margin-bottom: 2rem;
+    }
+
+    .calendly-container {
+        background: white;
+        border-radius: 10px;
+        padding: 1rem;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .calendly-inline-widget {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .booking-icon {
+        font-size: 3rem;
+        color: var(--primary-color);
+    }
+
+    .fade-in {
+        animation: fadeIn 0.8s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+<?php $__env->stopPush(); ?>
+
 <?php $__env->startPush('scripts'); ?>
+<!-- Calendly Inline Widget -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Scroll to top if there are errors
-    const errorAlert = document.querySelector('.alert-warning');
-    if (errorAlert) {
-        setTimeout(function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }, 100);
+    // Initialize Calendly inline widget
+    if (typeof Calendly !== 'undefined') {
+        Calendly.initInlineWidget({
+            url: '<?php echo e($locationData["calendly_url"]); ?>',
+            parentElement: document.querySelector('.calendly-inline-widget'),
+            prefill: {},
+            utm: {}
+        });
     }
-    
+
     // Auto-select service if passed in URL
     const urlParams = new URLSearchParams(window.location.search);
     const serviceId = urlParams.get('service');
@@ -293,158 +368,7 @@ document.addEventListener('DOMContentLoaded', function() {
             serviceSelect.value = serviceId;
         }
     }
-    
-    // Set minimum date to tomorrow
-    const dateInput = document.getElementById('appointment_datetime');
-    if (dateInput) {
-        const tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() + 1);
-        tomorrow.setHours(9, 0, 0, 0); // Default to 9 AM
-        
-        const minDate = tomorrow.toISOString().slice(0, 16);
-        dateInput.setAttribute('min', minDate);
-        
-        if (!dateInput.value) {
-            dateInput.value = minDate;
-        }
-    }
 });
 </script>
 <?php $__env->stopPush(); ?>
-
-<?php $__env->startPush('styles'); ?>
-<style>
-    /* Ensure all containers match navbar width */
-    .container {
-        max-width: 1345px;
-        margin: 0 auto;
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-
-    .booking-icon {
-        width: 80px;
-        height: 80px;
-        background: white;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2.5rem;
-        color: var(--primary-pink);
-        margin: 0 auto;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        border: 3px solid rgba(255,255,255,0.8);
-    }
-
-    .booking-form-card {
-        background: white;
-        border-radius: 20px;
-        padding: 40px;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-        border: 1px solid #f1f1f1;
-        margin-top: -50px;
-        position: relative;
-        z-index: 2;
-    }
-
-    .form-label {
-        font-weight: 600;
-        color: var(--text-dark);
-        margin-bottom: 8px;
-    }
-
-    .form-control, .form-select {
-        border: 2px solid #f1f1f1;
-        border-radius: 12px;
-        padding: 12px 16px;
-        font-size: 1rem;
-        transition: all 0.3s ease;
-    }
-
-    .form-control:focus, .form-select:focus {
-        border-color: var(--primary-pink);
-        box-shadow: 0 0 0 0.2rem rgba(233, 30, 99, 0.15);
-    }
-
-    .form-control.is-invalid, .form-select.is-invalid {
-        border-color: #dc3545;
-    }
-
-    .invalid-feedback {
-        font-size: 0.875rem;
-        margin-top: 5px;
-    }
-
-    .btn-primary {
-        background: var(--primary-pink);
-        border: none;
-        border-radius: 50px;
-        padding: 15px 40px;
-        font-weight: 600;
-        font-size: 1.1rem;
-        transition: all 0.3s ease;
-        box-shadow: 0 5px 15px rgba(233, 30, 99, 0.3);
-    }
-
-    .btn-primary:hover {
-        background: var(--primary-pink-dark, #e91e63);
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(233, 30, 99, 0.4);
-    }
-
-    .alert {
-        border-radius: 15px;
-        border: none;
-        padding: 15px 20px;
-        margin-bottom: 30px;
-    }
-
-    .alert-success {
-        background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
-        color: #155724;
-    }
-
-    .alert-warning {
-        background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
-        color: #856404;
-        border: 1px solid #ffeaa7;
-    }
-
-    .form-check-input:checked {
-        background-color: var(--primary-pink);
-        border-color: var(--primary-pink);
-    }
-
-    .form-check-input:focus {
-        border-color: var(--primary-pink);
-        box-shadow: 0 0 0 0.2rem rgba(233, 30, 99, 0.15);
-    }
-
-    .booking-info {
-        background: linear-gradient(135deg, var(--light-pink) 0%, rgba(255,255,255,0.8) 100%);
-        border-radius: 15px;
-        padding: 20px;
-        margin-top: 20px;
-        border: 1px solid rgba(233, 30, 99, 0.1);
-    }
-
-    @media (max-width: 768px) {
-        .booking-form-card {
-            padding: 25px;
-            margin-top: -30px;
-        }
-        
-        .booking-icon {
-            width: 60px;
-            height: 60px;
-            font-size: 2rem;
-        }
-        
-        .section-title {
-            font-size: 2rem;
-        }
-    }
-</style>
-<?php $__env->stopPush(); ?>
-<?php echo $__env->make('layouts.frontend', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH D:\client-fiverr\coaching\resources\views/booking/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.frontend', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH D:\client-fiverr\coaching\resources\views/booking/location.blade.php ENDPATH**/ ?>

@@ -102,9 +102,9 @@
                         @endif
                         
                         <div class="d-grid gap-2">
-                            <a href="{{ route('booking.index', app()->getLocale()) }}?service={{ $service->id }}" class="btn btn-primary">
+                            <button onclick="openLocationModal('{{ $service->id }}')" class="btn btn-primary">
                                 <i class="fas fa-calendar-check me-2"></i>{{ __('messages.services.book_now') }}
-                            </a>
+                            </button>
                             <a href="{{ route('contact.index', app()->getLocale()) }}" class="btn btn-outline-primary">
                                 <i class="fas fa-envelope me-2"></i>{{ __('messages.common.contact') }}
                             </a>

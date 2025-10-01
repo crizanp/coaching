@@ -19,10 +19,10 @@
                         <!-- Button at bottom -->
                         <div class="hero-button-bottom">
                             <div class="text-center">
-                                <a href="<?php echo e(route('booking.index', app()->getLocale())); ?>" class="btn btn-hero-primary">
+                                <button onclick="openLocationModal()" class="btn btn-hero-primary">
                                     <?php echo e(__('messages.home.hero.slide1.button')); ?>
 
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -300,7 +300,7 @@
         <div class="fade-in">
             <h2 class="section-title"><?php echo e(__('messages.home.cta.title')); ?></h2>
             <p class="section-subtitle"><?php echo e(__('messages.home.cta.subtitle')); ?></p>
-            <a href="<?php echo e(route('booking.index', app()->getLocale())); ?>" class="btn btn-primary btn-lg">
+            <button onclick="openLocationModal()" class="btn btn-primary btn-lg">
                 <?php echo e(__('messages.home.cta.button')); ?>
 
             </a>
@@ -547,4 +547,6 @@
 </script>
 <?php $__env->stopPush(); ?>
 
-<?php echo $__env->make('layouts.frontend', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH D:\client-fiverr\coaching\resources\views/home.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.front                                <button onclick="openLocationModal()" class="btn btn-hero-primary">
+                                    {{ __('messages.home.hero.cta_book') }}
+                                </button>', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH D:\client-fiverr\coaching\resources\views/home.blade.php ENDPATH**/ ?>

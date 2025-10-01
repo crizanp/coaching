@@ -18,6 +18,7 @@ class Appointment extends Model
         'is_first_session',
         'preferred_language',
         'ip_address',
+        'location',
     ];
 
     protected $casts = [

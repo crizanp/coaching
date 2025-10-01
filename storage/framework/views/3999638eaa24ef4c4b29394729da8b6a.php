@@ -42,20 +42,6 @@
         </div>
         <?php endif; ?>
 
-        <!-- Calendly Integration -->
-        <div class="row mb-5">
-            <div class="col-12">
-                <div class="calendly-section">
-                    <div class="calendly-container">
-                        <div class="calendly-inline-widget" 
-                             data-url="https://calendly.com/srijanpokhrel1" 
-                             style="min-width:320px;height:700px;">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="row">
             <div class="col-lg-8 mb-5" id="contact-form">
                 <div class="contact-form-card fade-in">
@@ -319,26 +305,6 @@ unset($__errorArgs, $__bag); ?>
         font-weight: bold;
     }
 
-    /* Calendly Section */
-    .calendly-section {
-        margin-top: -50px;
-        position: relative;
-        z-index: 2;
-    }
-
-    .calendly-container {
-        background: white;
-        border-radius: 20px;
-        padding: 30px;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-        border: 1px solid #f1f1f1;
-    }
-
-    .calendly-inline-widget {
-        border-radius: 15px;
-        overflow: hidden;
-    }
-
     .contact-form-card {
         background: white;
         border-radius: 20px;
@@ -557,31 +523,7 @@ unset($__errorArgs, $__bag); ?>
 <?php $__env->stopPush(); ?>
 
 <?php $__env->startPush('scripts'); ?>
-<!-- Calendly badge widget begin -->
-<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-<!-- Calendly badge widget end -->
-
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Calendly inline widget
-    if (typeof Calendly !== 'undefined') {
-        Calendly.initInlineWidget({
-            url: 'https://calendly.com/your-calendly-username/consultation',
-            parentElement: document.querySelector('.calendly-inline-widget'),
-            prefill: {},
-            utm: {}
-        });
-    }
-});
-
-function scrollToCalendly() {
-    document.querySelector('.calendly-section').scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-    });
-}
-
 function scrollToForm() {
     document.getElementById('contact-form').scrollIntoView({
         behavior: 'smooth',

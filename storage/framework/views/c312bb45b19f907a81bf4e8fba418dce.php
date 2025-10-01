@@ -693,10 +693,10 @@
                 
                 <!-- Right Side: Book Now -->
                 <div class="d-flex align-items-center">
-                    <a class="btn btn-primary" href="<?php echo e(route('booking.index', app()->getLocale())); ?>">
+                    <button class="btn btn-primary" onclick="openLocationModal()">
                         <?php echo e(__('messages.nav.book')); ?>
 
-                    </a>
+                    </button>
                 </div>
             </div>
             </div>
@@ -873,5 +873,8 @@
     </script>
 
     <?php echo $__env->yieldPushContent('scripts'); ?>
+
+    <!-- Location Selection Modal -->
+    <?php echo $__env->make('partials.location-selection-modal', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 </body>
 </html><?php /**PATH D:\client-fiverr\coaching\resources\views/layouts/frontend.blade.php ENDPATH**/ ?>

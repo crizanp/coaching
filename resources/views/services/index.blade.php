@@ -66,9 +66,9 @@
                         <a href="{{ route('services.show', [app()->getLocale(), $service->slug]) }}" class="btn btn-outline-primary btn-sm me-2 mb-2">
                             {{ __('messages.services.learn_more') }}
                         </a>
-                        <a href="{{ route('booking.index', app()->getLocale()) }}?service={{ $service->id }}" class="btn btn-primary btn-sm mb-2">
+                        <button onclick="openLocationModal('{{ $service->id }}')" class="btn btn-primary btn-sm mb-2">
                             <i class="fas fa-calendar-check me-1"></i>{{ __('messages.services.book_now') }}
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -87,9 +87,9 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="cta-buttons">
-                        <a href="{{ route('booking.index', app()->getLocale()) }}" class="btn btn-primary btn-lg me-3 mb-3">
+                        <button onclick="openLocationModal()" class="btn btn-primary btn-lg me-3 mb-3">
                             <i class="fas fa-calendar-check me-2"></i>Réserver maintenant
-                        </a>
+                        </button>
                         <a href="{{ route('contact.index', app()->getLocale()) }}" class="btn btn-outline-primary btn-lg mb-3">
                             <i class="fas fa-envelope me-2"></i>Poser une question
                         </a>

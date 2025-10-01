@@ -228,6 +228,14 @@ return [
     'booking.form.submit' => 'Demander un rendez-vous',
     'booking.success' => 'Votre demande a été envoyée. Je vous contacterai rapidement.',
     'booking.duplicate_ip_error' => 'Vous avez déjà demandé un rendez-vous pour ce service. Veuillez attendre notre réponse ou nous contacter directement.',
+    'booking.location.modal.title' => 'Choisissez votre lieu de consultation',
+    'booking.location.modal.subtitle' => 'Sélectionnez le lieu qui vous convient le mieux pour votre rendez-vous :',
+    'booking.location.fort_de_france' => 'Fort-de-France',
+    'booking.location.riviere_salee' => 'Rivière Salée',
+    'booking.location.choose' => 'Choisir ce lieu',
+    'booking.location.info' => 'Vous pourrez réserver directement via Calendly ou remplir un formulaire',
+    'booking.location.cancel' => 'Annuler',
+    'booking.location.classic_form' => 'Formulaire classique',
 
     // Common
     'common.learn_more' => 'En savoir plus',

@@ -271,9 +271,9 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="cta-buttons">
-                        <a href="{{ route('booking.index', app()->getLocale()) }}" class="btn btn-primary btn-lg me-3 mb-3">
+                        <button onclick="openLocationModal()" class="btn btn-primary btn-lg me-3 mb-3">
                             <i class="fas fa-calendar-check me-2"></i>{{ __('messages.practices.cta.book') }}
-                        </a>
+                        </button>
                         <a href="{{ route('contact.index', app()->getLocale()) }}" class="btn btn-outline-primary btn-lg mb-3">
                             <i class="fas fa-envelope me-2"></i>{{ __('messages.practices.cta.contact') }}
                         </a>

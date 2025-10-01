@@ -32,6 +32,8 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])->middleware('set.l
     Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
     Route::get('/booking', [BookingController::class, 'index'])->name('booking.index');
     Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
+    Route::get('/booking/{location}', [BookingController::class, 'locationBooking'])->name('booking.location')->where('location', 'fort-de-france|riviere-salee');
+    Route::post('/booking/{location}', [BookingController::class, 'storeLocationBooking'])->name('booking.location.store')->where('location', 'fort-de-france|riviere-salee');
     
     // Guide routes
     Route::get('/guides', [GuideController::class, 'index'])->name('guides.index');
