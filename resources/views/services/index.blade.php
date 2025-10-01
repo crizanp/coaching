@@ -22,7 +22,7 @@
     <div class="container">
         <div class="row">
             @foreach($services as $service)
-            <div class="col-lg-4 mb-4">
+            <div class="col-lg-6 col-md-6 mb-4">
                 <div class="practice-card-textured h-100">
                     <div class="practice-card-body">
                         <div class="practice-icon-left">

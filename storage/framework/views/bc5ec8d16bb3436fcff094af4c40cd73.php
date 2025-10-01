@@ -98,7 +98,7 @@
                         <?php elseif($service->slug === 'accompagnement-sur-mesure'): ?>
                         <div class="mb-3">
                             <strong><?php echo e(app()->getLocale() === 'fr' ? 'Tarification' : 'Pricing'); ?>:</strong><br>
-                            <span class="text-primary"><?php echo e(app()->getLocale() === 'fr' ? 'Programme personnalisé' : 'Customized program'); ?></span>
+                            <span class="text-primary"><?php echo e(__('messages.services.customized_program')); ?></span>
                         </div>
                         <?php endif; ?>
                         
