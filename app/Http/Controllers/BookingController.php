@@ -29,12 +29,7 @@ class BookingController extends Controller
         $clientIp = $request->ip();
         
         // Check if there's already a pending or confirmed appointment from this IP for the same service
-        $existingAppointment = Appointment::where('service_id', $request->service_id)
-            ->where('ip_address', $clientIp)
-            ->whereIn('status', ['pending', 'confirmed'])
-            ->first();
-
-        if ($existingAppointment) {
+        if (Appointment::hasDuplicateFromIp($request->service_id, $clientIp)) {
             return redirect()->back()
                 ->withInput()
                 ->withErrors(['duplicate' => __('messages.booking.duplicate_ip_error')]);

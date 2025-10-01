@@ -246,12 +246,12 @@ return [
 
     // About Page
     'about.page.title' => 'About Me - Sandrine, Certified Sophrologist',
-    'about.page.description' => 'Meet Sandrine, certified RNCP Sophrologist and practitioner in Hypnosis and NLP. Discover my journey and approach to help you transform your life.',
+    'about.page.description' => 'Meet Sandrine, practitioner in Hypnosis and NLP. Discover my journey and approach to help you transform your life.',
     'about.hero.title' => 'About Me',
-    'about.hero.subtitle' => 'Certified RNCP Sophrologist and certified IN Practitioner in Hypnosis and Neuro-Linguistic Programming',
+    'about.hero.subtitle' => 'Practitioner in Hypnosis and Neuro-Linguistic Programming',
     'about.hero.quote' => 'What I share today, I first experienced myself: overcoming blockages, regaining confidence, and moving forward.',
     'about.story.title' => 'My Journey',
-    'about.story.intro' => 'I\'m Sandrine, a certified RNCP Sophrologist and certified IN Practitioner in Hypnosis and Neuro-Linguistic Programming.',
+    'about.story.intro' => 'I\'m Sandrine, a Practitioner in Hypnosis and Neuro-Linguistic Programming.',
     'about.story.journey' => 'I have personally gone through storms, moments when balance felt out of reach. The support of loved ones was precious, but sometimes it\'s not enough. You need keys, inner resources.',
     'about.story.discovery' => 'In searching for answers, I discovered Sophrology and reconnected with my inner strength. Convinced that "everyone possesses all the resources they need to make the changes they desire", I deepened my passion by training in NLP and hypnosis to provide effective tools for those seeking true transformation.',
     'about.story.mission' => 'My mission is to guide you through your own transformation journey, providing you with the tools and support you need to overcome obstacles and reclaim your inner power.',

@@ -246,12 +246,12 @@ return [
 
     // About Page
     'about.page.title' => 'À Propos de Moi - Sandrine, Sophrologue Certifiée',
-    'about.page.description' => 'Rencontrez Sandrine, Sophrologue certifiée RNCP et praticienne en Hypnose et PNL. Découvrez mon parcours et mon approche pour vous aider à transformer votre vie.',
+    'about.page.description' => 'Rencontrez Sandrine, praticienne en Hypnose et PNL. Découvrez mon parcours et mon approche pour vous aider à transformer votre vie.',
     'about.hero.title' => 'À Propos de Moi',
-    'about.hero.subtitle' => 'Sophrologue certifiée RNCP et praticienne en Hypnose et Programmation Neuro Linguistique certifiée IN',
+    'about.hero.subtitle' => 'Praticienne en Hypnose et Programmation Neuro Linguistique',
     'about.hero.quote' => 'Ce que je transmets aujourd\'hui, je l\'ai d\'abord expérimenté : dépasser ses blocages, retrouver confiance et avancer.',
     'about.story.title' => 'Mon Parcours',
-    'about.story.intro' => 'Je suis Sandrine, Sophrologue certifiée RNCP et praticienne en Hypnose et Programmation Neuro Linguistique certifiée IN.',
+    'about.story.intro' => 'Je suis Sandrine, praticienne en Hypnose et Programmation Neuro Linguistique.',
     'about.story.journey' => 'J\'ai moi-même traversé des tempêtes, des périodes où l\'équilibre semblait hors de portée. Le soutien de mes proches a été précieux; mais parfois ça ne suffit pas. Il faut des clés, des ressources internes.',
     'about.story.discovery' => 'C\'est en cherchant des réponses que j\'ai trouvé la Sophrologie et que j\'ai pu me reconnecter à ma force intérieure. Alors convaincue que "chacun possède toutes les ressources nécessaires pour effectuer les changements désirés", j\'ai nourri ma passion en me formant à la PNL et à l\'hypnose afin d\'offrir des outils efficaces à celles et ceux qui souhaitent initier une véritable transformation.',
     'about.story.mission' => 'Ma mission est de vous accompagner dans votre propre parcours de transformation, en vous fournissant les outils et le soutien dont vous avez besoin pour surmonter les obstacles et retrouver votre pouvoir intérieur.',

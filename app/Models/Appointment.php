@@ -44,4 +44,15 @@ class Appointment extends Model
     {
         return $query->where('status', 'completed');
     }
+
+    /**
+     * Check if there's a duplicate appointment from the same IP for the same service
+     */
+    public static function hasDuplicateFromIp($serviceId, $ipAddress)
+    {
+        return self::where('service_id', $serviceId)
+            ->where('ip_address', $ipAddress)
+            ->whereIn('status', ['pending', 'confirmed'])
+            ->exists();
+    }
 }

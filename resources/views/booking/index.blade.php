@@ -38,6 +38,14 @@
         </div>
         @endif
 
+        @if($errors->has('duplicate'))
+        <div class="alert alert-warning alert-dismissible fade show fade-in" role="alert">
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            {{ $errors->first('duplicate') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        @endif
+
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="booking-form-card fade-in">
@@ -176,6 +184,17 @@
 @push('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // Scroll to top if there are errors
+    const errorAlert = document.querySelector('.alert-warning');
+    if (errorAlert) {
+        setTimeout(function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }, 100);
+    }
+    
     // Auto-select service if passed in URL
     const urlParams = new URLSearchParams(window.location.search);
     const serviceId = urlParams.get('service');
@@ -295,6 +314,12 @@ document.addEventListener('DOMContentLoaded', function() {
     .alert-success {
         background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
         color: #155724;
+    }
+
+    .alert-warning {
+        background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+        color: #856404;
+        border: 1px solid #ffeaa7;
     }
 
     .form-check-input:checked {
