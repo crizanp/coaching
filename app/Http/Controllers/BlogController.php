@@ -76,13 +76,13 @@ class BlogController extends Controller
     }
 
     /**
-     * Handle blog post reactions (like/dislike)
+     * Handle blog post reactions (like)
      */
     public function react(Request $request, $locale, Blog $blog)
     {
         try {
             $request->validate([
-                'type' => 'required|in:like,dislike',
+                'type' => 'required|in:like',
             ]);
 
             $ipAddress = $request->ip();
@@ -120,7 +120,6 @@ class BlogController extends Controller
                     'success' => true,
                     'message' => $message,
                     'likes_count' => $blog->likes_count,
-                    'dislikes_count' => $blog->dislikes_count,
                     'user_reaction' => $blog->getReactionByIp($ipAddress)?->type,
                 ]);
             }

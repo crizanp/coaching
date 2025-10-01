@@ -138,8 +138,6 @@ class Blog extends Model
             // Update counters
             if ($type === 'like') {
                 $this->increment('likes_count');
-            } else {
-                $this->increment('dislikes_count');
             }
 
             return $reaction;
@@ -161,8 +159,6 @@ class Blog extends Model
             if ($reaction) {
                 if ($reaction->type === 'like') {
                     $this->decrement('likes_count');
-                } else {
-                    $this->decrement('dislikes_count');
                 }
                 
                 $reaction->delete();

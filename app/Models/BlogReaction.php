@@ -31,7 +31,7 @@ class BlogReaction extends Model
         return [
             'blog_id' => 'required|exists:blogs,id',
             'ip_address' => 'required|ip',
-            'type' => 'required|in:like,dislike',
+            'type' => 'required|in:like',
         ];
     }
 }

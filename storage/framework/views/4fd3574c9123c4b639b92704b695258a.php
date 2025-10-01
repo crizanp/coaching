@@ -1,34 +1,32 @@
-@extends('layouts.frontend')
+<?php $__env->startSection('title', $blog->meta_title ?: $blog->title); ?>
+<?php $__env->startSection('description', $blog->meta_description ?: $blog->excerpt); ?>
 
-@section('title', $blog->meta_title ?: $blog->title)
-@section('description', $blog->meta_description ?: $blog->excerpt)
-
-@push('head')
+<?php $__env->startPush('head'); ?>
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
-    <meta property="og:title" content="{{ $blog->meta_title ?: $blog->title }}">
-    <meta property="og:description" content="{{ $blog->meta_description ?: $blog->excerpt }}">
-    @if($blog->featured_image)
-        <meta property="og:image" content="{{ Storage::url($blog->featured_image) }}">
-    @endif
-    <meta property="article:published_time" content="{{ $blog->published_at->toISOString() }}">
-    <meta property="article:modified_time" content="{{ $blog->updated_at->toISOString() }}">
+    <meta property="og:title" content="<?php echo e($blog->meta_title ?: $blog->title); ?>">
+    <meta property="og:description" content="<?php echo e($blog->meta_description ?: $blog->excerpt); ?>">
+    <?php if($blog->featured_image): ?>
+        <meta property="og:image" content="<?php echo e(Storage::url($blog->featured_image)); ?>">
+    <?php endif; ?>
+    <meta property="article:published_time" content="<?php echo e($blog->published_at->toISOString()); ?>">
+    <meta property="article:modified_time" content="<?php echo e($blog->updated_at->toISOString()); ?>">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ $blog->meta_title ?: $blog->title }}">
-    <meta name="twitter:description" content="{{ $blog->meta_description ?: $blog->excerpt }}">
-    @if($blog->featured_image)
-        <meta name="twitter:image" content="{{ Storage::url($blog->featured_image) }}">
-    @endif
+    <meta name="twitter:title" content="<?php echo e($blog->meta_title ?: $blog->title); ?>">
+    <meta name="twitter:description" content="<?php echo e($blog->meta_description ?: $blog->excerpt); ?>">
+    <?php if($blog->featured_image): ?>
+        <meta name="twitter:image" content="<?php echo e(Storage::url($blog->featured_image)); ?>">
+    <?php endif; ?>
 
     <!-- Keywords -->
-    @if($blog->meta_keywords)
-        <meta name="keywords" content="{{ implode(', ', $blog->meta_keywords) }}">
-    @endif
+    <?php if($blog->meta_keywords): ?>
+        <meta name="keywords" content="<?php echo e(implode(', ', $blog->meta_keywords)); ?>">
+    <?php endif; ?>
 
     <!-- Structured Data -->
-    @php
+    <?php
         $structuredData = [
             '@context' => 'https://schema.org',
             '@type' => 'BlogPosting',
@@ -55,14 +53,15 @@
         if ($blog->featured_image) {
             $structuredData['image'] = Storage::url($blog->featured_image);
         }
-    @endphp
+    ?>
 
     <script type="application/ld+json">
-        {!! json_encode($structuredData, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
-    </script>
-@endpush
+        <?php echo json_encode($structuredData, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?>
 
-@section('content')
+    </script>
+<?php $__env->stopPush(); ?>
+
+<?php $__env->startSection('content'); ?>
     <!-- Blog Hero Section -->
     <section class="section-padding" style="background: var(--light-pink); margin-top: 94px;">
         <div class="container">
@@ -72,37 +71,39 @@
                         <nav aria-label="breadcrumb" class="mb-4 d-flex justify-content-center">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="{{ route('home', app()->getLocale()) }}">{{ __('messages.nav.home') }}</a>
+                                    <a href="<?php echo e(route('home', app()->getLocale())); ?>"><?php echo e(__('messages.nav.home')); ?></a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="{{ route('blog.index', app()->getLocale()) }}">{{ __('messages.nav.blog') }}</a>
+                                    <a href="<?php echo e(route('blog.index', app()->getLocale())); ?>"><?php echo e(__('messages.nav.blog')); ?></a>
                                 </li>
-                                <li class="breadcrumb-item active" aria-current="page">{{ $blog->title }}</li>
+                                <li class="breadcrumb-item active" aria-current="page"><?php echo e($blog->title); ?></li>
                             </ol>
                         </nav>
                         
-                        @if($blog->featured_image && Storage::disk('public')->exists($blog->featured_image))
+                        <?php if($blog->featured_image && Storage::disk('public')->exists($blog->featured_image)): ?>
                             <div class="mb-4">
-                                <img src="{{ Storage::url($blog->featured_image) }}" 
-                                     alt="{{ $blog->title }}" 
+                                <img src="<?php echo e(Storage::url($blog->featured_image)); ?>" 
+                                     alt="<?php echo e($blog->title); ?>" 
                                      class="img-fluid rounded-3"
                                      style="max-height: 300px; width: auto;">
                             </div>
-                        @endif
+                        <?php endif; ?>
                         
-                        <h1 class="section-title">{{ $blog->title }}</h1>
-                        <p class="lead mb-4">{{ $blog->excerpt }}</p>
+                        <h1 class="section-title"><?php echo e($blog->title); ?></h1>
+                        <p class="lead mb-4"><?php echo e($blog->excerpt); ?></p>
                         
                         <div class="post-meta d-flex justify-content-center gap-4">
                             <div class="meta-item">
                                 <i class="fas fa-calendar-alt me-2"></i>
-                                <time datetime="{{ $blog->published_at->toISOString() }}">
-                                    {{ $blog->formatted_published_at }}
+                                <time datetime="<?php echo e($blog->published_at->toISOString()); ?>">
+                                    <?php echo e($blog->formatted_published_at); ?>
+
                                 </time>
                             </div>
                             <div class="meta-item">
                                 <i class="fas fa-eye me-2"></i>
-                                {{ number_format($blog->views_count) }} {{ __('messages.blog.views') }}
+                                <?php echo e(number_format($blog->views_count)); ?> <?php echo e(__('messages.blog.views')); ?>
+
                             </div>
                         </div>
                     </div>
@@ -114,25 +115,25 @@
     <!-- Sticky Share Sidebar -->
     <div class="sticky-share-sidebar">
         <div class="share-buttons-vertical">
-            <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}"
+            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo e(urlencode(url()->current())); ?>"
                target="_blank"
                class="share-btn facebook"
                title="Share on Facebook">
                 <i class="fab fa-facebook-f"></i>
             </a>
-            <a href="https://twitter.com/intent/tweet?url={{ urlencode(url()->current()) }}&text={{ urlencode($blog->title) }}"
+            <a href="https://twitter.com/intent/tweet?url=<?php echo e(urlencode(url()->current())); ?>&text=<?php echo e(urlencode($blog->title)); ?>"
                target="_blank"
                class="share-btn twitter"
                title="Share on Twitter">
                 <i class="fab fa-twitter"></i>
             </a>
-            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(url()->current()) }}"
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=<?php echo e(urlencode(url()->current())); ?>"
                target="_blank"
                class="share-btn linkedin"
                title="Share on LinkedIn">
                 <i class="fab fa-linkedin-in"></i>
             </a>
-            <button type="button" class="share-btn copy" data-url="{{ url()->current() }}" title="Copy Link">
+            <button type="button" class="share-btn copy" data-url="<?php echo e(url()->current()); ?>" title="Copy Link">
                 <i class="fas fa-link"></i>
             </button>
         </div>
@@ -144,19 +145,21 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="post-content">
-                            {!! $blog->content !!}
+                            <?php echo $blog->content; ?>
+
                         </div>
 
                         <div class="post-reactions">
-                            <h5>{{ __('messages.blog.reactions.title') }}</h5>
+                            <h5><?php echo e(__('messages.blog.reactions.title')); ?></h5>
                             <div class="reaction-buttons">
                                 <button type="button"
-                                        class="btn reaction-btn {{ $userReaction && $userReaction->type === 'like' ? 'active' : '' }}"
+                                        class="btn reaction-btn <?php echo e($userReaction && $userReaction->type === 'like' ? 'active' : ''); ?>"
                                         data-type="like"
-                                        data-blog-id="{{ $blog->id }}">
+                                        data-blog-id="<?php echo e($blog->id); ?>">
                                     <i class="fas fa-heart me-1"></i>
-                                    <span class="reaction-count" id="like-count">{{ $blog->likes_count }}</span>
-                                    {{ __('messages.blog.reactions.like') }}
+                                    <span class="reaction-count" id="like-count"><?php echo e($blog->likes_count); ?></span>
+                                    <?php echo e(__('messages.blog.reactions.like')); ?>
+
                                 </button>
                             </div>
                         </div>
@@ -170,63 +173,67 @@
             </div>
         </section>
 
-        @if($relatedBlogs->count() > 0)
+        <?php if($relatedBlogs->count() > 0): ?>
             <section class="related-posts section-padding" style="background: var(--light-pink);">
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
                             <div class="section-header text-center mb-5">
-                                <h2 class="section-title">{{ __('messages.blog.related.title') }}</h2>
+                                <h2 class="section-title"><?php echo e(__('messages.blog.related.title')); ?></h2>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        @foreach($relatedBlogs as $related)
+                        <?php $__currentLoopData = $relatedBlogs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $related): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="col-lg-4 col-md-6 mb-4">
                                 <article class="blog-card">
                                     <div class="blog-card-image">
-                                        @if($related->featured_image)
-                                            <img src="{{ Storage::url($related->featured_image) }}" alt="{{ $related->title }}" class="img-fluid">
-                                        @else
+                                        <?php if($related->featured_image): ?>
+                                            <img src="<?php echo e(Storage::url($related->featured_image)); ?>" alt="<?php echo e($related->title); ?>" class="img-fluid">
+                                        <?php else: ?>
                                             <div class="placeholder-image">
                                                 <i class="fas fa-image"></i>
                                             </div>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                     <div class="blog-card-content">
                                         <div class="blog-meta">
                                             <span class="blog-date">
-                                                <i class="fas fa-calendar-alt me-1"></i>{{ $related->formatted_published_at }}
+                                                <i class="fas fa-calendar-alt me-1"></i><?php echo e($related->formatted_published_at); ?>
+
                                             </span>
                                             <span class="blog-reading-time">
-                                                <i class="fas fa-clock me-1"></i>{{ $related->reading_time }} {{ __('messages.blog.reading_time') }}
+                                                <i class="fas fa-clock me-1"></i><?php echo e($related->reading_time); ?> <?php echo e(__('messages.blog.reading_time')); ?>
+
                                             </span>
                                         </div>
                                         <h3 class="blog-card-title">
-                                            <a href="{{ route('blog.show', ['locale' => app()->getLocale(), 'blog' => $related->slug]) }}">
-                                                {{ $related->title }}
+                                            <a href="<?php echo e(route('blog.show', ['locale' => app()->getLocale(), 'blog' => $related->slug])); ?>">
+                                                <?php echo e($related->title); ?>
+
                                             </a>
                                         </h3>
-                                        <p class="blog-card-excerpt">{{ Str::limit($related->excerpt, 100) }}</p>
+                                        <p class="blog-card-excerpt"><?php echo e(Str::limit($related->excerpt, 100)); ?></p>
                                     </div>
                                 </article>
                             </div>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
                     <div class="row">
                         <div class="col-12 text-center">
-                            <a href="{{ route('blog.index', app()->getLocale()) }}" class="btn btn-primary btn-lg">
-                                <i class="fas fa-blog me-2"></i>{{ __('messages.blog.view_all') }}
+                            <a href="<?php echo e(route('blog.index', app()->getLocale())); ?>" class="btn btn-primary btn-lg">
+                                <i class="fas fa-blog me-2"></i><?php echo e(__('messages.blog.view_all')); ?>
+
                             </a>
                         </div>
                     </div>
                 </div>
             </section>
-        @endif
+        <?php endif; ?>
     </article>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('styles')
+<?php $__env->startPush('styles'); ?>
     <style>
         /* Ensure all containers match navbar width */
         .container {
@@ -637,14 +644,14 @@
             }
         }
     </style>
-@endpush
+<?php $__env->stopPush(); ?>
 
-@push('scripts')
+<?php $__env->startPush('scripts'); ?>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const reactionButtons = document.querySelectorAll('.reaction-btn');
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-    const reactionUrl = `{{ route('blog.react', ['locale' => app()->getLocale(), 'blog' => $blog->id]) }}`;
+    const reactionUrl = `<?php echo e(route('blog.react', ['locale' => app()->getLocale(), 'blog' => $blog->id])); ?>`;
 
     reactionButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -667,7 +674,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
                 .then(data => {
                     if (data.success === false) {
-                        showToast(data.message || `{{ __('messages.blog.reactions.error') }}`, 'error');
+                        showToast(data.message || `<?php echo e(__('messages.blog.reactions.error')); ?>`, 'error');
                         return;
                     }
 
@@ -687,7 +694,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         statusText: error.statusText,
                         message: error.message
                     });
-                    showToast(`{{ __('messages.blog.reactions.error') }}`, 'error');
+                    showToast(`<?php echo e(__('messages.blog.reactions.error')); ?>`, 'error');
                 });
         });
     });
@@ -698,8 +705,8 @@ document.addEventListener('DOMContentLoaded', () => {
         copyButton.addEventListener('click', () => {
             const url = copyButton.dataset.url;
             navigator.clipboard.writeText(url)
-                .then(() => showToast(`{{ __('messages.blog.share.copied') }}`, 'success'))
-                .catch(() => showToast(`{{ __('messages.blog.share.error') }}`, 'error'));
+                .then(() => showToast(`<?php echo e(__('messages.blog.share.copied')); ?>`, 'success'))
+                .catch(() => showToast(`<?php echo e(__('messages.blog.share.error')); ?>`, 'error'));
         });
     });
 
@@ -715,4 +722,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 </script>
-@endpush
+<?php $__env->stopPush(); ?>
+<?php echo $__env->make('layouts.frontend', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH D:\client-fiverr\coaching\resources\views/blog/show.blade.php ENDPATH**/ ?>

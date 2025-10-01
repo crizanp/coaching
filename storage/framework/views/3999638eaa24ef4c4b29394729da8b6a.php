@@ -18,10 +18,7 @@
                         <span class="feature-item">
                             <i class="fas fa-reply me-2"></i>Réponse rapide
                         </span>
-                        <span class="feature-separator">•</span>
-                        <span class="feature-item">
-                            <i class="fas fa-calendar-check me-2"></i>Consultation gratuite
-                        </span>
+                        
                         <span class="feature-separator">•</span>
                         <span class="feature-item">
                             <i class="fas fa-heart me-2"></i>Accompagnement personnalisé
