@@ -34,15 +34,17 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <!-- <div class="fade-in text-start">
+                <div class="fade-in text-start">
                     <h2 class="section-title"><?php echo e(__('messages.about.story.title')); ?></h2>
                     <div class="about-content">
                         <p class="lead"><?php echo e(__('messages.about.story.intro')); ?></p>
                         <p><?php echo e(__('messages.about.story.journey')); ?></p>
                         <p><?php echo e(__('messages.about.story.discovery')); ?></p>
                         <p><?php echo e(__('messages.about.story.mission')); ?></p>
+                        <p><?php echo e(__('messages.about.story.approach')); ?></p>
+                        <p><?php echo e(__('messages.about.story.today')); ?></p>
                     </div>
-                     -->
+                    
                     <div class="contact-cta mt-5">
                         <h4><?php echo e(__('messages.about.contact.title')); ?></h4>
                         <div class="d-flex justify-content-start gap-3 flex-wrap mt-3">
@@ -123,6 +125,47 @@
                     <blockquote class="practice-quote-textured">
                         <em>"<?php echo e(__('messages.about.practices.hypnosis.quote')); ?>"</em>
                     </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Statistics Section -->
+<section class="section-padding" style="background: #000000;">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8 mb-5">
+                <div class="fade-in">
+                    <h2 class="section-title text-white"><?php echo e(__('messages.about.stats.title')); ?></h2>
+                    <p class="text-white opacity-90"><?php echo e(__('messages.about.stats.subtitle')); ?></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="stats-card fade-in">
+                    <div class="stats-number">3+</div>
+                    <div class="stats-label"><?php echo e(__('messages.about.stats.experience')); ?></div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="stats-card fade-in">
+                    <div class="stats-number">100+</div>
+                    <div class="stats-label"><?php echo e(__('messages.about.stats.clients')); ?></div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="stats-card fade-in">
+                    <div class="stats-number">3</div>
+                    <div class="stats-label"><?php echo e(__('messages.about.stats.methods')); ?></div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="stats-card fade-in">
+                    <div class="stats-number">95%</div>
+                    <div class="stats-label"><?php echo e(__('messages.about.stats.satisfaction')); ?></div>
                 </div>
             </div>
         </div>
@@ -330,6 +373,35 @@
         color: #000000;
     }
     
+    /* Statistics Section */
+    .stats-card {
+        background: white;
+        border-radius: 15px;
+        padding: 30px 20px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+        height: 100%;
+    }
+    
+    .stats-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .stats-number {
+        font-size: 3rem;
+        font-weight: bold;
+        color: var(--primary-pink);
+        margin-bottom: 10px;
+        line-height: 1;
+    }
+    
+    .stats-label {
+        font-size: 1.1rem;
+        color: var(--text-muted);
+        font-weight: 500;
+    }
+    
     @media (max-width: 768px) {
         .about-image {
             width: 250px;
@@ -344,6 +416,14 @@
         .d-flex.gap-3 {
             flex-direction: column;
             gap: 1rem !important;
+        }
+        
+        .stats-number {
+            font-size: 2.5rem;
+        }
+        
+        .stats-card {
+            padding: 25px 15px;
         }
     }
 </style>

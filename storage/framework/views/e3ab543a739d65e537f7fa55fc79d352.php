@@ -57,7 +57,7 @@
                         </div>
                         <?php elseif($service->slug === 'accompagnement-sur-mesure'): ?>
                         <div class="service-detail-item mb-2">
-                            <strong><?php echo e(app()->getLocale() === 'fr' ? 'Tarification' : 'Pricing'); ?>:</strong> <?php echo e(app()->getLocale() === 'fr' ? 'Sur mesure' : 'Customized'); ?>
+                            <strong><?php echo e(app()->getLocale() === 'fr' ? 'Tarification' : 'Pricing'); ?>:</strong> <?php echo e(__('messages.services.customized_pricing')); ?>
 
                         </div>
                         <?php endif; ?>
