@@ -60,6 +60,8 @@ return [
     'services.learn_more' => 'En savoir plus',
     'services.book_now' => 'Réserver',
     'services.price_individual' => 'Séance individuelle',
+    'services.customized_pricing' => 'Tarif personnalisé',
+    'services.customized_program' => 'Programme personnalisé',
 
     'services.duration' => 'Durée',
     'services.benefits' => 'Bénéfices',
@@ -225,6 +227,7 @@ return [
     'booking.form.message' => 'Message (optionnel)',
     'booking.form.submit' => 'Demander un rendez-vous',
     'booking.success' => 'Votre demande a été envoyée. Je vous contacterai rapidement.',
+    'booking.duplicate_ip_error' => 'Vous avez déjà demandé un rendez-vous pour ce service. Veuillez attendre notre réponse ou nous contacter directement.',
 
     // Common
     'common.learn_more' => 'En savoir plus',

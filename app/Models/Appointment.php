@@ -17,6 +17,7 @@ class Appointment extends Model
         'admin_notes',
         'is_first_session',
         'preferred_language',
+        'ip_address',
     ];
 
     protected $casts = [

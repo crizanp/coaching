@@ -97,7 +97,7 @@
                         @elseif($service->slug === 'accompagnement-sur-mesure')
                         <div class="mb-3">
                             <strong>{{ app()->getLocale() === 'fr' ? 'Tarification' : 'Pricing' }}:</strong><br>
-                            <span class="text-primary">{{ app()->getLocale() === 'fr' ? 'Programme personnalisé' : 'Customized program' }}</span>
+                            <span class="text-primary">{{ __('messages.services.customized_program') }}</span>
                         </div>
                         @endif
                         

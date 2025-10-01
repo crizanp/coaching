@@ -159,7 +159,7 @@
                         <?php elseif($service->slug === 'accompagnement-sur-mesure'): ?>
                         <div class="mb-3">
                             <span class="badge bg-light text-dark">
-                                <?php echo e(app()->getLocale() === 'fr' ? 'Tarif personnalisé' : 'Customized pricing'); ?>
+                                <?php echo e(__('messages.services.customized_pricing')); ?>
 
                             </span>
                         </div>

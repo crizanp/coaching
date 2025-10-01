@@ -61,7 +61,10 @@ unset($__errorArgs, $__bag); ?>" id="service_id" name="service_id" required>
                                             <option value="<?php echo e($service->id); ?>" <?php echo e(old('service_id', request('service')) == $service->id ? 'selected' : ''); ?>>
                                                 <?php echo e($service->getTranslation('name', app()->getLocale())); ?>
 
-                                                <?php if($service->price_individual): ?>
+                                                <?php if($service->slug === 'accompagnement-sur-mesure'): ?>
+                                                    - <?php echo e(__('messages.services.customized_pricing')); ?>
+
+                                                <?php elseif($service->price_individual > 0): ?>
                                                     - <?php echo e(number_format($service->price_individual, 0)); ?>€
                                                 <?php endif; ?>
                                             </option>

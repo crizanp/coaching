@@ -57,7 +57,7 @@
                         </div>
                         @elseif($service->slug === 'accompagnement-sur-mesure')
                         <div class="service-detail-item mb-2">
-                            <strong>{{ app()->getLocale() === 'fr' ? 'Tarification' : 'Pricing' }}:</strong> {{ app()->getLocale() === 'fr' ? 'Sur mesure' : 'Customized' }}
+                            <strong>{{ app()->getLocale() === 'fr' ? 'Tarification' : 'Pricing' }}:</strong> {{ __('messages.services.customized_pricing') }}
                         </div>
                         @endif
                     </div>

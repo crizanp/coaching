@@ -60,6 +60,8 @@ return [
     'services.learn_more' => 'Learn more',
     'services.book_now' => 'Book now',
     'services.price_individual' => 'Individual session',
+    'services.customized_pricing' => 'Customized pricing',
+    'services.customized_program' => 'Customized program',
 
     'services.duration' => 'Duration',
     'services.benefits' => 'Benefits',
@@ -225,6 +227,7 @@ return [
     'booking.form.message' => 'Message (optional)',
     'booking.form.submit' => 'Request appointment',
     'booking.success' => 'Your request has been sent. I will contact you shortly.',
+    'booking.duplicate_ip_error' => 'You have already requested an appointment for this service. Please wait for our response or contact us directly.',
 
     // Common
     'common.learn_more' => 'Learn more',

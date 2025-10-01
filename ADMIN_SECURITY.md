@@ -54,7 +54,7 @@ The website has been configured as an admin-only content management system where
 - Proper middleware protection on sensitive routes
 
 ## Default Admin Account
-- **Email**: admin@coaching.com
+- **Email**: admin@ssjchrysalide.com
 - **Password**: password123
 - **Created**: During database seeding
 

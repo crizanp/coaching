@@ -26,6 +26,20 @@ class BookingController extends Controller
             'is_first_session' => 'boolean',
         ]);
 
+        $clientIp = $request->ip();
+        
+        // Check if there's already a pending or confirmed appointment from this IP for the same service
+        $existingAppointment = Appointment::where('service_id', $request->service_id)
+            ->where('ip_address', $clientIp)
+            ->whereIn('status', ['pending', 'confirmed'])
+            ->first();
+
+        if ($existingAppointment) {
+            return redirect()->back()
+                ->withInput()
+                ->withErrors(['duplicate' => __('messages.booking.duplicate_ip_error')]);
+        }
+
         $appointment = Appointment::create([
             'service_id' => $request->service_id,
             'client_name' => $request->client_name,
@@ -36,6 +50,7 @@ class BookingController extends Controller
             'is_first_session' => $request->boolean('is_first_session', true),
             'preferred_language' => app()->getLocale(),
             'status' => 'pending',
+            'ip_address' => $clientIp,
         ]);
 
         return redirect()->back()->with('success', __('messages.booking.success'));
