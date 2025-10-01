@@ -303,7 +303,7 @@
             <button onclick="openLocationModal()" class="btn btn-primary btn-lg">
                 <?php echo e(__('messages.home.cta.button')); ?>
 
-            </a>
+            </button>
         </div>
     </div>
 </section>
@@ -547,6 +547,4 @@
 </script>
 <?php $__env->stopPush(); ?>
 
-<?php echo $__env->make('layouts.front                                <button onclick="openLocationModal()" class="btn btn-hero-primary">
-                                    {{ __('messages.home.hero.cta_book') }}
-                                </button>', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH D:\client-fiverr\coaching\resources\views/home.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.frontend', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH D:\client-fiverr\coaching\resources\views/home.blade.php ENDPATH**/ ?>

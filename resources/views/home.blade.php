@@ -1,6 +1,4 @@
-@extends('layouts.front                                <button onclick="openLocationModal()" class="btn btn-hero-primary">
-                                    {{ __('messages.home.hero.cta_book') }}
-                                </button>')
+@extends('layouts.frontend')
 
 @section('title', __('messages.seo.home.title'))
 @section('description', __('messages.seo.home.description'))
@@ -298,7 +296,7 @@
             <p class="section-subtitle">{{ __('messages.home.cta.subtitle') }}</p>
             <button onclick="openLocationModal()" class="btn btn-primary btn-lg">
                 {{ __('messages.home.cta.button') }}
-            </a>
+            </button>
         </div>
     </div>
 </section>
