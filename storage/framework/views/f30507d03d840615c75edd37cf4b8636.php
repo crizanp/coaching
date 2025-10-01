@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
     
-    <title>@yield('title', 'Admin Panel') - {{ config('app.name', 'Laravel') }}</title>
+    <title><?php echo $__env->yieldContent('title', 'Admin Panel'); ?> - <?php echo e(config('app.name', 'Laravel')); ?></title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -638,13 +638,13 @@
         }
     </style>
     
-    @stack('styles')
+    <?php echo $__env->yieldPushContent('styles'); ?>
 </head>
 <body>
     <!-- Sidebar -->
     <div class="admin-sidebar" id="adminSidebar">
         <div class="sidebar-header">
-            <a href="{{ route('admin.dashboard') }}" class="sidebar-logo">
+            <a href="<?php echo e(route('admin.dashboard')); ?>" class="sidebar-logo">
                 <i class="fas fa-spa"></i>
                 <span>Admin Panel</span>
             </a>
@@ -657,7 +657,7 @@
             <div class="nav-section">
                 <div class="nav-section-title">Main</div>
                 <div class="nav-item">
-                    <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                    <a href="<?php echo e(route('admin.dashboard')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.dashboard') ? 'active' : ''); ?>">
                         <i class="fas fa-tachometer-alt"></i>
                         <span>Dashboard</span>
                     </a>
@@ -667,25 +667,25 @@
             <div class="nav-section">
                 <div class="nav-section-title">Content</div>
                 <div class="nav-item">
-                    <a href="{{ route('admin.services.index') }}" class="nav-link {{ request()->routeIs('admin.services.*') ? 'active' : '' }}">
+                    <a href="<?php echo e(route('admin.services.index')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.services.*') ? 'active' : ''); ?>">
                         <i class="fas fa-heart"></i>
                         <span>Services</span>
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a href="{{ route('admin.events.index') }}" class="nav-link {{ request()->routeIs('admin.events.*') ? 'active' : '' }}">
+                    <a href="<?php echo e(route('admin.events.index')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.events.*') ? 'active' : ''); ?>">
                         <i class="fas fa-calendar-alt"></i>
                         <span>Events & Workshops</span>
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a href="{{ route('admin.blogs.index') }}" class="nav-link {{ request()->routeIs('admin.blogs.*') ? 'active' : '' }}">
+                    <a href="<?php echo e(route('admin.blogs.index')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.blogs.*') ? 'active' : ''); ?>">
                         <i class="fas fa-blog"></i>
                         <span>Blog Posts</span>
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a href="{{ route('admin.guides.index') }}" class="nav-link {{ request()->routeIs('admin.guides.*') ? 'active' : '' }}">
+                    <a href="<?php echo e(route('admin.guides.index')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.guides.*') ? 'active' : ''); ?>">
                         <i class="fas fa-book"></i>
                         <span>Guides</span>
                     </a>
@@ -695,19 +695,19 @@
             <div class="nav-section">
                 <div class="nav-section-title">Management</div>
                 <div class="nav-item">
-                    <a href="{{ route('admin.appointments.index') }}" class="nav-link {{ request()->routeIs('admin.appointments.*') ? 'active' : '' }}">
+                    <a href="<?php echo e(route('admin.appointments.index')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.appointments.*') ? 'active' : ''); ?>">
                         <i class="fas fa-calendar-check"></i>
                         <span>Appointments</span>
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a href="{{ route('admin.event-applications.index') }}" class="nav-link {{ request()->routeIs('admin.event-applications.*') ? 'active' : '' }}">
+                    <a href="<?php echo e(route('admin.event-applications.index')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.event-applications.*') ? 'active' : ''); ?>">
                         <i class="fas fa-user-plus"></i>
                         <span>Event Applications</span>
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a href="{{ route('admin.guide-downloads.index') }}" class="nav-link {{ request()->routeIs('admin.guide-downloads.*') ? 'active' : '' }}">
+                    <a href="<?php echo e(route('admin.guide-downloads.index')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.guide-downloads.*') ? 'active' : ''); ?>">
                         <i class="fas fa-download"></i>
                         <span>Guide Downloads</span>
                     </a>
@@ -717,13 +717,13 @@
             <div class="nav-section">
                 <div class="nav-section-title">System</div>
                 <div class="nav-item">
-                    <a href="{{ route('admin.settings') }}" class="nav-link {{ request()->routeIs('admin.settings') ? 'active' : '' }}">
+                    <a href="<?php echo e(route('admin.settings')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.settings') ? 'active' : ''); ?>">
                         <i class="fas fa-cog"></i>
                         <span>Settings</span>
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a href="{{ route('admin.change-password') }}" class="nav-link {{ request()->routeIs('admin.change-password') ? 'active' : '' }}">
+                    <a href="<?php echo e(route('admin.change-password')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.change-password') ? 'active' : ''); ?>">
                         <i class="fas fa-key"></i>
                         <span>Change Password</span>
                     </a>
@@ -736,14 +736,14 @@
     <div class="admin-main" id="adminMain">
         <!-- Header -->
         <header class="admin-header">
-            <h1 class="header-title">@yield('page-title', 'Dashboard')</h1>
+            <h1 class="header-title"><?php echo $__env->yieldContent('page-title', 'Dashboard'); ?></h1>
             <div class="header-actions">
-                <a href="{{ url('/') }}" class="header-btn" target="_blank">
+                <a href="<?php echo e(url('/')); ?>" class="header-btn" target="_blank">
                     <i class="fas fa-external-link-alt"></i>
                     <span>View Site</span>
                 </a>
-                <form method="POST" action="{{ route('logout') }}" class="d-inline">
-                    @csrf
+                <form method="POST" action="<?php echo e(route('logout')); ?>" class="d-inline">
+                    <?php echo csrf_field(); ?>
                     <button type="submit" class="header-btn">
                         <i class="fas fa-sign-out-alt"></i>
                         <span>Logout</span>
@@ -754,23 +754,25 @@
         
         <!-- Content -->
         <main class="admin-content">
-            @if(session('success'))
+            <?php if(session('success')): ?>
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <i class="fas fa-check-circle me-2"></i>
-                    {{ session('success') }}
+                    <?php echo e(session('success')); ?>
+
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-            @endif
+            <?php endif; ?>
             
-            @if(session('error'))
+            <?php if(session('error')): ?>
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <i class="fas fa-exclamation-circle me-2"></i>
-                    {{ session('error') }}
+                    <?php echo e(session('error')); ?>
+
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-            @endif
+            <?php endif; ?>
             
-            @yield('content')
+            <?php echo $__env->yieldContent('content'); ?>
         </main>
     </div>
     
@@ -825,6 +827,6 @@
         }
     </script>
     
-    @stack('scripts')
+    <?php echo $__env->yieldPushContent('scripts'); ?>
 </body>
-</html>
+</html><?php /**PATH D:\client-fiverr\coaching\resources\views/layouts/admin.blade.php ENDPATH**/ ?>

@@ -8,21 +8,21 @@ class EventApplication extends Model
 {
     protected $fillable = [
         'event_id',
-        'applicant_name',
-        'applicant_email',
-        'applicant_phone',
-        'applicant_age',
-        'motivation',
-        'special_requirements',
+        'name',
+        'email',
+        'phone',
+        'company',
+        'message',
         'status',
         'notes',
-        'applied_at',
-        'processed_at',
+        'ip_address',
+        'confirmed_at',
+        'status_updated_at',
     ];
 
     protected $casts = [
-        'applied_at' => 'datetime',
-        'processed_at' => 'datetime',
+        'confirmed_at' => 'datetime',
+        'status_updated_at' => 'datetime',
     ];
 
     // Relationships
@@ -37,23 +37,44 @@ class EventApplication extends Model
         return $query->where('status', 'pending');
     }
 
-    public function scopeApproved($query)
+    public function scopeConfirmed($query)
     {
-        return $query->where('status', 'approved');
+        return $query->where('status', 'confirmed');
     }
 
-    public function scopeRejected($query)
+    public function scopeCancelled($query)
     {
-        return $query->where('status', 'rejected');
+        return $query->where('status', 'cancelled');
+    }
+
+    public function scopeWaitlist($query)
+    {
+        return $query->where('status', 'waitlist');
     }
 
     // Mutators
     public function setStatusAttribute($value)
     {
+        $oldStatus = $this->attributes['status'] ?? null;
         $this->attributes['status'] = $value;
         
-        if (in_array($value, ['approved', 'rejected'])) {
-            $this->attributes['processed_at'] = now();
+        if ($oldStatus !== $value) {
+            $this->attributes['status_updated_at'] = now();
         }
+        
+        if ($value === 'confirmed') {
+            $this->attributes['confirmed_at'] = now();
+        }
+    }
+
+    // Accessors
+    public function getParticipantNameAttribute()
+    {
+        return $this->name;
+    }
+
+    public function getParticipantEmailAttribute()
+    {
+        return $this->email;
     }
 }

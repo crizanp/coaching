@@ -8,7 +8,13 @@ use App\Models\Service;
 use App\Models\Appointment;
 use App\Models\Testimonial;
 use App\Models\Setting;
+use App\Models\Event;
+use App\Models\EventApplication;
+use App\Models\Blog;
+use App\Models\Guide;
+use App\Models\GuideDownload;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -22,6 +28,11 @@ class AdminController extends Controller
             'appointments' => Appointment::count(),
             'pending_appointments' => Appointment::where('status', 'pending')->count(),
             'testimonials' => Testimonial::count(),
+            'events' => Event::active()->count(),
+            'blogs' => Blog::count(),
+            'guides' => Guide::count(),
+            'guide_downloads' => GuideDownload::count(),
+            'total_participants' => EventApplication::where('status', 'confirmed')->count(),
         ];
 
         $recent_appointments = Appointment::with('service')
@@ -29,7 +40,39 @@ class AdminController extends Controller
             ->limit(5)
             ->get();
 
-        return view('admin.dashboard', compact('stats', 'recent_appointments'));
+        $recent_event_applications = EventApplication::with('event')
+            ->orderBy('created_at', 'desc')
+            ->limit(5)
+            ->get();
+
+        // Chart data for the last 7 days
+        $chart_data = $this->getChartData();
+
+        return view('admin.dashboard', compact('stats', 'recent_appointments', 'recent_event_applications', 'chart_data'));
+    }
+
+    /**
+     * Get chart data for dashboard
+     */
+    private function getChartData()
+    {
+        $days = [];
+        $appointments = [];
+        $events = [];
+
+        for ($i = 6; $i >= 0; $i--) {
+            $date = Carbon::now()->subDays($i);
+            $days[] = $date->format('M d');
+            
+            $appointments[] = Appointment::whereDate('created_at', $date)->count();
+            $events[] = EventApplication::whereDate('created_at', $date)->count();
+        }
+
+        return [
+            'labels' => $days,
+            'appointments' => $appointments,
+            'events' => $events,
+        ];
     }
 
     /**

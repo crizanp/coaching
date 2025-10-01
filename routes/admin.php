@@ -14,6 +14,18 @@ Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function ()
     // Services management
     Route::resource('services', ServiceController::class);
     
+    // Events management  
+    Route::resource('events', \App\Http\Controllers\Admin\EventController::class);
+    Route::patch('events/{event}/toggle-status', [\App\Http\Controllers\Admin\EventController::class, 'toggleStatus'])->name('events.toggle-status');
+    Route::post('events/{event}/duplicate', [\App\Http\Controllers\Admin\EventController::class, 'duplicate'])->name('events.duplicate');
+    
+    // Event Applications management
+    Route::resource('event-applications', \App\Http\Controllers\Admin\EventApplicationController::class)->only(['index', 'show', 'destroy']);
+    Route::patch('event-applications/{eventApplication}/update-status', [\App\Http\Controllers\Admin\EventApplicationController::class, 'updateStatus'])->name('event-applications.update-status');
+    Route::patch('event-applications/{eventApplication}/update-notes', [\App\Http\Controllers\Admin\EventApplicationController::class, 'updateNotes'])->name('event-applications.update-notes');
+    Route::post('event-applications/{eventApplication}/send-confirmation', [\App\Http\Controllers\Admin\EventApplicationController::class, 'sendConfirmation'])->name('event-applications.send-confirmation');
+    Route::post('event-applications/bulk-action', [\App\Http\Controllers\Admin\EventApplicationController::class, 'bulkAction'])->name('event-applications.bulk-action');
+    
     // Appointments management
     Route::resource('appointments', AppointmentController::class);
     Route::patch('appointments/{appointment}/status', [AppointmentController::class, 'updateStatus'])->name('appointments.status');

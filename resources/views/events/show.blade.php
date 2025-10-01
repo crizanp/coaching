@@ -71,6 +71,86 @@ atelier, événement, {{ $event->type }}, développement personnel, bien-être, 
                         {!! nl2br(e($event->getTranslation('content', app()->getLocale()))) !!}
                     </div>
                 </div>
+
+                <!-- Workshop Transformation Section -->
+                @if($event->type === 'workshop' || $event->type === 'atelier')
+                <div class="practice-card-textured mb-4">
+                    <div class="practice-card-body">
+                        <div class="practice-icon-left">
+                            <i class="fas fa-sparkles"></i>
+                        </div>
+                        <div class="practice-card-content">
+                            <h4>Une expérience transformante</h4>
+                        </div>
+                    </div>
+                    <div class="content-description">
+                        <div class="transformation-highlights">
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="transformation-item">
+                                        <div class="d-flex align-items-start">
+                                            <div class="transformation-icon me-3">
+                                                <i class="fas fa-heart"></i>
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-2" style="color: var(--primary-pink); font-weight: 600;">Découverte émotionnelle</h6>
+                                                <p class="mb-0">Apprenez à reconnaître et accueillir vos émotions avec bienveillance</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="transformation-item">
+                                        <div class="d-flex align-items-start">
+                                            <div class="transformation-icon me-3">
+                                                <i class="fas fa-search"></i>
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-2" style="color: var(--primary-pink); font-weight: 600;">Compréhension profonde</h6>
+                                                <p class="mb-0">Identifiez les besoins cachés derrière chaque émotion et comportement</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="transformation-item">
+                                        <div class="d-flex align-items-start">
+                                            <div class="transformation-icon me-3">
+                                                <i class="fas fa-comments"></i>
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-2" style="color: var(--primary-pink); font-weight: 600;">Communication authentique</h6>
+                                                <p class="mb-0">Développez une communication plus authentique et bienveillante</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="transformation-item">
+                                        <div class="d-flex align-items-start">
+                                            <div class="transformation-icon me-3">
+                                                <i class="fas fa-users"></i>
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-2" style="color: var(--primary-pink); font-weight: 600;">Relations harmonieuses</h6>
+                                                <p class="mb-0">Créez des liens plus profonds avec vos proches et collègues</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4 p-4 rounded-3" style="background: rgba(255, 182, 193, 0.1); border-left: 4px solid var(--primary-pink);">
+                            <p class="mb-0" style="font-style: italic; color: #6c757d;">
+                                <i class="fas fa-quote-left me-2" style="color: var(--primary-pink);"></i>
+                                "Chaque participant repart avec les clés concrètes pour transformer ses relations et mieux vivre ses émotions au quotidien."
+                                <i class="fas fa-quote-right ms-2" style="color: var(--primary-pink);"></i>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                @endif
                 
                 <!-- Benefits -->
                 @if($event->benefits && count($event->getTranslation('benefits', app()->getLocale())) > 0)
@@ -217,7 +297,7 @@ atelier, événement, {{ $event->type }}, développement personnel, bien-être, 
                         
                         @if($event->price)
                         <div class="service-detail-item mb-3">
-                            <strong>{{ __('messages.events.price') }}:</strong> {{ number_format($event->price, 2) }}€
+                            <strong>{{ __('messages.events.price') }}:</strong> {{ number_format((float)$event->price, 2) }}€
                         </div>
                         @endif
                         
@@ -398,6 +478,49 @@ atelier, événement, {{ $event->type }}, développement personnel, bien-être, 
         transform: scale(1.05);
     }
 
+    /* Transformation Section Styles */
+    .transformation-highlights {
+        margin-top: 10px;
+    }
+
+    .transformation-item {
+        padding: 15px;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        background: rgba(255, 182, 193, 0.05);
+        border: 1px solid rgba(255, 182, 193, 0.2);
+    }
+
+    .transformation-item:hover {
+        background: rgba(255, 182, 193, 0.1);
+        border-color: rgba(255, 182, 193, 0.3);
+        transform: translateY(-2px);
+    }
+
+    .transformation-icon {
+        width: 40px;
+        height: 40px;
+        background: var(--primary-pink);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+
+    .transformation-item h6 {
+        font-size: 1rem;
+        line-height: 1.3;
+    }
+
+    .transformation-item p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        color: #6c757d;
+    }
+
     @media (max-width: 767px) {
         .practice-card-body {
             flex-direction: column;
@@ -407,6 +530,25 @@ atelier, événement, {{ $event->type }}, développement personnel, bien-être, 
             width: 56px;
             height: 56px;
             font-size: 1.6rem;
+        }
+        
+        .transformation-item {
+            padding: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .transformation-icon {
+            width: 35px;
+            height: 35px;
+            font-size: 1rem;
+        }
+        
+        .transformation-item h6 {
+            font-size: 0.95rem;
+        }
+        
+        .transformation-item p {
+            font-size: 0.85rem;
         }
     }
 </style>

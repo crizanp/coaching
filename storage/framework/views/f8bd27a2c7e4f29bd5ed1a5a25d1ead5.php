@@ -1,8 +1,8 @@
-@extends('layouts.admin')
 
-@section('page-title', 'Dashboard')
 
-@section('content')
+<?php $__env->startSection('page-title', 'Dashboard'); ?>
+
+<?php $__env->startSection('content'); ?>
 <div class="fade-in">
     <!-- Stats Grid -->
     <div class="stats-grid mb-4">
@@ -10,7 +10,7 @@
             <div class="stat-icon success">
                 <i class="fas fa-heart"></i>
             </div>
-            <div class="stat-value">{{ $stats['services'] }}</div>
+            <div class="stat-value"><?php echo e($stats['services']); ?></div>
             <div class="stat-label">Services</div>
             <div class="stat-change positive">
                 <i class="fas fa-arrow-up"></i>
@@ -22,7 +22,7 @@
             <div class="stat-icon info">
                 <i class="fas fa-calendar-check"></i>
             </div>
-            <div class="stat-value">{{ $stats['appointments'] }}</div>
+            <div class="stat-value"><?php echo e($stats['appointments']); ?></div>
             <div class="stat-label">Total Appointments</div>
             <div class="stat-change positive">
                 <i class="fas fa-arrow-up"></i>
@@ -34,7 +34,7 @@
             <div class="stat-icon warning">
                 <i class="fas fa-clock"></i>
             </div>
-            <div class="stat-value">{{ $stats['pending_appointments'] }}</div>
+            <div class="stat-value"><?php echo e($stats['pending_appointments']); ?></div>
             <div class="stat-label">Pending Appointments</div>
             <div class="stat-change">
                 <i class="fas fa-clock"></i>
@@ -46,7 +46,7 @@
             <div class="stat-icon primary">
                 <i class="fas fa-calendar-alt"></i>
             </div>
-            <div class="stat-value">{{ $stats['events'] ?? 0 }}</div>
+            <div class="stat-value"><?php echo e($stats['events'] ?? 0); ?></div>
             <div class="stat-label">Events & Workshops</div>
             <div class="stat-change positive">
                 <i class="fas fa-plus"></i>
@@ -58,7 +58,7 @@
             <div class="stat-icon secondary">
                 <i class="fas fa-star"></i>
             </div>
-            <div class="stat-value">{{ $stats['testimonials'] }}</div>
+            <div class="stat-value"><?php echo e($stats['testimonials']); ?></div>
             <div class="stat-label">Testimonials</div>
             <div class="stat-change positive">
                 <i class="fas fa-thumbs-up"></i>
@@ -70,7 +70,7 @@
             <div class="stat-icon accent">
                 <i class="fas fa-users"></i>
             </div>
-            <div class="stat-value">{{ $stats['total_participants'] ?? 0 }}</div>
+            <div class="stat-value"><?php echo e($stats['total_participants'] ?? 0); ?></div>
             <div class="stat-label">Event Participants</div>
             <div class="stat-change positive">
                 <i class="fas fa-user-plus"></i>
@@ -90,19 +90,19 @@
                     </h3>
                 </div>
                 <div class="d-flex flex-column gap-2">
-                    <a href="{{ route('admin.events.create') }}" class="btn-admin btn-admin-primary">
+                    <a href="<?php echo e(route('admin.events.create')); ?>" class="btn-admin btn-admin-primary">
                         <i class="fas fa-plus"></i>
                         Create New Workshop
                     </a>
-                    <a href="{{ route('admin.services.create') }}" class="btn-admin btn-admin-outline">
+                    <a href="<?php echo e(route('admin.services.create')); ?>" class="btn-admin btn-admin-outline">
                         <i class="fas fa-heart"></i>
                         Add New Service
                     </a>
-                    <a href="{{ route('admin.blogs.create') }}" class="btn-admin btn-admin-outline">
+                    <a href="<?php echo e(route('admin.blogs.create')); ?>" class="btn-admin btn-admin-outline">
                         <i class="fas fa-blog"></i>
                         Write Blog Post
                     </a>
-                    <a href="{{ url('/') }}" class="btn-admin btn-admin-outline" target="_blank">
+                    <a href="<?php echo e(url('/')); ?>" class="btn-admin btn-admin-outline" target="_blank">
                         <i class="fas fa-external-link-alt"></i>
                         View Website
                     </a>
@@ -135,11 +135,11 @@
                         <i class="fas fa-calendar-check me-2"></i>
                         Recent Appointments
                     </h3>
-                    <a href="{{ route('admin.appointments.index') }}" class="btn-admin btn-admin-outline btn-sm">
+                    <a href="<?php echo e(route('admin.appointments.index')); ?>" class="btn-admin btn-admin-outline btn-sm">
                         View All
                     </a>
                 </div>
-                @if($recent_appointments->count() > 0)
+                <?php if($recent_appointments->count() > 0): ?>
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead>
@@ -151,38 +151,40 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($recent_appointments as $appointment)
+                                <?php $__currentLoopData = $recent_appointments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $appointment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
                                     <td>
                                         <div>
-                                            <strong>{{ $appointment->client_name }}</strong><br>
-                                            <small class="text-muted">{{ $appointment->client_email }}</small>
+                                            <strong><?php echo e($appointment->client_name); ?></strong><br>
+                                            <small class="text-muted"><?php echo e($appointment->client_email); ?></small>
                                         </div>
                                     </td>
                                     <td>
-                                        @if($appointment->service)
-                                            {{ $appointment->service->getTranslation('name', 'fr') }}
-                                        @else
+                                        <?php if($appointment->service): ?>
+                                            <?php echo e($appointment->service->getTranslation('name', 'fr')); ?>
+
+                                        <?php else: ?>
                                             <span class="text-muted">Service deleted</span>
-                                        @endif
+                                        <?php endif; ?>
                                     </td>
-                                    <td>{{ $appointment->appointment_datetime->format('d/m/Y H:i') }}</td>
+                                    <td><?php echo e($appointment->appointment_datetime->format('d/m/Y H:i')); ?></td>
                                     <td>
-                                        <span class="badge badge-{{ $appointment->status === 'confirmed' ? 'success' : ($appointment->status === 'pending' ? 'warning' : 'danger') }}">
-                                            {{ ucfirst($appointment->status) }}
+                                        <span class="badge badge-<?php echo e($appointment->status === 'confirmed' ? 'success' : ($appointment->status === 'pending' ? 'warning' : 'danger')); ?>">
+                                            <?php echo e(ucfirst($appointment->status)); ?>
+
                                         </span>
                                     </td>
                                 </tr>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody>
                         </table>
                     </div>
-                @else
+                <?php else: ?>
                     <div class="text-center py-4">
                         <i class="fas fa-calendar-times fa-3x text-muted mb-3"></i>
                         <p class="text-muted">No recent appointments found.</p>
                     </div>
-                @endif
+                <?php endif; ?>
             </div>
         </div>
 
@@ -194,11 +196,11 @@
                         <i class="fas fa-user-plus me-2"></i>
                         Recent Event Applications
                     </h3>
-                    <a href="{{ route('admin.event-applications.index') }}" class="btn-admin btn-admin-outline btn-sm">
+                    <a href="<?php echo e(route('admin.event-applications.index')); ?>" class="btn-admin btn-admin-outline btn-sm">
                         View All
                     </a>
                 </div>
-                @if(isset($recent_event_applications) && $recent_event_applications->count() > 0)
+                <?php if(isset($recent_event_applications) && $recent_event_applications->count() > 0): ?>
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead>
@@ -210,38 +212,40 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($recent_event_applications as $application)
+                                <?php $__currentLoopData = $recent_event_applications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $application): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
                                     <td>
                                         <div>
-                                            <strong>{{ $application->name }}</strong><br>
-                                            <small class="text-muted">{{ $application->email }}</small>
+                                            <strong><?php echo e($application->name); ?></strong><br>
+                                            <small class="text-muted"><?php echo e($application->email); ?></small>
                                         </div>
                                     </td>
                                     <td>
-                                        @if($application->event)
-                                            {{ $application->event->getTranslation('title', 'fr') }}
-                                        @else
+                                        <?php if($application->event): ?>
+                                            <?php echo e($application->event->getTranslation('title', 'fr')); ?>
+
+                                        <?php else: ?>
                                             <span class="text-muted">Event deleted</span>
-                                        @endif
+                                        <?php endif; ?>
                                     </td>
-                                    <td>{{ $application->created_at->format('d/m/Y H:i') }}</td>
+                                    <td><?php echo e($application->created_at->format('d/m/Y H:i')); ?></td>
                                     <td>
-                                        <span class="badge badge-{{ $application->status === 'confirmed' ? 'success' : ($application->status === 'pending' ? 'warning' : 'danger') }}">
-                                            {{ ucfirst($application->status) }}
+                                        <span class="badge badge-<?php echo e($application->status === 'confirmed' ? 'success' : ($application->status === 'pending' ? 'warning' : 'danger')); ?>">
+                                            <?php echo e(ucfirst($application->status)); ?>
+
                                         </span>
                                     </td>
                                 </tr>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody>
                         </table>
                     </div>
-                @else
+                <?php else: ?>
                     <div class="text-center py-4">
                         <i class="fas fa-user-times fa-3x text-muted mb-3"></i>
                         <p class="text-muted">No recent event applications found.</p>
                     </div>
-                @endif
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -262,9 +266,9 @@
                             <div class="content-stat-icon bg-primary">
                                 <i class="fas fa-blog"></i>
                             </div>
-                            <h4 class="content-stat-value">{{ $stats['blogs'] ?? 0 }}</h4>
+                            <h4 class="content-stat-value"><?php echo e($stats['blogs'] ?? 0); ?></h4>
                             <p class="content-stat-label">Blog Posts</p>
-                            <a href="{{ route('admin.blogs.index') }}" class="btn btn-outline-primary btn-sm">Manage</a>
+                            <a href="<?php echo e(route('admin.blogs.index')); ?>" class="btn btn-outline-primary btn-sm">Manage</a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center mb-3">
@@ -272,9 +276,9 @@
                             <div class="content-stat-icon bg-success">
                                 <i class="fas fa-book"></i>
                             </div>
-                            <h4 class="content-stat-value">{{ $stats['guides'] ?? 0 }}</h4>
+                            <h4 class="content-stat-value"><?php echo e($stats['guides'] ?? 0); ?></h4>
                             <p class="content-stat-label">Guides</p>
-                            <a href="{{ route('admin.guides.index') }}" class="btn btn-outline-success btn-sm">Manage</a>
+                            <a href="<?php echo e(route('admin.guides.index')); ?>" class="btn btn-outline-success btn-sm">Manage</a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center mb-3">
@@ -282,9 +286,9 @@
                             <div class="content-stat-icon bg-info">
                                 <i class="fas fa-download"></i>
                             </div>
-                            <h4 class="content-stat-value">{{ $stats['guide_downloads'] ?? 0 }}</h4>
+                            <h4 class="content-stat-value"><?php echo e($stats['guide_downloads'] ?? 0); ?></h4>
                             <p class="content-stat-label">Downloads</p>
-                            <a href="{{ route('admin.guide-downloads.index') }}" class="btn btn-outline-info btn-sm">View</a>
+                            <a href="<?php echo e(route('admin.guide-downloads.index')); ?>" class="btn btn-outline-info btn-sm">View</a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center mb-3">
@@ -294,7 +298,7 @@
                             </div>
                             <h4 class="content-stat-value"><i class="fas fa-tools"></i></h4>
                             <p class="content-stat-label">Settings</p>
-                            <a href="{{ route('admin.settings') }}" class="btn btn-outline-warning btn-sm">Configure</a>
+                            <a href="<?php echo e(route('admin.settings')); ?>" class="btn btn-outline-warning btn-sm">Configure</a>
                         </div>
                     </div>
                 </div>
@@ -302,9 +306,9 @@
         </div>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('styles')
+<?php $__env->startPush('styles'); ?>
 <style>
 .content-stat {
     padding: 1.5rem;
@@ -371,9 +375,9 @@
     }
 }
 </style>
-@endpush
+<?php $__env->stopPush(); ?>
 
-@push('scripts')
+<?php $__env->startPush('scripts'); ?>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Appointments Chart
@@ -382,17 +386,17 @@ document.addEventListener('DOMContentLoaded', function() {
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: {!! json_encode($chart_data['labels'] ?? []) !!},
+                labels: <?php echo json_encode($chart_data['labels'] ?? []); ?>,
                 datasets: [{
                     label: 'Appointments',
-                    data: {!! json_encode($chart_data['appointments'] ?? []) !!},
+                    data: <?php echo json_encode($chart_data['appointments'] ?? []); ?>,
                     borderColor: '#3b82f6',
                     backgroundColor: 'rgba(59, 130, 246, 0.1)',
                     tension: 0.4,
                     fill: true
                 }, {
                     label: 'Event Applications',
-                    data: {!! json_encode($chart_data['events'] ?? []) !!},
+                    data: <?php echo json_encode($chart_data['events'] ?? []); ?>,
                     borderColor: '#10b981',
                     backgroundColor: 'rgba(16, 185, 129, 0.1)',
                     tension: 0.4,
@@ -448,4 +452,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
-@endpush
+<?php $__env->stopPush(); ?>
+<?php echo $__env->make('layouts.admin', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH D:\client-fiverr\coaching\resources\views/admin/dashboard.blade.php ENDPATH**/ ?>
