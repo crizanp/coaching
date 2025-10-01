@@ -20,6 +20,14 @@ return [
     'home.hero.cta_book' => 'Réserver',
     'home.hero.cta_contact' => 'Me Contacter',
     
+    // Hero Slides
+    'home.hero.slide1.text' => 'FEMME<br>MAMAN<br>THÉRAPEUTE',
+    'home.hero.slide1.button' => 'Rendez-vous',
+    'home.hero.slide2.text' => 'QUE POUVONS-NOUS<br>TRANSFORMER<br>ENSEMBLE?',
+    'home.hero.slide2.button' => 'Tous les Services',
+    'home.hero.slide3.text' => 'VOUS HÉSITEZ À<br>CONSULTER?',
+    'home.hero.slide3.button' => 'Nous Contacter',
+    
     // Quote Section
     'home.quote.title' => 'Tout comme la chrysalide se transforme en papillon, chaque étape de la vie est une opportunité de métamorphose.',
     'home.quote.subtitle' => 'Parce que chaque parcours est unique, j\'accompagne celles et ceux qui souhaitent dépasser leurs blocages, retrouver leur énergie et avancer vers une vie plus épanouie.',
@@ -63,8 +71,8 @@ return [
     'practices.description' => 'Découvrez mes différentes approches thérapeutiques : sophrologie, PNL et hypnose pour votre épanouissement personnel.',
     'practices.benefits' => 'Bénéfices',
     'practices.techniques' => 'Techniques',
-    'practices.approach.title' => 'Mon Approche',
-    'practices.approach.description' => 'Mon approche est bienveillante et prend en compte votre singularité. Chaque séance est adaptée à vos besoins spécifiques.',
+    'practices.approach.title' => 'Comment Je Vous Accompagne',
+    'practices.approach.description' => 'Première rencontre : nous prenons le temps d\'échanger sur ce que vous traversez. Sans pression, juste de l\'écoute.<br><br>Un objectif clair : Ensemble nous définissons ce que vous souhaitez transformer.<br><br>À votre rythme : Pas de formule magique, juste des outils concrets, une présence bienveillante et le respect de qui vous êtes.<br><br>Un espace sécurisé : Tout ce que vous partagez reste confidentiel – ce moment vous appartient.<br><br>Une transformation en douceur : Pas à pas, vous (re)découvrez vos ressources et votre liberté intérieure.',
     'practices.sophrology.title' => 'Sophrologie',
     'practices.sophrology.description' => 'Respiration, détente, visualisation pour retrouver équilibre et sérénité dans votre quotidien.',
     'practices.sophrology.benefits' => ['Gestion du stress', 'Amélioration du sommeil', 'Confiance en soi', 'Préparation mentale'],

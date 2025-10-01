@@ -221,8 +221,8 @@ unset($__errorArgs, $__bag); ?>
                         </div>
                         <div class="info-content">
                             <h6>Email</h6>
-                            <a href="mailto:contact@coaching.com" class="info-link">
-                                contact@coaching.com
+                            <a href="mailto:contact@ssjchrysalide.com" class="info-link">
+                                contact@ssjchrysalide.com
                             </a>
                         </div>
                     </div>
@@ -233,8 +233,8 @@ unset($__errorArgs, $__bag); ?>
                         </div>
                         <div class="info-content">
                             <h6>Telephone</h6>
-                            <a href="tel:+33123456789" class="info-link">
-                                +33 1 23 45 67 89
+                            <a href="tel:+596696103622" class="info-link">
+                                +596 696 103 622
                             </a>
                         </div>
                     </div>
@@ -246,7 +246,7 @@ unset($__errorArgs, $__bag); ?>
                         <div class="info-content">
                             <h6>Address</h6>
                             <span class="info-text">
-                                123 Rue de la Paix,<br>75001 Paris
+                                Route de Schoelcher,<br>97233 Schoelcher, Martinique
                             </span>
                         </div>
                     </div>
@@ -256,18 +256,16 @@ unset($__errorArgs, $__bag); ?>
                     <div class="social-section">
                         <h6 class="mb-3">Follow me</h6>
                         <div class="social-icons">
-                            <a href="#" class="social-icon facebook">
+                            <?php if(\App\Models\Setting::get('social_facebook')): ?>
+                            <a href="<?php echo e(\App\Models\Setting::get('social_facebook')); ?>" class="social-icon facebook" target="_blank">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
-                            <a href="#" class="social-icon instagram">
+                            <?php endif; ?>
+                            <?php if(\App\Models\Setting::get('social_instagram')): ?>
+                            <a href="<?php echo e(\App\Models\Setting::get('social_instagram')); ?>" class="social-icon instagram" target="_blank">
                                 <i class="fab fa-instagram"></i>
                             </a>
-                            <a href="#" class="social-icon linkedin">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                            <a href="#" class="social-icon twitter">
-                                <i class="fab fa-twitter"></i>
-                            </a>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>

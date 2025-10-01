@@ -20,6 +20,14 @@ return [
     'home.hero.cta_book' => 'Book Now',
     'home.hero.cta_contact' => 'Contact Me',
     
+    // Hero Slides
+    'home.hero.slide1.text' => 'WOMAN<br>MOTHER<br>THERAPIST',
+    'home.hero.slide1.button' => 'Appointment',
+    'home.hero.slide2.text' => 'WHAT CAN WE<br>TRANSFORM<br>TOGETHER?',
+    'home.hero.slide2.button' => 'All Services',
+    'home.hero.slide3.text' => 'HESITATING TO<br>CONSULT?',
+    'home.hero.slide3.button' => 'Contact Us',
+    
     // Quote Section
     'home.quote.title' => 'Just as the chrysalis transforms into a butterfly, every stage of life is an opportunity for metamorphosis.',
     'home.quote.subtitle' => 'Because every journey is unique, I support those who wish to overcome their blockages, regain their energy, and move toward a more fulfilling life.',
@@ -63,8 +71,8 @@ return [
     'practices.description' => 'Discover my different therapeutic approaches: sophrology, NLP and hypnosis for your personal development.',
     'practices.benefits' => 'Benefits',
     'practices.techniques' => 'Techniques',
-    'practices.approach.title' => 'My Approach',
-    'practices.approach.description' => 'My approach is caring and takes into account your uniqueness. Each session is adapted to your specific needs.',
+    'practices.approach.title' => 'How I Support You',
+    'practices.approach.description' => 'First meeting: We take the time to discuss what you are going through. Without pressure, just listening.<br><br>A clear goal: Together we define what you wish to transform.<br><br>At your own pace: No magic formula, just concrete tools, a caring presence, and respect for who you are.<br><br>A safe space: Everything you share remains confidential – this moment is yours.<br><br>Gentle transformation: Step by step, you (re)discover your resources and inner freedom.',
     'practices.sophrology.title' => 'Sophrology',
     'practices.sophrology.description' => 'Breathing, relaxation, visualization to regain balance and serenity in your daily life.',
     'practices.sophrology.benefits' => ['Stress management', 'Sleep improvement', 'Self-confidence', 'Mental preparation'],

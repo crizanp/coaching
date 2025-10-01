@@ -63,10 +63,63 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
 <section class="section-padding" style="background: white;">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="fade-in text-center">
+            <div class="col-lg-10">
+                <div class="fade-in text-center mb-5">
                     <h2 class="section-title"><?php echo e(__('messages.practices.approach.title')); ?></h2>
-                    <p class="lead"><?php echo __('messages.practices.approach.description'); ?></p>
+                </div>
+                
+                <div class="approach-steps">
+                    <div class="row">
+                        <div class="col-lg-6 mb-4">
+                            <div class="approach-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h5><?php echo e(app()->getLocale() === 'fr' ? 'Première rencontre' : 'First meeting'); ?></h5>
+                                    <p><?php echo e(app()->getLocale() === 'fr' ? 'Nous prenons le temps d\'échanger sur ce que vous traversez. Sans pression, juste de l\'écoute.' : 'We take the time to discuss what you are going through. Without pressure, just listening.'); ?></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6 mb-4">
+                            <div class="approach-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h5><?php echo e(app()->getLocale() === 'fr' ? 'Un objectif clair' : 'A clear goal'); ?></h5>
+                                    <p><?php echo e(app()->getLocale() === 'fr' ? 'Ensemble nous définissons ce que vous souhaitez transformer.' : 'Together we define what you wish to transform.'); ?></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6 mb-4">
+                            <div class="approach-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h5><?php echo e(app()->getLocale() === 'fr' ? 'À votre rythme' : 'At your own pace'); ?></h5>
+                                    <p><?php echo e(app()->getLocale() === 'fr' ? 'Pas de formule magique, juste des outils concrets, une présence bienveillante et le respect de qui vous êtes.' : 'No magic formula, just concrete tools, a caring presence, and respect for who you are.'); ?></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6 mb-4">
+                            <div class="approach-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h5><?php echo e(app()->getLocale() === 'fr' ? 'Un espace sécurisé' : 'A safe space'); ?></h5>
+                                    <p><?php echo e(app()->getLocale() === 'fr' ? 'Tout ce que vous partagez reste confidentiel – ce moment vous appartient.' : 'Everything you share remains confidential – this moment is yours.'); ?></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-12">
+                            <div class="approach-step approach-step-centered">
+                                <div class="step-number">5</div>
+                                <div class="step-content">
+                                    <h5><?php echo e(app()->getLocale() === 'fr' ? 'Une transformation en douceur' : 'Gentle transformation'); ?></h5>
+                                    <p><?php echo e(app()->getLocale() === 'fr' ? 'Pas à pas, vous (re)découvrez vos ressources et votre liberté intérieure.' : 'Step by step, you (re)discover your resources and inner freedom.'); ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -497,6 +550,100 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
         min-width: 200px;
     }
     
+    /* Approach Steps Styling */
+    .approach-steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+    }
+
+    .approach-step {
+        background: linear-gradient(145deg, #fff 0%, #fef8f9 100%);
+        border: 2px solid rgba(247, 178, 189, 0.2);
+        border-radius: 20px;
+        padding: 2rem;
+        text-align: center;
+        position: relative;
+        transition: all 0.3s ease;
+        overflow: hidden;
+    }
+
+    .approach-step::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            135deg,
+            rgba(247, 178, 189, 0.05) 0%,
+            rgba(215, 51, 132, 0.05) 100%
+        );
+        pointer-events: none;
+    }
+
+    .approach-step:hover {
+        transform: translateY(-8px);
+        border-color: rgba(247, 178, 189, 0.4);
+        box-shadow: 0 15px 35px rgba(247, 178, 189, 0.15);
+    }
+
+    .approach-step-number {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, var(--primary-pink) 0%, #D63384 100%);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin: 0 auto 1.5rem;
+        position: relative;
+        z-index: 2;
+        box-shadow: 0 8px 25px rgba(247, 178, 189, 0.3);
+    }
+
+    .approach-step h4 {
+        color: var(--text-dark);
+        font-weight: 600;
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    .approach-step p {
+        color: #6c757d;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin: 0;
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Responsive grid for approach steps */
+    @media (max-width: 991px) {
+        .approach-steps {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .approach-step {
+            padding: 1.5rem;
+        }
+        
+        .approach-step-number {
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+    }
+
     @media (max-width: 767px) {
         .practice-card-body {
             flex-direction: column;
@@ -521,6 +668,30 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
         .slider-image {
             width: 250px;
             height: 250px;
+        }
+        
+        .approach-steps {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .approach-step {
+            padding: 1.5rem;
+        }
+        
+        .approach-step-number {
+            width: 45px;
+            height: 45px;
+            font-size: 1.3rem;
+        }
+        
+        .approach-step h4 {
+            font-size: 1.1rem;
+        }
+        
+        .approach-step p {
+            font-size: 0.9rem;
         }
     }
 </style>

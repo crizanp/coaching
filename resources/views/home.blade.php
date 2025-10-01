@@ -9,82 +9,63 @@
     <div id="meditativeSlider" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
         <!-- Slides -->
         <div class="carousel-inner">
-            <!-- Slide 1: Sophrologie -->
+            <!-- Slide 1: Appointment -->
             <div class="carousel-item active">
-                <div class="hero-slide" style="background: linear-gradient(135deg, rgba(72, 147, 165, 0.8), rgba(231, 88, 112, 0.8)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;">
-                    <div class="container h-100">
-                        <div class="row h-100 align-items-center justify-content-center text-center">
-                            <div class="col-lg-8">
-                                <div class="hero-content">
-                                    <div class="meditation-icon mb-4">
-                                        <i class="fas fa-seedling"></i>
-                                    </div>
-                                    <h1 class="hero-title">{{ __('messages.home.hero.title') }}</h1>
-                                    <p class="hero-subtitle">{{ __('messages.home.hero.subtitle') }}</p>
-                                   
-                                    <div class="hero-buttons">
-                                        <a href="{{ route('booking.index', app()->getLocale()) }}" class="btn btn-hero-primary">
-                                            {{ __('messages.home.hero.cta_book') }}
-                                        </a>
-                                        <a href="{{ route('contact.index', app()->getLocale()) }}" class="btn btn-hero-outline">
-                                            {{ __('messages.home.hero.cta_contact') }}
-                                        </a>
-                                    </div>
-                                </div>
+                <div class="hero-slide" style="background: url('{{ asset('images/hero/1.png') }}'); background-size: cover; background-position: center;">
+                    <div class="container h-100 position-relative">
+                        <!-- Text overlay -->
+                        <div class="hero-text-overlay">
+                            <h1 class="hero-overlay-text">{!! __('messages.home.hero.slide1.text') !!}</h1>
+                        </div>
+                        
+                        <!-- Button at bottom -->
+                        <div class="hero-button-bottom">
+                            <div class="text-center">
+                                <a href="{{ route('booking.index', app()->getLocale()) }}" class="btn btn-hero-primary">
+                                    {{ __('messages.home.hero.slide1.button') }}
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Slide 2: Hypnose -->
+            <!-- Slide 2: All Services -->
             <div class="carousel-item">
-                <div class="hero-slide" style="background: linear-gradient(135deg, rgba(134, 37, 158, 0.7), rgba(63, 111, 31, 0.7)), url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;">
-                    <div class="container h-100">
-                        <div class="row h-100 align-items-center justify-content-center text-center">
-                            <div class="col-lg-8">
-                                <div class="hero-content">
-                                    <div class="meditation-icon mb-4">
-                                        <i class="fas fa-moon"></i>
-                                    </div>
-                                    <h1 class="hero-title">Trouvez la Paix Intérieure</h1>
-                                    <p class="hero-subtitle">Laissez-vous guider vers un état de sérénité profonde et de bien-être durable</p>
-                                    <div class="hero-buttons">
-                                        <a href="{{ route('services.show', [app()->getLocale(), 'hypnose']) }}" class="btn btn-hero-primary">
-                                            Découvrir l'Hypnose
-                                        </a>
-                                        <a href="{{ route('booking.index', app()->getLocale()) }}" class="btn btn-hero-outline">
-                                            Réserver
-                                        </a>
-                                    </div>
-                                </div>
+                <div class="hero-slide" style="background: url('{{ asset('images/hero/2.png') }}'); background-size: cover; background-position: center;">
+                    <div class="container h-100 position-relative">
+                        <!-- Text overlay -->
+                        <div class="hero-text-overlay">
+                            <h1 class="hero-overlay-text">{!! __('messages.home.hero.slide2.text') !!}</h1>
+                        </div>
+                        
+                        <!-- Button at bottom -->
+                        <div class="hero-button-bottom">
+                            <div class="text-center">
+                                <a href="{{ route('services.index', app()->getLocale()) }}" class="btn btn-hero-primary">
+                                    {{ __('messages.home.hero.slide2.button') }}
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Slide 3: Coaching -->
+            <!-- Slide 3: Contact Us -->
             <div class="carousel-item">
-                <div class="hero-slide" style="background: linear-gradient(135deg, rgba(59, 55, 39, 0.8), rgba(255, 185, 254, 0.8)), url('https://images.unsplash.com/photo-1518611012118-696072aa579a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;">
-                    <div class="container h-100">
-                        <div class="row h-100 align-items-center justify-content-center text-center">
-                            <div class="col-lg-8">
-                                <div class="hero-content">
-                                    <div class="meditation-icon mb-4">
-                                        <i class="fas fa-lotus"></i>
-                                    </div>
-                                    <h1 class="hero-title">Transformez Votre Vie</h1>
-                                    <p class="hero-subtitle">Développez vos ressources intérieures et créez la vie que vous désirez vraiment</p>
-                                    <div class="hero-buttons">
-                                        <a href="{{ route('services.show', [app()->getLocale(), 'coaching-pnl']) }}" class="btn btn-hero-primary">
-                                            Explorer le Coaching
-                                        </a>
-                                        <a href="{{ route('contact.index', app()->getLocale()) }}" class="btn btn-hero-outline">
-                                            Nous Contacter
-                                        </a>
-                                    </div>
-                                </div>
+                <div class="hero-slide" style="background: url('{{ asset('images/hero/3.png') }}'); background-size: cover; background-position: center;">
+                    <div class="container h-100 position-relative">
+                        <!-- Text overlay -->
+                        <div class="hero-text-overlay">
+                            <h1 class="hero-overlay-text">{!! __('messages.home.hero.slide3.text') !!}</h1>
+                        </div>
+                        
+                        <!-- Button at bottom -->
+                        <div class="hero-button-bottom">
+                            <div class="text-center">
+                                <a href="{{ route('contact.index', app()->getLocale()) }}" class="btn btn-hero-primary">
+                                    {{ __('messages.home.hero.slide3.button') }}
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -320,6 +301,129 @@
     </div>
 </section>
 @endsection
+
+@push('styles')
+<style>
+    /* Hero Text Overlay Styles */
+    .hero-text-overlay {
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10;
+        width: 100%;
+        padding: 0 2rem;
+    }
+    
+    .hero-overlay-text {
+        font-family: 'Playfair Display', serif;
+        font-size: 4.5rem;
+        font-weight: 900;
+        color: #000000;
+        text-align: center;
+        line-height: 1.1;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        text-shadow: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+    /* Hero Button Positioning */
+    .hero-button-bottom {
+        position: absolute;
+        top: 72%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        width: 100%;
+    }
+    
+    /* Button Styling */
+    .btn-hero-primary {
+        background: white;
+        border: 2px solid #F7B2BD;
+        color: #D63384;
+        padding: 1rem 2.5rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border-radius: 50px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 25px rgba(247, 178, 189, 0.3);
+    }
+    
+    .btn-hero-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 35px rgba(247, 178, 189, 0.4);
+        background: #F7B2BD;
+        color: white;
+        border-color: #F7B2BD;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 1200px) {
+        .hero-overlay-text {
+            font-size: 3.5rem;
+        }
+        
+        .hero-button-bottom {
+            top: 64%;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .hero-overlay-text {
+            font-size: 2.5rem;
+            padding: 0 1rem;
+        }
+        
+        .hero-text-overlay {
+            padding: 0 1rem;
+            top: 42%;
+        }
+        
+        .hero-button-bottom {
+            top: 58%;
+        }
+        
+        .btn-hero-primary {
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .hero-overlay-text {
+            font-size: 2rem;
+        }
+        
+        .hero-text-overlay {
+            top: 40%;
+        }
+        
+        .hero-button-bottom {
+            top: 55%;
+        }
+        
+        .btn-hero-primary {
+            padding: 0.7rem 1.5rem;
+            font-size: 0.9rem;
+        }
+    }
+    
+    /* Ensure proper slide height */
+    .hero-slide {
+        min-height: 100vh;
+        position: relative;
+    }
+    
+    .hero-slider .container {
+        position: relative;
+    }
+</style>
+@endpush
 
 @push('structured-data')
 @php
