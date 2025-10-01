@@ -33,15 +33,15 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
                     <div class="practices-image-slider">
                         <div class="slider-container">
                             <div class="slide active">
-                                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                <img src="{{ asset('images/mypractice/1.png') }}" 
                                      alt="Sophrologie" class="img-fluid rounded-circle slider-image">
                             </div>
                             <div class="slide">
-                                <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                <img src="{{ asset('images/mypractice/2.png') }}" 
                                      alt="PNL" class="img-fluid rounded-circle slider-image">
                             </div>
                             <div class="slide">
-                                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                <img src="{{ asset('images/mypractice/3.png') }}" 
                                      alt="Hypnose" class="img-fluid rounded-circle slider-image">
                             </div>
                         </div>
