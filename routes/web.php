@@ -9,7 +9,6 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\SitemapController;
-use App\Http\Controllers\GuideController;
 use Illuminate\Support\Facades\Auth;
 
 // Redirect root to French
@@ -34,11 +33,6 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])->middleware('set.l
     Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
     Route::get('/booking/{location}', [BookingController::class, 'locationBooking'])->name('booking.location')->where('location', 'fort-de-france|riviere-salee');
     Route::post('/booking/{location}', [BookingController::class, 'storeLocationBooking'])->name('booking.location.store')->where('location', 'fort-de-france|riviere-salee');
-    
-    // Guide routes
-    Route::get('/guides', [GuideController::class, 'index'])->name('guides.index');
-    Route::get('/api/guides', [GuideController::class, 'getGuides'])->name('guides.list');
-    Route::post('/api/guide/download', [GuideController::class, 'download'])->name('guide.download');
     
     // Legal pages
     Route::get('/privacy-policy', function() { return view('privacy-policy'); })->name('privacy-policy');

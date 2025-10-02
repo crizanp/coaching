@@ -5,8 +5,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\AppointmentController;
 use App\Http\Controllers\Admin\BlogController;
-use App\Http\Controllers\Admin\GuideController;
-use App\Http\Controllers\Admin\GuideDownloadController;
+use App\Http\Controllers\Admin\BlogGiftRequestController;
 
 Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function () {
     Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
@@ -34,16 +33,8 @@ Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function ()
     Route::resource('blogs', BlogController::class);
     Route::patch('blogs/{blog}/toggle-publish', [BlogController::class, 'togglePublish'])->name('blogs.toggle-publish');
     
-    // Guides management
-    Route::resource('guides', GuideController::class);
-    Route::patch('guides/{guide}/toggle-status', [GuideController::class, 'toggleStatus'])->name('guides.toggle-status');
-    
-    // Guide Downloads management
-    Route::resource('guide-downloads', GuideDownloadController::class)->only(['index', 'show', 'destroy']);
-    Route::post('guide-downloads/{guideDownload}/approve', [GuideDownloadController::class, 'approve'])->name('guide-downloads.approve');
-    Route::post('guide-downloads/{guideDownload}/reject', [GuideDownloadController::class, 'reject'])->name('guide-downloads.reject');
-    Route::post('guide-downloads/{guideDownload}/send', [GuideDownloadController::class, 'sendGuide'])->name('guide-downloads.send');
-    Route::post('guide-downloads/bulk-action', [GuideDownloadController::class, 'bulkAction'])->name('guide-downloads.bulk-action');
+    // Blog Gift Requests management
+    Route::resource('blog-gift-requests', BlogGiftRequestController::class)->only(['index', 'show', 'update', 'destroy']);
     
     // Settings
     Route::get('settings', [AdminController::class, 'settings'])->name('settings');

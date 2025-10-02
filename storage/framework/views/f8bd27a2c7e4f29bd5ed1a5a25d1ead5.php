@@ -273,22 +273,12 @@
                     </div>
                     <div class="col-lg-3 col-md-6 text-center mb-3">
                         <div class="content-stat">
-                            <div class="content-stat-icon bg-success">
-                                <i class="fas fa-book"></i>
-                            </div>
-                            <h4 class="content-stat-value"><?php echo e($stats['guides'] ?? 0); ?></h4>
-                            <p class="content-stat-label">Guides</p>
-                            <a href="<?php echo e(route('admin.guides.index')); ?>" class="btn btn-outline-success btn-sm">Manage</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 text-center mb-3">
-                        <div class="content-stat">
                             <div class="content-stat-icon bg-info">
-                                <i class="fas fa-download"></i>
+                                <i class="fas fa-gift"></i>
                             </div>
-                            <h4 class="content-stat-value"><?php echo e($stats['guide_downloads'] ?? 0); ?></h4>
-                            <p class="content-stat-label">Downloads</p>
-                            <a href="<?php echo e(route('admin.guide-downloads.index')); ?>" class="btn btn-outline-info btn-sm">View</a>
+                            <h4 class="content-stat-value"><?php echo e($stats['blog_gift_requests'] ?? 0); ?></h4>
+                            <p class="content-stat-label">Blog Gift Requests</p>
+                            <a href="<?php echo e(route('admin.blog-gift-requests.index')); ?>" class="btn btn-outline-success btn-sm">Review</a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center mb-3">

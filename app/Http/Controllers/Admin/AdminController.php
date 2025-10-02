@@ -11,8 +11,7 @@ use App\Models\Setting;
 use App\Models\Event;
 use App\Models\EventApplication;
 use App\Models\Blog;
-use App\Models\Guide;
-use App\Models\GuideDownload;
+use App\Models\BlogGiftRequest;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 
@@ -30,8 +29,7 @@ class AdminController extends Controller
             'testimonials' => Testimonial::count(),
             'events' => Event::active()->count(),
             'blogs' => Blog::count(),
-            'guides' => Guide::count(),
-            'guide_downloads' => GuideDownload::count(),
+            'blog_gift_requests' => BlogGiftRequest::count(),
             'total_participants' => EventApplication::where('status', 'confirmed')->count(),
         ];
 

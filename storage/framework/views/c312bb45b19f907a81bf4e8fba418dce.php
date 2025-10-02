@@ -678,12 +678,6 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo e(route('guides.index', app()->getLocale())); ?>">
-                            <?php echo e(__('messages.nav.guides')); ?>
-
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="<?php echo e(route('contact.index', app()->getLocale())); ?>">
                             <?php echo e(__('messages.nav.contact')); ?>
 

@@ -737,12 +737,6 @@
                         <span>Blog Posts</span>
                     </a>
                 </div>
-                <div class="nav-item">
-                    <a href="<?php echo e(route('admin.guides.index')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.guides.*') ? 'active' : ''); ?>">
-                        <i class="fas fa-book"></i>
-                        <span>Guides</span>
-                    </a>
-                </div>
             </div>
             
             <div class="nav-section">
@@ -760,9 +754,9 @@
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a href="<?php echo e(route('admin.guide-downloads.index')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.guide-downloads.*') ? 'active' : ''); ?>">
-                        <i class="fas fa-download"></i>
-                        <span>Guide Downloads</span>
+                    <a href="<?php echo e(route('admin.blog-gift-requests.index')); ?>" class="nav-link <?php echo e(request()->routeIs('admin.blog-gift-requests.*') ? 'active' : ''); ?>">
+                        <i class="fas fa-gift"></i>
+                        <span>Blog Gift Requests</span>
                     </a>
                 </div>
             </div>
