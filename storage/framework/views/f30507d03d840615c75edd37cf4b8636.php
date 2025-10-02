@@ -20,35 +20,6 @@
     
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-    .btn-outline-primary:hover {
-        background-color: #0d6efd !important;
-        border-color: #0d6efd !important;
-        color: #fff !important;
-    }
-    
-    .form-control, .form-select {
-        background-color: #333 !important;
-        border-color: #555 !important;
-        color: #e9e9e9 !important;
-    }
-    
-    .form-control:focus, .form-select:focus {
-        background-color: #333 !important;
-        border-color: #0d6efd !important;
-        color: #e9e9e9 !important;
-        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25) !important;
-    }
-    
-    .form-label {
-        color: #e9e9e9 !important;
-    }
-    
-    .text-muted {
-        color: #adb5bd !important;
-    }
-    
-    
     <!-- Custom Admin Styles -->
     <style>
         :root {
@@ -98,6 +69,30 @@
         .admin-sidebar.collapsed {
             width: var(--admin-sidebar-collapsed);
         }
+
+        .admin-sidebar.collapsed .sidebar-logo span,
+        .admin-sidebar.collapsed .nav-section-title,
+        .admin-sidebar.collapsed .nav-link span {
+            display: none;
+        }
+
+        .admin-sidebar.collapsed .sidebar-header {
+            padding: 1.5rem 0.75rem;
+        }
+
+        .admin-sidebar.collapsed .sidebar-toggle {
+            margin-left: auto;
+        }
+
+        .admin-sidebar.collapsed .nav-link {
+            justify-content: center;
+            padding: 0.75rem 0.5rem;
+            gap: 0;
+        }
+
+        .admin-sidebar.collapsed .nav-link i {
+            margin-right: 0;
+        }
         
         .sidebar-header {
             padding: 1.5rem 1rem;
@@ -129,19 +124,34 @@
         }
         
         .sidebar-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
             background: none;
             border: none;
-            color: var(--admin-text-muted);
+            color: var(--admin-text);
             font-size: 1.25rem;
             cursor: pointer;
             padding: 0.5rem;
             border-radius: 6px;
             transition: all 0.2s ease;
+            line-height: 1;
         }
         
         .sidebar-toggle:hover {
             background: var(--admin-dark-lighter);
             color: var(--admin-text);
+        }
+
+        .sidebar-toggle:focus-visible {
+            outline: 2px solid var(--admin-primary);
+            outline-offset: 2px;
+        }
+
+        .sidebar-toggle i {
+            pointer-events: none;
         }
         
         .sidebar-nav {
@@ -625,19 +635,62 @@
             border-color: var(--admin-primary-hover) !important;
         }
 
+        .btn-outline-primary {
+            color: var(--admin-primary) !important;
+            border-color: var(--admin-primary) !important;
+            background: transparent !important;
+        }
+
+        .btn-outline-primary:hover,
+        .btn-outline-primary:focus {
+            background: var(--admin-primary) !important;
+            border-color: var(--admin-primary) !important;
+            color: #fff !important;
+        }
+
         .alert-success {
             background: rgba(16, 185, 129, 0.2) !important;
             border-color: var(--admin-success) !important;
             color: var(--admin-success) !important;
         }
 
-        .alert-danger {
-            background: rgba(239, 68, 68, 0.2) !important;
-            border-color: var(--admin-danger) !important;
-            color: var(--admin-danger) !important;
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--admin-text) !important;
+            font-weight: 500;
+        }
+        
+        .form-control,
+        .form-select {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--admin-dark-lighter) !important;
+            border: 1px solid var(--admin-dark-border) !important;
+            border-radius: 6px;
+            color: var(--admin-text) !important;
+            transition: all 0.2s ease;
+        }
+        
+        .form-control:focus,
+        .form-select:focus {
+            outline: none;
+            background: var(--admin-dark-lighter) !important;
+            border-color: var(--admin-primary) !important;
+            color: var(--admin-text) !important;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+        }
+        
+        .form-control::placeholder,
+        .form-select::placeholder {
+            color: var(--admin-text-muted) !important;
+        }
+
+        .text-muted {
+            color: var(--admin-text-muted) !important;
         }
     </style>
-    
+
     <?php echo $__env->yieldPushContent('styles'); ?>
 </head>
 <body>
@@ -648,8 +701,8 @@
                 <i class="fas fa-spa"></i>
                 <span>Admin Panel</span>
             </a>
-            <button class="sidebar-toggle" id="sidebarToggle">
-                <i class="fas fa-bars"></i>
+            <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Toggle sidebar" aria-expanded="true">
+                <i class="fas fa-angles-left" id="sidebarToggleIcon"></i>
             </button>
         </div>
         
@@ -781,25 +834,50 @@
     
     <!-- Admin JS -->
     <script>
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebarToggleIcon = document.getElementById('sidebarToggleIcon');
+
+        function updateSidebarToggleIcon(isCollapsed) {
+            if (!sidebarToggleIcon || !sidebarToggle) return;
+            sidebarToggleIcon.classList.toggle('fa-angles-left', !isCollapsed);
+            sidebarToggleIcon.classList.toggle('fa-angles-right', isCollapsed);
+            sidebarToggle.setAttribute('aria-expanded', String(!isCollapsed));
+        }
+
         // Sidebar Toggle
-        document.getElementById('sidebarToggle').addEventListener('click', function() {
+        sidebarToggle?.addEventListener('click', function() {
             const sidebar = document.getElementById('adminSidebar');
             const main = document.getElementById('adminMain');
+
+            if (!sidebar || !main) {
+                return;
+            }
             
             sidebar.classList.toggle('collapsed');
             main.classList.toggle('expanded');
+
+            const isCollapsed = sidebar.classList.contains('collapsed');
+            updateSidebarToggleIcon(isCollapsed);
             
             // Store state in localStorage
-            localStorage.setItem('sidebarCollapsed', sidebar.classList.contains('collapsed'));
+            localStorage.setItem('sidebarCollapsed', isCollapsed);
         });
         
         // Restore sidebar state
         window.addEventListener('load', function() {
+            const sidebar = document.getElementById('adminSidebar');
+            const main = document.getElementById('adminMain');
+            if (!sidebar || !main) {
+                return;
+            }
+
             const isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
             if (isCollapsed) {
-                document.getElementById('adminSidebar').classList.add('collapsed');
-                document.getElementById('adminMain').classList.add('expanded');
+                sidebar.classList.add('collapsed');
+                main.classList.add('expanded');
             }
+
+            updateSidebarToggleIcon(isCollapsed);
         });
         
         // Mobile sidebar toggle

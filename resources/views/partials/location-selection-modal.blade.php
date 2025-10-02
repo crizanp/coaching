@@ -10,9 +10,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p class="text-muted mb-4">
-                    {{ __('messages.booking.location.modal.subtitle') }}
-                </p>
+               
                 
                 <div class="row">
                     <div class="col-md-6 mb-3">
@@ -42,12 +40,12 @@
                     </div>
                 </div>
                 
-                <div class="text-center mt-3">
+                <!-- <div class="text-center mt-3">
                     <small class="text-muted">
                         <i class="fas fa-info-circle me-1"></i>
                         {{ __('messages.booking.location.info') }}
                     </small>
-                </div>
+                </div> -->
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
