@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\BlogGiftRequest;
 use App\Models\BlogReaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class BlogController extends Controller
 {
@@ -143,6 +145,94 @@ class BlogController extends Controller
             }
 
             return redirect()->back()->with('error', 'An error occurred while processing your reaction.');
+        }
+    }
+
+    /**
+     * Store a gift request for a blog post
+     */
+    public function giftRequest(Request $request, $locale, Blog $blog)
+    {
+        $validator = Validator::make($request->all(), [
+            'first_name' => ['required', 'string', 'max:120'],
+            'last_name' => ['required', 'string', 'max:120'],
+            'email' => ['required', 'email', 'max:255'],
+            'phone' => ['required', 'string', 'max:50'],
+        ]);
+
+        if ($validator->fails()) {
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'message' => __('messages.blog.gift.messages.validation_error'),
+                    'errors' => $validator->errors(),
+                ], 422);
+            }
+
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $ipAddress = $request->ip();
+
+        $recentRequestExists = BlogGiftRequest::where('ip_address', $ipAddress)
+            ->where('blog_id', $blog->id)
+            ->where('created_at', '>=', now()->subMinutes(10))
+            ->exists();
+
+        if ($recentRequestExists) {
+            $message = __('messages.blog.gift.messages.rate_limited');
+
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => $message,
+                ], 429);
+            }
+
+            return redirect()->back()->with('error', $message);
+        }
+
+        try {
+            BlogGiftRequest::create([
+                'blog_id' => $blog->id,
+                'blog_slug' => $blog->slug,
+                'blog_title' => $blog->title,
+                'locale' => $locale,
+                'first_name' => $validator->validated()['first_name'],
+                'last_name' => $validator->validated()['last_name'],
+                'email' => $validator->validated()['email'],
+                'phone' => $validator->validated()['phone'],
+                'status' => BlogGiftRequest::STATUS_PENDING,
+                'ip_address' => $ipAddress,
+            ]);
+
+            $message = __('messages.blog.gift.messages.success');
+
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => $message,
+                ]);
+            }
+
+            return redirect()->back()->with('success', $message);
+        } catch (\Throwable $th) {
+            Log::error('Blog gift request error: ' . $th->getMessage(), [
+                'blog_id' => $blog->id,
+                'locale' => $locale,
+                'payload' => $request->all(),
+                'ip_address' => $ipAddress,
+            ]);
+
+            $message = __('messages.blog.gift.messages.error');
+
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => $message,
+                ], 500);
+            }
+
+            return redirect()->back()->with('error', $message);
         }
     }
 

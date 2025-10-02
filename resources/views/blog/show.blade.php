@@ -105,6 +105,19 @@
                                 {{ number_format($blog->views_count) }} {{ __('messages.blog.views') }}
                             </div>
                         </div>
+
+                        <div class="gift-cta mt-4">
+                            <button type="button"
+                                    class="btn btn-primary btn-lg gift-request-trigger"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#blogGiftRequestModal">
+                                <i class="fas fa-gift me-2"></i>
+                                {{ __('messages.blog.gift.cta') }}
+                            </button>
+                            <p class="text-muted small mt-2 mb-0">
+                                {{ __('messages.blog.gift.caption') }}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -169,6 +182,53 @@
                 </div>
             </div>
         </section>
+
+        <!-- Gift Request Modal -->
+        <div class="modal fade" id="blogGiftRequestModal" tabindex="-1" aria-labelledby="blogGiftRequestModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="blogGiftRequestModalLabel">
+                            <i class="fas fa-gift me-2"></i>
+                            {{ __('messages.blog.gift.modal_title') }}
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('messages.common.close') }}"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="blogGiftFeedback" class="alert d-none" role="alert"></div>
+                        <form id="blogGiftRequestForm" action="{{ route('blog.gift-request', ['locale' => app()->getLocale(), 'blog' => $blog->slug]) }}" method="POST">
+                            @csrf
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="gift_last_name" class="form-label">{{ __('messages.blog.gift.form.last_name') }}</label>
+                                    <input type="text" class="form-control" id="gift_last_name" name="last_name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="gift_first_name" class="form-label">{{ __('messages.blog.gift.form.first_name') }}</label>
+                                    <input type="text" class="form-control" id="gift_first_name" name="first_name" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="gift_email" class="form-label">{{ __('messages.blog.gift.form.email') }}</label>
+                                    <input type="email" class="form-control" id="gift_email" name="email" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="gift_phone" class="form-label">{{ __('messages.blog.gift.form.phone') }}</label>
+                                    <input type="tel" class="form-control" id="gift_phone" name="phone" required>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                            {{ __('messages.common.close') }}
+                        </button>
+                        <button type="submit" form="blogGiftRequestForm" class="btn btn-primary" id="blogGiftSubmit">
+                            <i class="fas fa-paper-plane me-2"></i>{{ __('messages.blog.gift.form.submit') }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         @if($relatedBlogs->count() > 0)
             <section class="related-posts section-padding" style="background: var(--light-pink);">
@@ -283,6 +343,25 @@
             gap: 20px;
             color: var(--text-muted);
             font-size: 0.95rem;
+        }
+
+        .gift-cta {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .gift-cta .btn {
+            border-radius: 999px;
+            padding-left: 2.5rem;
+            padding-right: 2.5rem;
+            box-shadow: 0 10px 25px rgba(233, 30, 99, 0.2);
+        }
+
+        .gift-cta .btn:hover {
+            box-shadow: 0 12px 30px rgba(233, 30, 99, 0.25);
+            transform: translateY(-2px);
         }
 
         .meta-item {
@@ -594,6 +673,10 @@
             color: var(--primary-pink);
         }
 
+        #blogGiftFeedback {
+            transition: all 0.3s ease;
+        }
+
         .blog-card-excerpt {
             color: var(--text-muted);
             line-height: 1.6;
@@ -645,6 +728,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const reactionButtons = document.querySelectorAll('.reaction-btn');
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     const reactionUrl = `{{ route('blog.react', ['locale' => app()->getLocale(), 'blog' => $blog->id]) }}`;
+    const giftForm = document.getElementById('blogGiftRequestForm');
+    const giftSubmit = document.getElementById('blogGiftSubmit');
+    const giftFeedback = document.getElementById('blogGiftFeedback');
+    const giftModalElement = document.getElementById('blogGiftRequestModal');
+    const giftModalInstance = giftModalElement ? bootstrap.Modal.getOrCreateInstance(giftModalElement) : null;
 
     reactionButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -703,6 +791,52 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    if (giftForm && giftSubmit) {
+        giftForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            toggleGiftSubmitState(true);
+            resetGiftFeedback();
+            clearValidationStates();
+
+            const formData = new FormData(giftForm);
+
+            fetch(giftForm.action, {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken,
+                    'Accept': 'application/json',
+                },
+                body: formData
+            })
+                .then(async response => {
+                    const data = await response.json().catch(() => ({}));
+                    if (!response.ok) {
+                        const message = data.message || `{{ __('messages.blog.gift.messages.error') }}`;
+                        throw { message, errors: data.errors, status: response.status };
+                    }
+                    return data;
+                })
+                .then(data => {
+                    showGiftFeedback('success', data.message || `{{ __('messages.blog.gift.messages.success') }}`);
+                    giftForm.reset();
+                    if (giftModalInstance) {
+                        setTimeout(() => giftModalInstance.hide(), 1500);
+                    }
+                })
+                .catch(error => {
+                    console.error('Gift request error:', error);
+                    if (error.errors) {
+                        displayValidationErrors(error.errors);
+                    }
+                    const firstError = error.errors ? Object.values(error.errors).flat()[0] : null;
+                    showGiftFeedback('danger', firstError || error.message || `{{ __('messages.blog.gift.messages.error') }}`);
+                })
+                .finally(() => {
+                    toggleGiftSubmitState(false);
+                });
+        });
+    }
+
     function showToast(message, type) {
         const toast = document.createElement('div');
         toast.className = `alert alert-${type === 'success' ? 'success' : 'danger'} position-fixed`;
@@ -712,6 +846,45 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(toast);
 
         setTimeout(() => toast.remove(), 3000);
+    }
+
+    function toggleGiftSubmitState(isSubmitting) {
+        if (!giftSubmit) return;
+        giftSubmit.disabled = isSubmitting;
+        giftSubmit.innerHTML = isSubmitting
+            ? `<i class="fas fa-spinner fa-spin me-2"></i>{{ __('messages.blog.gift.form.submitting') }}`
+            : `<i class="fas fa-paper-plane me-2"></i>{{ __('messages.blog.gift.form.submit') }}`;
+    }
+
+    function resetGiftFeedback() {
+        if (!giftFeedback) return;
+        giftFeedback.classList.add('d-none');
+        giftFeedback.textContent = '';
+        giftFeedback.classList.remove('alert-success', 'alert-danger');
+    }
+
+    function showGiftFeedback(type, message) {
+        if (!giftFeedback) return;
+        giftFeedback.classList.remove('d-none');
+        giftFeedback.classList.toggle('alert-success', type === 'success');
+        giftFeedback.classList.toggle('alert-danger', type !== 'success');
+        giftFeedback.textContent = message;
+    }
+
+    function clearValidationStates() {
+        if (!giftForm) return;
+        giftForm.querySelectorAll('.is-invalid').forEach(field => field.classList.remove('is-invalid'));
+    }
+
+    function displayValidationErrors(errors) {
+        if (!errors) return;
+        Object.entries(errors).forEach(([name, messages]) => {
+            const field = giftForm.querySelector(`[name="${name}"]`);
+            if (!field) return;
+            field.classList.add('is-invalid');
+
+            field.addEventListener('input', () => field.classList.remove('is-invalid'), { once: true });
+        });
     }
 });
 </script>
