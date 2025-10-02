@@ -633,8 +633,7 @@
                                     <li><a class="dropdown-item" href="<?php echo e(route('admin.services.index')); ?>"><i class="fas fa-concierge-bell"></i> Services</a></li>
                                     <li><a class="dropdown-item" href="<?php echo e(route('admin.appointments.index')); ?>"><i class="fas fa-calendar-alt"></i> Appointments</a></li>
                                     <li><a class="dropdown-item" href="<?php echo e(route('admin.blogs.index')); ?>"><i class="fas fa-blog"></i> Blog Posts</a></li>
-                                    <li><a class="dropdown-item" href="<?php echo e(route('admin.guides.index')); ?>"><i class="fas fa-book"></i> Guides</a></li>
-                                    <li><a class="dropdown-item" href="<?php echo e(route('admin.guide-downloads.index')); ?>"><i class="fas fa-download"></i> Guide Downloads</a></li>
+                                    <li><a class="dropdown-item" href="<?php echo e(route('admin.blog-gift-requests.index')); ?>"><i class="fas fa-gift"></i> Blog Gift Requests</a></li>
                                     <li><a class="dropdown-item" href="<?php echo e(route('admin.settings')); ?>"><i class="fas fa-cog"></i> Settings</a></li>
                                     <li><a class="dropdown-item" href="<?php echo e(route('admin.change-password')); ?>"><i class="fas fa-key"></i> Change Password</a></li>
                                     <li><hr class="dropdown-divider"></li>

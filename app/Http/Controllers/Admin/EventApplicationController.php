@@ -15,31 +15,67 @@ class EventApplicationController extends Controller
      */
     public function index(Request $request)
     {
-        $query = EventApplication::with(['event']);
-
-        // Filter by status
-        if ($request->filled('status')) {
-            $query->where('status', $request->status);
-        }
+        $applicationsQuery = EventApplication::with(['event']);
+        $metricsBaseQuery = EventApplication::query();
 
         // Filter by event
-        if ($request->filled('event_id')) {
-            $query->where('event_id', $request->event_id);
+        if ($request->filled('event')) {
+            $applicationsQuery->where('event_id', $request->event);
+            $metricsBaseQuery->where('event_id', $request->event);
         }
 
         // Search by participant name or email
         if ($request->filled('search')) {
             $search = $request->search;
-            $query->where(function ($q) use ($search) {
-                $q->where('participant_name', 'like', "%{$search}%")
-                  ->orWhere('participant_email', 'like', "%{$search}%");
-            });
+            $searchCallback = function ($query) use ($search) {
+                $query->where('name', 'like', "%{$search}%")
+                      ->orWhere('email', 'like', "%{$search}%")
+                      ->orWhere('phone', 'like', "%{$search}%");
+            };
+
+            $applicationsQuery->where($searchCallback);
+            $metricsBaseQuery->where($searchCallback);
         }
 
-        $applications = $query->orderBy('created_at', 'desc')->paginate(15);
+        // Date filter (from)
+        if ($request->filled('date_from')) {
+            $dateFrom = \Carbon\Carbon::parse($request->date_from)->startOfDay();
+            $applicationsQuery->where('created_at', '>=', $dateFrom);
+            $metricsBaseQuery->where('created_at', '>=', $dateFrom);
+        }
+
+        // Date filter (to)
+        if ($request->filled('date_to')) {
+            $dateTo = \Carbon\Carbon::parse($request->date_to)->endOfDay();
+            $applicationsQuery->where('created_at', '<=', $dateTo);
+            $metricsBaseQuery->where('created_at', '<=', $dateTo);
+        }
+
+        // Filter by status for listing only
+        if ($request->filled('status')) {
+            $applicationsQuery->where('status', $request->status);
+        }
+
+        $applications = $applicationsQuery
+            ->orderBy('created_at', 'desc')
+            ->paginate(15)
+            ->withQueryString();
+
+    $confirmedCount = (clone $metricsBaseQuery)->where('status', 'confirmed')->count();
+    $pendingCount = (clone $metricsBaseQuery)->where('status', 'pending')->count();
+    $cancelledCount = (clone $metricsBaseQuery)->where('status', 'cancelled')->count();
+    $waitlistCount = (clone $metricsBaseQuery)->where('status', 'waitlist')->count();
+
         $events = Event::active()->orderBy('title->fr')->get();
 
-        return view('admin.event-applications.index', compact('applications', 'events'));
+        return view('admin.event-applications.index', compact(
+            'applications',
+            'events',
+            'confirmedCount',
+            'pendingCount',
+            'cancelledCount',
+            'waitlistCount'
+        ));
     }
 
     /**
@@ -105,7 +141,7 @@ class EventApplicationController extends Controller
     public function bulkAction(Request $request)
     {
         $validated = $request->validate([
-            'action' => 'required|in:confirm,cancel,delete',
+            'action' => 'required|in:confirm,cancel,waitlist,delete',
             'applications' => 'required|array',
             'applications.*' => 'exists:event_applications,id',
         ]);
@@ -124,15 +160,23 @@ class EventApplicationController extends Controller
                     
                 case 'cancel':
                     if ($application->status === 'confirmed') {
-                        $application->event->decrement('current_participants');
+                        optional($application->event)->decrement('current_participants');
                     }
                     $application->update(['status' => 'cancelled']);
                     $this->sendConfirmationEmail($application, 'cancelled');
                     break;
+
+                case 'waitlist':
+                    if ($application->status === 'confirmed') {
+                        optional($application->event)->decrement('current_participants');
+                    }
+                    $application->update(['status' => 'waitlist']);
+                    $this->sendConfirmationEmail($application, 'waitlist');
+                    break;
                     
                 case 'delete':
                     if ($application->status === 'confirmed') {
-                        $application->event->decrement('current_participants');
+                        optional($application->event)->decrement('current_participants');
                     }
                     $application->delete();
                     break;
@@ -143,6 +187,7 @@ class EventApplicationController extends Controller
         $actionText = match($validated['action']) {
             'confirm' => 'confirmed',
             'cancel' => 'cancelled',
+            'waitlist' => 'moved to waitlist',
             'delete' => 'deleted',
         };
 

@@ -66,7 +66,7 @@ class EventController extends Controller
         $validated = $request->validate([
             'applicant_name' => 'required|string|max:255',
             'applicant_email' => 'required|email|max:255',
-            'applicant_phone' => 'nullable|string|max:20',
+            'applicant_phone' => 'nullable|string|max:50',
             'applicant_age' => 'nullable|string|max:10',
             'motivation' => 'nullable|string|max:1000',
             'special_requirements' => 'nullable|string|max:500',
@@ -74,7 +74,7 @@ class EventController extends Controller
 
         // Check if user already applied
         $existingApplication = EventApplication::where('event_id', $event->id)
-            ->where('applicant_email', $validated['applicant_email'])
+            ->where('email', $validated['applicant_email'])
             ->first();
 
         if ($existingApplication) {
@@ -82,18 +82,32 @@ class EventController extends Controller
                 ->with('error', __('messages.events.already_applied'));
         }
 
+        $messageSegments = [];
+
+        if (!empty($validated['applicant_age'])) {
+            $messageSegments[] = 'Age: ' . $validated['applicant_age'];
+        }
+
+        if (!empty($validated['motivation'])) {
+            $messageSegments[] = "Motivation:\n" . $validated['motivation'];
+        }
+
+        if (!empty($validated['special_requirements'])) {
+            $messageSegments[] = "Special Requirements:\n" . $validated['special_requirements'];
+        }
+
         $application = EventApplication::create([
             'event_id' => $event->id,
-            'applicant_name' => $validated['applicant_name'],
-            'applicant_email' => $validated['applicant_email'],
-            'applicant_phone' => $validated['applicant_phone'],
-            'applicant_age' => $validated['applicant_age'],
-            'motivation' => $validated['motivation'],
-            'special_requirements' => $validated['special_requirements'],
+            'name' => $validated['applicant_name'],
+            'email' => $validated['applicant_email'],
+            'phone' => $validated['applicant_phone'] ?: null,
+            'message' => $messageSegments ? implode("\n\n", $messageSegments) : null,
+            'ip_address' => $request->ip(),
+            'status' => 'pending',
         ]);
 
         // Update participant count if auto-approved
-        if ($event->max_participants) {
+        if ($event->max_participants && $application->status === 'confirmed') {
             $event->increment('current_participants');
         }
 

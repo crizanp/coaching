@@ -29,7 +29,7 @@
 
     <!-- Statistics Cards -->
     <div class="row mb-4">
-        <div class="col-md-3">
+        <div class="col-md-6 col-lg-3 col-xl-2 mb-3 mb-xl-0">
             <div class="admin-card text-center">
                 <div class="card-body">
                     <i class="fas fa-users fa-2x text-primary mb-2"></i>
@@ -38,7 +38,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-6 col-lg-3 col-xl-2 mb-3 mb-xl-0">
             <div class="admin-card text-center">
                 <div class="card-body">
                     <i class="fas fa-check-circle fa-2x text-success mb-2"></i>
@@ -47,7 +47,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-6 col-lg-3 col-xl-2 mb-3 mb-xl-0">
             <div class="admin-card text-center">
                 <div class="card-body">
                     <i class="fas fa-clock fa-2x text-warning mb-2"></i>
@@ -56,12 +56,21 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-6 col-lg-3 col-xl-2 mb-3 mb-xl-0">
             <div class="admin-card text-center">
                 <div class="card-body">
                     <i class="fas fa-times-circle fa-2x text-danger mb-2"></i>
                     <h3 class="mb-1">{{ $cancelledCount }}</h3>
                     <p class="text-muted mb-0">Cancelled</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 col-xl-2">
+            <div class="admin-card text-center">
+                <div class="card-body">
+                    <i class="fas fa-hourglass-half fa-2x text-info mb-2"></i>
+                    <h3 class="mb-1">{{ $waitlistCount }}</h3>
+                    <p class="text-muted mb-0">Waitlist</p>
                 </div>
             </div>
         </div>
@@ -189,8 +198,8 @@
                         @foreach($applications as $application)
                             <tr>
                                 <td>
-                                    <input type="checkbox" class="form-check-input application-checkbox" 
-                                           name="selected_applications[]" value="{{ $application->id }}" 
+                     <input type="checkbox" class="form-check-input application-checkbox" 
+                         name="applications[]" value="{{ $application->id }}" 
                                            form="bulk-actions-form">
                                 </td>
                                 <td>
@@ -246,10 +255,6 @@
                                         <a href="{{ route('admin.event-applications.show', $application) }}" 
                                            class="btn btn-outline-primary btn-sm" title="View">
                                             <i class="fas fa-eye"></i>
-                                        </a>
-                                        <a href="{{ route('admin.event-applications.edit', $application) }}" 
-                                           class="btn btn-outline-secondary btn-sm" title="Edit">
-                                            <i class="fas fa-edit"></i>
                                         </a>
                                         <div class="btn-group btn-group-sm">
                                             <button type="button" class="btn btn-outline-success btn-sm dropdown-toggle" 
