@@ -335,8 +335,8 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
     
     .slider-container {
         position: relative;
-        width: 300px;
-        height: 300px;
+        width: clamp(220px, 45vw, 320px);
+        height: clamp(220px, 45vw, 320px);
         margin: 0 auto;
         overflow: hidden;
         border-radius: 50%;
@@ -355,8 +355,8 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
     }
     
     .slider-image {
-        width: 300px;
-        height: 300px;
+        width: 100%;
+        height: 100%;
         object-fit: cover;
         border: 5px solid white;
         box-shadow: 0 15px 35px rgba(247, 178, 189, 0.3);
@@ -395,7 +395,7 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
         border-left: 4px solid var(--primary-pink);
         padding-left: 20px;
         font-style: italic;
-        font-size: 1.2rem;
+        font-size: clamp(1.05rem, 2.4vw, 1.2rem);
         color: var(--text-dark);
         margin: 2rem 0;
     }
@@ -404,7 +404,7 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
     .practice-card-textured {
         background: #ffffff;
         border-radius: 20px;
-        padding: 30px;
+        padding: clamp(22px, 3vw, 30px);
         text-align: left;
         border: 1px solid #000000;
         position: relative;
@@ -457,7 +457,7 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
     .practice-card-textured h4 {
         color: #1e1d1dff;
         font-weight: 600;
-        font-size: 1.3rem;
+        font-size: clamp(1.15rem, 2.3vw, 1.3rem);
         margin-bottom: 15px;
         position: relative;
         z-index: 1;
@@ -466,7 +466,7 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
     .practice-card-textured h5 {
         color: #1e1d1dff;
         font-weight: 600;
-        font-size: 1.1rem;
+        font-size: clamp(1rem, 2vw, 1.1rem);
         margin-bottom: 10px;
         position: relative;
         z-index: 1;
@@ -474,7 +474,7 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
 
     .practice-card-textured p {
         color: #6c757d;
-        font-size: 1rem;
+        font-size: clamp(0.95rem, 2.1vw, 1rem);
         line-height: 1.7;
         margin-bottom: 20px;
         position: relative;
@@ -638,6 +638,28 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
             font-size: 1.5rem;
             margin-bottom: 1rem;
         }
+
+        .section-title,
+        .lead,
+        .about-content {
+            text-align: center;
+        }
+
+        .blockquote {
+            border-left: none;
+            border-top: 4px solid var(--primary-pink);
+            padding-left: 0;
+            padding-top: 15px;
+            margin: 1.5rem auto;
+        }
+
+        .practices-image-slider {
+            margin-top: 30px;
+        }
+
+        .practice-card-body {
+            align-items: flex-start;
+        }
     }
 
     @media (max-width: 767px) {
@@ -657,13 +679,8 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
         }
         
         .slider-container {
-            width: 250px;
-            height: 250px;
-        }
-        
-        .slider-image {
-            width: 250px;
-            height: 250px;
+            width: clamp(200px, 70vw, 260px);
+            height: clamp(200px, 70vw, 260px);
         }
         
         .approach-steps {
@@ -688,6 +705,21 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
         
         .approach-step p {
             font-size: 0.9rem;
+        }
+    }
+
+    @media (max-width: 575px) {
+        .practice-card-body {
+            align-items: center;
+            text-align: center;
+        }
+
+        .practice-card-content {
+            width: 100%;
+        }
+
+        .cta-buttons .btn {
+            width: 100%;
         }
     }
 </style>

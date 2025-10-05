@@ -197,6 +197,7 @@ return [
     'events.read_more' => 'Lire la suite',
     'events.learn_more' => 'En savoir plus',
     'events.register' => 'S\'inscrire',
+        'events.request' => 'Demander',
     'events.register_now' => 'S\'inscrire maintenant',
     'events.register_button' => 'S\'inscrire',
     'events.register_description' => 'Rejoignez-nous pour cet événement enrichissant',
@@ -279,6 +280,9 @@ return [
         'Partage d\'expériences et d\'outils personnels',
         'Intégration et perspectives d\'application au quotidien'
     ],
+    'events.cta.title' => 'Prêt(e) à organiser votre prochain événement ?',
+    'events.cta.description' => 'Créons ensemble un atelier personnalisé qui répond à vos besoins ou à ceux de votre équipe.',
+    'events.cta.contact' => 'Me contacter',
     'events.cta.register' => 'S\'inscrire à l\'atelier',
     'events.upcoming.notice_title' => 'Ateliers sur Demande',
     'events.upcoming.notice_description' => 'Les ateliers sont organisés selon la demande. Contactez-moi pour connaître les prochaines dates ou pour organiser un atelier privé.',

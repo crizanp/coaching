@@ -16,8 +16,35 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
 
 <?php $__env->startSection('content'); ?>
 <!-- Event Hero Section -->
-<section class="section-padding" style="background: var(--light-pink); margin-top: 94px;">
+<section class="section-padding event-hero" style="background: var(--light-pink); margin-top: 94px;">
     <div class="container">
+        <?php if(session('success') || session('error') || session('warning')): ?>
+            <div class="row justify-content-center mb-4">
+                <div class="col-lg-8">
+                    <?php if(session('success')): ?>
+                        <div class="alert alert-success alert-dismissible fade show event-alert" role="alert">
+                            <i class="fas fa-check-circle me-2"></i><?php echo e(session('success')); ?>
+
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="<?php echo e(__('messages.common.close')); ?>"></button>
+                        </div>
+                    <?php endif; ?>
+                    <?php if(session('error')): ?>
+                        <div class="alert alert-danger alert-dismissible fade show event-alert" role="alert">
+                            <i class="fas fa-times-circle me-2"></i><?php echo e(session('error')); ?>
+
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="<?php echo e(__('messages.common.close')); ?>"></button>
+                        </div>
+                    <?php endif; ?>
+                    <?php if(session('warning')): ?>
+                        <div class="alert alert-warning alert-dismissible fade show event-alert" role="alert">
+                            <i class="fas fa-exclamation-triangle me-2"></i><?php echo e(session('warning')); ?>
+
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="<?php echo e(__('messages.common.close')); ?>"></button>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        <?php endif; ?>
         <div class="row justify-content-center text-center">
             <div class="col-lg-10">
                 <div class="fade-in">
@@ -33,7 +60,7 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
                     <?php if($event->can_register): ?>
                     <div class="mt-4">
                         <a href="<?php echo e(route('events.apply', ['locale' => app()->getLocale(), 'event' => $event->slug])); ?>" 
-                           class="btn btn-primary btn-lg px-5 py-3">
+                           class="btn btn-primary btn-lg px-5 py-3 event-register-btn">
                             <i class="fas fa-user-plus me-2"></i>
                             <?php echo e(__('messages.events.register_now')); ?>
 
@@ -47,7 +74,7 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
 </section>
 
 <!-- Event Details -->
-<section class="section-padding" style="background: white;">
+<section class="section-padding event-details" style="background: white;">
     <div class="container">
         <div class="row">
             <!-- Main Content -->
@@ -57,7 +84,7 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
                 <div class="practice-card-textured mb-4" style="border-radius: 20px; overflow: hidden;">
                     <img src="<?php echo e(asset('storage/' . $event->featured_image)); ?>" 
                          alt="<?php echo e($event->getLocalizedTranslation('title', app()->getLocale())); ?>"
-                         class="w-100" style="height: 400px; object-fit: cover;">
+                         class="w-100 event-featured-image">
                 </div>
                 <?php endif; ?>
                 
@@ -263,7 +290,7 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
                                 <div class="gallery-item" style="border-radius: 15px; overflow: hidden; transition: transform 0.3s ease;">
                                     <img src="<?php echo e(asset('storage/' . $image)); ?>" 
                                          alt="<?php echo e($event->getLocalizedTranslation('title', app()->getLocale())); ?>"
-                                         class="w-100" style="height: 200px; object-fit: cover;">
+                                         class="w-100 event-gallery-image">
                                 </div>
                             </div>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -360,8 +387,8 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
                     </div>
                     <div class="content-description">
                         <p class="mb-4"><?php echo e(__('messages.events.register_description')); ?></p>
-                        <a href="<?php echo e(route('events.apply', ['locale' => app()->getLocale(), 'event' => $event->slug])); ?>" 
-                           class="btn btn-primary w-100">
+                                <a href="<?php echo e(route('events.apply', ['locale' => app()->getLocale(), 'event' => $event->slug])); ?>" 
+                                    class="btn btn-primary w-100 event-register-btn">
                             <i class="fas fa-user-plus me-2"></i>
                             <?php echo e(__('messages.events.register_button')); ?>
 
@@ -407,6 +434,48 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
 
 <?php $__env->startPush('styles'); ?>
 <style>
+    .event-hero .badge {
+        font-size: 0.95rem;
+        border-radius: 999px;
+        padding: 0.5rem 1.25rem;
+    }
+
+    .event-hero .lead {
+        max-width: 760px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .event-register-btn {
+        border-radius: 999px;
+        box-shadow: 0 12px 30px rgba(233, 30, 99, 0.25);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .event-register-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 18px 45px rgba(233, 30, 99, 0.3);
+    }
+
+    .event-alert {
+        border-radius: 16px;
+        border: none;
+        box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+        padding: 16px 20px;
+    }
+
+    .event-featured-image {
+        height: clamp(240px, 45vh, 420px);
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .event-gallery-image {
+        height: 200px;
+        object-fit: cover;
+        object-position: center;
+    }
+
     .practice-card-textured {
         background: #ffffff;
         border-radius: 20px;
@@ -540,34 +609,109 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
         color: #6c757d;
     }
 
+    @media (max-width: 992px) {
+        .event-hero {
+            padding-top: clamp(60px, 10vw, 80px);
+            padding-bottom: clamp(60px, 10vw, 80px);
+        }
+
+        .event-register-btn {
+            width: 100%;
+        }
+
+        .event-featured-image {
+            height: clamp(220px, 40vh, 360px);
+        }
+
+        .practice-card-textured {
+            padding: 26px;
+        }
+
+        .content-description {
+            padding: 0 18px 18px 18px;
+        }
+    }
+
     @media (max-width: 767px) {
         .practice-card-body {
             flex-direction: column;
             gap: 12px;
+            align-items: flex-start;
         }
+
         .practice-icon-left {
             width: 56px;
             height: 56px;
             font-size: 1.6rem;
         }
-        
+
+        .practice-card-textured {
+            padding: 22px;
+        }
+
+        .content-description {
+            padding: 0 15px 18px 15px;
+        }
+
         .transformation-item {
             padding: 12px;
             margin-bottom: 15px;
         }
-        
+
         .transformation-icon {
             width: 35px;
             height: 35px;
             font-size: 1rem;
         }
-        
+
         .transformation-item h6 {
             font-size: 0.95rem;
         }
-        
+
         .transformation-item p {
             font-size: 0.85rem;
+        }
+
+        .event-gallery-image {
+            height: 170px;
+        }
+
+        .event-details .col-lg-4 {
+            margin-top: 10px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .event-featured-image {
+            height: clamp(200px, 55vw, 300px);
+        }
+
+        .event-gallery-image {
+            height: 150px;
+        }
+
+        .event-hero .section-title {
+            font-size: clamp(1.9rem, 6vw, 2.2rem);
+        }
+
+        .event-hero .lead {
+            font-size: 1rem;
+        }
+
+        .event-details .row {
+            row-gap: 25px;
+        }
+
+        .practice-card-textured {
+            padding: 20px;
+        }
+
+        .content-description {
+            padding: 0 12px 16px 12px;
+        }
+
+        .transformation-highlights .row {
+            row-gap: 12px;
         }
     }
 </style>

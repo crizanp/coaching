@@ -113,15 +113,50 @@
 
         .navbar-toggler {
             border: none;
-            padding: 0.4rem 0.6rem;
+            padding: 0.35rem 0.5rem;
+            border-radius: 10px;
+            transition: background 0.3s ease;
         }
 
         .navbar-toggler:focus {
-            box-shadow: 0 0 0 0.2rem rgba(247, 178, 189, 0.35);
+            box-shadow: none;
+            background: rgba(0, 0, 0, 0.05);
         }
 
         .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%238b7d7b' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+            display: inline-flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 26px;
+            height: 18px;
+            gap: 6px;
+            background-image: none;
+        }
+
+        .navbar-toggler-icon span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: var(--text-dark);
+            border-radius: 999px;
+            transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+        }
+
+        .navbar-toggler:not(.collapsed) .navbar-toggler-icon span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .navbar-toggler:not(.collapsed) .navbar-toggler-icon span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .navbar-toggler:not(.collapsed) .navbar-toggler-icon span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        .navbar-toggler:not(.collapsed) .navbar-toggler-icon span {
+            background-color: var(--primary-pink);
         }
 
         /* Navbar Layout: Logo left, Menu center-left, Book+Language right */
@@ -711,8 +746,12 @@
             </a>
             
             <!-- Mobile Toggle Button -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
             </button>
             
             <!-- Navigation Menu + Right Side Items -->

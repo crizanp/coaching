@@ -14,13 +14,17 @@
                     </div>
                     <h1 class="section-title">{{ __('messages.booking.title') }}</h1>
                     <p class="lead mb-4">{{ __('messages.booking.subtitle') }}</p>
-                    <p class="text-muted">
-                        <i class="fas fa-clock me-2"></i>Réponse sous 24h
-                        <span class="mx-3">•</span>
-                        <i class="fas fa-shield-alt me-2"></i>Consultation confidentielle
-                        <span class="mx-3">•</span>
-                        <i class="fas fa-heart me-2"></i>Accompagnement personnalisé
-                    </p>
+                    <div class="booking-highlights text-muted">
+                        <span class="highlight-item">
+                            <i class="fas fa-clock me-2"></i>Réponse sous 24h
+                        </span>
+                        <span class="highlight-item">
+                            <i class="fas fa-shield-alt me-2"></i>Consultation confidentielle
+                        </span>
+                        <span class="highlight-item">
+                            <i class="fas fa-heart me-2"></i>Accompagnement personnalisé
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -52,7 +56,7 @@
                         <form method="POST" action="{{ route('booking.store', app()->getLocale()) }}">
                             @csrf
                             
-                            <div class="row">
+                            <div class="row g-4">
                                 <div class="col-md-6 mb-4">
                                     <label for="service_id" class="form-label">{{ __('messages.booking.form.service') }} *</label>
                                     <select class="form-select @error('service_id') is-invalid @enderror" id="service_id" name="service_id" required>
@@ -85,8 +89,8 @@
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-6 mb-4">
+                            <div class="row g-4">
+                                <div class="col-md-6">
                                     <label for="client_name" class="form-label">{{ __('messages.booking.form.name') }} *</label>
                                     <input type="text" class="form-control @error('client_name') is-invalid @enderror" 
                                            id="client_name" name="client_name" 
@@ -96,7 +100,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-md-6 mb-4">
+                                <div class="col-md-6">
                                     <label for="client_email" class="form-label">{{ __('messages.booking.form.email') }} *</label>
                                     <input type="email" class="form-control @error('client_email') is-invalid @enderror" 
                                            id="client_email" name="client_email" 
@@ -107,8 +111,8 @@
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-6 mb-4">
+                            <div class="row g-4">
+                                <div class="col-md-6">
                                     <label for="client_phone" class="form-label">{{ __('messages.booking.form.phone') }}</label>
                                     <input type="tel" class="form-control @error('client_phone') is-invalid @enderror" 
                                            id="client_phone" name="client_phone" 
@@ -118,21 +122,23 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-md-6 mb-4">
+                                <div class="col-md-6">
                                     <label class="form-label">{{ __('messages.booking.form.first_session') }}</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="is_first_session" id="first_yes" value="1" 
-                                               {{ old('is_first_session', '1') == '1' ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="first_yes">
-                                            {{ __('messages.common.yes') }}
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="is_first_session" id="first_no" value="0"
-                                               {{ old('is_first_session') == '0' ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="first_no">
-                                            {{ __('messages.common.no') }}
-                                        </label>
+                                    <div class="form-check-group d-flex flex-wrap gap-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="is_first_session" id="first_yes" value="1" 
+                                                   {{ old('is_first_session', '1') == '1' ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="first_yes">
+                                                {{ __('messages.common.yes') }}
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="is_first_session" id="first_no" value="0"
+                                                   {{ old('is_first_session') == '0' ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="first_no">
+                                                {{ __('messages.common.no') }}
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -251,7 +257,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .booking-form-card {
         background: white;
         border-radius: 20px;
-        padding: 40px;
+        padding: clamp(28px, 4vw, 40px);
         box-shadow: 0 10px 40px rgba(0,0,0,0.1);
         border: 1px solid #f1f1f1;
         margin-top: -50px;
@@ -285,6 +291,28 @@ document.addEventListener('DOMContentLoaded', function() {
     .invalid-feedback {
         font-size: 0.875rem;
         margin-top: 5px;
+    }
+
+    .booking-highlights {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem 1.5rem;
+        text-align: left;
+        margin: 0 auto;
+        max-width: 640px;
+        font-size: 0.95rem;
+    }
+
+    .booking-highlights .highlight-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        white-space: nowrap;
+    }
+
+    .booking-highlights .highlight-item i {
+        color: var(--primary-pink);
     }
 
     .btn-primary {
@@ -340,6 +368,16 @@ document.addEventListener('DOMContentLoaded', function() {
         border: 1px solid rgba(233, 30, 99, 0.1);
     }
 
+    @media (max-width: 991px) {
+        .booking-form-card {
+            margin-top: -30px;
+        }
+
+        .booking-info .col-md-4 {
+            margin-bottom: 15px;
+        }
+    }
+
     @media (max-width: 768px) {
         .booking-form-card {
             padding: 25px;
@@ -354,6 +392,40 @@ document.addEventListener('DOMContentLoaded', function() {
         
         .section-title {
             font-size: 2rem;
+        }
+
+        .btn-primary {
+            width: 100%;
+        }
+
+        .booking-highlights {
+            justify-content: flex-start;
+            gap: 0.75rem 1rem;
+        }
+
+        .booking-highlights .highlight-item {
+            white-space: normal;
+        }
+
+        .booking-info {
+            text-align: center;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .booking-form-card {
+            padding: 22px;
+        }
+
+        .booking-highlights {
+            flex-direction: column;
+            align-items: flex-start;
+            max-width: none;
+        }
+
+        .form-check-group {
+            flex-direction: column;
+            align-items: flex-start;
         }
     }
 </style>

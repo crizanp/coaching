@@ -270,45 +270,7 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
                     <p class="lead mb-4"><?php echo e(__('messages.events.workshops.subtitle')); ?></p>
                     
                     <!-- Workshop Benefits Banner -->
-                    <div class="workshop-benefits-banner mt-4 mb-5">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-10">
-                                <div class="benefits-card">
-                                    <div class="row align-items-center">
-                                        <div class="col-md-8">
-                                            <h4 class="mb-3" style="color: var(--primary-pink); font-weight: 600;">
-                                                <i class="fas fa-gift me-2"></i>
-                                                Ce que vous repartirez avec
-                                            </h4>
-                                            <div class="row">
-                                                <div class="col-sm-6 mb-2">
-                                                    <i class="fas fa-key me-2" style="color: var(--primary-pink);"></i>
-                                                    <span>Outils d'intelligence émotionnelle</span>
-                                                </div>
-                                                <div class="col-sm-6 mb-2">
-                                                    <i class="fas fa-lightbulb me-2" style="color: var(--primary-pink);"></i>
-                                                    <span>Techniques de communication bienveillante</span>
-                                                </div>
-                                                <div class="col-sm-6 mb-2">
-                                                    <i class="fas fa-puzzle-piece me-2" style="color: var(--primary-pink);"></i>
-                                                    <span>Clés pour décoder les besoins</span>
-                                                </div>
-                                                <div class="col-sm-6 mb-2">
-                                                    <i class="fas fa-handshake me-2" style="color: var(--primary-pink);"></i>
-                                                    <span>Stratégies relationnelles durables</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 text-center">
-                                            <div class="benefits-icon">
-                                                <i class="fas fa-trophy" style="font-size: 3rem; color: var(--primary-pink);"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -418,7 +380,7 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
     .practice-card-textured {
         background: #ffffff;
         border-radius: 20px;
-        padding: 30px;
+        padding: clamp(22px, 3vw, 30px);
         text-align: left;
         border: 1px solid #000000;
         position: relative;
@@ -469,7 +431,7 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
     .practice-card-textured h4 {
         color: #1e1d1dff;
         font-weight: 600;
-        font-size: 1.3rem;
+        font-size: clamp(1.15rem, 2.2vw, 1.3rem);
         margin-bottom: 15px;
         position: relative;
         z-index: 1;
@@ -488,7 +450,7 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
 
     .service-description {
         color: #6c757d;
-        font-size: 1rem;
+        font-size: clamp(0.95rem, 2.1vw, 1rem);
         line-height: 1.7;
         margin-bottom: 20px;
         position: relative;
@@ -502,7 +464,7 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
 
     .service-detail-item {
         color: #6c757d;
-        font-size: 0.95rem;
+        font-size: clamp(0.9rem, 2vw, 0.95rem);
     }
 
     .service-actions {
@@ -518,7 +480,7 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
     .highlight-card {
         background: rgba(255, 255, 255, 0.95);
         border-radius: 25px;
-        padding: 40px;
+        padding: clamp(28px, 4vw, 40px);
         border: 2px solid rgba(0, 0, 0, 0.1);
         backdrop-filter: blur(10px);
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -533,7 +495,7 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
 
     .highlight-item {
         text-align: center;
-        padding: 20px;
+        padding: clamp(16px, 3vw, 20px);
         transition: transform 0.3s ease;
     }
 
@@ -552,11 +514,11 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
 
     .highlight-item h5 {
         margin-bottom: 8px;
-        font-size: 1.1rem;
+        font-size: clamp(1rem, 2.2vw, 1.1rem);
     }
 
     .highlight-item p {
-        font-size: 0.95rem;
+        font-size: clamp(0.9rem, 2vw, 0.95rem);
         line-height: 1.4;
     }
 
@@ -568,7 +530,7 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
     .benefits-card {
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 249, 250, 0.95) 100%);
         border-radius: 20px;
-        padding: 35px;
+        padding: clamp(26px, 4vw, 35px);
         border: 2px solid rgba(0, 0, 0, 0.08);
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
         transition: all 0.3s ease;
@@ -583,10 +545,11 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
 
     .benefits-card h4 {
         margin-bottom: 20px;
+        font-size: clamp(1.1rem, 2.5vw, 1.3rem);
     }
 
     .benefits-card .col-sm-6 {
-        font-size: 0.95rem;
+        font-size: clamp(0.9rem, 2vw, 0.95rem);
         color: #6c757d;
         font-weight: 500;
         margin-bottom: 8px;
@@ -595,6 +558,26 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
     .benefits-icon {
         padding: 20px;
         transition: transform 0.3s ease;
+    }
+
+    @media (max-width: 991px) {
+        .practice-card-body {
+            align-items: flex-start;
+        }
+
+        .service-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .workshop-highlights {
+            margin-top: 2.5rem;
+        }
+
+        .benefits-card {
+            text-align: center;
+        }
     }
 
     .benefits-icon:hover {
@@ -636,7 +619,32 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
         .highlight-item p {
             font-size: 0.9rem;
         }
+
+        .service-actions {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .service-actions .btn {
+            width: 100%;
+        }
         
+
+    @media (max-width: 575px) {
+        .practice-card-body {
+            align-items: center;
+            text-align: center;
+        }
+
+        .practice-card-content {
+            width: 100%;
+        }
+
+        .highlight-card,
+        .benefits-card {
+            margin: 0 5px;
+        }
+    }
         .workshop-benefits-banner {
             margin: 1.5rem 0;
         }

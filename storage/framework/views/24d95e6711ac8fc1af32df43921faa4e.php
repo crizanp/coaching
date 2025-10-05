@@ -214,8 +214,8 @@
     }
     
     .about-image {
-        width: 300px;
-        height: 300px;
+        width: clamp(220px, 45vw, 320px);
+        height: clamp(220px, 45vw, 320px);
         object-fit: cover;
         border: 5px solid white;
         box-shadow: 0 15px 35px rgba(247, 178, 189, 0.3);
@@ -227,14 +227,14 @@
     }
     
     .about-content p {
-        font-size: 1.1rem;
+        font-size: clamp(1rem, 2.2vw, 1.1rem);
         line-height: 1.8;
         margin-bottom: 1.5rem;
         color: var(--text-muted);
     }
     
     .about-content .lead {
-        font-size: 1.3rem;
+        font-size: clamp(1.15rem, 2.5vw, 1.3rem);
         font-weight: 500;
         color: var(--text-dark);
         margin-bottom: 2rem;
@@ -244,14 +244,14 @@
         border-left: 4px solid var(--primary-pink);
         padding-left: 20px;
         font-style: italic;
-        font-size: 1.2rem;
+        font-size: clamp(1.05rem, 2.4vw, 1.2rem);
         color: var(--text-dark);
         margin: 2rem 0;
     }
     
     .contact-cta {
         background: rgba(247, 178, 189, 0.1);
-        padding: 30px;
+        padding: clamp(24px, 3.5vw, 30px);
         border-radius: 20px;
         margin-top: 3rem;
     }
@@ -260,7 +260,7 @@
     .practice-card-textured {
         background: #ffffff;
         border-radius: 20px;
-        padding: 30px;
+        padding: clamp(22px, 3vw, 30px);
         text-align: left;
         border: 1px solid #000000;
         position: relative;
@@ -313,7 +313,7 @@
     .practice-card-textured h4 {
         color: #1e1d1dff;
         font-weight: 600;
-        font-size: 1.3rem;
+        font-size: clamp(1.15rem, 2.2vw, 1.3rem);
         margin-bottom: 15px;
         position: relative;
         z-index: 1;
@@ -321,7 +321,7 @@
 
     .practice-card-textured p {
         color: rgba(235,235,235,0.85);
-        font-size: 1rem;
+        font-size: clamp(0.95rem, 2.1vw, 1rem);
         line-height: 1.7;
         margin-bottom: 20px;
         position: relative;
@@ -352,15 +352,42 @@
         flex: 1 1 auto;
     }
 
+    @media (max-width: 991px) {
+        .section-title,
+        .section-subtitle,
+        .about-content,
+        .contact-cta {
+            text-align: center;
+        }
+
+        .blockquote {
+            border-left: none;
+            border-top: 4px solid var(--primary-pink);
+            padding-left: 0;
+            padding-top: 15px;
+            margin: 1.5rem auto;
+        }
+
+        .contact-cta .d-flex {
+            justify-content: center !important;
+        }
+    }
+
     @media (max-width: 767px) {
         .practice-card-body {
             flex-direction: column;
             gap: 12px;
+            text-align: center;
         }
         .practice-icon-left {
             width: 56px;
             height: 56px;
             font-size: 1.6rem;
+        }
+
+        .cta-buttons .btn {
+            width: 100%;
+            min-width: auto;
         }
     }
     
@@ -377,7 +404,7 @@
     .stats-card {
         background: white;
         border-radius: 15px;
-        padding: 30px 20px;
+        padding: clamp(24px, 3.5vw, 30px) 20px;
         text-align: center;
         box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         transition: transform 0.3s ease;
@@ -389,7 +416,7 @@
     }
     
     .stats-number {
-        font-size: 3rem;
+        font-size: clamp(2.4rem, 4vw, 3rem);
         font-weight: bold;
         color: var(--primary-pink);
         margin-bottom: 10px;
@@ -397,7 +424,7 @@
     }
     
     .stats-label {
-        font-size: 1.1rem;
+        font-size: clamp(0.95rem, 2.2vw, 1.1rem);
         color: var(--text-muted);
         font-weight: 500;
     }

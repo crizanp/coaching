@@ -193,6 +193,7 @@ return [
     'events.read_more' => 'Read more',
     'events.learn_more' => 'Learn more',
     'events.register' => 'Register',
+    'events.request' => 'Request',
     'events.register_now' => 'Register now',
     'events.register_button' => 'Register',
     'events.register_description' => 'Join us for this enriching event',
@@ -275,6 +276,9 @@ return [
         'Sharing experiences and personal tools',
         'Integration and daily application perspectives'
     ],
+    'events.cta.title' => 'Ready to organize your next event?',
+    'events.cta.description' => 'Let’s design a personalized workshop that meets your needs or those of your team.',
+    'events.cta.contact' => 'Contact me',
     'events.cta.register' => 'Register for workshop',
     'events.upcoming.notice_title' => 'Workshops on Demand',
     'events.upcoming.notice_description' => 'Workshops are organized according to demand. Contact me to know the next dates or to organize a private workshop.',

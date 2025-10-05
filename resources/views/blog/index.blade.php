@@ -32,45 +32,7 @@
                         </div>
                     </form>
 
-                    <!-- Highlights -->
-                    <div class="workshop-highlights mt-5">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-10">
-                                <div class="highlight-card">
-                                    <h3 class="mb-4" style="color: var(--primary-pink); font-weight: 600;">
-                                        <i class="fas fa-magic me-2"></i>
-                                        Des articles pour éclairer votre quotidien
-                                    </h3>
-                                    <p class="mb-4" style="font-size: 1.1rem; color: #6c757d;">
-                                        Explorez des conseils concrets, des réflexions inspirantes et des outils pratiques pour avancer sereinement.
-                                    </p>
-                                    <div class="row">
-                                        <div class="col-md-4 mb-3">
-                                            <div class="highlight-item">
-                                                <i class="fas fa-lightbulb mb-3" style="color: var(--primary-pink); font-size: 2rem;"></i>
-                                                <h5>Inspiration</h5>
-                                                <p class="mb-0">Comprenez vos émotions et gagnez en clarté.</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 mb-3">
-                                            <div class="highlight-item">
-                                                <i class="fas fa-hands-helping mb-3" style="color: var(--primary-pink); font-size: 2rem;"></i>
-                                                <h5>Outils pratiques</h5>
-                                                <p class="mb-0">Appliquez des exercices simples au quotidien.</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 mb-3">
-                                            <div class="highlight-item">
-                                                <i class="fas fa-heart mb-3" style="color: var(--primary-pink); font-size: 2rem;"></i>
-                                                <h5>Témoignages</h5>
-                                                <p class="mb-0">Découvrez des parcours réels de transformation.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
         </div>
@@ -422,6 +384,21 @@
 
         .highlight-item {
             padding: 15px 10px;
+        }
+
+        .service-actions .btn {
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 575px) {
+        .practice-card-body {
+            align-items: center;
+            text-align: center;
+        }
+
+        .blog-meta {
+            align-items: center;
         }
     }
 </style>

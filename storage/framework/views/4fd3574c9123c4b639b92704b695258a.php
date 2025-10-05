@@ -84,8 +84,7 @@
                             <div class="mb-4">
                                 <img src="<?php echo e(Storage::url($blog->featured_image)); ?>" 
                                      alt="<?php echo e($blog->title); ?>" 
-                                     class="img-fluid rounded-3"
-                                     style="max-height: 300px; width: auto;">
+                                     class="img-fluid rounded-3 blog-featured-image">
                             </div>
                         <?php endif; ?>
                         
@@ -376,6 +375,13 @@
             transform: translateY(-2px);
         }
 
+        .blog-featured-image {
+            width: 100%;
+            max-height: clamp(220px, 45vh, 380px);
+            object-fit: cover;
+            object-position: center;
+        }
+
         .meta-item {
             display: flex;
             align-items: center;
@@ -522,6 +528,13 @@
             height: auto;
             border-radius: 10px;
             margin: 2rem 0;
+        }
+
+        .post-content iframe,
+        .post-content video {
+            max-width: 100%;
+            width: 100%;
+            border-radius: 12px;
         }
 
         .post-content blockquote {
@@ -702,6 +715,21 @@
             margin-bottom: 1rem;
         }
 
+        @media (max-width: 992px) {
+            .section-title {
+                font-size: clamp(1.9rem, 4vw, 2.3rem);
+            }
+
+            .post-meta {
+                gap: 12px;
+                text-align: center;
+            }
+
+            .gift-cta .btn {
+                width: 100%;
+            }
+        }
+
         @media (max-width: 768px) {
             .blog-hero-image {
                 height: 250px;
@@ -716,6 +744,35 @@
                 gap: 10px;
             }
 
+            .blog-meta {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .sticky-share-sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .post-meta {
+                align-items: center;
+                flex-direction: column;
+            }
+
+            .gift-cta .btn {
+                width: 100%;
+            }
+
+            .gift-cta p {
+                text-align: center;
+                padding: 0 10px;
+            }
+
+            .blog-meta {
+                align-items: flex-start;
+            }
+
             .reaction-buttons,
             .share-buttons {
                 flex-direction: column;
@@ -726,9 +783,19 @@
                 text-align: center;
             }
 
-            .blog-meta {
-                flex-direction: column;
-                gap: 5px;
+            .breadcrumb {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                justify-content: flex-start;
+                gap: 8px;
+            }
+
+            .breadcrumb-item {
+                white-space: nowrap;
+            }
+
+            .related-posts .section-title {
+                font-size: clamp(1.6rem, 6vw, 1.9rem);
             }
         }
     </style>

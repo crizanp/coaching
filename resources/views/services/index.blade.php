@@ -115,7 +115,7 @@
     .practice-card-textured {
         background: #ffffff;
         border-radius: 20px;
-        padding: 30px;
+        padding: clamp(22px, 3vw, 30px);
         text-align: left;
         border: 1px solid #000000;
         position: relative;
@@ -168,7 +168,7 @@
     .practice-card-textured h4 {
         color: #1e1d1dff;
         font-weight: 600;
-        font-size: 1.3rem;
+        font-size: clamp(1.15rem, 2.2vw, 1.3rem);
         margin-bottom: 15px;
         position: relative;
         z-index: 1;
@@ -176,7 +176,7 @@
 
     .practice-card-textured p {
         color: #6c757d;
-        font-size: 1rem;
+        font-size: clamp(0.95rem, 2.1vw, 1rem);
         line-height: 1.7;
         margin-bottom: 20px;
         position: relative;
@@ -199,7 +199,7 @@
 
     .service-detail-item {
         color: #6c757d;
-        font-size: 0.95rem;
+        font-size: clamp(0.9rem, 2vw, 0.95rem);
         line-height: 1.6;
     }
 
@@ -228,6 +228,18 @@
     .cta-buttons .btn {
         min-width: 200px;
     }
+
+    @media (max-width: 991px) {
+        .practice-card-body {
+            align-items: flex-start;
+        }
+
+        .service-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+    }
     
     @media (max-width: 767px) {
         .practice-card-body {
@@ -242,6 +254,26 @@
         
         .cta-buttons .btn {
             min-width: auto;
+            width: 100%;
+        }
+
+        .service-actions {
+            flex-direction: column;
+            align-items: stretch;
+        }
+    }
+
+    @media (max-width: 575px) {
+        .practice-card-body {
+            align-items: stretch;
+            text-align: center;
+        }
+
+        .practice-card-content {
+            width: 100%;
+        }
+
+        .service-actions .btn {
             width: 100%;
         }
     }

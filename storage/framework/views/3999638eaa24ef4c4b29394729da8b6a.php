@@ -308,7 +308,7 @@ unset($__errorArgs, $__bag); ?>
     .contact-form-card {
         background: white;
         border-radius: 20px;
-        padding: 40px;
+        padding: clamp(26px, 3.8vw, 40px);
         box-shadow: 0 10px 40px rgba(0,0,0,0.1);
         border: 1px solid #f1f1f1;
     }
@@ -316,7 +316,7 @@ unset($__errorArgs, $__bag); ?>
     .contact-info-card {
         background: white;
         border-radius: 20px;
-        padding: 30px;
+        padding: clamp(22px, 3.5vw, 30px);
         box-shadow: 0 10px 40px rgba(0,0,0,0.1);
         border: 1px solid #f1f1f1;
         height: fit-content;
@@ -327,7 +327,7 @@ unset($__errorArgs, $__bag); ?>
     .contact-info-header h4 {
         color: var(--text-dark);
         font-weight: 700;
-        font-size: 1.4rem;
+        font-size: clamp(1.15rem, 2.3vw, 1.4rem);
     }
 
     .contact-info-item {
@@ -355,7 +355,7 @@ unset($__errorArgs, $__bag); ?>
         color: var(--text-dark);
         font-weight: 600;
         margin-bottom: 5px;
-        font-size: 0.95rem;
+        font-size: clamp(0.9rem, 2vw, 0.95rem);
     }
 
     .info-link {
@@ -372,7 +372,7 @@ unset($__errorArgs, $__bag); ?>
 
     .info-text {
         color: var(--text-muted);
-        font-size: 0.95rem;
+        font-size: clamp(0.9rem, 2vw, 0.95rem);
         line-height: 1.5;
     }
 
@@ -428,7 +428,17 @@ unset($__errorArgs, $__bag); ?>
         box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
 
+    @media (max-width: 991px) {
+        .contact-info-card {
+            position: static;
+            top: auto;
+            margin-top: 30px;
+        }
 
+        .hero-features {
+            gap: 12px;
+        }
+    }
 
     .form-title {
         color: var(--text-dark);
@@ -505,10 +515,6 @@ unset($__errorArgs, $__bag); ?>
             display: none;
         }
         
-        .contact-method-card {
-            padding: 30px 20px;
-        }
-        
         .contact-form-card {
             padding: 25px;
         }
@@ -517,6 +523,23 @@ unset($__errorArgs, $__bag); ?>
             width: 60px;
             height: 60px;
             font-size: 2rem;
+        }
+
+        .contact-info-card {
+            padding: 24px;
+        }
+
+        .contact-info-item {
+            align-items: center;
+        }
+
+        .social-icons {
+            justify-content: center;
+        }
+
+        .btn-primary,
+        .btn-outline-primary {
+            width: 100%;
         }
     }
 </style>

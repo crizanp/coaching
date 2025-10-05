@@ -106,7 +106,7 @@
             </div>
             
             <div class="col-lg-4 fade-in">
-                <div class="practice-card-textured sticky-top" style="top: 100px;">
+                <div class="practice-card-textured sticky-top" >
                     <div class="card-body">
                         <h4 class="mb-4">Informations pratiques</h4>
                         
@@ -277,6 +277,23 @@
     .practice-card-textured .card-body {
         position: relative;
         z-index: 1;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        height: 100%;
+    }
+
+    .practice-card-textured .card-body > *:first-child {
+        margin-top: 0;
+    }
+
+    .practice-card-textured .card-body > *:last-child {
+        margin-bottom: 0;
+    }
+
+    .practice-card-textured .d-grid {
+        gap: 1rem !important;
     }
     
     @media (max-width: 768px) {
