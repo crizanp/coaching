@@ -103,7 +103,7 @@
                                         <option value="">{{ __('messages.contact.form.service_select') }}</option>
                                         @foreach($services as $service)
                                             <option value="{{ $service->id }}" {{ old('service_id', request('service')) == $service->id ? 'selected' : '' }}>
-                                                {{ $service->getTranslation('name', app()->getLocale()) }}
+                                                {{ $service->getLocalizedTranslation('name', app()->getLocale()) }}
                                                 @if($service->slug === 'accompagnement-sur-mesure')
                                                     - {{ __('messages.services.customized_pricing') }}
                                                 @elseif($service->price_individual > 0)

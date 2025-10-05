@@ -1,7 +1,7 @@
 
 
-<?php $__env->startSection('title', $service->getTranslation('seo_title', app()->getLocale()) ?: $service->getTranslation('name', app()->getLocale())); ?>
-<?php $__env->startSection('description', $service->getTranslation('seo_description', app()->getLocale()) ?: $service->getTranslation('description', app()->getLocale())); ?>
+<?php $__env->startSection('title', $service->getLocalizedTranslation('seo_title', app()->getLocale()) ?: $service->getLocalizedTranslation('name', app()->getLocale())); ?>
+<?php $__env->startSection('description', $service->getLocalizedTranslation('seo_description', app()->getLocale()) ?: $service->getLocalizedTranslation('description', app()->getLocale())); ?>
 
 <?php $__env->startSection('content'); ?>
 <!-- Service Hero -->
@@ -10,8 +10,8 @@
         <div class="row align-items-center">
             <div class="col-lg-8">
                 <div class="fade-in">
-                    <h1 class="section-title"><?php echo e($service->getTranslation('name', app()->getLocale())); ?></h1>
-                    <p class="lead mb-4"><?php echo e($service->getTranslation('description', app()->getLocale())); ?></p>
+                    <h1 class="section-title"><?php echo e($service->getLocalizedTranslation('name', app()->getLocale())); ?></h1>
+                    <p class="lead mb-4"><?php echo e($service->getLocalizedTranslation('description', app()->getLocale())); ?></p>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -48,15 +48,25 @@
         <div class="row">
             <div class="col-lg-8 fade-in">
                 <div class="content mb-5">
-                    <?php echo $service->getTranslation('content', app()->getLocale()); ?>
+                    <?php echo $service->getLocalizedTranslation('content', app()->getLocale()); ?>
 
                 </div>
                 
-                <?php if($service->getTranslation('benefits', app()->getLocale())): ?>
+                <?php if($service->getLocalizedTranslation('benefits', app()->getLocale())): ?>
                 <div class="mb-5">
                     <h3 class="mb-4"><?php echo e(__('messages.services.benefits')); ?></h3>
                     <div class="row">
-                        <?php $__currentLoopData = $service->getTranslation('benefits', app()->getLocale()); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $benefit): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php 
+                            $benefits = $service->getLocalizedTranslation('benefits', app()->getLocale());
+                            if (is_string($benefits)) {
+                                $benefits = json_decode($benefits, true) ?: [$benefits];
+                            }
+                            // Ensure $benefits is an array
+                            if (!is_array($benefits)) {
+                                $benefits = [$benefits];
+                            }
+                        ?>
+                        <?php $__currentLoopData = $benefits; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $benefit): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <div class="col-md-6 mb-3">
                             <div class="d-flex align-items-center">
                                 <i class="fas fa-check-circle text-success me-3"></i>
@@ -68,11 +78,21 @@
                 </div>
                 <?php endif; ?>
                 
-                <?php if($service->getTranslation('session_format', app()->getLocale())): ?>
+                <?php if($service->getLocalizedTranslation('session_format', app()->getLocale())): ?>
                 <div class="mb-5">
                     <h3 class="mb-4"><?php echo e(__('messages.services.format')); ?></h3>
                     <div class="row">
-                        <?php $__currentLoopData = $service->getTranslation('session_format', app()->getLocale()); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $format): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php 
+                            $sessionFormats = $service->getLocalizedTranslation('session_format', app()->getLocale());
+                            if (is_string($sessionFormats)) {
+                                $sessionFormats = json_decode($sessionFormats, true) ?: [$sessionFormats];
+                            }
+                            // Ensure $sessionFormats is an array
+                            if (!is_array($sessionFormats)) {
+                                $sessionFormats = [$sessionFormats];
+                            }
+                        ?>
+                        <?php $__currentLoopData = $sessionFormats; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $format): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <div class="col-md-6 mb-3">
                             <div class="d-flex align-items-center">
                                 <i class="fas fa-clock text-primary me-3"></i>
@@ -141,7 +161,7 @@
                             <?php endif; ?>
                         <?php endfor; ?>
                     </div>
-                    <p class="mb-3"><?php echo e($testimonial->getTranslation('testimonial', app()->getLocale())); ?></p>
+                    <p class="mb-3"><?php echo e($testimonial->getLocalizedTranslation('testimonial', app()->getLocale())); ?></p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <strong><?php echo e($testimonial->client_name); ?></strong>

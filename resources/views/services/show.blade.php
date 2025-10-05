@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', $service->getTranslation('seo_title', app()->getLocale()) ?: $service->getTranslation('name', app()->getLocale()))
-@section('description', $service->getTranslation('seo_description', app()->getLocale()) ?: $service->getTranslation('description', app()->getLocale()))
+@section('title', $service->getLocalizedTranslation('seo_title', app()->getLocale()) ?: $service->getLocalizedTranslation('name', app()->getLocale()))
+@section('description', $service->getLocalizedTranslation('seo_description', app()->getLocale()) ?: $service->getLocalizedTranslation('description', app()->getLocale()))
 
 @section('content')
 <!-- Service Hero -->
@@ -10,8 +10,8 @@
         <div class="row align-items-center">
             <div class="col-lg-8">
                 <div class="fade-in">
-                    <h1 class="section-title">{{ $service->getTranslation('name', app()->getLocale()) }}</h1>
-                    <p class="lead mb-4">{{ $service->getTranslation('description', app()->getLocale()) }}</p>
+                    <h1 class="section-title">{{ $service->getLocalizedTranslation('name', app()->getLocale()) }}</h1>
+                    <p class="lead mb-4">{{ $service->getLocalizedTranslation('description', app()->getLocale()) }}</p>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -48,14 +48,24 @@
         <div class="row">
             <div class="col-lg-8 fade-in">
                 <div class="content mb-5">
-                    {!! $service->getTranslation('content', app()->getLocale()) !!}
+                    {!! $service->getLocalizedTranslation('content', app()->getLocale()) !!}
                 </div>
                 
-                @if($service->getTranslation('benefits', app()->getLocale()))
+                @if($service->getLocalizedTranslation('benefits', app()->getLocale()))
                 <div class="mb-5">
                     <h3 class="mb-4">{{ __('messages.services.benefits') }}</h3>
                     <div class="row">
-                        @foreach($service->getTranslation('benefits', app()->getLocale()) as $benefit)
+                        @php 
+                            $benefits = $service->getLocalizedTranslation('benefits', app()->getLocale());
+                            if (is_string($benefits)) {
+                                $benefits = json_decode($benefits, true) ?: [$benefits];
+                            }
+                            // Ensure $benefits is an array
+                            if (!is_array($benefits)) {
+                                $benefits = [$benefits];
+                            }
+                        @endphp
+                        @foreach($benefits as $benefit)
                         <div class="col-md-6 mb-3">
                             <div class="d-flex align-items-center">
                                 <i class="fas fa-check-circle text-success me-3"></i>
@@ -67,11 +77,21 @@
                 </div>
                 @endif
                 
-                @if($service->getTranslation('session_format', app()->getLocale()))
+                @if($service->getLocalizedTranslation('session_format', app()->getLocale()))
                 <div class="mb-5">
                     <h3 class="mb-4">{{ __('messages.services.format') }}</h3>
                     <div class="row">
-                        @foreach($service->getTranslation('session_format', app()->getLocale()) as $format)
+                        @php 
+                            $sessionFormats = $service->getLocalizedTranslation('session_format', app()->getLocale());
+                            if (is_string($sessionFormats)) {
+                                $sessionFormats = json_decode($sessionFormats, true) ?: [$sessionFormats];
+                            }
+                            // Ensure $sessionFormats is an array
+                            if (!is_array($sessionFormats)) {
+                                $sessionFormats = [$sessionFormats];
+                            }
+                        @endphp
+                        @foreach($sessionFormats as $format)
                         <div class="col-md-6 mb-3">
                             <div class="d-flex align-items-center">
                                 <i class="fas fa-clock text-primary me-3"></i>
@@ -138,7 +158,7 @@
                             @endif
                         @endfor
                     </div>
-                    <p class="mb-3">{{ $testimonial->getTranslation('testimonial', app()->getLocale()) }}</p>
+                    <p class="mb-3">{{ $testimonial->getLocalizedTranslation('testimonial', app()->getLocale()) }}</p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <strong>{{ $testimonial->client_name }}</strong>

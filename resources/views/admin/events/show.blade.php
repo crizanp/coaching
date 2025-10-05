@@ -180,13 +180,18 @@
                                         <td>
                                             <div class="btn-group btn-group-sm">
                                                 <a href="{{ route('admin.event-applications.show', $application) }}" 
-                                                   class="btn btn-outline-primary btn-sm" title="View">
+                                                   class="btn btn-outline-primary btn-sm" title="View Details">
                                                     <i class="fas fa-eye"></i>
                                                 </a>
-                                                <a href="{{ route('admin.event-applications.edit', $application) }}" 
-                                                   class="btn btn-outline-secondary btn-sm" title="Edit">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
+                                                <form action="{{ route('admin.event-applications.destroy', $application) }}" 
+                                                      method="POST" class="d-inline"
+                                                      onsubmit="return confirm('Are you sure you want to delete this application?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-outline-danger btn-sm" title="Delete">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>

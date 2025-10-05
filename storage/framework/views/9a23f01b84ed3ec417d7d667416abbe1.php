@@ -1,12 +1,12 @@
 
 
 <?php $__env->startSection('title'); ?>
-<?php echo e($event->getTranslation('title', app()->getLocale())); ?> - <?php echo e(\App\Models\Setting::get('site_name')[app()->getLocale()] ?? 'SSJCHRYSALIDE'); ?>
+<?php echo e($event->getLocalizedTranslation('title', app()->getLocale())); ?> - <?php echo e(\App\Models\Setting::get('site_name')[app()->getLocale()] ?? 'SSJCHRYSALIDE'); ?>
 
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('description'); ?>
-<?php echo e($event->getTranslation('seo_description', app()->getLocale()) ?: $event->getTranslation('description', app()->getLocale())); ?>
+<?php echo e($event->getLocalizedTranslation('seo_description', app()->getLocale()) ?: $event->getLocalizedTranslation('description', app()->getLocale())); ?>
 
 <?php $__env->stopSection(); ?>
 
@@ -27,8 +27,8 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
 
                         </span>
                     </div>
-                    <h1 class="section-title"><?php echo e($event->getTranslation('title', app()->getLocale())); ?></h1>
-                    <p class="lead mb-4"><?php echo e($event->getTranslation('description', app()->getLocale())); ?></p>
+                    <h1 class="section-title"><?php echo e($event->getLocalizedTranslation('title', app()->getLocale())); ?></h1>
+                    <p class="lead mb-4"><?php echo e($event->getLocalizedTranslation('description', app()->getLocale())); ?></p>
                     
                     <?php if($event->can_register): ?>
                     <div class="mt-4">
@@ -56,7 +56,7 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
                 <?php if($event->featured_image && file_exists(storage_path('app/public/' . $event->featured_image))): ?>
                 <div class="practice-card-textured mb-4" style="border-radius: 20px; overflow: hidden;">
                     <img src="<?php echo e(asset('storage/' . $event->featured_image)); ?>" 
-                         alt="<?php echo e($event->getTranslation('title', app()->getLocale())); ?>"
+                         alt="<?php echo e($event->getLocalizedTranslation('title', app()->getLocale())); ?>"
                          class="w-100" style="height: 400px; object-fit: cover;">
                 </div>
                 <?php endif; ?>
@@ -72,7 +72,7 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
                         </div>
                     </div>
                     <div class="content-description">
-                        <?php echo nl2br(e($event->getTranslation('content', app()->getLocale()))); ?>
+                        <?php echo nl2br(e($event->getLocalizedTranslation('content', app()->getLocale()))); ?>
 
                     </div>
                 </div>
@@ -158,7 +158,7 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
                 <?php endif; ?>
                 
                 <!-- Benefits -->
-                <?php if($event->benefits && count($event->getTranslation('benefits', app()->getLocale())) > 0): ?>
+                <?php if($event->benefits && ($benefitsTranslation = $event->getLocalizedTranslation('benefits', app()->getLocale())) && (is_array($benefitsTranslation) ? count($benefitsTranslation) : !empty($benefitsTranslation)) > 0): ?>
                 <div class="practice-card-textured mb-4">
                     <div class="practice-card-body">
                         <div class="practice-icon-left">
@@ -170,7 +170,7 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
                     </div>
                     <div class="content-description">
                         <div class="row">
-                            <?php $__currentLoopData = $event->getTranslation('benefits', app()->getLocale()); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $benefit): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php $__currentLoopData = $event->getLocalizedTranslation('benefits', app()->getLocale()); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $benefit): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="col-md-6 mb-3">
                                 <div class="d-flex align-items-start">
                                     <i class="fas fa-check me-3 mt-1" style="color: var(--primary-pink);"></i>
@@ -184,7 +184,7 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
                 <?php endif; ?>
                 
                 <!-- Program -->
-                <?php if($event->program && count($event->getTranslation('program', app()->getLocale())) > 0): ?>
+                <?php if($event->program && ($programTranslation = $event->getLocalizedTranslation('program', app()->getLocale())) && (is_array($programTranslation) ? count($programTranslation) : !empty($programTranslation)) > 0): ?>
                 <div class="practice-card-textured mb-4">
                     <div class="practice-card-body">
                         <div class="practice-icon-left">
@@ -196,7 +196,7 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
                     </div>
                     <div class="content-description">
                         <div class="program-list">
-                            <?php $__currentLoopData = $event->getTranslation('program', app()->getLocale()); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php $__currentLoopData = $event->getLocalizedTranslation('program', app()->getLocale()); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="program-item d-flex align-items-start mb-3">
                                 <span class="badge bg-primary me-3 mt-1" style="border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;">
                                     <?php echo e($index + 1); ?>
@@ -211,7 +211,7 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
                 <?php endif; ?>
                 
                 <!-- Requirements -->
-                <?php if($event->requirements && count($event->getTranslation('requirements', app()->getLocale())) > 0): ?>
+                <?php if($event->requirements && ($requirementsTranslation = $event->getLocalizedTranslation('requirements', app()->getLocale())) && (is_array($requirementsTranslation) ? count($requirementsTranslation) : !empty($requirementsTranslation)) > 0): ?>
                 <div class="practice-card-textured mb-4">
                     <div class="practice-card-body">
                         <div class="practice-icon-left">
@@ -223,7 +223,7 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
                     </div>
                     <div class="content-description">
                         <ul class="list-unstyled">
-                            <?php $__currentLoopData = $event->getTranslation('requirements', app()->getLocale()); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $requirement): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php $__currentLoopData = $event->getLocalizedTranslation('requirements', app()->getLocale()); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $requirement): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <li class="mb-2">
                                 <i class="fas fa-dot-circle me-2" style="color: var(--primary-pink);"></i>
                                 <?php echo e($requirement); ?>
@@ -238,7 +238,7 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
                 <!-- Gallery -->
                 <?php
                     $validGalleryImages = [];
-                    if($event->gallery && count($event->gallery) > 0) {
+                    if($event->gallery && (is_array($event->gallery) ? count($event->gallery) : !empty($event->gallery)) > 0) {
                         foreach($event->gallery as $image) {
                             if($image && file_exists(storage_path('app/public/' . $image))) {
                                 $validGalleryImages[] = $image;
@@ -262,7 +262,7 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
                             <div class="col-md-4 mb-3">
                                 <div class="gallery-item" style="border-radius: 15px; overflow: hidden; transition: transform 0.3s ease;">
                                     <img src="<?php echo e(asset('storage/' . $image)); ?>" 
-                                         alt="<?php echo e($event->getTranslation('title', app()->getLocale())); ?>"
+                                         alt="<?php echo e($event->getLocalizedTranslation('title', app()->getLocale())); ?>"
                                          class="w-100" style="height: 200px; object-fit: cover;">
                                 </div>
                             </div>
@@ -319,15 +319,20 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
                         </div>
                         <?php endif; ?>
                         
-                        <?php if($event->location): ?>
+                        <?php
+                            $locationTranslation = $event->getLocalizedTranslation('location', app()->getLocale());
+                        ?>
+                        <?php if($locationTranslation && !empty($locationTranslation)): ?>
                         <div class="service-detail-item mb-3">
                             <strong><?php echo e(__('messages.events.location')); ?>:</strong>
-                            <?php if(is_array($event->getTranslation('location', app()->getLocale()))): ?>
-                                <?php $__currentLoopData = $event->getTranslation('location', app()->getLocale()); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <div><?php echo e($value); ?></div>
+                            <?php if(is_array($locationTranslation)): ?>
+                                <?php $__currentLoopData = $locationTranslation; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php if($value): ?>
+                                        <div><?php echo e($value); ?></div>
+                                    <?php endif; ?>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             <?php else: ?>
-                                <?php echo e($event->getTranslation('location', app()->getLocale())); ?>
+                                <?php echo e($locationTranslation); ?>
 
                             <?php endif; ?>
                         </div>

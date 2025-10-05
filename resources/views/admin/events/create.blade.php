@@ -77,7 +77,7 @@
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label class="form-label">Content (French) *</label>
-                            <textarea name="content[fr]" rows="6" class="form-control @error('content.fr') is-invalid @enderror" required>{{ old('content.fr', $event->getTranslation('content', 'fr') ?? 'Un atelier riche en découvertes où chacun repartira avec les clés pour :
+                            <textarea id="content_fr" name="content[fr]" rows="6" class="form-control @error('content.fr') is-invalid @enderror" required>{{ old('content.fr', $event->getTranslation('content', 'fr') ?? 'Un atelier riche en découvertes où chacun repartira avec les clés pour :
 • apprendre à reconnaître les émotions  
 • comprendre le besoin caché derrière
 • mieux communiquer et interagir avec ses proches mais aussi ses collègues') }}</textarea>
@@ -87,7 +87,7 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Content (English)</label>
-                            <textarea name="content[en]" rows="6" class="form-control @error('content.en') is-invalid @enderror">{{ old('content.en', $event->getTranslation('content', 'en') ?? '') }}</textarea>
+                            <textarea id="content_en" name="content[en]" rows="6" class="form-control @error('content.en') is-invalid @enderror">{{ old('content.en', $event->getTranslation('content', 'en') ?? '') }}</textarea>
                             @error('content.en')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -344,15 +344,34 @@
 @endsection
 
 @push('scripts')
+<!-- TinyMCE Editor -->
+<script src="https://cdn.jsdelivr.net/npm/tinymce@6/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Auto-generate slug from title
-    const titleInput = document.querySelector('input[name="title[fr]"]');
-    if (titleInput && !{{ isset($event) ? 'true' : 'false' }}) {
-        titleInput.addEventListener('input', function() {
-            // You can add slug generation logic here if needed
-        });
-    }
-});
+    tinymce.init({
+        selector: '#content_fr, #content_en',
+        height: 400,
+        plugins: [
+            'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+            'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+            'insertdatetime', 'media', 'table', 'help', 'wordcount'
+        ],
+        toolbar: 'undo redo | blocks | ' +
+                'bold italic forecolor | alignleft aligncenter ' +
+                'alignright alignjustify | bullist numlist outdent indent | ' +
+                'removeformat | help',
+        content_style: 'body { font-family: Poppins, Arial, sans-serif; font-size: 14px }',
+        branding: false,
+        promotion: false
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Auto-generate slug from title
+        const titleInput = document.querySelector('input[name="title[fr]"]');
+        if (titleInput && !{{ isset($event) ? 'true' : 'false' }}) {
+            titleInput.addEventListener('input', function() {
+                // You can add slug generation logic here if needed
+            });
+        }
+    });
 </script>
 @endpush

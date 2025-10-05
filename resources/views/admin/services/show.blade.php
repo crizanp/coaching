@@ -41,21 +41,27 @@
                                     <td><strong>Description:</strong></td>
                                     <td>{{ $service->getTranslation('description', 'fr') }}</td>
                                 </tr>
-                                @if($service->getTranslation('benefits', 'fr'))
+                                @php
+                                    $benefitsFr = $service->getLocalizedTranslation('benefits', 'fr');
+                                @endphp
+                                @if($benefitsFr && is_array($benefitsFr))
                                 <tr>
                                     <td><strong>Benefits:</strong></td>
                                     <td>
-                                        @foreach($service->getTranslation('benefits', 'fr') as $benefit)
+                                        @foreach($benefitsFr as $benefit)
                                             <span class="badge bg-primary me-1 mb-1">{{ $benefit }}</span>
                                         @endforeach
                                     </td>
                                 </tr>
                                 @endif
-                                @if($service->getTranslation('session_format', 'fr'))
+                                @php
+                                    $sessionFormatFr = $service->getLocalizedTranslation('session_format', 'fr');
+                                @endphp
+                                @if($sessionFormatFr && is_array($sessionFormatFr))
                                 <tr>
                                     <td><strong>Session Format:</strong></td>
                                     <td>
-                                        @foreach($service->getTranslation('session_format', 'fr') as $format)
+                                        @foreach($sessionFormatFr as $format)
                                             <span class="badge bg-info me-1 mb-1">{{ $format }}</span>
                                         @endforeach
                                     </td>
@@ -75,21 +81,27 @@
                                     <td><strong>Description:</strong></td>
                                     <td>{{ $service->getTranslation('description', 'en') }}</td>
                                 </tr>
-                                @if($service->getTranslation('benefits', 'en'))
+                                @php
+                                    $benefitsEn = $service->getLocalizedTranslation('benefits', 'en');
+                                @endphp
+                                @if($benefitsEn && is_array($benefitsEn))
                                 <tr>
                                     <td><strong>Benefits:</strong></td>
                                     <td>
-                                        @foreach($service->getTranslation('benefits', 'en') as $benefit)
+                                        @foreach($benefitsEn as $benefit)
                                             <span class="badge bg-primary me-1 mb-1">{{ $benefit }}</span>
                                         @endforeach
                                     </td>
                                 </tr>
                                 @endif
-                                @if($service->getTranslation('session_format', 'en'))
+                                @php
+                                    $sessionFormatEn = $service->getLocalizedTranslation('session_format', 'en');
+                                @endphp
+                                @if($sessionFormatEn && is_array($sessionFormatEn))
                                 <tr>
                                     <td><strong>Session Format:</strong></td>
                                     <td>
-                                        @foreach($service->getTranslation('session_format', 'en') as $format)
+                                        @foreach($sessionFormatEn as $format)
                                             <span class="badge bg-info me-1 mb-1">{{ $format }}</span>
                                         @endforeach
                                     </td>

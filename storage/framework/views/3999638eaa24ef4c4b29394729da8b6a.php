@@ -139,7 +139,7 @@ unset($__errorArgs, $__bag); ?>" id="service_id" name="service_id">
                                         <option value=""><?php echo e(__('messages.contact.form.service_select')); ?></option>
                                         <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <option value="<?php echo e($service->id); ?>" <?php echo e(old('service_id') == $service->id ? 'selected' : ''); ?>>
-                                                <?php echo e($service->getTranslation('name', app()->getLocale())); ?>
+                                                <?php echo e($service->getLocalizedTranslation('name', app()->getLocale())); ?>
 
                                             </option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

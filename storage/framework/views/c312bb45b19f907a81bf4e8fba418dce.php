@@ -699,6 +699,55 @@
 
     <!-- Main Content -->
     <main style="margin-top: 0;">
+        <!-- Flash Messages -->
+        <?php if(session('success')): ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin: 0; border-radius: 0;">
+                <div class="container">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-check-circle me-2"></i>
+                        <strong><?php echo e(session('success')); ?></strong>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php if(session('error')): ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin: 0; border-radius: 0;">
+                <div class="container">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-exclamation-circle me-2"></i>
+                        <strong><?php echo e(session('error')); ?></strong>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php if(session('warning')): ?>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert" style="margin: 0; border-radius: 0;">
+                <div class="container">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <strong><?php echo e(session('warning')); ?></strong>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php if(session('info')): ?>
+            <div class="alert alert-info alert-dismissible fade show" role="alert" style="margin: 0; border-radius: 0;">
+                <div class="container">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <strong><?php echo e(session('info')); ?></strong>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        <?php endif; ?>
+
         <?php echo $__env->yieldContent('content'); ?>
     </main>
 
@@ -754,7 +803,7 @@
                     <?php $__currentLoopData = \App\Models\Service::active()->orderBy('sort_order')->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <p>
                             <a href="<?php echo e(route('services.show', [app()->getLocale(), $service->slug])); ?>" class="text-light text-decoration-none">
-                                <?php echo e($service->getTranslation('name', app()->getLocale())); ?>
+                                <?php echo e($service->getLocalizedTranslation('name', app()->getLocale())); ?>
 
                             </a>
                         </p>
@@ -862,6 +911,17 @@
                 navbar.style.background = 'rgba(255, 255, 255, 0.98)';
             } else {
                 navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Auto-hide success messages after 5 seconds
+        document.addEventListener('DOMContentLoaded', function() {
+            const successAlert = document.querySelector('.alert-success');
+            if (successAlert) {
+                setTimeout(function() {
+                    const alert = new bootstrap.Alert(successAlert);
+                    alert.close();
+                }, 5000); // 5 seconds
             }
         });
     </script>

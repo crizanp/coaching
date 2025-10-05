@@ -44,11 +44,11 @@
                             @endswitch
                         </div>
                         <div class="practice-card-content">
-                            <h4>{{ $service->getTranslation('name', app()->getLocale()) }}</h4>
+                            <h4>{{ $service->getLocalizedTranslation('name', app()->getLocale()) }}</h4>
                         </div>
                     </div>
                     
-                    <p class="service-description mb-4">{{ $service->getTranslation('description', app()->getLocale()) }}</p>
+                    <p class="service-description mb-4">{{ $service->getLocalizedTranslation('description', app()->getLocale()) }}</p>
                     
                     <div class="service-details mb-4">
                         @if($service->price_individual > 0)

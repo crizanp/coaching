@@ -145,8 +145,8 @@
                                     <i class="fas fa-heart"></i>
                             @endswitch
                         </div>
-                        <h4 class="mb-3">{{ $service->getTranslation('name', app()->getLocale()) }}</h4>
-                        <p class="text-muted mb-4">{{ $service->getTranslation('description', app()->getLocale()) }}</p>
+                        <h4 class="mb-3">{{ $service->getLocalizedTranslation('name', app()->getLocale()) }}</h4>
+                        <p class="text-muted mb-4">{{ $service->getLocalizedTranslation('description', app()->getLocale()) }}</p>
                         
                         @if($service->price_individual > 0)
                         <div class="mb-3">
@@ -199,14 +199,14 @@
                                         @endif
                                     @endfor
                                 </div>
-                                <p class="mb-4 fs-5">{{ $testimonial->getTranslation('testimonial', app()->getLocale()) }}</p>
+                                <p class="mb-4 fs-5">{{ $testimonial->getLocalizedTranslation('testimonial', app()->getLocale()) }}</p>
                                 <div class="testimonial-author">
                                     <strong class="d-block">{{ $testimonial->client_name }}</strong>
                                     @if($testimonial->client_location)
                                         <small class="text-muted">{{ $testimonial->client_location }}</small>
                                     @endif
                                     @if($testimonial->service)
-                                        <br><small class="text-muted">{{ $testimonial->service->getTranslation('name', app()->getLocale()) }}</small>
+                                        <br><small class="text-muted">{{ $testimonial->service->getLocalizedTranslation('name', app()->getLocale()) }}</small>
                                     @endif
                                 </div>
                             </div>
@@ -246,24 +246,24 @@
                     @php
                         $faqs = [
                             [
-                                'question' => __('messages.home.faq.q1.question'),
-                                'answer' => __('messages.home.faq.q1.answer')
+                                'question' => trans('messages.home.faq.q1.question'),
+                                'answer' => trans('messages.home.faq.q1.answer')
                             ],
                             [
-                                'question' => __('messages.home.faq.q2.question'),
-                                'answer' => __('messages.home.faq.q2.answer')
+                                'question' => trans('messages.home.faq.q2.question'),
+                                'answer' => trans('messages.home.faq.q2.answer')
                             ],
                             [
-                                'question' => __('messages.home.faq.q3.question'),
-                                'answer' => __('messages.home.faq.q3.answer')
+                                'question' => trans('messages.home.faq.q3.question'),
+                                'answer' => trans('messages.home.faq.q3.answer')
                             ],
                             [
-                                'question' => __('messages.home.faq.q4.question'),
-                                'answer' => __('messages.home.faq.q4.answer')
+                                'question' => trans('messages.home.faq.q4.question'),
+                                'answer' => trans('messages.home.faq.q4.answer')
                             ],
                             [
-                                'question' => __('messages.home.faq.q5.question'),
-                                'answer' => __('messages.home.faq.q5.answer')
+                                'question' => trans('messages.home.faq.q5.question'),
+                                'answer' => trans('messages.home.faq.q5.answer')
                             ]
                         ];
                     @endphp

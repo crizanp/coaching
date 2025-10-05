@@ -89,7 +89,13 @@
                             <div class="col-md-6">
                                 <label for="benefits_fr" class="form-label">{{ __('Benefits (French)') }}</label>
                                 <div id="benefits_fr_container">
-                                    @php $benefits_fr = old('benefits_fr', $service->getTranslation('benefits', 'fr') ?? []); @endphp
+                                    @php 
+                                        $benefits_fr = old('benefits_fr'); 
+                                        if (!$benefits_fr) {
+                                            $benefits_fr = $service->getLocalizedTranslation('benefits', 'fr');
+                                            $benefits_fr = is_array($benefits_fr) ? $benefits_fr : [];
+                                        }
+                                    @endphp
                                     @if(empty($benefits_fr))
                                         <input type="text" class="form-control mb-2" name="benefits_fr[]" placeholder="Enter a benefit">
                                     @else
@@ -105,7 +111,13 @@
                             <div class="col-md-6">
                                 <label for="benefits_en" class="form-label">{{ __('Benefits (English)') }}</label>
                                 <div id="benefits_en_container">
-                                    @php $benefits_en = old('benefits_en', $service->getTranslation('benefits', 'en') ?? []); @endphp
+                                    @php 
+                                        $benefits_en = old('benefits_en'); 
+                                        if (!$benefits_en) {
+                                            $benefits_en = $service->getLocalizedTranslation('benefits', 'en');
+                                            $benefits_en = is_array($benefits_en) ? $benefits_en : [];
+                                        }
+                                    @endphp
                                     @if(empty($benefits_en))
                                         <input type="text" class="form-control mb-2" name="benefits_en[]" placeholder="Enter a benefit">
                                     @else
@@ -125,7 +137,13 @@
                             <div class="col-md-6">
                                 <label for="session_format_fr" class="form-label">{{ __('Session Format (French)') }}</label>
                                 <div id="session_format_fr_container">
-                                    @php $session_format_fr = old('session_format_fr', $service->getTranslation('session_format', 'fr') ?? []); @endphp
+                                    @php 
+                                        $session_format_fr = old('session_format_fr'); 
+                                        if (!$session_format_fr) {
+                                            $session_format_fr = $service->getLocalizedTranslation('session_format', 'fr');
+                                            $session_format_fr = is_array($session_format_fr) ? $session_format_fr : [];
+                                        }
+                                    @endphp
                                     @if(empty($session_format_fr))
                                         <input type="text" class="form-control mb-2" name="session_format_fr[]" placeholder="Enter session format">
                                     @else
@@ -141,7 +159,13 @@
                             <div class="col-md-6">
                                 <label for="session_format_en" class="form-label">{{ __('Session Format (English)') }}</label>
                                 <div id="session_format_en_container">
-                                    @php $session_format_en = old('session_format_en', $service->getTranslation('session_format', 'en') ?? []); @endphp
+                                    @php 
+                                        $session_format_en = old('session_format_en'); 
+                                        if (!$session_format_en) {
+                                            $session_format_en = $service->getLocalizedTranslation('session_format', 'en');
+                                            $session_format_en = is_array($session_format_en) ? $session_format_en : [];
+                                        }
+                                    @endphp
                                     @if(empty($session_format_en))
                                         <input type="text" class="form-control mb-2" name="session_format_en[]" placeholder="Enter session format">
                                     @else
@@ -257,3 +281,43 @@ function addSessionFormat(lang) {
 }
 </script>
 @endsection
+
+@push('scripts')
+<!-- TinyMCE Editor -->
+<script src="https://cdn.jsdelivr.net/npm/tinymce@6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '#description_fr, #description_en, #content_fr, #content_en',
+        height: function(editor) {
+            // Different heights for different fields
+            if (editor.targetElm.id.includes('description')) {
+                return 200;
+            } else {
+                return 400;
+            }
+        },
+        plugins: [
+            'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+            'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+            'insertdatetime', 'media', 'table', 'help', 'wordcount'
+        ],
+        toolbar: 'undo redo | blocks | ' +
+                'bold italic forecolor | alignleft aligncenter ' +
+                'alignright alignjustify | bullist numlist outdent indent | ' +
+                'removeformat | help',
+        content_style: 'body { font-family: Poppins, Arial, sans-serif; font-size: 14px }',
+        branding: false,
+        promotion: false,
+        setup: function(editor) {
+            editor.on('init', function() {
+                // Set appropriate height after initialization
+                if (editor.targetElm.id.includes('description')) {
+                    editor.getContainer().style.height = '200px';
+                } else {
+                    editor.getContainer().style.height = '400px';
+                }
+            });
+        }
+    });
+</script>
+@endpush

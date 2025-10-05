@@ -58,7 +58,7 @@
                                     <td><strong>Service:</strong></td>
                                     <td>
                                         @if($appointment->service)
-                                            {{ $appointment->service->getTranslation('name', app()->getLocale()) }}
+                                            {{ $appointment->service->getLocalizedTranslation('name', app()->getLocale()) }}
                                         @else
                                             <span class="text-muted">Service no longer available</span>
                                         @endif

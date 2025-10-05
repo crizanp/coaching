@@ -201,12 +201,17 @@ class EventController extends Controller
     public function duplicate(Event $event)
     {
         $newEvent = $event->replicate();
-        $newEvent->title = $event->title;
-        $newEvent->title = array_map(function($title) {
-            return $title . ' (Copy)';
-        }, $newEvent->title);
-        $newEvent->slug = Str::slug($newEvent->getTranslation('title', 'fr'));
-        $newEvent->status = 'draft';
+        
+        // Update title with (Copy) suffix for both languages
+        $titleFr = $event->getLocalizedTranslation('title', 'fr') . ' (Copy)';
+        $titleEn = $event->getLocalizedTranslation('title', 'en') . ' (Copy)';
+        
+        $newEvent->setTranslation('title', 'fr', $titleFr);
+        $newEvent->setTranslation('title', 'en', $titleEn);
+        
+        // Generate new slug based on French title
+        $newEvent->slug = Str::slug($titleFr);
+        $newEvent->status = 'upcoming';
         $newEvent->current_participants = 0;
         $newEvent->save();
 

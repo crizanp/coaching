@@ -175,6 +175,9 @@ class BlogController extends Controller
             $validated['meta_keywords'] = array_map('trim', explode(',', $validated['meta_keywords']));
         }
 
+        // Handle is_published checkbox (unchecked checkboxes are not sent)
+        $validated['is_published'] = $validated['is_published'] ?? false;
+
         // Set published_at if publishing for the first time
         if ($validated['is_published'] && !$blog->is_published && empty($validated['published_at'])) {
             $validated['published_at'] = now();

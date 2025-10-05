@@ -22,7 +22,7 @@
 
     <!-- Keywords -->
     <?php if($blog->meta_keywords): ?>
-        <meta name="keywords" content="<?php echo e(implode(', ', $blog->meta_keywords)); ?>">
+        <meta name="keywords" content="<?php echo e(is_array($blog->meta_keywords) ? implode(', ', $blog->meta_keywords) : $blog->meta_keywords); ?>">
     <?php endif; ?>
 
     <!-- Structured Data -->

@@ -81,14 +81,14 @@
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label class="form-label">Content (French) *</label>
-                            <textarea name="content[fr]" rows="6" class="form-control @error('content.fr') is-invalid @enderror" required>{{ old('content.fr', $event->getTranslation('content', 'fr')) }}</textarea>
+                            <textarea id="content_fr" name="content[fr]" rows="6" class="form-control @error('content.fr') is-invalid @enderror" required>{{ old('content.fr', $event->getTranslation('content', 'fr')) }}</textarea>
                             @error('content.fr')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Content (English)</label>
-                            <textarea name="content[en]" rows="6" class="form-control @error('content.en') is-invalid @enderror">{{ old('content.en', $event->getTranslation('content', 'en')) }}</textarea>
+                            <textarea id="content_en" name="content[en]" rows="6" class="form-control @error('content.en') is-invalid @enderror">{{ old('content.en', $event->getTranslation('content', 'en')) }}</textarea>
                             @error('content.en')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -374,3 +374,26 @@
     </form>
 </div>
 @endsection
+
+@push('scripts')
+<!-- TinyMCE Editor -->
+<script src="https://cdn.jsdelivr.net/npm/tinymce@6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '#content_fr, #content_en',
+        height: 400,
+        plugins: [
+            'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+            'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+            'insertdatetime', 'media', 'table', 'help', 'wordcount'
+        ],
+        toolbar: 'undo redo | blocks | ' +
+                'bold italic forecolor | alignleft aligncenter ' +
+                'alignright alignjustify | bullist numlist outdent indent | ' +
+                'removeformat | help',
+        content_style: 'body { font-family: Poppins, Arial, sans-serif; font-size: 14px }',
+        branding: false,
+        promotion: false
+    });
+</script>
+@endpush

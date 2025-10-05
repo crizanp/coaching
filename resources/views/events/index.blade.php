@@ -91,7 +91,7 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
                         @if($event->featured_image && file_exists(storage_path('app/public/' . $event->featured_image)))
                         <div class="practice-image">
                             <img src="{{ asset('storage/' . $event->featured_image) }}" 
-                                 alt="{{ $event->getTranslation('title', app()->getLocale()) }}"
+                                 alt="{{ $event->getLocalizedTranslation('title', app()->getLocale()) }}"
                                  class="w-100" style="height: 200px; object-fit: cover; border-radius: 15px 15px 0 0;">
                         </div>
                         @endif
@@ -106,11 +106,11 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
                             <i class="fas fa-calendar-alt"></i>
                         </div>
                         <div class="practice-card-content">
-                            <h4>{{ $event->getTranslation('title', app()->getLocale()) }}</h4>
+                            <h4>{{ $event->getLocalizedTranslation('title', app()->getLocale()) }}</h4>
                         </div>
                     </div>
                     
-                    <p class="service-description mb-4">{{ $event->getTranslation('description', app()->getLocale()) }}</p>
+                    <p class="service-description mb-4">{{ $event->getLocalizedTranslation('description', app()->getLocale()) }}</p>
                     
                     <div class="service-details mb-4">
                         @if($event->duration)
@@ -167,7 +167,7 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
                         @if($event->featured_image && file_exists(storage_path('app/public/' . $event->featured_image)))
                         <div class="practice-image">
                             <img src="{{ asset('storage/' . $event->featured_image) }}" 
-                                 alt="{{ $event->getTranslation('title', app()->getLocale()) }}"
+                                 alt="{{ $event->getLocalizedTranslation('title', app()->getLocale()) }}"
                                  class="w-100" style="height: 200px; object-fit: cover; border-radius: 15px 15px 0 0;">
                         </div>
                         @endif
@@ -182,11 +182,11 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
                             <i class="fas fa-clock"></i>
                         </div>
                         <div class="practice-card-content">
-                            <h4>{{ $event->getTranslation('title', app()->getLocale()) }}</h4>
+                            <h4>{{ $event->getLocalizedTranslation('title', app()->getLocale()) }}</h4>
                         </div>
                     </div>
                     
-                    <p class="service-description mb-4">{{ Str::limit($event->getTranslation('description', app()->getLocale()), 100) }}</p>
+                    <p class="service-description mb-4">{{ Str::limit($event->getLocalizedTranslation('description', app()->getLocale()), 100) }}</p>
                     
                     <div class="service-details mb-4">
                         @if($event->event_date)
@@ -309,7 +309,7 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
                         @if($event->featured_image && file_exists(storage_path('app/public/' . $event->featured_image)))
                         <div class="practice-image">
                             <img src="{{ asset('storage/' . $event->featured_image) }}" 
-                                 alt="{{ $event->getTranslation('title', app()->getLocale()) }}"
+                                 alt="{{ $event->getLocalizedTranslation('title', app()->getLocale()) }}"
                                  class="w-100" style="height: 200px; object-fit: cover; border-radius: 15px 15px 0 0;">
                         </div>
                         @endif
@@ -324,13 +324,13 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
                             <i class="fas fa-star"></i>
                         </div>
                         <div class="practice-card-content">
-                            <h4>{{ $event->getTranslation('title', app()->getLocale()) }}</h4>
+                            <h4>{{ $event->getLocalizedTranslation('title', app()->getLocale()) }}</h4>
                         </div>
                     </div>
                     
-                    <p class="service-description mb-4">{{ $event->getTranslation('description', app()->getLocale()) }}</p>
+                    <p class="service-description mb-4">{{ $event->getLocalizedTranslation('description', app()->getLocale()) }}</p>
                     
-                    @if($event->gallery && count($event->gallery) > 0)
+                    @if($event->gallery && (is_array($event->gallery) ? count($event->gallery) : !empty($event->gallery)) > 0)
                     <div class="mb-3">
                         <small class="text-muted d-block mb-2">
                             <i class="fas fa-images me-1"></i>

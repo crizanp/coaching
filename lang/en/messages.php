@@ -374,6 +374,7 @@ return [
     'blog.no_posts.message' => 'No articles match your search criteria.',
     'blog.no_posts.view_all' => 'View All Articles',
     'blog.view_all' => 'View All Articles',
+    'blog.read_more' => 'Read article',
     'blog.related.title' => 'Related Articles',
     'blog.reactions.title' => 'What did you think of this article?',
     'blog.reactions.like' => 'Like',

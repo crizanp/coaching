@@ -89,7 +89,7 @@
                                         <option value="">{{ __('messages.contact.form.service_select') }}</option>
                                         @foreach($services as $service)
                                             <option value="{{ $service->id }}" {{ old('service_id') == $service->id ? 'selected' : '' }}>
-                                                {{ $service->getTranslation('name', app()->getLocale()) }}
+                                                {{ $service->getLocalizedTranslation('name', app()->getLocale()) }}
                                             </option>
                                         @endforeach
                                     </select>

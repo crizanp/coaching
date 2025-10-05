@@ -147,8 +147,8 @@
                                     <i class="fas fa-heart"></i>
                             <?php endswitch; ?>
                         </div>
-                        <h4 class="mb-3"><?php echo e($service->getTranslation('name', app()->getLocale())); ?></h4>
-                        <p class="text-muted mb-4"><?php echo e($service->getTranslation('description', app()->getLocale())); ?></p>
+                        <h4 class="mb-3"><?php echo e($service->getLocalizedTranslation('name', app()->getLocale())); ?></h4>
+                        <p class="text-muted mb-4"><?php echo e($service->getLocalizedTranslation('description', app()->getLocale())); ?></p>
                         
                         <?php if($service->price_individual > 0): ?>
                         <div class="mb-3">
@@ -203,14 +203,14 @@
                                         <?php endif; ?>
                                     <?php endfor; ?>
                                 </div>
-                                <p class="mb-4 fs-5"><?php echo e($testimonial->getTranslation('testimonial', app()->getLocale())); ?></p>
+                                <p class="mb-4 fs-5"><?php echo e($testimonial->getLocalizedTranslation('testimonial', app()->getLocale())); ?></p>
                                 <div class="testimonial-author">
                                     <strong class="d-block"><?php echo e($testimonial->client_name); ?></strong>
                                     <?php if($testimonial->client_location): ?>
                                         <small class="text-muted"><?php echo e($testimonial->client_location); ?></small>
                                     <?php endif; ?>
                                     <?php if($testimonial->service): ?>
-                                        <br><small class="text-muted"><?php echo e($testimonial->service->getTranslation('name', app()->getLocale())); ?></small>
+                                        <br><small class="text-muted"><?php echo e($testimonial->service->getLocalizedTranslation('name', app()->getLocale())); ?></small>
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -250,24 +250,24 @@
                     <?php
                         $faqs = [
                             [
-                                'question' => __('messages.home.faq.q1.question'),
-                                'answer' => __('messages.home.faq.q1.answer')
+                                'question' => trans('messages.home.faq.q1.question'),
+                                'answer' => trans('messages.home.faq.q1.answer')
                             ],
                             [
-                                'question' => __('messages.home.faq.q2.question'),
-                                'answer' => __('messages.home.faq.q2.answer')
+                                'question' => trans('messages.home.faq.q2.question'),
+                                'answer' => trans('messages.home.faq.q2.answer')
                             ],
                             [
-                                'question' => __('messages.home.faq.q3.question'),
-                                'answer' => __('messages.home.faq.q3.answer')
+                                'question' => trans('messages.home.faq.q3.question'),
+                                'answer' => trans('messages.home.faq.q3.answer')
                             ],
                             [
-                                'question' => __('messages.home.faq.q4.question'),
-                                'answer' => __('messages.home.faq.q4.answer')
+                                'question' => trans('messages.home.faq.q4.question'),
+                                'answer' => trans('messages.home.faq.q4.answer')
                             ],
                             [
-                                'question' => __('messages.home.faq.q5.question'),
-                                'answer' => __('messages.home.faq.q5.answer')
+                                'question' => trans('messages.home.faq.q5.question'),
+                                'answer' => trans('messages.home.faq.q5.answer')
                             ]
                         ];
                     ?>

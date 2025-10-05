@@ -44,11 +44,11 @@
                             <?php endswitch; ?>
                         </div>
                         <div class="practice-card-content">
-                            <h4><?php echo e($service->getTranslation('name', app()->getLocale())); ?></h4>
+                            <h4><?php echo e($service->getLocalizedTranslation('name', app()->getLocale())); ?></h4>
                         </div>
                     </div>
                     
-                    <p class="service-description mb-4"><?php echo e($service->getTranslation('description', app()->getLocale())); ?></p>
+                    <p class="service-description mb-4"><?php echo e($service->getLocalizedTranslation('description', app()->getLocale())); ?></p>
                     
                     <div class="service-details mb-4">
                         <?php if($service->price_individual > 0): ?>

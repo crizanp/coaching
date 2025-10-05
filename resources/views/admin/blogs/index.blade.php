@@ -1,214 +1,266 @@
 @extends('layouts.admin')
 
-@section('title', 'Blog Posts')
+@section('page-title', 'Blog Posts')
 
 @section('content')
-<div class="admin-header">
-    <div class="header-content">
-        <h1 class="page-title">
-            <i class="fas fa-blog me-3"></i>Blog Posts
-        </h1>
-        <div class="header-actions">
-            <a href="{{ route('admin.blogs.create') }}" class="btn btn-primary">
-                <i class="fas fa-plus me-2"></i>New Post
-            </a>
+<div class="fade-in">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="mb-1">Blog Posts</h2>
+            <p class="text-muted">Manage your blog posts and articles</p>
+        </div>
+        <a href="{{ route('admin.blogs.create') }}" class="btn-admin btn-admin-primary">
+            <i class="fas fa-plus"></i>
+            Create New Post
+        </a>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="stat-card primary">
+                <div class="stat-icon primary">
+                    <i class="fas fa-newspaper"></i>
+                </div>
+                <div class="stat-value">{{ $blogs->total() }}</div>
+                <div class="stat-label">Total Posts</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card success">
+                <div class="stat-icon success">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="stat-value">{{ $blogs->where('is_published', true)->count() }}</div>
+                <div class="stat-label">Published Posts</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card warning">
+                <div class="stat-icon warning">
+                    <i class="fas fa-pencil-alt"></i>
+                </div>
+                <div class="stat-value">{{ $blogs->where('is_published', false)->count() }}</div>
+                <div class="stat-label">Draft Posts</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card info">
+                <div class="stat-icon info">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <div class="stat-value">{{ number_format($blogs->sum('views_count')) }}</div>
+                <div class="stat-label">Total Views</div>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="admin-content">
-    <!-- Search & Filter -->
-    <div class="card mb-4">
-        <div class="card-body">
-            <form method="GET" action="{{ route('admin.blogs.index') }}" class="row g-3">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="search" class="form-label">Search</label>
-                        <input type="text" class="form-control" id="search" name="search" 
-                               value="{{ request('search') }}" placeholder="Search in title, content...">
-                    </div>
+    <!-- Filters -->
+    <div class="admin-card mb-4">
+        <form method="GET" class="row g-3">
+            <div class="col-md-3">
+                <label class="form-label">Status</label>
+                <select name="status" class="form-control">
+                    <option value="">All Statuses</option>
+                    <option value="published" {{ request('status') === 'published' ? 'selected' : '' }}>Published</option>
+                    <option value="draft" {{ request('status') === 'draft' ? 'selected' : '' }}>Draft</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Category</label>
+                <select name="category" class="form-control">
+                    <option value="">All Categories</option>
+                    <!-- Add categories here if you have them -->
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Search</label>
+                <input type="text" name="search" class="form-control" placeholder="Search posts..." value="{{ request('search') }}">
+            </div>
+            <div class="col-md-2">
+                <label class="form-label">&nbsp;</label>
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn-admin btn-admin-primary">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <a href="{{ route('admin.blogs.index') }}" class="btn-admin btn-admin-outline">
+                        <i class="fas fa-times"></i>
+                    </a>
                 </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="status" class="form-label">Status</label>
-                        <select class="form-select" id="status" name="status">
-                            <option value="">All Posts</option>
-                            <option value="published" {{ request('status') === 'published' ? 'selected' : '' }}>Published</option>
-                            <option value="draft" {{ request('status') === 'draft' ? 'selected' : '' }}>Draft</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <label class="form-label">&nbsp;</label>
-                        <button type="submit" class="btn btn-outline-primary d-block w-100">
-                            <i class="fas fa-search me-1"></i>Filter
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 
     <!-- Blog Posts Table -->
-    <div class="card">
-        <div class="card-body">
-            @if($blogs->count() > 0)
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th style="width: 60px;">Image</th>
-                                <th>Title</th>
-                                <th style="width: 120px;">Status</th>
-                                <th style="width: 100px;">Views</th>
-                                <th style="width: 80px;">Likes</th>
-                                <th style="width: 120px;">Published</th>
-                                <th style="width: 150px;">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($blogs as $blog)
-                                <tr>
-                                    <td>
-                                        @if($blog->featured_image)
-                                            <img src="{{ Storage::url($blog->featured_image) }}" 
-                                                 alt="{{ $blog->title }}" class="rounded" 
-                                                 style="width: 50px; height: 35px; object-fit: cover;">
-                                        @else
-                                            <div class="bg-light rounded d-flex align-items-center justify-content-center" 
-                                                 style="width: 50px; height: 35px;">
-                                                <i class="fas fa-image text-muted"></i>
-                                            </div>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <h6 class="mb-1">{{ $blog->title }}</h6>
-                                        <small class="text-muted">{{ Str::limit($blog->excerpt, 50) }}</small>
-                                    </td>
-                                    <td>
-                                        @if($blog->is_published)
-                                            <span class="badge bg-success">Published</span>
-                                        @else
-                                            <span class="badge bg-secondary">Draft</span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <span class="text-muted">
-                                            <i class="fas fa-eye me-1"></i>{{ number_format($blog->views_count) }}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span class="text-success">
-                                            <i class="fas fa-thumbs-up me-1"></i>{{ $blog->likes_count }}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <small class="text-muted">
-                                            {{ $blog->formatted_published_at ?? 'Not published' }}
-                                        </small>
-                                    </td>
-                                    <td>
-                                        <div class="btn-group btn-group-sm">
-                                            <a href="{{ route('admin.blogs.show', $blog) }}" 
-                                               class="btn btn-outline-info" title="View">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
-                                            <a href="{{ route('admin.blogs.edit', $blog) }}" 
-                                               class="btn btn-outline-primary" title="Edit">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <form action="{{ route('admin.blogs.toggle-publish', $blog) }}" 
-                                                  method="POST" class="d-inline">
-                                                @csrf
-                                                @method('PATCH')
-                                                <button type="submit" 
-                                                        class="btn btn-outline-{{ $blog->is_published ? 'warning' : 'success' }}" 
-                                                        title="{{ $blog->is_published ? 'Unpublish' : 'Publish' }}">
-                                                    <i class="fas fa-{{ $blog->is_published ? 'eye-slash' : 'globe' }}"></i>
-                                                </button>
-                                            </form>
-                                            <form action="{{ route('admin.blogs.destroy', $blog) }}" 
-                                                  method="POST" class="d-inline"
-                                                  onsubmit="return confirm('Are you sure you want to delete this blog post?')">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-outline-danger" title="Delete">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Pagination -->
-                <div class="d-flex justify-content-center mt-4">
-                    {{ $blogs->appends(request()->query())->links() }}
-                </div>
-            @else
-                <div class="text-center py-5">
-                    <i class="fas fa-blog fa-3x text-muted mb-3"></i>
-                    <h5 class="text-muted">No blog posts found</h5>
-                    <p class="text-muted">Get started by creating your first blog post.</p>
-                    <a href="{{ route('admin.blogs.create') }}" class="btn btn-primary">
-                        <i class="fas fa-plus me-2"></i>Create New Post
-                    </a>
-                </div>
-            @endif
+    <div class="admin-table">
+        <div class="table-header">
+            <h3 class="card-title">Blog Posts List</h3>
+            <div class="d-flex gap-2">
+                <select class="form-control form-control-sm" id="bulkAction" style="width: auto;">
+                    <option value="">Bulk Actions</option>
+                    <option value="publish">Publish</option>
+                    <option value="unpublish">Unpublish</option>
+                    <option value="delete">Delete</option>
+                </select>
+                <button type="button" class="btn-admin btn-admin-outline btn-sm" id="applyBulk">Apply</button>
+            </div>
         </div>
+
+        @if($blogs->count() > 0)
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th width="40">
+                                <input type="checkbox" id="selectAll">
+                            </th>
+                            <th>Post</th>
+                            <th>Status</th>
+                            <th>Published</th>
+                            <th>Views</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($blogs as $blog)
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="blog-checkbox" value="{{ $blog->id }}">
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    @if($blog->featured_image)
+                                        <img src="{{ Storage::url($blog->featured_image) }}"
+                                             alt="{{ $blog->title }}"
+                                             class="rounded me-3" style="width: 50px; height: 50px; object-fit: cover;">
+                                    @else
+                                        <div class="bg-secondary rounded me-3 d-flex align-items-center justify-content-center"
+                                             style="width: 50px; height: 50px;">
+                                            <i class="fas fa-blog text-white"></i>
+                                        </div>
+                                    @endif
+                                    <div>
+                                        <strong>{{ $blog->title }}</strong>
+                                        <br>
+                                        <small class="text-muted">{{ Str::limit($blog->excerpt, 50) }}</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="badge badge-{{ $blog->is_published ? 'success' : 'warning' }}">
+                                    {{ $blog->is_published ? 'Published' : 'Draft' }}
+                                </span>
+                            </td>
+                            <td>
+                                @if($blog->published_at)
+                                    {{ $blog->published_at->format('d/m/Y H:i') }}
+                                @else
+                                    <span class="text-muted">Not published</span>
+                                @endif
+                            </td>
+                            <td>
+                                <div class="text-center">
+                                    <strong>{{ number_format($blog->views_count) }}</strong>
+                                    <br>
+                                    <small class="text-muted">
+                                        <i class="fas fa-thumbs-up"></i> {{ $blog->likes_count }}
+                                    </small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex gap-1">
+                                    <a href="{{ route('admin.blogs.show', $blog) }}"
+                                       class="btn-admin btn-admin-outline btn-sm" title="View">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="{{ route('admin.blogs.edit', $blog) }}"
+                                       class="btn-admin btn-admin-primary btn-sm" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <form method="POST" action="{{ route('admin.blogs.toggle-publish', $blog) }}" class="d-inline">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button type="submit"
+                                                class="btn-admin btn-admin-{{ $blog->is_published ? 'warning' : 'success' }} btn-sm"
+                                                title="{{ $blog->is_published ? 'Unpublish' : 'Publish' }}">
+                                            <i class="fas fa-{{ $blog->is_published ? 'eye-slash' : 'globe' }}"></i>
+                                        </button>
+                                    </form>
+                                    <form method="POST" action="{{ route('admin.blogs.destroy', $blog) }}"
+                                          class="d-inline delete-form">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn-admin btn-admin-danger btn-sm" title="Delete">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="d-flex justify-content-center mt-4">
+                {{ $blogs->appends(request()->query())->links() }}
+            </div>
+        @else
+            <div class="text-center py-5">
+                <i class="fas fa-blog fa-3x text-muted mb-3"></i>
+                <h4>No blog posts found</h4>
+                <p class="text-muted">Get started by creating your first blog post.</p>
+                <a href="{{ route('admin.blogs.create') }}" class="btn-admin btn-admin-primary">
+                    <i class="fas fa-plus"></i>
+                    Create Post
+                </a>
+            </div>
+        @endif
     </div>
 </div>
 @endsection
 
-@push('styles')
-<style>
-    .admin-header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 2rem 0;
-        margin-bottom: 2rem;
-        border-radius: 10px;
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const selectAll = document.getElementById('selectAll');
+    const checkboxes = document.querySelectorAll('.blog-checkbox');
+
+    if (selectAll) {
+        selectAll.addEventListener('change', function() {
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = this.checked;
+            });
+        });
     }
 
-    .header-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 1.5rem;
+    const bulkButton = document.getElementById('applyBulk');
+    if (bulkButton) {
+        bulkButton.addEventListener('click', function() {
+            const action = document.getElementById('bulkAction').value;
+            const selectedIds = Array.from(document.querySelectorAll('.blog-checkbox:checked'))
+                                    .map(cb => cb.value);
+
+            if (!action || selectedIds.length === 0) {
+                alert('Please select an action and at least one blog post.');
+                return;
+            }
+
+            if (confirm(`Are you sure you want to ${action} ${selectedIds.length} post(s)?`)) {
+                console.log('Bulk action:', action, 'IDs:', selectedIds);
+            }
+        });
     }
 
-    .page-title {
-        font-size: 1.8rem;
-        font-weight: 600;
-        margin: 0;
-    }
-
-    .admin-content {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 1.5rem;
-    }
-
-    .card {
-        border: none;
-        box-shadow: 0 0.125rem 0.25rem rgba(255, 255, 255, 0.075);
-        border-radius: 10px;
-    }
-
-    .table th {
-        border-top: none;
-        font-weight: 600;
-        color: #495057;
-    }
-
-    .btn-group-sm .btn {
-        padding: 0.25rem 0.5rem;
-    }
-</style>
+    document.querySelectorAll('.delete-form').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            if (!confirm('Are you sure you want to delete this blog post? This action cannot be undone.')) {
+                e.preventDefault();
+            }
+        });
+    });
+});
+</script>
 @endpush

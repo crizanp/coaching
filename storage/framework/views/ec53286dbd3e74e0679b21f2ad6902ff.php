@@ -367,4 +367,44 @@ function addSessionFormat(lang) {
 }
 </script>
 <?php $__env->stopSection(); ?>
+
+<?php $__env->startPush('scripts'); ?>
+<!-- TinyMCE Editor -->
+<script src="https://cdn.jsdelivr.net/npm/tinymce@6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '#description_fr, #description_en, #content_fr, #content_en',
+        height: function(editor) {
+            // Different heights for different fields
+            if (editor.targetElm.id.includes('description')) {
+                return 200;
+            } else {
+                return 400;
+            }
+        },
+        plugins: [
+            'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+            'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+            'insertdatetime', 'media', 'table', 'help', 'wordcount'
+        ],
+        toolbar: 'undo redo | blocks | ' +
+                'bold italic forecolor | alignleft aligncenter ' +
+                'alignright alignjustify | bullist numlist outdent indent | ' +
+                'removeformat | help',
+        content_style: 'body { font-family: Poppins, Arial, sans-serif; font-size: 14px }',
+        branding: false,
+        promotion: false,
+        setup: function(editor) {
+            editor.on('init', function() {
+                // Set appropriate height after initialization
+                if (editor.targetElm.id.includes('description')) {
+                    editor.getContainer().style.height = '200px';
+                } else {
+                    editor.getContainer().style.height = '400px';
+                }
+            });
+        }
+    });
+</script>
+<?php $__env->stopPush(); ?>
 <?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH D:\client-fiverr\coaching\resources\views/admin/services/create.blade.php ENDPATH**/ ?>

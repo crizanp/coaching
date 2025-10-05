@@ -373,6 +373,7 @@ return [
     'blog.no_posts.message' => 'Aucun article ne correspond à vos critères de recherche.',
     'blog.no_posts.view_all' => 'Voir Tous les Articles',
     'blog.view_all' => 'Voir Tous les Articles',
+    'blog.read_more' => 'Lire l\'article',
     'blog.related.title' => 'Articles Connexes',
     'blog.reactions.title' => 'Qu\'avez-vous pensé de cet article ?',
     'blog.reactions.like' => 'J\'aime',

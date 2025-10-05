@@ -692,6 +692,55 @@
 
     <!-- Main Content -->
     <main style="margin-top: 0;">
+        <!-- Flash Messages -->
+        @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin: 0; border-radius: 0;">
+                <div class="container">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-check-circle me-2"></i>
+                        <strong>{{ session('success') }}</strong>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        @endif
+
+        @if(session('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin: 0; border-radius: 0;">
+                <div class="container">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-exclamation-circle me-2"></i>
+                        <strong>{{ session('error') }}</strong>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        @endif
+
+        @if(session('warning'))
+            <div class="alert alert-warning alert-dismissible fade show" role="alert" style="margin: 0; border-radius: 0;">
+                <div class="container">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <strong>{{ session('warning') }}</strong>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        @endif
+
+        @if(session('info'))
+            <div class="alert alert-info alert-dismissible fade show" role="alert" style="margin: 0; border-radius: 0;">
+                <div class="container">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <strong>{{ session('info') }}</strong>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        @endif
+
         @yield('content')
     </main>
 
@@ -743,7 +792,7 @@
                     @foreach(\App\Models\Service::active()->orderBy('sort_order')->get() as $service)
                         <p>
                             <a href="{{ route('services.show', [app()->getLocale(), $service->slug]) }}" class="text-light text-decoration-none">
-                                {{ $service->getTranslation('name', app()->getLocale()) }}
+                                {{ $service->getLocalizedTranslation('name', app()->getLocale()) }}
                             </a>
                         </p>
                     @endforeach
@@ -847,6 +896,17 @@
                 navbar.style.background = 'rgba(255, 255, 255, 0.98)';
             } else {
                 navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Auto-hide success messages after 5 seconds
+        document.addEventListener('DOMContentLoaded', function() {
+            const successAlert = document.querySelector('.alert-success');
+            if (successAlert) {
+                setTimeout(function() {
+                    const alert = new bootstrap.Alert(successAlert);
+                    alert.close();
+                }, 5000); // 5 seconds
             }
         });
     </script>

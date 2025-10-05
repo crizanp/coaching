@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
 @section('title')
-{{ __('messages.events.apply_title') }} - {{ $event->getTranslation('title', app()->getLocale()) }}
+{{ __('messages.events.apply_title') }} - {{ $event->getLocalizedTranslation('title', app()->getLocale()) }}
 @endsection
 
 @section('description')
@@ -16,7 +16,7 @@
             <div class="col-lg-8">
                 <div class="fade-in">
                     <h1 class="section-title">{{ __('messages.events.apply_title') }}</h1>
-                    <p class="lead mb-4">{{ $event->getTranslation('title', app()->getLocale()) }}</p>
+                    <p class="lead mb-4">{{ $event->getLocalizedTranslation('title', app()->getLocale()) }}</p>
                 </div>
             </div>
         </div>
@@ -35,11 +35,11 @@
                             <i class="fas fa-calendar-alt"></i>
                         </div>
                         <div class="practice-card-content">
-                            <h4>{{ $event->getTranslation('title', app()->getLocale()) }}</h4>
+                            <h4>{{ $event->getLocalizedTranslation('title', app()->getLocale()) }}</h4>
                         </div>
                     </div>
                     <div class="content-description">
-                        <p class="mb-3">{{ $event->getTranslation('description', app()->getLocale()) }}</p>
+                        <p class="mb-3">{{ $event->getLocalizedTranslation('description', app()->getLocale()) }}</p>
                         
                         <div class="row">
                             @if($event->event_date)
