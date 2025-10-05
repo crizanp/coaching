@@ -94,18 +94,18 @@
 </section>
 
 <!-- Quote Section -->
-<section class="section-padding" style="background-color: white;">
+<section class="section-padding section-quote bg-white">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10 text-center">
                 <div class="fade-in">
-                    <h2 class="section-title mb-4" style="color: #333; font-style: italic; font-size: 3.2rem; line-height: 1.4;">
+                    <h2 class="section-title quote-title mb-4">
                         "<?php echo e(__('messages.home.quote.title')); ?>"
                     </h2>
-                    <div class="quote-content" style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem; color: #555;">
+                    <div class="quote-content">
                         <p class="mb-4"><?php echo e(__('messages.home.quote.subtitle')); ?></p>
                         <p class="mb-4"><?php echo e(__('messages.home.quote.description')); ?></p>
-                        <p class="mb-0" style="font-style: italic; color: #F7B2BD;">
+                        <p class="mb-0 quote-highlight">
                             → <?php echo e(__('messages.home.quote.welcome')); ?>
 
                         </p>
@@ -117,16 +117,16 @@
 </section>
 
 <!-- Services Section -->
-<section class="section-padding" style="background-color: #F8E8EA;">
+<section class="section-padding section-services">
     <div class="container">
         <div class="fade-in">
             <h2 class="section-title"><?php echo e(__('messages.home.services.title')); ?></h2>
             <p class="section-subtitle"><?php echo e(__('messages.home.services.subtitle')); ?></p>
         </div>
         
-        <div class="row">
+        <div class="row g-4">
             <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <div class="col-lg-6 col-md-6 mb-4 fade-in">
+            <div class="col-xl-4 col-lg-6 col-md-6 fade-in">
                 <div class="card h-100">
                     <div class="card-body text-center">
                         <div class="service-icon">
@@ -179,7 +179,7 @@
 
 <!-- Testimonials Section -->
 <?php if($testimonials->count() > 0): ?>
-<section class="section-padding" style="background: white;">
+<section class="section-padding section-testimonials bg-white">
     <div class="container">
         <div class="fade-in">
             <h2 class="section-title"><?php echo e(__('messages.home.testimonials.title')); ?></h2>
@@ -237,7 +237,7 @@
 <?php endif; ?>
 
 <!-- FAQ Section -->
-<section class="section-padding" style="background-color: #F8E8EA;">
+<section class="section-padding section-faq">
     <div class="container">
         <div class="fade-in">
             <h2 class="section-title"><?php echo e(__('messages.home.faq.title')); ?></h2>
@@ -295,7 +295,7 @@
 </section>
 
 <!-- CTA Section -->
-<section class="section-padding" style="background: white;">
+<section class="section-padding section-cta bg-white">
     <div class="container text-center">
         <div class="fade-in">
             <h2 class="section-title"><?php echo e(__('messages.home.cta.title')); ?></h2>
@@ -311,39 +311,60 @@
 
 <?php $__env->startPush('styles'); ?>
 <style>
-    /* Hero Text Overlay Styles */
-    .hero-text-overlay {
+    /* Hero Section */
+    .hero-slider {
+        position: relative;
+    }
+
+    .hero-slide {
+        position: relative;
+        min-height: ;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-size: cover;
+        background-position: center;
+        isolation: isolate;
+    }
+
+    .hero-slide::before {
+        content: '';
         position: absolute;
-        top: 45%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 10;
-        width: 100%;
-        padding: 0 2rem;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0) 15%, rgba(255, 255, 255, 0.9) 90%);
+        z-index: 0;
+    }
+
+    .hero-slider .container {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: clamp(420px, 70vh, 600px);
+        padding-block: 15px;
+    }
+
+    .hero-text-overlay {
+        width: min(940px, 100%);
+        padding: 0 1.5rem;
+        text-align: center;
     }
     
     .hero-overlay-text {
         font-family: 'Playfair Display', serif;
-        font-size: 4.5rem;
-        font-weight: 900;
-        color: #000000;
-        text-align: center;
-        line-height: 1.1;
+        font-size: clamp(2.25rem, 4.5vw, 4.5rem);
+        font-weight: 800;
+        color: #1f1f1f;
+        line-height: 1.15;
         text-transform: uppercase;
         letter-spacing: 0.02em;
-        text-shadow: none;
-        margin: 0;
-        padding: 0;
+        margin: 0 auto;
     }
     
-    /* Hero Button Positioning */
     .hero-button-bottom {
-        position: absolute;
-        top: 72%;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 10;
-        width: 100%;
+        margin-top: clamp(2rem, 4vw, 3.5rem);
     }
     
     /* Button Styling */
@@ -351,10 +372,10 @@
         background: white;
         border: 2px solid #F7B2BD;
         color: #D63384;
-        padding: 1rem 2.5rem;
-        font-size: 1.1rem;
+        padding: 0.9rem 2.5rem;
+        font-size: 1.05rem;
         font-weight: 600;
-        border-radius: 50px;
+        border-radius: 999px;
         text-transform: uppercase;
         letter-spacing: 0.5px;
         transition: all 0.3s ease;
@@ -368,66 +389,133 @@
         color: white;
         border-color: #F7B2BD;
     }
-    
-    /* Responsive adjustments */
-    @media (max-width: 1200px) {
+
+    /* Quote Section */
+    .section-quote .quote-title {
+        color: #333;
+        font-style: italic;
+        line-height: 1.35;
+        font-size: clamp(2rem, 5vw, 3.3rem);
+    }
+
+    .section-quote .quote-content {
+        font-size: clamp(1rem, 2.4vw, 1.15rem);
+        line-height: 1.85;
+        margin-bottom: 2.25rem;
+        color: #555;
+    }
+
+    .section-quote .quote-highlight {
+        font-style: italic;
+        color: #F7B2BD;
+    }
+
+    /* Services */
+    .section-services {
+        background-color: #F8E8EA;
+    }
+
+    .section-services .card {
+        border: none;
+        box-shadow: 0 18px 45px rgba(247, 178, 189, 0.25);
+    }
+
+    .section-services .card-body {
+        padding: clamp(1.75rem, 3vw, 2.25rem);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: center;
+    }
+
+    .section-services .service-icon {
+        width: 72px;
+        height: 72px;
+        margin-bottom: 1.5rem;
+    }
+
+    .section-services .card-body h4 {
+        font-size: clamp(1.25rem, 2.4vw, 1.5rem);
+    }
+
+    .section-services .card-body p {
+        font-size: clamp(0.95rem, 2.2vw, 1.05rem);
+    }
+
+    .section-services .btn {
+        margin-top: auto;
+    }
+
+    /* Testimonials */
+    .section-testimonials {
+        background-color: white;
+    }
+
+    .section-testimonials .testimonial-card {
+        padding: clamp(1.75rem, 4vw, 2.5rem);
+        min-height: auto;
+    }
+
+    .section-testimonials .testimonial-card p {
+        font-size: clamp(1rem, 2.6vw, 1.25rem);
+    }
+
+    .section-testimonials .carousel-control-prev,
+    .section-testimonials .carousel-control-next {
+        width: 48px;
+        height: 48px;
+    }
+
+    /* FAQ */
+    .section-faq {
+        background-color: #F8E8EA;
+    }
+
+    /* CTA */
+    .section-cta {
+        background-color: white;
+    }
+
+    @media (max-width: 991.98px) {
+        .hero-slide {
+            min-height: clamp(480px, 90vh, 640px);
+        }
+
+        .hero-button-bottom .btn-hero-primary {
+            width: min(320px, 90vw);
+        }
+
+        .section-services .card {
+            box-shadow: 0 12px 32px rgba(247, 178, 189, 0.22);
+        }
+
+        .section-services .card-body {
+            padding: 2rem 1.75rem;
+        }
+    }
+
+    @media (max-width: 575.98px) {
+        .hero-slide {
+            min-height: clamp(420px, 85vh, 560px);
+        }
+
         .hero-overlay-text {
-            font-size: 3.5rem;
+            letter-spacing: 0.01em;
         }
-        
+
         .hero-button-bottom {
-            top: 64%;
+            margin-top: 1.75rem;
         }
-    }
-    
-    @media (max-width: 768px) {
-        .hero-overlay-text {
-            font-size: 2.5rem;
-            padding: 0 1rem;
+
+        .quote-content p {
+            margin-bottom: 1.25rem;
         }
-        
-        .hero-text-overlay {
-            padding: 0 1rem;
-            top: 42%;
+
+        .section-testimonials .carousel-item {
+            padding: 1rem 0 2rem;
         }
-        
-        .hero-button-bottom {
-            top: 58%;
-        }
-        
-        .btn-hero-primary {
-            padding: 0.8rem 2rem;
-            font-size: 1rem;
-        }
-    }
-    
-    @media (max-width: 480px) {
-        .hero-overlay-text {
-            font-size: 2rem;
-        }
-        
-        .hero-text-overlay {
-            top: 40%;
-        }
-        
-        .hero-button-bottom {
-            top: 55%;
-        }
-        
-        .btn-hero-primary {
-            padding: 0.7rem 1.5rem;
-            font-size: 0.9rem;
-        }
-    }
-    
-    /* Ensure proper slide height */
-    .hero-slide {
-        min-height: 100vh;
-        position: relative;
-    }
-    
-    .hero-slider .container {
-        position: relative;
     }
 </style>
 <?php $__env->stopPush(); ?>

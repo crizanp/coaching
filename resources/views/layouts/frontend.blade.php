@@ -105,9 +105,23 @@
             transition: all 0.3s ease;
         }
 
-        .navbar-nav .nav-link:hover {
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link:focus {
             background: var(--light-pink);
             transform: translateY(-2px);
+        }
+
+        .navbar-toggler {
+            border: none;
+            padding: 0.4rem 0.6rem;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 0.2rem rgba(247, 178, 189, 0.35);
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%238b7d7b' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
         }
 
         /* Navbar Layout: Logo left, Menu center-left, Book+Language right */
@@ -133,6 +147,11 @@
             box-shadow: 0 8px 25px rgba(214, 169, 164, 0.6);
         }
 
+        .nav-book-btn {
+            border-radius: 999px;
+            white-space: nowrap;
+        }
+
         .btn-outline-primary {
             border: 2px solid var(--primary-pink);
             color: var(--primary-pink);
@@ -149,15 +168,39 @@
             border: none;
         }
 
+        @media (max-width: 991.98px) {
+            .navbar-nav {
+                padding: 1rem 0;
+                gap: 0.35rem;
+            }
+
+            .navbar-nav .nav-link {
+                margin: 0;
+                padding: 0.75rem 1rem !important;
+                width: 100%;
+            }
+
+            .navbar .d-lg-flex {
+                width: 100%;
+            }
+
+            .nav-book-btn {
+                width: 100%;
+                margin-top: 1rem;
+            }
+        }
+
         /* Meditative Hero Slider Styles */
         .hero-slider {
             height: 100vh;
+            min-height: 600px;
             position: relative;
             overflow: hidden;
         }
 
         .hero-slide {
             height: 100vh;
+            min-height: 600px;
             position: relative;
             display: flex;
             align-items: center;
@@ -253,14 +296,15 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.8);
-            background: transparent;
+            border: 2px solid rgba(128, 128, 128, 0.6);
+            background: rgba(128, 128, 128, 0.4);
             margin: 0 8px;
             transition: all 0.3s ease;
         }
 
         .carousel-indicators .active {
-            background: white;
+            background: rgba(128, 128, 128, 0.8);
+            border-color: rgba(128, 128, 128, 0.9);
             transform: scale(1.2);
         }
 
@@ -273,6 +317,7 @@
             border-radius: 50%;
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
+            z-index: 5;
         }
 
         .carousel-control-prev {
@@ -315,6 +360,16 @@
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
+            .hero-slider {
+                height: 80vh;
+                min-height: 500px;
+            }
+            
+            .hero-slide {
+                height: 80vh;
+                min-height: 500px;
+            }
+            
             .hero-title {
                 font-size: 2.5rem;
             }
@@ -338,16 +393,22 @@
             }
             
             .carousel-control-prev, .carousel-control-next {
-                width: 45px;
-                height: 45px;
+                width: 40px;
+                height: 40px;
+                z-index: 5;
             }
             
             .carousel-control-prev {
-                left: 15px;
+                left: 10px;
             }
             
             .carousel-control-next {
-                right: 15px;
+                right: 10px;
+            }
+            
+            .carousel-control-prev-icon, .carousel-control-next-icon {
+                width: 20px;
+                height: 20px;
             }
         }
 
@@ -454,6 +515,7 @@
             border-radius: 50%;
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
+            z-index: 5;
         }
 
         #testimonialsCarousel .carousel-control-prev:hover,
@@ -478,14 +540,15 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            border: 2px solid var(--primary-pink);
-            background: transparent;
+            border: 2px solid rgba(128, 128, 128, 0.6);
+            background: rgba(128, 128, 128, 0.4);
             margin: 0 8px;
             transition: all 0.3s ease;
         }
 
         #testimonialsCarousel .carousel-indicators .active {
-            background: var(--primary-pink);
+            background: rgba(128, 128, 128, 0.8);
+            border-color: rgba(128, 128, 128, 0.9);
             transform: scale(1.2);
         }
 
@@ -495,11 +558,20 @@
 
         @media (max-width: 768px) {
             #testimonialsCarousel .carousel-control-prev {
-                left: 10px;
+                left: 5px;
+                width: 40px;
+                height: 40px;
             }
             
             #testimonialsCarousel .carousel-control-next {
-                right: 10px;
+                right: 5px;
+                width: 40px;
+                height: 40px;
+            }
+            
+            #testimonialsCarousel .testimonial-card {
+                margin: 0 50px;
+                padding: 20px;
             }
         }
 
@@ -630,7 +702,7 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
             <!-- Logo on the left -->
             <a class="navbar-brand d-flex align-items-center" href="{{ route('home', app()->getLocale()) }}">
@@ -639,14 +711,14 @@
             </a>
             
             <!-- Mobile Toggle Button -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             
             <!-- Navigation Menu + Right Side Items -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <!-- Main Navigation Menu -->
-                <ul class="navbar-nav me-auto">
+                <ul class="navbar-nav me-lg-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('home', app()->getLocale()) }}">
                             {{ __('messages.nav.home') }}
@@ -680,12 +752,11 @@
                 </ul>
                 
                 <!-- Right Side: Book Now -->
-                <div class="d-flex align-items-center">
-                    <button class="btn btn-primary" onclick="openLocationModal()">
+                <div class="d-lg-flex align-items-center ms-lg-3">
+                    <button class="btn btn-primary nav-book-btn" onclick="openLocationModal()">
                         {{ __('messages.nav.book') }}
                     </button>
                 </div>
-            </div>
             </div>
         </div>
     </nav>
