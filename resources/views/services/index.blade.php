@@ -1,6 +1,8 @@
 @extends('layouts.frontend')
 
-@section('title', __('messages.services.title'))
+@section('title', __('messages.seo.services.title'))
+
+@section('description', __('messages.seo.services.description'))
 
 @section('content')
 <!-- Services Hero Section -->

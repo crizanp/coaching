@@ -1,6 +1,8 @@
 
 
-<?php $__env->startSection('title', __('messages.services.title')); ?>
+<?php $__env->startSection('title', __('messages.seo.services.title')); ?>
+
+<?php $__env->startSection('description', __('messages.seo.services.description')); ?>
 
 <?php $__env->startSection('content'); ?>
 <!-- Services Hero Section -->

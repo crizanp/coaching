@@ -27,6 +27,10 @@
     <meta property="twitter:title" content="<?php echo $__env->yieldContent('title', __('messages.seo.home.title')); ?>">
     <meta property="twitter:description" content="<?php echo $__env->yieldContent('description', __('messages.seo.home.description')); ?>">
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo e(asset('images/assets/SSJchrysalis-first.png')); ?>">
+    <link rel="apple-touch-icon" href="<?php echo e(asset('images/assets/SSJchrysalis-first.png')); ?>">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=poppins:300,400,500,600,700&display=swap" rel="stylesheet" />

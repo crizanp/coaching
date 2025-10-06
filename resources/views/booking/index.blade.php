@@ -1,6 +1,8 @@
 @extends('layouts.frontend')
 
-@section('title', __('messages.booking.title'))
+@section('title', __('messages.seo.booking.title'))
+
+@section('description', __('messages.seo.booking.description'))
 
 @section('content')
 <!-- Booking Hero Section -->

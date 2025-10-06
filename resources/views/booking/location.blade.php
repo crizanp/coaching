@@ -2,6 +2,8 @@
 
 @section('title', __('messages.booking.title') . ' - ' . $locationData['display_name'])
 
+@section('description', __('messages.seo.booking_location.description', ['location' => $locationData['display_name']]))
+
 @section('content')
 <!-- Booking Hero Section -->
 <section class="section-padding" style="background: var(--light-pink); margin-top: 94px;">

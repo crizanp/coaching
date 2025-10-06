@@ -116,17 +116,18 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" 
-                                  rows="15" required><?php echo e(old('content')); ?></textarea>
+                                  rows="15"><?php echo e(old('content')); ?></textarea>
                         <?php $__errorArgs = ['content'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                            <div class="invalid-feedback"><?php echo e($message); ?></div>
+                            <div class="invalid-feedback d-block"><?php echo e($message); ?></div>
                         <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+                        <div class="invalid-feedback d-none" id="contentError"></div>
                     </div>
                 </div>
 
@@ -312,8 +313,56 @@ unset($__errorArgs, $__bag); ?>
                 'removeformat | help',
         content_style: 'body { font-family: Poppins, Arial, sans-serif; font-size: 14px }',
         branding: false,
-        promotion: false
+        promotion: false,
+        setup: function (editor) {
+            const clearEditorError = function () {
+                const textarea = document.getElementById('content');
+                const error = document.getElementById('contentError');
+                if (textarea) {
+                    textarea.classList.remove('is-invalid');
+                }
+                if (error) {
+                    error.classList.add('d-none');
+                    error.textContent = '';
+                }
+            };
+
+            editor.on('change', clearEditorError);
+            editor.on('input', clearEditorError);
+            editor.on('keyup', clearEditorError);
+        }
     });
+
+    const contentRequiredMessage = <?php echo json_encode(__('validation.required', ['attribute' => 'content']), 512) ?>;
+    const blogForm = document.querySelector('form[action="<?php echo e(route('admin.blogs.store')); ?>"]');
+    if (blogForm) {
+        blogForm.addEventListener('submit', function (event) {
+            if (typeof tinymce !== 'undefined') {
+                tinymce.triggerSave();
+                const editor = tinymce.get('content');
+                const textarea = document.getElementById('content');
+                const error = document.getElementById('contentError');
+
+                if (editor) {
+                    const content = editor.getContent({ format: 'text' }).trim();
+                    if (!content.length) {
+                        event.preventDefault();
+                        if (textarea) {
+                            textarea.classList.add('is-invalid');
+                        }
+                        if (error) {
+                            error.textContent = contentRequiredMessage;
+                            error.classList.remove('d-none');
+                        }
+                        editor.focus();
+                    } else if (error && !error.classList.contains('d-none')) {
+                        error.classList.add('d-none');
+                        error.textContent = '';
+                    }
+                }
+            }
+        });
+    }
 
     // Image preview functionality
     document.getElementById('featured_image').addEventListener('change', function(e) {

@@ -1,6 +1,8 @@
 @extends('layouts.frontend')
 
-@section('title', __('messages.contact.title'))
+@section('title', __('messages.seo.contact.title'))
+
+@section('description', __('messages.seo.contact.description'))
 
 @section('content')
 <!-- Contact Hero Section -->

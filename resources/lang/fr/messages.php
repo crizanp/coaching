@@ -518,4 +518,11 @@ return [
     // SEO
     'seo.home.title' => 'Coaching Bien-être - Sophrologie, Hypnose & PNL',
     'seo.home.description' => 'Coach certifiée en sophrologie, hypnose et PNL. Accompagnement personnalisé pour votre bien-être et développement personnel.',
+    'seo.services.title' => 'Services de coaching en Martinique | Sophrologie, Hypnose & PNL',
+    'seo.services.description' => 'Découvrez des séances de sophrologie, d’hypnose et de PNL adaptées à vos besoins en Martinique avec Sandrine de SSJCHRYSALIDE.',
+    'seo.contact.title' => 'Contactez SSJCHRYSALIDE | Commencez votre accompagnement',
+    'seo.contact.description' => 'Prenez contact avec Sandrine pour poser vos questions ou planifier une séance de sophrologie, d’hypnose ou de PNL adaptée à vos objectifs.',
+    'seo.booking.title' => 'Prendre rendez-vous | Sophrologie, Hypnose & PNL en Martinique',
+    'seo.booking.description' => 'Choisissez votre créneau et demandez un rendez-vous avec Sandrine pour un accompagnement personnalisé en sophrologie, hypnose ou PNL.',
+    'seo.booking_location.description' => 'Réservez votre séance à :location avec Sandrine. Sophrologie, hypnose et PNL adaptées à vos besoins.',
 ];

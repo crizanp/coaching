@@ -1,6 +1,8 @@
 
 
-<?php $__env->startSection('title', __('messages.contact.title')); ?>
+<?php $__env->startSection('title', __('messages.seo.contact.title')); ?>
+
+<?php $__env->startSection('description', __('messages.seo.contact.description')); ?>
 
 <?php $__env->startSection('content'); ?>
 <!-- Contact Hero Section -->

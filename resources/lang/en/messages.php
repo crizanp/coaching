@@ -514,4 +514,11 @@ return [
     // SEO
     'seo.home.title' => 'Wellness Coaching - Sophrology, Hypnosis & NLP',
     'seo.home.description' => 'Certified coach in sophrology, hypnosis and NLP. Personalized support for your well-being and personal development.',
+    'seo.services.title' => 'Coaching Services in Martinique | Sophrology, Hypnosis & NLP',
+    'seo.services.description' => 'Explore sophrology, hypnosis and NLP sessions tailored to your needs in Martinique with Sandrine from SSJCHRYSALIDE.',
+    'seo.contact.title' => 'Contact SSJCHRYSALIDE | Start Your Coaching Journey',
+    'seo.contact.description' => 'Get in touch with Sandrine to ask your questions or plan a sophrology, hypnosis or NLP session tailored to your goals.',
+    'seo.booking.title' => 'Book an Appointment | Sophrology, Hypnosis & NLP in Martinique',
+    'seo.booking.description' => 'Choose your preferred slot and request an appointment with Sandrine for personalized sophrology, hypnosis or NLP coaching.',
+    'seo.booking_location.description' => 'Book your session in :location with Sandrine. Sophrology, hypnosis and NLP guidance adapted to your objectives.',
 ];

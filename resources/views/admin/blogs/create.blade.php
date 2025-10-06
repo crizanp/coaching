@@ -67,10 +67,11 @@
                     <div class="form-group mb-3">
                         <label for="content" class="form-label">Content *</label>
                         <textarea id="content" name="content" class="form-control @error('content') is-invalid @enderror" 
-                                  rows="15" required>{{ old('content') }}</textarea>
+                                  rows="15">{{ old('content') }}</textarea>
                         @error('content')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
                         @enderror
+                        <div class="invalid-feedback d-none" id="contentError"></div>
                     </div>
                 </div>
 
@@ -200,8 +201,56 @@
                 'removeformat | help',
         content_style: 'body { font-family: Poppins, Arial, sans-serif; font-size: 14px }',
         branding: false,
-        promotion: false
+        promotion: false,
+        setup: function (editor) {
+            const clearEditorError = function () {
+                const textarea = document.getElementById('content');
+                const error = document.getElementById('contentError');
+                if (textarea) {
+                    textarea.classList.remove('is-invalid');
+                }
+                if (error) {
+                    error.classList.add('d-none');
+                    error.textContent = '';
+                }
+            };
+
+            editor.on('change', clearEditorError);
+            editor.on('input', clearEditorError);
+            editor.on('keyup', clearEditorError);
+        }
     });
+
+    const contentRequiredMessage = @json(__('validation.required', ['attribute' => 'content']));
+    const blogForm = document.querySelector('form[action="{{ route('admin.blogs.store') }}"]');
+    if (blogForm) {
+        blogForm.addEventListener('submit', function (event) {
+            if (typeof tinymce !== 'undefined') {
+                tinymce.triggerSave();
+                const editor = tinymce.get('content');
+                const textarea = document.getElementById('content');
+                const error = document.getElementById('contentError');
+
+                if (editor) {
+                    const content = editor.getContent({ format: 'text' }).trim();
+                    if (!content.length) {
+                        event.preventDefault();
+                        if (textarea) {
+                            textarea.classList.add('is-invalid');
+                        }
+                        if (error) {
+                            error.textContent = contentRequiredMessage;
+                            error.classList.remove('d-none');
+                        }
+                        editor.focus();
+                    } else if (error && !error.classList.contains('d-none')) {
+                        error.classList.add('d-none');
+                        error.textContent = '';
+                    }
+                }
+            }
+        });
+    }
 
     // Image preview functionality
     document.getElementById('featured_image').addEventListener('change', function(e) {
