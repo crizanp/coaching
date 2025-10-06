@@ -220,6 +220,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
             position: sticky;
             top: 0;
             z-index: 999;
@@ -230,12 +232,83 @@
             font-weight: 600;
             color: var(--admin-text);
             margin: 0;
+            flex: 1 1 auto;
         }
         
         .header-actions {
             display: flex;
             align-items: center;
+            justify-content: flex-end;
+            gap: 0.75rem;
+            flex: 1 1 auto;
+            flex-wrap: wrap;
+        }
+
+        .admin-info-bar {
+            background: var(--admin-dark-light);
+            border-bottom: 1px solid var(--admin-dark-border);
+            padding: 0.85rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .admin-info-bar .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--admin-text-muted);
+            font-size: 0.9rem;
+        }
+
+        .admin-info-bar .info-item i {
+            color: var(--admin-primary);
+        }
+
+        .admin-info-bar .info-item a {
+            color: var(--admin-text);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .admin-info-bar .info-item a:hover {
+            color: var(--admin-primary);
+        }
+
+        .admin-info-bar .info-item-address {
+            align-items: flex-start;
+        }
+
+        .admin-info-bar .info-item-address span {
+            line-height: 1.4;
+        }
+
+        .admin-footer {
+            background: var(--admin-dark-light);
+            border-top: 1px solid var(--admin-dark-border);
+            padding: 1.25rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
             gap: 1rem;
+            color: var(--admin-text-muted);
+        }
+
+        .admin-footer .footer-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .admin-footer a {
+            color: var(--admin-primary);
+            text-decoration: none;
+        }
+
+        .admin-footer a:hover {
+            color: var(--admin-primary-hover);
         }
         
         .header-btn {
@@ -250,6 +323,10 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+        }
+
+        .header-btn.mobile-nav-toggle {
+            width: auto;
         }
         
         .header-btn:hover {
@@ -561,10 +638,33 @@
             
             .admin-header {
                 padding: 1rem;
+                gap: 1rem;
             }
             
             .admin-content {
                 padding: 1rem;
+            }
+
+            .header-actions {
+                width: 100%;
+                justify-content: flex-end;
+            }
+
+            .header-actions .header-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .header-actions .mobile-nav-toggle {
+                width: auto;
+            }
+
+            .header-actions form {
+                width: 100%;
+            }
+
+            .header-actions form .header-btn {
+                width: 100%;
             }
             
             .stats-grid {
@@ -581,6 +681,30 @@
             
             .nav-link span {
                 display: none;
+            }
+
+            .admin-info-bar {
+                padding: 0.75rem 1rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+
+            .admin-info-bar .info-item {
+                width: 100%;
+            }
+
+            .admin-footer {
+                padding: 1rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+
+            .admin-footer .footer-links {
+                width: 100%;
+                flex-direction: column;
+                gap: 0.5rem;
             }
         }
         
@@ -694,6 +818,15 @@
     @stack('styles')
 </head>
 <body>
+    @php
+    $adminContactEmail = \App\Models\Setting::get('contact_email');
+    $adminContactPhone = \App\Models\Setting::get('contact_phone');
+    $adminContactPhoneHref = $adminContactPhone ? preg_replace('/[^0-9+]/', '', $adminContactPhone) : null;
+        $adminContactAddress = \App\Models\Setting::get('address');
+        if (is_array($adminContactAddress ?? null)) {
+            $adminContactAddress = $adminContactAddress[app()->getLocale()] ?? $adminContactAddress['en'] ?? reset($adminContactAddress);
+        }
+    @endphp
     <!-- Sidebar -->
     <div class="admin-sidebar" id="adminSidebar">
         <div class="sidebar-header">
@@ -759,6 +892,12 @@
                         <span>Blog Gift Requests</span>
                     </a>
                 </div>
+                <div class="nav-item">
+                    <a href="{{ route('admin.contact-messages.index') }}" class="nav-link {{ request()->routeIs('admin.contact-messages.*') ? 'active' : '' }}">
+                        <i class="fas fa-envelope-open-text"></i>
+                        <span>Contact Messages</span>
+                    </a>
+                </div>
             </div>
             
             <div class="nav-section">
@@ -798,6 +937,8 @@
                 </form>
             </div>
         </header>
+
+
         
         <!-- Content -->
         <main class="admin-content">
@@ -819,6 +960,18 @@
             
             @yield('content')
         </main>
+
+        <footer class="admin-footer">
+            <span>&copy; {{ now()->year }} {{ config('ssjchrysalide', 'ssjchrysalide') }}. All rights reserved.</span>
+            <div class="footer-links">
+                @if($adminContactEmail)
+                    <a href="mailto:{{ $adminContactEmail }}"><i class="fas fa-envelope me-1"></i>{{ $adminContactEmail }}</a>
+                @endif
+                @if($adminContactPhone)
+                    <a href="tel:{{ $adminContactPhoneHref }}"><i class="fas fa-phone me-1"></i>{{ $adminContactPhone }}</a>
+                @endif
+            </div>
+        </footer>
     </div>
     
     <!-- Bootstrap JS -->
@@ -890,8 +1043,10 @@
         if (window.innerWidth <= 768) {
             const headerActions = document.querySelector('.header-actions');
             const mobileToggle = document.createElement('button');
-            mobileToggle.className = 'header-btn me-2';
+            mobileToggle.className = 'header-btn mobile-nav-toggle me-2';
             mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            mobileToggle.setAttribute('type', 'button');
+            mobileToggle.setAttribute('aria-label', 'Toggle navigation menu');
             mobileToggle.onclick = toggleMobileSidebar;
             headerActions.insertBefore(mobileToggle, headerActions.firstChild);
         }

@@ -320,6 +320,16 @@ return [
     'booking.form.submit' => 'Request appointment',
     'booking.success' => 'Your request has been sent. I will contact you shortly.',
     'booking.duplicate_ip_error' => 'You have already requested an appointment for this service. Please wait for our response or contact us directly.',
+    'booking.location.modal.title' => 'Choose your consultation location',
+    'booking.location.modal.subtitle' => 'Select the place that fits you best for your appointment:',
+    'booking.location.fort_de_france' => 'Fort-de-France',
+    'booking.location.fort_de_france_desc' => 'Downtown Fort-de-France',
+    'booking.location.riviere_salee' => 'Rivière Salée',
+    'booking.location.riviere_salee_desc' => 'Practice in Rivière Salée',
+    'booking.location.choose' => 'Choose this location',
+    'booking.location.info' => 'You can book directly via Calendly or fill out the form',
+    'booking.location.cancel' => 'Cancel',
+    'booking.location.classic_form' => 'Classic form',
 
     // Common
     'common.learn_more' => 'Learn more',

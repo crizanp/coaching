@@ -68,7 +68,7 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="content_fr" class="form-label">{{ __('Full Content (French)') }}</label>
-                                <textarea id="content_fr" class="form-control @error('content_fr') is-invalid @enderror" 
+                                <textarea id="content_fr" class="form-control tinymce-editor @error('content_fr') is-invalid @enderror" 
                                           name="content_fr" rows="8">{{ old('content_fr', $service->getTranslation('content', 'fr')) }}</textarea>
                                 @error('content_fr')
                                     <span class="invalid-feedback">{{ $message }}</span>
@@ -76,7 +76,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="content_en" class="form-label">{{ __('Full Content (English)') }}</label>
-                                <textarea id="content_en" class="form-control @error('content_en') is-invalid @enderror" 
+                                <textarea id="content_en" class="form-control tinymce-editor @error('content_en') is-invalid @enderror" 
                                           name="content_en" rows="8">{{ old('content_en', $service->getTranslation('content', 'en')) }}</textarea>
                                 @error('content_en')
                                     <span class="invalid-feedback">{{ $message }}</span>
@@ -287,15 +287,8 @@ function addSessionFormat(lang) {
 <script src="https://cdn.jsdelivr.net/npm/tinymce@6/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
     tinymce.init({
-        selector: '#description_fr, #description_en, #content_fr, #content_en',
-        height: function(editor) {
-            // Different heights for different fields
-            if (editor.targetElm.id.includes('description')) {
-                return 200;
-            } else {
-                return 400;
-            }
-        },
+        selector: '.tinymce-editor',
+        height: 400,
         plugins: [
             'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
             'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
@@ -307,17 +300,7 @@ function addSessionFormat(lang) {
                 'removeformat | help',
         content_style: 'body { font-family: Poppins, Arial, sans-serif; font-size: 14px }',
         branding: false,
-        promotion: false,
-        setup: function(editor) {
-            editor.on('init', function() {
-                // Set appropriate height after initialization
-                if (editor.targetElm.id.includes('description')) {
-                    editor.getContainer().style.height = '200px';
-                } else {
-                    editor.getContainer().style.height = '400px';
-                }
-            });
-        }
+        promotion: false
     });
 </script>
 @endpush

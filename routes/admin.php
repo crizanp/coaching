@@ -36,6 +36,9 @@ Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function ()
     // Blog Gift Requests management
     Route::resource('blog-gift-requests', BlogGiftRequestController::class)->only(['index', 'show', 'update', 'destroy']);
     
+    // Contact Messages
+    Route::get('contact-messages', [\App\Http\Controllers\Admin\ContactMessageController::class, 'index'])->name('contact-messages.index');
+
     // Settings
     Route::get('settings', [AdminController::class, 'settings'])->name('settings');
     Route::post('settings', [AdminController::class, 'updateSettings'])->name('settings.update');

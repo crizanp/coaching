@@ -1,14 +1,19 @@
 @extends('layouts.admin')
 
-@section('page-title', isset($event) ? 'Edit Event' : 'Create Event')
+@php
+    $event = $event ?? new \App\Models\Event;
+    $isEdit = $event->exists;
+@endphp
+
+@section('page-title', $isEdit ? 'Edit Event' : 'Create Event')
 
 @section('content')
 <div class="fade-in">
     <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
-            <h2 class="mb-1">{{ isset($event) ? 'Edit Event' : 'Create New Event' }}</h2>
-            <p class="text-muted">{{ isset($event) ? 'Update event details' : 'Create a new workshop or event' }}</p>
+            <h2 class="mb-1">{{ $isEdit ? 'Edit Event' : 'Create New Event' }}</h2>
+            <p class="text-muted">{{ $isEdit ? 'Update event details' : 'Create a new workshop or event' }}</p>
         </div>
         <a href="{{ route('admin.events.index') }}" class="btn-admin btn-admin-outline">
             <i class="fas fa-arrow-left"></i>
@@ -16,10 +21,10 @@
         </a>
     </div>
 
-    <form method="POST" action="{{ isset($event) ? route('admin.events.update', $event) : route('admin.events.store') }}" 
+    <form method="POST" action="{{ $isEdit ? route('admin.events.update', $event) : route('admin.events.store') }}" 
           enctype="multipart/form-data">
         @csrf
-        @if(isset($event))
+        @if($isEdit)
             @method('PUT')
         @endif
 
@@ -39,16 +44,16 @@
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label class="form-label">Title (French) *</label>
-                            <input type="text" name="title[fr]" class="form-control @error('title.fr') is-invalid @enderror" 
-                                   value="{{ old('title.fr', $event->getTranslation('title', 'fr') ?? '') }}" required>
+                <input type="text" name="title[fr]" class="form-control @error('title.fr') is-invalid @enderror" 
+                    value="{{ old('title.fr', $isEdit ? $event->getTranslation('title', 'fr') : '') }}" required>
                             @error('title.fr')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Title (English)</label>
-                            <input type="text" name="title[en]" class="form-control @error('title.en') is-invalid @enderror" 
-                                   value="{{ old('title.en', $event->getTranslation('title', 'en') ?? '') }}">
+                <input type="text" name="title[en]" class="form-control @error('title.en') is-invalid @enderror" 
+                    value="{{ old('title.en', $isEdit ? $event->getTranslation('title', 'en') : '') }}">
                             @error('title.en')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -59,14 +64,14 @@
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label class="form-label">Description (French) *</label>
-                            <textarea name="description[fr]" rows="4" class="form-control @error('description.fr') is-invalid @enderror" required>{{ old('description.fr', $event->getTranslation('description', 'fr') ?? '') }}</textarea>
+                            <textarea name="description[fr]" rows="4" class="form-control @error('description.fr') is-invalid @enderror" required>{{ old('description.fr', $isEdit ? $event->getTranslation('description', 'fr') : '') }}</textarea>
                             @error('description.fr')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Description (English)</label>
-                            <textarea name="description[en]" rows="4" class="form-control @error('description.en') is-invalid @enderror">{{ old('description.en', $event->getTranslation('description', 'en') ?? '') }}</textarea>
+                            <textarea name="description[en]" rows="4" class="form-control @error('description.en') is-invalid @enderror">{{ old('description.en', $isEdit ? $event->getTranslation('description', 'en') : '') }}</textarea>
                             @error('description.en')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -77,7 +82,7 @@
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label class="form-label">Content (French) *</label>
-                            <textarea id="content_fr" name="content[fr]" rows="6" class="form-control @error('content.fr') is-invalid @enderror" required>{{ old('content.fr', $event->getTranslation('content', 'fr') ?? 'Un atelier riche en découvertes où chacun repartira avec les clés pour :
+                            <textarea id="content_fr" name="content[fr]" rows="6" class="form-control @error('content.fr') is-invalid @enderror" required>{{ old('content.fr', $isEdit ? $event->getTranslation('content', 'fr') : 'Un atelier riche en découvertes où chacun repartira avec les clés pour :
 • apprendre à reconnaître les émotions  
 • comprendre le besoin caché derrière
 • mieux communiquer et interagir avec ses proches mais aussi ses collègues') }}</textarea>
@@ -87,7 +92,7 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Content (English)</label>
-                            <textarea id="content_en" name="content[en]" rows="6" class="form-control @error('content.en') is-invalid @enderror">{{ old('content.en', $event->getTranslation('content', 'en') ?? '') }}</textarea>
+                            <textarea id="content_en" name="content[en]" rows="6" class="form-control @error('content.en') is-invalid @enderror">{{ old('content.en', $isEdit ? $event->getTranslation('content', 'en') : '') }}</textarea>
                             @error('content.en')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -108,10 +113,10 @@
                         <div class="col-md-4">
                             <label class="form-label">Type</label>
                             <select name="type" class="form-control @error('type') is-invalid @enderror">
-                                <option value="workshop" {{ old('type', $event->type ?? 'workshop') === 'workshop' ? 'selected' : '' }}>Workshop</option>
-                                <option value="practical" {{ old('type', $event->type ?? '') === 'practical' ? 'selected' : '' }}>Practical</option>
-                                <option value="online" {{ old('type', $event->type ?? '') === 'online' ? 'selected' : '' }}>Online</option>
-                                <option value="hybrid" {{ old('type', $event->type ?? '') === 'hybrid' ? 'selected' : '' }}>Hybrid</option>
+                                <option value="workshop" {{ old('type', $isEdit ? $event->type : 'workshop') === 'workshop' ? 'selected' : '' }}>Workshop</option>
+                                <option value="practical" {{ old('type', $isEdit ? $event->type : '') === 'practical' ? 'selected' : '' }}>Practical</option>
+                                <option value="online" {{ old('type', $isEdit ? $event->type : '') === 'online' ? 'selected' : '' }}>Online</option>
+                                <option value="hybrid" {{ old('type', $isEdit ? $event->type : '') === 'hybrid' ? 'selected' : '' }}>Hybrid</option>
                             </select>
                             @error('type')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -120,11 +125,11 @@
                         <div class="col-md-4">
                             <label class="form-label">Status</label>
                             <select name="status" class="form-control @error('status') is-invalid @enderror">
-                                <option value="draft" {{ old('status', $event->status ?? 'draft') === 'draft' ? 'selected' : '' }}>Draft</option>
-                                <option value="upcoming" {{ old('status', $event->status ?? '') === 'upcoming' ? 'selected' : '' }}>Upcoming</option>
-                                <option value="active" {{ old('status', $event->status ?? '') === 'active' ? 'selected' : '' }}>Active</option>
-                                <option value="completed" {{ old('status', $event->status ?? '') === 'completed' ? 'selected' : '' }}>Completed</option>
-                                <option value="cancelled" {{ old('status', $event->status ?? '') === 'cancelled' ? 'selected' : '' }}>Cancelled</option>
+                                <option value="draft" {{ old('status', $isEdit ? $event->status : 'draft') === 'draft' ? 'selected' : '' }}>Draft</option>
+                                <option value="upcoming" {{ old('status', $isEdit ? $event->status : '') === 'upcoming' ? 'selected' : '' }}>Upcoming</option>
+                                <option value="active" {{ old('status', $isEdit ? $event->status : '') === 'active' ? 'selected' : '' }}>Active</option>
+                                <option value="completed" {{ old('status', $isEdit ? $event->status : '') === 'completed' ? 'selected' : '' }}>Completed</option>
+                                <option value="cancelled" {{ old('status', $isEdit ? $event->status : '') === 'cancelled' ? 'selected' : '' }}>Cancelled</option>
                             </select>
                             @error('status')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -170,17 +175,17 @@
 
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <label class="form-label">Event Date</label>
-                            <input type="datetime-local" name="event_date" class="form-control @error('event_date') is-invalid @enderror" 
-                                   value="{{ old('event_date', $event->event_date ? $event->event_date->format('Y-m-d\TH:i') : '') }}">
+                <label class="form-label">Event Date</label>
+                <input type="datetime-local" name="event_date" class="form-control @error('event_date') is-invalid @enderror" 
+                    value="{{ old('event_date', optional(optional($event)->event_date)->format('Y-m-d\TH:i')) }}">
                             @error('event_date')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">Registration Deadline</label>
-                            <input type="datetime-local" name="registration_deadline" class="form-control @error('registration_deadline') is-invalid @enderror" 
-                                   value="{{ old('registration_deadline', $event->registration_deadline ? $event->registration_deadline->format('Y-m-d\TH:i') : '') }}">
+                <label class="form-label">Registration Deadline</label>
+                <input type="datetime-local" name="registration_deadline" class="form-control @error('registration_deadline') is-invalid @enderror" 
+                    value="{{ old('registration_deadline', optional(optional($event)->registration_deadline)->format('Y-m-d\TH:i')) }}">
                             @error('registration_deadline')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -267,7 +272,7 @@
                     </div>
 
                     <div class="text-center">
-                        @if(isset($event) && $event->featured_image)
+                        @if($isEdit && $event->featured_image)
                             <img src="{{ asset('storage/' . $event->featured_image) }}" 
                                  alt="Current image" class="img-fluid rounded mb-3" style="max-height: 200px;">
                         @endif
@@ -321,10 +326,10 @@
                     <div class="d-grid gap-2">
                         <button type="submit" class="btn-admin btn-admin-primary">
                             <i class="fas fa-save"></i>
-                            {{ isset($event) ? 'Update Event' : 'Create Event' }}
+                            {{ $isEdit ? 'Update Event' : 'Create Event' }}
                         </button>
                         
-                        @if(isset($event))
+                        @if($isEdit)
                             <a href="{{ route('admin.events.show', $event) }}" class="btn-admin btn-admin-outline">
                                 <i class="fas fa-eye"></i>
                                 View Event
@@ -367,7 +372,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         // Auto-generate slug from title
         const titleInput = document.querySelector('input[name="title[fr]"]');
-        if (titleInput && !{{ isset($event) ? 'true' : 'false' }}) {
+    if (titleInput && !{{ $isEdit ? 'true' : 'false' }}) {
             titleInput.addEventListener('input', function() {
                 // You can add slug generation logic here if needed
             });

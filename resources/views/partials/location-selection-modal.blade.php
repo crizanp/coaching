@@ -1,58 +1,60 @@
 <!-- Location Selection Modal -->
 <div class="modal fade" id="locationSelectionModal" tabindex="-1" aria-labelledby="locationSelectionModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="locationSelectionModalLabel">
-                    <i class="fas fa-map-marker-alt me-2"></i>
-                    {{ __('messages.booking.location.modal.title') }}
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-               
-                
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <div class="location-card" onclick="selectLocation('fort-de-france')">
-                            <div class="location-icon">
-                                <i class="fas fa-building"></i>
-                            </div>
-                            <h6>{{ __('messages.booking.location.fort_de_france') }}</h6>
-                            <p class="text-muted">Centre-ville de Fort-de-France</p>
-                            <button type="button" class="btn btn-primary btn-sm">
-                                {{ __('messages.booking.location.choose') }}
-                            </button>
-                        </div>
+        <div class="modal-content location-modal">
+            <div class="modal-header border-0 pb-0">
+                <div class="d-flex justify-content-between align-items-start w-100 gap-3">
+                    <div>
+                        <h5 class="modal-title d-flex align-items-center gap-2 mb-2" id="locationSelectionModalLabel">
+                            <i class="fas fa-map-marker-alt text-primary"></i>
+                            {{ __('messages.booking.location.modal.title') }}
+                        </h5>
+                        <p class="modal-subtitle text-muted mb-0">
+                            {{ __('messages.booking.location.modal.subtitle') }}
+                        </p>
                     </div>
-                    
-                    <div class="col-md-6 mb-3">
-                        <div class="location-card" onclick="selectLocation('riviere-salee')">
-                            <div class="location-icon">
-                                <i class="fas fa-home"></i>
-                            </div>
-                            <h6>{{ __('messages.booking.location.riviere_salee') }}</h6>
-                            <p class="text-muted">Cabinet à Rivière Salée</p>
-                            <button type="button" class="btn btn-primary btn-sm">
-                                {{ __('messages.booking.location.choose') }}
-                            </button>
-                        </div>
-                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                
-                <!-- <div class="text-center mt-3">
-                    <small class="text-muted">
-                        <i class="fas fa-info-circle me-1"></i>
-                        {{ __('messages.booking.location.info') }}
-                    </small>
-                </div> -->
             </div>
-            <div class="modal-footer">
+
+            <div class="modal-body pt-4">
+                <div class="location-options">
+                    <button type="button" class="location-card" onclick="selectLocation('fort-de-france')">
+                        <span class="location-icon location-icon-primary">
+                            <i class="fas fa-building"></i>
+                        </span>
+                        <div class="location-content">
+                            <h6 class="location-title">{{ __('messages.booking.location.fort_de_france') }}</h6>
+                            <p class="location-description">{{ __('messages.booking.location.fort_de_france_desc') }}</p>
+                        </div>
+                        <span class="location-action">
+                            {{ __('messages.booking.location.choose') }}
+                            <i class="fas fa-chevron-right ms-2"></i>
+                        </span>
+                    </button>
+
+                    <button type="button" class="location-card" onclick="selectLocation('riviere-salee')">
+                        <span class="location-icon location-icon-success">
+                            <i class="fas fa-home"></i>
+                        </span>
+                        <div class="location-content">
+                            <h6 class="location-title">{{ __('messages.booking.location.riviere_salee') }}</h6>
+                            <p class="location-description">{{ __('messages.booking.location.riviere_salee_desc') }}</p>
+                        </div>
+                        <span class="location-action">
+                            {{ __('messages.booking.location.choose') }}
+                            <i class="fas fa-chevron-right ms-2"></i>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="modal-footer border-0 pt-0">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                     {{ __('messages.booking.location.cancel') }}
                 </button>
                 <a href="{{ route('booking.index', app()->getLocale()) }}" class="btn btn-outline-primary">
-                    <i class="fas fa-form me-1"></i>
+                    <i class="fas fa-clipboard-list me-1"></i>
                     {{ __('messages.booking.location.classic_form') }}
                 </a>
             </div>
@@ -61,46 +63,113 @@
 </div>
 
 <style>
-.location-card {
-    border: 2px solid #e9ecef;
-    border-radius: 15px;
-    padding: 1.5rem;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    height: 100%;
+.location-modal {
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.2);
 }
 
-.location-card:hover {
-    border-color: var(--primary-color);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+.modal-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.location-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.location-card {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.25rem 1.5rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    color: inherit;
+}
+
+.location-card:hover,
+.location-card:focus {
+    background: #ffffff;
+    border-color: #cbd5f5;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
     transform: translateY(-2px);
 }
 
+.location-card:focus {
+    outline: 3px solid rgba(59, 130, 246, 0.3);
+    outline-offset: 2px;
+}
+
 .location-icon {
-    font-size: 2rem;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    font-size: 1.6rem;
 }
 
-.location-card h6 {
-    color: var(--dark-color);
+.location-icon-primary {
+    background: rgba(59, 130, 246, 0.12);
+    color: #2563eb;
+}
+
+.location-icon-success {
+    background: rgba(16, 185, 129, 0.12);
+    color: #0f9d58;
+}
+
+.location-content {
+    flex: 1;
+}
+
+.location-title {
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
+    color: #0f172a;
 }
 
-.location-card p {
-    font-size: 0.875rem;
-    margin-bottom: 1rem;
+.location-description {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.9rem;
 }
 
-.location-card .btn {
-    opacity: 0.8;
-    transition: opacity 0.3s ease;
+.location-action {
+    display: inline-flex;
+    align-items: center;
+    font-weight: 600;
+    color: #ec4899;
+    transition: color 0.25s ease;
 }
 
-.location-card:hover .btn {
-    opacity: 1;
+.location-card:hover .location-action {
+    color: #db2777;
+}
+
+@media (max-width: 575px) {
+    .modal-dialog {
+        margin: 1rem;
+    }
+
+    .location-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .location-action {
+        margin-top: 0.25rem;
+    }
 }
 </style>
 

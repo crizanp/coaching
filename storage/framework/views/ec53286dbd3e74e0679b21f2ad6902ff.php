@@ -118,7 +118,7 @@ unset($__errorArgs, $__bag); ?>
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="content_fr" class="form-label"><?php echo e(__('Full Content (French)')); ?></label>
-                                <textarea id="content_fr" class="form-control <?php $__errorArgs = ['content_fr'];
+                                <textarea id="content_fr" class="form-control tinymce-editor <?php $__errorArgs = ['content_fr'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -140,7 +140,7 @@ unset($__errorArgs, $__bag); ?>
                             </div>
                             <div class="col-md-6">
                                 <label for="content_en" class="form-label"><?php echo e(__('Full Content (English)')); ?></label>
-                                <textarea id="content_en" class="form-control <?php $__errorArgs = ['content_en'];
+                                <textarea id="content_en" class="form-control tinymce-editor <?php $__errorArgs = ['content_en'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -373,15 +373,8 @@ function addSessionFormat(lang) {
 <script src="https://cdn.jsdelivr.net/npm/tinymce@6/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
     tinymce.init({
-        selector: '#description_fr, #description_en, #content_fr, #content_en',
-        height: function(editor) {
-            // Different heights for different fields
-            if (editor.targetElm.id.includes('description')) {
-                return 200;
-            } else {
-                return 400;
-            }
-        },
+        selector: '.tinymce-editor',
+        height: 400,
         plugins: [
             'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
             'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
@@ -393,17 +386,7 @@ function addSessionFormat(lang) {
                 'removeformat | help',
         content_style: 'body { font-family: Poppins, Arial, sans-serif; font-size: 14px }',
         branding: false,
-        promotion: false,
-        setup: function(editor) {
-            editor.on('init', function() {
-                // Set appropriate height after initialization
-                if (editor.targetElm.id.includes('description')) {
-                    editor.getContainer().style.height = '200px';
-                } else {
-                    editor.getContainer().style.height = '400px';
-                }
-            });
-        }
+        promotion: false
     });
 </script>
 <?php $__env->stopPush(); ?>

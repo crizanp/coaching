@@ -84,8 +84,11 @@ class EventApplicationController extends Controller
     public function show(EventApplication $eventApplication)
     {
         $eventApplication->load('event');
-        
-        return view('admin.event-applications.show', compact('eventApplication'));
+
+        return view('admin.event-applications.show', [
+            'application' => $eventApplication,
+            'eventApplication' => $eventApplication,
+        ]);
     }
 
     /**

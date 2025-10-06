@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Service;
 use App\Models\Setting;
+use App\Models\ContactMessage;
 
 class ContactController extends Controller
 {
@@ -24,9 +25,15 @@ class ContactController extends Controller
             'message' => 'required|string|max:1000',
         ]);
 
-        // Here you would typically send an email
-        // For now, we'll just redirect with success message
-        
+        // Store contact message in database
+        ContactMessage::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'service_id' => $request->service_id,
+            'message' => $request->message,
+        ]);
+
         return redirect()->back()->with('success', __('messages.contact.success'));
     }
 }
