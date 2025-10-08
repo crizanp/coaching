@@ -21,7 +21,7 @@ return [
     'home.hero.cta_contact' => 'Me Contacter',
     
     // Quote Section
-    'home.quote.title' => 'Tout comme la chrysalide se transforme en papillon, chaque étape de la vie est une opportunité de métamorphose.',
+    'home.quote.title' => 'Comme la chrysalide se transforme en papillon, chaque étape de vie est une opportunité de métamorphose.',
     'home.quote.subtitle' => 'Parce que chaque parcours est unique, j\'accompagne celles et ceux qui souhaitent dépasser leurs blocages, retrouver leur énergie et avancer vers une vie plus épanouie.',
     'home.quote.description' => 'Grâce à la sophrologie, la PNL et l\'hypnose, je propose des méthodes douces et puissantes pour transformer durablement votre quotidien.',
     'home.quote.welcome' => 'Bienvenue dans un espace de confiance et de changement où chaque séance, pensée pour vous, est une étape concrète vers plus de liberté intérieure.',
@@ -33,7 +33,7 @@ return [
     'home.testimonials.title' => 'Témoignages',
     'home.testimonials.subtitle' => 'Ce que disent mes clients',
     'home.cta.title' => 'Prêt(e) à commencer votre transformation ?',
-    'home.cta.subtitle' => 'Prenez rendez-vous pour un premier échange gratuit',
+    'home.cta.subtitle' => 'Prenez rendez-vous pour un premier échange',
     'home.cta.button' => 'Réserver maintenant',
     'home.faq.title' => 'Questions Fréquemment Posées',
     'home.faq.subtitle' => 'Trouvez les réponses aux questions les plus courantes sur nos services',

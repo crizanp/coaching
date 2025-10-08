@@ -158,7 +158,7 @@
                         <div class="info-content">
                             <h6>Address</h6>
                             <span class="info-text">
-                                Route de Schoelcher,<br>97233 Schoelcher, Martinique
+                               Fort-de-France
                             </span>
                         </div>
                     </div>

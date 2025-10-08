@@ -98,7 +98,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-10 text-center">
                 <div class="fade-in">
-                    <h2 class="section-title quote-title mb-4">
+                    <h2 class="section-title quote-title mb-4" style="color: #0eaac3;">
                         "{{ __('messages.home.quote.title') }}"
                     </h2>
                     <div class="quote-content">

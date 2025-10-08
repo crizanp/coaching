@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,20 +8,20 @@
 
     <title><?php echo $__env->yieldContent('title', __('messages.seo.home.title')); ?></title>
     <meta name="description" content="<?php echo $__env->yieldContent('description', __('messages.seo.home.description')); ?>">
-    
+
     <!-- SEO Meta Tags -->
     <meta name="keywords" content="sophrologie, hypnose, coaching, PNL, bien-être, relaxation, développement personnel">
     <meta name="author" content="<?php echo e(\App\Models\Setting::get('site_name')[app()->getLocale()] ?? 'Coaching'); ?>">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="<?php echo e(url()->current()); ?>">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="<?php echo e(url()->current()); ?>">
     <meta property="og:title" content="<?php echo $__env->yieldContent('title', __('messages.seo.home.title')); ?>">
     <meta property="og:description" content="<?php echo $__env->yieldContent('description', __('messages.seo.home.description')); ?>">
     <meta property="og:locale" content="<?php echo e(app()->getLocale() == 'fr' ? 'fr_FR' : 'en_US'); ?>">
-    
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="<?php echo e(url()->current()); ?>">
@@ -34,13 +35,13 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=poppins:300,400,500,600,700&display=swap" rel="stylesheet" />
-    
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <!-- Custom CSS -->
     <style>
         :root {
@@ -82,7 +83,7 @@
             font-weight: 600;
             color: var(--text-dark) !important;
             font-size: 1.5rem;
-                margin-left: -20px;
+            margin-left: -20px;
         }
 
         .navbar-logo-symbol {
@@ -347,7 +348,8 @@
             transform: scale(1.2);
         }
 
-        .carousel-control-prev, .carousel-control-next {
+        .carousel-control-prev,
+        .carousel-control-next {
             width: 60px;
             height: 60px;
             top: 50%;
@@ -367,11 +369,13 @@
             right: 30px;
         }
 
-        .carousel-control-prev:hover, .carousel-control-next:hover {
+        .carousel-control-prev:hover,
+        .carousel-control-next:hover {
             background: rgba(0, 0, 0, 0.6);
         }
 
-        .carousel-control-prev-icon, .carousel-control-next-icon {
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
             width: 24px;
             height: 24px;
         }
@@ -382,6 +386,7 @@
                 opacity: 0;
                 transform: translateY(50px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -389,9 +394,12 @@
         }
 
         @keyframes float {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0px);
             }
+
             50% {
                 transform: translateY(-20px);
             }
@@ -403,49 +411,52 @@
                 height: 80vh;
                 min-height: 500px;
             }
-            
+
             .hero-slide {
                 height: 80vh;
                 min-height: 500px;
             }
-            
+
             .hero-title {
                 font-size: 2.5rem;
             }
-            
+
             .hero-subtitle {
                 font-size: 1.2rem;
             }
-            
+
             .meditation-icon {
                 font-size: 3rem;
             }
-            
+
             .hero-buttons {
                 flex-direction: column;
                 align-items: center;
             }
-            
-            .btn-hero-primary, .btn-hero-outline {
+
+            .btn-hero-primary,
+            .btn-hero-outline {
                 width: 250px;
                 text-align: center;
             }
-            
-            .carousel-control-prev, .carousel-control-next {
+
+            .carousel-control-prev,
+            .carousel-control-next {
                 width: 40px;
                 height: 40px;
                 z-index: 5;
             }
-            
+
             .carousel-control-prev {
                 left: 10px;
             }
-            
+
             .carousel-control-next {
                 right: 10px;
             }
-            
-            .carousel-control-prev-icon, .carousel-control-next-icon {
+
+            .carousel-control-prev-icon,
+            .carousel-control-next-icon {
                 width: 20px;
                 height: 20px;
             }
@@ -601,13 +612,13 @@
                 width: 40px;
                 height: 40px;
             }
-            
+
             #testimonialsCarousel .carousel-control-next {
                 right: 5px;
                 width: 40px;
                 height: 40px;
             }
-            
+
             #testimonialsCarousel .testimonial-card {
                 margin: 0 50px;
                 padding: 20px;
@@ -690,7 +701,8 @@
         /* Ensure footer container matches navbar container width */
         .footer .container,
         .navbar .container {
-            max-width: 1345px;;
+            max-width: 1345px;
+            ;
             margin: 0 auto;
             padding-left: 15px;
             padding-right: 15px;
@@ -701,7 +713,9 @@
             border-radius: 20px;
             padding: 5px 15px;
             margin-left: 20px;
-        }.language-switcher:hover{
+        }
+
+        .language-switcher:hover {
             background: rgba(50, 49, 49, 1);
             border-radius: 20px;
             padding: 5px 15px;
@@ -710,7 +724,7 @@
 
         .language-switcher a {
             color: white;
-            
+
             text-decoration: none;
             font-weight: 500;
         }
@@ -730,7 +744,7 @@
             .section-title {
                 font-size: 2rem;
             }
-            
+
             .section-padding {
                 padding: 50px 0;
             }
@@ -739,25 +753,29 @@
 
     <?php echo $__env->yieldPushContent('styles'); ?>
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
             <!-- Logo on the left -->
             <a class="navbar-brand d-flex align-items-center" href="<?php echo e(route('home', app()->getLocale())); ?>">
-                <img src="<?php echo e(asset('images/assets/SSJchrysalis-first.png')); ?>" alt="SSJ Symbol" class="navbar-logo-symbol">
-                <img src="<?php echo e(asset('images/assets/SSJchrysalis-second.png')); ?>" alt="Chrysalide" class="navbar-logo-text">
+                <img src="<?php echo e(asset('images/assets/SSJchrysalis-first.png')); ?>" alt="SSJ Symbol"
+                    class="navbar-logo-symbol">
+                <img src="<?php echo e(asset('images/assets/SSJchrysalis-second.png')); ?>" alt="Chrysalide"
+                    class="navbar-logo-text">
             </a>
-            
+
             <!-- Mobile Toggle Button -->
-            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon">
                     <span></span>
                     <span></span>
                     <span></span>
                 </span>
             </button>
-            
+
             <!-- Navigation Menu + Right Side Items -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <!-- Main Navigation Menu -->
@@ -799,7 +817,7 @@
                         </a>
                     </li>
                 </ul>
-                
+
                 <!-- Right Side: Book Now -->
                 <div class="d-lg-flex align-items-center ms-lg-3">
                     <button class="btn btn-primary nav-book-btn" onclick="openLocationModal()">
@@ -867,11 +885,19 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
+        <div class="container"><div class="mt-4 mb-4 d-flex align-items-center">
+                        <img src="/images/assets/chambreLogo.png" alt="Chambre Syndicale de la Sophrologie"
+                            style="max-height:64px; margin-right:12px;" onerror="this.style.display='none'" />
+                        <div class="">
+                            <div><?php echo e(__('messages.about.affiliation')); ?></div>
+                            <div><?php echo e(__('messages.about.reimbursement')); ?></div>
+                        </div>
+                    </div>
             <div class="row">
                 <div class="col-lg-3 mb-4">
                     <h5><?php echo e(\App\Models\Setting::get('site_name')[app()->getLocale()] ?? 'Coaching'); ?></h5>
-                    <p><?php echo e(\App\Models\Setting::get('site_tagline')[app()->getLocale()] ?? ''); ?></p>
+
+                    <p class="text-start"><?php echo e(\App\Models\Setting::get('site_tagline')[app()->getLocale()] ?? ''); ?></p>
                     <div class="social-links">
                         <?php if(\App\Models\Setting::get('social_facebook')): ?>
                             <a href="<?php echo e(\App\Models\Setting::get('social_facebook')); ?>" class="me-3 text-light">
@@ -884,39 +910,30 @@
                             </a>
                         <?php endif; ?>
                     </div>
+                    
                 </div>
                 <div class="col-lg-3 mb-4">
                     <h5><?php echo e(__('messages.contact.info.title')); ?></h5>
-                    <p>
-                        <i class="fas fa-envelope me-2"></i>
-                        <?php echo e(\App\Models\Setting::get('contact_email')); ?>
-
-                    </p>
+                    <!-- Only keep phone, website, instagram as requested -->
                     <p>
                         <i class="fas fa-phone me-2"></i>
-                        <?php echo e(\App\Models\Setting::get('contact_phone')); ?>
-
+                        +596 696 103 622
                     </p>
-                    <?php if(\App\Models\Setting::get('site_website')): ?>
                     <p>
                         <i class="fas fa-globe me-2"></i>
-                        <a href="<?php echo e(\App\Models\Setting::get('site_website')); ?>" class="text-light text-decoration-none">
-                            <?php echo e(str_replace(['https://', 'http://'], '', \App\Models\Setting::get('site_website'))); ?>
-
-                        </a>
+                        <a href="https://ssjchrysalide.com" class="text-light text-decoration-none">ssjchrysalide.com</a>
                     </p>
-                    <?php endif; ?>
                     <p>
-                        <i class="fas fa-map-marker-alt me-2"></i>
-                        <?php echo e(\App\Models\Setting::get('address')[app()->getLocale()] ?? ''); ?>
-
+                        <i class="fab fa-instagram me-2"></i>
+                        @ssjchrysalide
                     </p>
                 </div>
                 <div class="col-lg-3 mb-4">
                     <h5><?php echo e(__('messages.nav.services')); ?></h5>
                     <?php $__currentLoopData = \App\Models\Service::active()->orderBy('sort_order')->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <p>
-                            <a href="<?php echo e(route('services.show', [app()->getLocale(), $service->slug])); ?>" class="text-light text-decoration-none">
+                            <a href="<?php echo e(route('services.show', [app()->getLocale(), $service->slug])); ?>"
+                                class="text-light text-decoration-none">
                                 <?php echo e($service->getLocalizedTranslation('name', app()->getLocale())); ?>
 
                             </a>
@@ -932,23 +949,29 @@
                         </a>
                     </p>
                     <p>
-                        <a href="<?php echo e(route('privacy-policy', app()->getLocale())); ?>" class="text-light text-decoration-none">
+                        <a href="<?php echo e(route('privacy-policy', app()->getLocale())); ?>"
+                            class="text-light text-decoration-none">
                             <?php echo e(__('messages.footer.privacy_policy')); ?>
 
                         </a>
                     </p>
                     <p>
-                        <a href="<?php echo e(route('terms-conditions', app()->getLocale())); ?>" class="text-light text-decoration-none">
+                        <a href="<?php echo e(route('terms-conditions', app()->getLocale())); ?>"
+                            class="text-light text-decoration-none">
                             <?php echo e(__('messages.footer.terms_conditions')); ?>
 
                         </a>
                     </p>
                 </div>
             </div>
-            <hr class="my-4">
+            <hr class="my-4 gx-0">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start">
-                    <p>&copy; <?php echo e(date('Y')); ?> <?php echo e(\App\Models\Setting::get('site_name')[app()->getLocale()] ?? 'Coaching'); ?>. Tous droits réservés.</p>
+                    <p>&copy; <?php echo e(date('Y')); ?>
+
+                        <?php echo e(\App\Models\Setting::get('site_name')[app()->getLocale()] ?? 'Coaching'); ?>. Tous droits
+                        réservés.
+                    </p>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
                     <!-- Language Switcher -->
@@ -957,7 +980,7 @@
                             $currentRoute = request()->route()->getName();
                             $routeParams = request()->route()->parameters();
                             $otherLocale = app()->getLocale() == 'fr' ? 'en' : 'fr';
-                            
+
                             // Generate URL for same page in other language
                             if ($currentRoute && $currentRoute !== 'lang.switch') {
                                 unset($routeParams['locale']);
@@ -981,10 +1004,10 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+
     <!-- Custom JS -->
     <script>
         // Smooth scrolling
@@ -1006,7 +1029,7 @@
             rootMargin: '0px 0px -50px 0px'
         };
 
-        const observer = new IntersectionObserver(function(entries) {
+        const observer = new IntersectionObserver(function (entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
@@ -1019,7 +1042,7 @@
         });
 
         // Navbar scroll effect
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
                 navbar.style.background = 'rgba(255, 255, 255, 0.98)';
@@ -1029,10 +1052,10 @@
         });
 
         // Auto-hide success messages after 5 seconds
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const successAlert = document.querySelector('.alert-success');
             if (successAlert) {
-                setTimeout(function() {
+                setTimeout(function () {
                     const alert = new bootstrap.Alert(successAlert);
                     alert.close();
                 }, 5000); // 5 seconds
@@ -1045,4 +1068,5 @@
     <!-- Location Selection Modal -->
     <?php echo $__env->make('partials.location-selection-modal', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 </body>
+
 </html><?php /**PATH D:\client-fiverr\coaching\resources\views/layouts/frontend.blade.php ENDPATH**/ ?>

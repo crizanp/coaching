@@ -101,9 +101,9 @@
                                 <td class="fw-bold">Price:</td>
                                 <td>
                                     @if($event->price)
-                                        €{{ number_format($event->price, 2) }}
+                                        €{{ number_format((float)$event->price, 2) }}
                                     @else
-                                        On estimate
+                                        {{ __('messages.events.tba') }}
                                     @endif
                                 </td>
                             </tr>

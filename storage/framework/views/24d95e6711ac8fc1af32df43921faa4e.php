@@ -11,10 +11,15 @@
             <div class="col-lg-6 mb-4 mb-lg-0">
                 <div class="fade-in">
                     <h1 class="section-title"><?php echo e(__('messages.about.hero.title')); ?></h1>
-                    <p class="lead mb-4"><?php echo e(__('messages.about.hero.subtitle')); ?></p>
                     <blockquote class="blockquote">
                         <p class="mb-0">"<?php echo e(__('messages.about.hero.quote')); ?>"</p>
                     </blockquote>
+                    <div class="mt-4">
+                        <a href="<?php echo e(route('practices', app()->getLocale())); ?>" class="btn btn-white">
+                            <?php echo e(__('messages.nav.practices')); ?>
+
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-6">
@@ -132,7 +137,7 @@
 </section>
 
 <!-- Statistics Section -->
-<section class="section-padding" style="background: #000000;">
+<!-- <section class="section-padding" style="background: #000000;">
     <div class="container">
         <div class="row justify-content-center text-center">
             <div class="col-lg-8 mb-5">
@@ -170,7 +175,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 <!-- Mission & CTA Section -->
 <section class="section-padding" style="background: white;">
@@ -451,6 +456,43 @@
         
         .stats-card {
             padding: 25px 15px;
+        }
+    }
+
+    /* Scoped white button for the about hero */
+    .btn-white {
+        background: #ffffff;
+        color: var(--primary-pink) !important;
+        border: 1px solid rgba(0,0,0,0.08);
+        padding: 0.6rem 1.1rem;
+        border-radius: 12px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+        font-weight: 600;
+        min-width: 160px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-white:hover,
+    .btn-white:focus {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 26px rgba(0,0,0,0.09);
+        text-decoration: none;
+    }
+
+    .btn-white:active {
+        transform: translateY(0);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    }
+
+    /* Make sure it adapts on small screens */
+    @media (max-width: 767px) {
+        .btn-white {
+            min-width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
         }
     }
 </style>

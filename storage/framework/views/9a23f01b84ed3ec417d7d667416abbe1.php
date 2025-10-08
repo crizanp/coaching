@@ -18,6 +18,13 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
 <!-- Event Hero Section -->
 <section class="section-padding event-hero" style="background: var(--light-pink); margin-top: 94px;">
     <div class="container">
+        <?php
+            // Check if the current visitor IP already has an application for this event
+            $visitorIp = request()->ip();
+            $ipAlreadyRegistered = \App\Models\EventApplication::where('event_id', $event->id)
+                ->where('ip_address', $visitorIp)
+                ->exists();
+        ?>
         <?php if(session('success') || session('error') || session('warning')): ?>
             <div class="row justify-content-center mb-4">
                 <div class="col-lg-8">
@@ -57,7 +64,7 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
                     <h1 class="section-title"><?php echo e($event->getLocalizedTranslation('title', app()->getLocale())); ?></h1>
                     <p class="lead mb-4"><?php echo e($event->getLocalizedTranslation('description', app()->getLocale())); ?></p>
                     
-                    <?php if($event->can_register): ?>
+                    <?php if($event->can_register && !$ipAlreadyRegistered): ?>
                     <div class="mt-4">
                         <a href="<?php echo e(route('events.apply', ['locale' => app()->getLocale(), 'event' => $event->slug])); ?>" 
                            class="btn btn-primary btn-lg px-5 py-3 event-register-btn">
@@ -332,11 +339,15 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
                         </div>
                         <?php endif; ?>
                         
-                        <?php if($event->price): ?>
                         <div class="service-detail-item mb-3">
-                            <strong><?php echo e(__('messages.events.price')); ?>:</strong> <?php echo e(number_format((float)$event->price, 2)); ?>€
+                            <strong><?php echo e(__('messages.events.price')); ?>:</strong>
+                            <?php if($event->price): ?>
+                                <?php echo e(number_format((float)$event->price, 2)); ?>€
+                            <?php else: ?>
+                                <?php echo e(__('messages.events.tba')); ?>
+
+                            <?php endif; ?>
                         </div>
-                        <?php endif; ?>
                         
                         <?php if($event->max_participants): ?>
                         <div class="service-detail-item mb-3">
@@ -375,7 +386,7 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
                 </div>
                 
                 <!-- Registration Card -->
-                <?php if($event->can_register): ?>
+                <?php if($event->can_register && !$ipAlreadyRegistered): ?>
                 <div class="practice-card-textured mb-4" style="background: var(--light-pink);">
                     <div class="practice-card-body">
                         <div class="practice-icon-left">
@@ -387,8 +398,8 @@ atelier, événement, <?php echo e($event->type); ?>, développement personnel, 
                     </div>
                     <div class="content-description">
                         <p class="mb-4"><?php echo e(__('messages.events.register_description')); ?></p>
-                                <a href="<?php echo e(route('events.apply', ['locale' => app()->getLocale(), 'event' => $event->slug])); ?>" 
-                                    class="btn btn-primary w-100 event-register-btn">
+                        <a href="<?php echo e(route('events.apply', ['locale' => app()->getLocale(), 'event' => $event->slug])); ?>" 
+                            class="btn btn-primary w-100 event-register-btn">
                             <i class="fas fa-user-plus me-2"></i>
                             <?php echo e(__('messages.events.register_button')); ?>
 

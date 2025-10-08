@@ -50,12 +50,17 @@
                                 <small><?php echo e($event->event_date->format('d/m/Y H:i')); ?></small>
                             </div>
                             <?php endif; ?>
-                            <?php if($event->price): ?>
                             <div class="col-md-4 mb-2">
                                 <strong><?php echo e(__('messages.events.price')); ?>:</strong><br>
-                                <strong><?php echo e(number_format($event->price, 2)); ?>€</strong>
+                                <strong>
+                                    <?php if($event->price): ?>
+                                        <?php echo e(number_format((float)$event->price, 2)); ?>€
+                                    <?php else: ?>
+                                        <?php echo e(__('messages.events.tba')); ?>
+
+                                    <?php endif; ?>
+                                </strong>
                             </div>
-                            <?php endif; ?>
                             <?php if($event->max_participants): ?>
                             <div class="col-md-4 mb-2">
                                 <strong><?php echo e(__('messages.events.spots_left')); ?>:</strong><br>

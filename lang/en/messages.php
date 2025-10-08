@@ -33,7 +33,7 @@ return [
     'home.testimonials.title' => 'Testimonials',
     'home.testimonials.subtitle' => 'What my clients say',
     'home.cta.title' => 'Ready to start your transformation?',
-    'home.cta.subtitle' => 'Book an appointment for a free initial consultation',
+    'home.cta.subtitle' => 'Book an appointment for an initial consultation',
     'home.cta.button' => 'Book now',
     'home.faq.title' => 'Frequently Asked Questions',
     'home.faq.subtitle' => 'Find answers to the most common questions about our services',

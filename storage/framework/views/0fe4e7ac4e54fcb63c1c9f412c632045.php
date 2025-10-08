@@ -58,11 +58,11 @@
                     <?php echo e(__('messages.booking.location.cancel')); ?>
 
                 </button>
-                <a href="<?php echo e(route('booking.index', app()->getLocale())); ?>" class="btn btn-outline-primary">
+                <!-- <a href="<?php echo e(route('booking.index', app()->getLocale())); ?>" class="btn btn-outline-primary">
                     <i class="fas fa-clipboard-list me-1"></i>
                     <?php echo e(__('messages.booking.location.classic_form')); ?>
 
-                </a>
+                </a> -->
             </div>
         </div>
     </div>

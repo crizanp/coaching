@@ -16,6 +16,13 @@ atelier, événement, {{ $event->type }}, développement personnel, bien-être, 
 <!-- Event Hero Section -->
 <section class="section-padding event-hero" style="background: var(--light-pink); margin-top: 94px;">
     <div class="container">
+        @php
+            // Check if the current visitor IP already has an application for this event
+            $visitorIp = request()->ip();
+            $ipAlreadyRegistered = \App\Models\EventApplication::where('event_id', $event->id)
+                ->where('ip_address', $visitorIp)
+                ->exists();
+        @endphp
         @if(session('success') || session('error') || session('warning'))
             <div class="row justify-content-center mb-4">
                 <div class="col-lg-8">
@@ -51,7 +58,7 @@ atelier, événement, {{ $event->type }}, développement personnel, bien-être, 
                     <h1 class="section-title">{{ $event->getLocalizedTranslation('title', app()->getLocale()) }}</h1>
                     <p class="lead mb-4">{{ $event->getLocalizedTranslation('description', app()->getLocale()) }}</p>
                     
-                    @if($event->can_register)
+                    @if($event->can_register && !$ipAlreadyRegistered)
                     <div class="mt-4">
                         <a href="{{ route('events.apply', ['locale' => app()->getLocale(), 'event' => $event->slug]) }}" 
                            class="btn btn-primary btn-lg px-5 py-3 event-register-btn">
@@ -319,11 +326,14 @@ atelier, événement, {{ $event->type }}, développement personnel, bien-être, 
                         </div>
                         @endif
                         
-                        @if($event->price)
                         <div class="service-detail-item mb-3">
-                            <strong>{{ __('messages.events.price') }}:</strong> {{ number_format((float)$event->price, 2) }}€
+                            <strong>{{ __('messages.events.price') }}:</strong>
+                            @if($event->price)
+                                {{ number_format((float)$event->price, 2) }}€
+                            @else
+                                {{ __('messages.events.tba') }}
+                            @endif
                         </div>
-                        @endif
                         
                         @if($event->max_participants)
                         <div class="service-detail-item mb-3">
@@ -360,7 +370,7 @@ atelier, événement, {{ $event->type }}, développement personnel, bien-être, 
                 </div>
                 
                 <!-- Registration Card -->
-                @if($event->can_register)
+                @if($event->can_register && !$ipAlreadyRegistered)
                 <div class="practice-card-textured mb-4" style="background: var(--light-pink);">
                     <div class="practice-card-body">
                         <div class="practice-icon-left">
@@ -372,8 +382,8 @@ atelier, événement, {{ $event->type }}, développement personnel, bien-être, 
                     </div>
                     <div class="content-description">
                         <p class="mb-4">{{ __('messages.events.register_description') }}</p>
-                                <a href="{{ route('events.apply', ['locale' => app()->getLocale(), 'event' => $event->slug]) }}" 
-                                    class="btn btn-primary w-100 event-register-btn">
+                        <a href="{{ route('events.apply', ['locale' => app()->getLocale(), 'event' => $event->slug]) }}" 
+                            class="btn btn-primary w-100 event-register-btn">
                             <i class="fas fa-user-plus me-2"></i>
                             {{ __('messages.events.register_button') }}
                         </a>

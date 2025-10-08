@@ -118,9 +118,9 @@
                                         <span><i class="fas fa-map-marker-alt text-muted me-1"></i>{{ $application->event->getTranslation('location', 'fr') }}</span>
                                     @endif
                                     @if($application->event->price)
-                                        <span><i class="fas fa-euro-sign text-muted me-1"></i>€{{ number_format($application->event->price, 2) }}</span>
+                                        <span><i class="fas fa-euro-sign text-muted me-1"></i>€{{ number_format((float)$application->event->price, 2) }}</span>
                                     @else
-                                        <span><i class="fas fa-euro-sign text-muted me-1"></i>On estimate</span>
+                                        <span><i class="fas fa-euro-sign text-muted me-1"></i>{{ __('messages.events.tba') }}</span>
                                     @endif
                                 </div>
                             </div>

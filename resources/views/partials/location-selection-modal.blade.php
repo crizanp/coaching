@@ -53,10 +53,10 @@
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                     {{ __('messages.booking.location.cancel') }}
                 </button>
-                <a href="{{ route('booking.index', app()->getLocale()) }}" class="btn btn-outline-primary">
+                <!-- <a href="{{ route('booking.index', app()->getLocale()) }}" class="btn btn-outline-primary">
                     <i class="fas fa-clipboard-list me-1"></i>
                     {{ __('messages.booking.location.classic_form') }}
-                </a>
+                </a> -->
             </div>
         </div>
     </div>

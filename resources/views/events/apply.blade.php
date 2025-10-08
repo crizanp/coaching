@@ -48,12 +48,16 @@
                                 <small>{{ $event->event_date->format('d/m/Y H:i') }}</small>
                             </div>
                             @endif
-                            @if($event->price)
                             <div class="col-md-4 mb-2">
                                 <strong>{{ __('messages.events.price') }}:</strong><br>
-                                <strong>{{ number_format($event->price, 2) }}€</strong>
+                                <strong>
+                                    @if($event->price)
+                                        {{ number_format((float)$event->price, 2) }}€
+                                    @else
+                                        {{ __('messages.events.tba') }}
+                                    @endif
+                                </strong>
                             </div>
-                            @endif
                             @if($event->max_participants)
                             <div class="col-md-4 mb-2">
                                 <strong>{{ __('messages.events.spots_left') }}:</strong><br>

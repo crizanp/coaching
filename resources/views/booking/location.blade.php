@@ -158,7 +158,7 @@
                                     <label for="client_phone" class="form-label">{{ __('messages.booking.form.phone') }}</label>
                                     <input type="tel" class="form-control @error('client_phone') is-invalid @enderror" 
                                            id="client_phone" name="client_phone" 
-                                           value="{{ old('client_phone') }}">
+                                           value="{{ old('client_phone') }}"required>
                                     @error('client_phone')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror

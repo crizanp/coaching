@@ -2,6 +2,8 @@
 
 <?php $__env->startSection('title', __('messages.booking.title') . ' - ' . $locationData['display_name']); ?>
 
+<?php $__env->startSection('description', __('messages.seo.booking_location.description', ['location' => $locationData['display_name']])); ?>
+
 <?php $__env->startSection('content'); ?>
 <!-- Booking Hero Section -->
 <section class="section-padding" style="background: var(--light-pink); margin-top: 94px;">
@@ -224,7 +226,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" 
                                            id="client_phone" name="client_phone" 
-                                           value="<?php echo e(old('client_phone')); ?>">
+                                           value="<?php echo e(old('client_phone')); ?>"required>
                                     <?php $__errorArgs = ['client_phone'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
