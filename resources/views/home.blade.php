@@ -232,7 +232,95 @@
 </section>
 @endif
 
+<!-- Additional Gallery-style Testimonials -->
+<section class="section-padding section-testimonials-gallery bg-white">
+    <div class="container">
+        
+
+        <div class="row g-4">
+            <!-- Testimonial 1: childbirth (uses 1.jpeg) -->
+            <div class="col-lg-6">
+                <div class="testimonial-gallery-card p-3 h-100 d-flex align-items-center">
+                    <div class="row w-100 align-items-center">
+                        <div class="col-7">
+                            <blockquote class="gallery-quote mb-0">
+                                <p>« Grâce à la sophrologie j’ai pu avoir une meilleure gestion de la douleur lors de mon accouchement. »</p>
+                                <footer class="blockquote-footer">Mlle L</footer>
+                            </blockquote>
+                        </div>
+                        <div class="col-5 text-center">
+                            <div class="portrait-wrapper mx-auto">
+                                <img src="{{ asset('images/testimonial/1.jpeg') }}" alt="Témoignage accouchement" class="img-fluid rounded shadow-sm portrait-image" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 2: energy (uses 2.jpeg) with blurred face overlay -->
+            <div class="col-lg-6">
+                <div class="testimonial-gallery-card p-3 h-100 d-flex align-items-center">
+                    <div class="row w-100 align-items-center">
+                        <div class="col-7">
+                            <blockquote class="gallery-quote mb-0">
+                                <p>« Au fil des séances j’ai appris à me reconnecter à mes ressources et j’ai retrouvé un bon niveau d’énergie »</p>
+                                <footer class="blockquote-footer">Mlle U</footer>
+                            </blockquote>
+                        </div>
+                        <div class="col-5 text-center">
+                            <div class="portrait-wrapper mx-auto position-relative">
+                                <img src="{{ asset('images/testimonial/2.jpg') }}" alt="Témoignage énergie" class="img-fluid rounded shadow-sm portrait-image" />
+                                <!-- Circular blurred overlay to protect identity (adjust position/size if needed) -->
+                                <div class="face-blur" style="background-image: url('{{ asset('images/testimonial/2.jpeg') }}');"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- FAQ Section -->
+<!-- Modal to preview testimonial images -->
+<div class="modal fade" id="testimonialModal" tabindex="-1" aria-labelledby="testimonialModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title" id="testimonialModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="" alt="Preview" class="img-fluid" id="testimonialModalImage" style="max-height:80vh; width: auto;" />
+            </div>
+        </div>
+    </div>
+</div>
+
+@push('scripts')
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+                var modalEl = document.getElementById('testimonialModal');
+                var modalImage = document.getElementById('testimonialModalImage');
+
+                if (modalEl) {
+                        modalEl.addEventListener('show.bs.modal', function (event) {
+                                var trigger = event.relatedTarget;
+                                if (!trigger) return;
+                                var src = trigger.getAttribute('data-src') || trigger.dataset.src;
+                                if (src) {
+                                        modalImage.src = src;
+                                }
+                        });
+
+                        modalEl.addEventListener('hidden.bs.modal', function () {
+                                // release image src to free memory
+                                modalImage.src = '';
+                        });
+                }
+        });
+</script>
+@endpush
 <section class="section-padding section-faq">
     <div class="container">
         <div class="fade-in">
@@ -459,6 +547,58 @@
     .section-testimonials .carousel-control-next {
         width: 48px;
         height: 48px;
+    }
+
+    /* Gallery-style testimonial: quote left, portrait right */
+    .section-testimonials-gallery .gallery-quote {
+        border-left: 6px solid #0eaac3;
+        padding-left: 1rem;
+        font-size: clamp(1rem, 2.6vw, 1.15rem);
+        color: #243b4a;
+    }
+
+    .section-testimonials-gallery .portrait-image {
+        max-width: 320px;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .section-testimonials-gallery .quote-translation em {
+        color: #3b5564;
+        font-size: 0.98rem;
+    }
+
+    .testimonial-gallery-card {
+        background: #fff;
+        border-radius: 8px;
+    }
+
+    .portrait-wrapper { 
+        width: 120px;
+        height: 160px;
+        overflow: hidden;
+        display: inline-block;
+    }
+
+    .portrait-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Circular blurred overlay to hide face while preserving context */
+    .face-blur {
+        position: absolute;
+        left: 50%;
+        top: 30%;
+        width: 64px;
+        height: 64px;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        filter: blur(8px);
+        background-size: cover;
+        background-position: center;
+        box-shadow: 0 0 0 9999px rgba(255,255,255,0.001) inset;
     }
 
     /* FAQ */

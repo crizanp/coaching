@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1200" viewBox="0 0 800 1200">
+  <filter id="blur"><feGaussianBlur stdDeviation="8"/></filter>
+  <rect width="100%" height="100%" fill="#f1f5f9" filter="url(#blur)"/>
+  <circle cx="400" cy="360" r="160" fill="#d1e7ef" filter="url(#blur)"/>
+  <rect x="220" y="580" width="360" height="420" rx="20" fill="#e8eef2" filter="url(#blur)"/>
+  <text x="400" y="40" font-family="Arial" font-size="28" text-anchor="middle" fill="#94a3b8">Placeholder Blurred</text>
+  <text x="400" y="80" font-family="Arial" font-size="20" text-anchor="middle" fill="#94a3b8">Use this for privacy</text>
+</svg>
