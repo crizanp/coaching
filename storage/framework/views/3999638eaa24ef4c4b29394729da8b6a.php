@@ -280,7 +280,7 @@ unset($__errorArgs, $__bag); ?>
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 2.5rem;
+        font-size: 2rem;
         color: var(--primary-pink);
         margin: 0 auto;
         box-shadow: 0 10px 30px rgba(0,0,0,0.1);

@@ -137,7 +137,7 @@
                             
                             <div class="col-md-6 mb-3">
                                 <label for="applicant_phone" class="form-label">
-                                    {{ __('messages.events.phone') }}
+                                    {{ __('messages.events.phone') }}<span class="text-danger">*</span>
                                 </label>
                                 <input type="tel" 
                                        class="form-control @error('applicant_phone') is-invalid @enderror" 

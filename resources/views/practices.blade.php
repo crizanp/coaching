@@ -531,7 +531,7 @@ sophrologie, PNL, hypnose, thérapie brève, Martinique, relaxation, développem
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 2.5rem;
+        font-size: 2rem;
         color: #D63384;
         margin: 0 auto;
         position: relative;

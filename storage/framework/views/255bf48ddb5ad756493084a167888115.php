@@ -171,8 +171,7 @@ unset($__errorArgs, $__bag); ?>
                             
                             <div class="col-md-6 mb-3">
                                 <label for="applicant_phone" class="form-label">
-                                    <?php echo e(__('messages.events.phone')); ?>
-
+                                    <?php echo e(__('messages.events.phone')); ?><span class="text-danger">*</span>
                                 </label>
                                 <input type="tel" 
                                        class="form-control <?php $__errorArgs = ['applicant_phone'];

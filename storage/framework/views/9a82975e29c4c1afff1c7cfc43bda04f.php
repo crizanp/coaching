@@ -226,7 +226,7 @@
         align-items: center;
         justify-content: center;
         color: #adb5bd;
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
     .practice-card-body {

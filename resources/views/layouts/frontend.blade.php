@@ -208,6 +208,69 @@
             border: none;
         }
 
+        /* Sticky WhatsApp floating button (site-wide) */
+        .whatsapp-fab {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            z-index: 1080;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: auto;
+            flex-direction: column;
+        }
+
+        .whatsapp-fab .whatsapp-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column; /* stack text above icon */
+            gap: 8px;
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .whatsapp-fab .whatsapp-text {
+            background: #ffffff;
+            color: #0b2b1a;
+            padding: 12px 12px;
+            border-radius: 12px;
+            font-weight: 600;
+            box-shadow: 0 8px 20px rgba(14, 42, 33, 0.12);
+            text-align: center;
+            font-size: 1.0rem;
+            line-height: 1;
+        }
+
+        .whatsapp-fab .whatsapp-circle {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #25D366;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.18);
+            font-size: 22px;
+        }
+
+        @media (max-width: 575.98px) {
+            .whatsapp-fab {
+                right: 14px;
+                bottom: 14px;
+            }
+            .whatsapp-fab .whatsapp-text {
+                display: none; /* show icon only on small screens */
+            }
+            .whatsapp-fab .whatsapp-circle {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+
         @media (max-width: 991.98px) {
             .navbar-nav {
                 padding: 1rem 0;
@@ -418,7 +481,7 @@
             }
 
             .hero-title {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
 
             .hero-subtitle {
@@ -467,7 +530,7 @@
         }
 
         .section-title {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 600;
             color: var(--text-dark);
             text-align: center;
@@ -989,6 +1052,16 @@
             </div>
         </div>
     </footer>
+
+    <!-- Sticky WhatsApp Floating Button -->
+    <div class="whatsapp-fab" aria-hidden="false">
+        <a class="whatsapp-link" href="https://wa.me/596696103622?text=Bonjour%20%2C%20je%20souhaite%20vous%20contacter%20depuis%20le%20site" target="_blank" rel="noopener noreferrer" aria-label="Contact me on WhatsApp">
+            <span class="whatsapp-text">Contactez-moi </span>
+            <span class="whatsapp-circle" aria-hidden="true">
+                <i class="fab fa-whatsapp"></i>
+            </span>
+        </a>
+    </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

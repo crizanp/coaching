@@ -22,10 +22,10 @@ return [
     'home.hero.cta_contact' => 'Me Contacter',
     
     // Hero Slides
-    'home.hero.slide1.text' => 'FEMME<br>MAMAN<br>THÉRAPEUTE',
-    'home.hero.slide1.button' => 'Rendez-vous',
-    'home.hero.slide2.text' => 'QUE POUVONS-NOUS<br>TRANSFORMER<br>ENSEMBLE?',
-    'home.hero.slide2.button' => 'Tous les Services',
+    'home.hero.slide1.text' => 'QUE POUVONS-NOUS<br>TRANSFORMER<br>ENSEMBLE?',
+    'home.hero.slide1.button' => 'COMMENT JE VOUS ACCOMPAGNE',
+    'home.hero.slide2.text' => 'PRÊT(E) À PRENDRE<br> SOIN DEVOUS <br> EN PROFONDEUR ?',
+    'home.hero.slide2.button' => 'RÉSERVEZ VOTRE 1ÈRE SÉANCE',
     'home.hero.slide3.text' => 'VOUS HÉSITEZ À<br>CONSULTER?',
     'home.hero.slide3.button' => 'Nous Contacter',
     
@@ -71,7 +71,7 @@ return [
     'services.format' => 'Format des séances',
 
     // Practices
-    'practices.title' => 'Mes Pratiques',
+    'practices.title' => 'Comment je vous accompagne ?',
     'practices.subtitle' => 'Mon approche est bienveillante et prend en compte votre singularité',
     'practices.description' => 'Découvrez mes différentes approches thérapeutiques : sophrologie, PNL et hypnose pour votre épanouissement personnel.',
     'practices.benefits' => 'Bénéfices',

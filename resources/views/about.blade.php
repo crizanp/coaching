@@ -10,13 +10,15 @@
         <div class="row align-items-center">
             <div class="col-lg-6 mb-4 mb-lg-0">
                 <div class="fade-in">
-                    <h1 class="section-title">{{ __('messages.about.hero.title') }}</h1>
+                    <h1 class="section-title" >{{ __('messages.about.hero.title') }}</h1>
                     <blockquote class="blockquote">
                         <p class="mb-0">"{{ __('messages.about.hero.quote') }}"</p>
                     </blockquote>
                     <div class="mt-4">
+                                                <!-- <a href="{{ route('contact.index', app()->getLocale()) }}" class="btn btn-white"> -->
+
                         <a href="{{ route('practices', app()->getLocale()) }}" class="btn btn-white">
-                            {{ __('messages.nav.practices') }}
+                            Comment je vous accompagne ?
                         </a>
                     </div>
                 </div>
@@ -446,7 +448,7 @@
         }
         
         .stats-number {
-            font-size: 2.5rem;
+            font-size: 2rem;
         }
         
         .stats-card {

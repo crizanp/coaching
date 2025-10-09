@@ -500,7 +500,7 @@
     }
 
     .section-title {
-        font-size: 2.5rem;
+        font-size: 2rem;
         font-weight: 700;
         color: var(--text-dark);
         margin-bottom: 1rem;

@@ -249,7 +249,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 2.5rem;
+        font-size: 2rem;
         color: var(--primary-pink);
         margin: 0 auto 20px;
         position: relative;

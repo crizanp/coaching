@@ -70,7 +70,7 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
             <div class="col-lg-6 mb-4">
                 <div class="benefit-card h-100" style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(212, 179, 214, 0.1);">
                     <div class="benefit-icon mb-3">
-                        <i class="fas fa-heart" style="font-size: 2.5rem; color: #d4b3d6;"></i>
+                        <i class="fas fa-heart" style="font-size: 2rem; color: #d4b3d6;"></i>
                     </div>
                     <h3 class="benefit-title mb-3">{{ __('messages.events.benefits.emotions.title') }}</h3>
                     <p class="benefit-description">{{ __('messages.events.benefits.emotions.description') }}</p>
@@ -79,7 +79,7 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
             <div class="col-lg-6 mb-4">
                 <div class="benefit-card h-100" style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(212, 179, 214, 0.1);">
                     <div class="benefit-icon mb-3">
-                        <i class="fas fa-lightbulb" style="font-size: 2.5rem; color: #d4b3d6;"></i>
+                        <i class="fas fa-lightbulb" style="font-size: 2rem; color: #d4b3d6;"></i>
                     </div>
                     <h3 class="benefit-title mb-3">{{ __('messages.events.benefits.needs.title') }}</h3>
                     <p class="benefit-description">{{ __('messages.events.benefits.needs.description') }}</p>
@@ -88,7 +88,7 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
             <div class="col-lg-6 mb-4">
                 <div class="benefit-card h-100" style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(212, 179, 214, 0.1);">
                     <div class="benefit-icon mb-3">
-                        <i class="fas fa-comments" style="font-size: 2.5rem; color: #d4b3d6;"></i>
+                        <i class="fas fa-comments" style="font-size: 2rem; color: #d4b3d6;"></i>
                     </div>
                     <h3 class="benefit-title mb-3">{{ __('messages.events.benefits.communication.title') }}</h3>
                     <p class="benefit-description">{{ __('messages.events.benefits.communication.description') }}</p>
@@ -97,7 +97,7 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
             <div class="col-lg-6 mb-4">
                 <div class="benefit-card h-100" style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(212, 179, 214, 0.1);">
                     <div class="benefit-icon mb-3">
-                        <i class="fas fa-hands-helping" style="font-size: 2.5rem; color: #d4b3d6;"></i>
+                        <i class="fas fa-hands-helping" style="font-size: 2rem; color: #d4b3d6;"></i>
                     </div>
                     <h3 class="benefit-title mb-3">{{ __('messages.events.benefits.sharing.title') }}</h3>
                     <p class="benefit-description">{{ __('messages.events.benefits.sharing.description') }}</p>
@@ -255,7 +255,7 @@ atelier, événement, groupe, émotions, communication, partage, Martinique, dé
 .section-title {
     color: #4a4a4a;
     font-weight: 300;
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin-bottom: 1rem;
 }
 

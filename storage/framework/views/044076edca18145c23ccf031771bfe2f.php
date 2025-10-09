@@ -19,10 +19,10 @@
                         <!-- Button at bottom -->
                         <div class="hero-button-bottom">
                             <div class="text-center">
-                                <button onclick="openLocationModal()" class="btn btn-hero-primary">
+                                <a href="<?php echo e(route('practices', app()->getLocale())); ?>" class="btn btn-hero-primary">
                                     <?php echo e(__('messages.home.hero.slide1.button')); ?>
 
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -39,12 +39,12 @@
                         </div>
                         
                         <!-- Button at bottom -->
-                        <div class="hero-button-bottom">
+                       <div class="hero-button-bottom">
                             <div class="text-center">
-                                <a href="<?php echo e(route('services.index', app()->getLocale())); ?>" class="btn btn-hero-primary">
+                                <button onclick="openLocationModal()" class="btn btn-hero-primary">
                                     <?php echo e(__('messages.home.hero.slide2.button')); ?>
 
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -98,7 +98,13 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10 text-center">
-                <div class="fade-in">
+                <div class="fade-in butterfly-container position-relative">
+                    <!-- small flying butterflies (uses public/images/butterfly/1.png|2.png|3.png) -->
+                    <img src="<?php echo e(asset('images/butterfly/1.png')); ?>" alt="butterfly 1" class="butterfly butterfly-1" />
+                    <img src="<?php echo e(asset('images/butterfly/2.png')); ?>" alt="butterfly 2" class="butterfly butterfly-2" />
+                    <img src="<?php echo e(asset('images/butterfly/3.png')); ?>" alt="butterfly 3" class="butterfly butterfly-3" />
+                    <img src="<?php echo e(asset('images/butterfly/1.png')); ?>" alt="butterfly 4" class="butterfly butterfly-4" />
+
                     <h2 class="section-title quote-title mb-4" style="color: #0eaac3;">
                         "<?php echo e(__('messages.home.quote.title')); ?>"
                     </h2>
@@ -243,16 +249,16 @@
 
         <div class="row g-4">
             <!-- Testimonial 1: childbirth (uses 1.jpeg) -->
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <div class="testimonial-gallery-card p-3 h-100 d-flex align-items-center">
                     <div class="row w-100 align-items-center">
-                        <div class="col-7">
+                        <div class="col-md-7">
                             <blockquote class="gallery-quote mb-0">
                                 <p>« Grâce à la sophrologie j’ai pu avoir une meilleure gestion de la douleur lors de mon accouchement. »</p>
                                 <footer class="blockquote-footer">Mlle L</footer>
                             </blockquote>
                         </div>
-                        <div class="col-5 text-center">
+                        <div class="col-md-5 text-center">
                             <div class="portrait-wrapper mx-auto">
                                 <img src="<?php echo e(asset('images/testimonial/1.jpeg')); ?>" alt="Témoignage accouchement" class="img-fluid rounded shadow-sm portrait-image" />
                             </div>
@@ -262,16 +268,16 @@
             </div>
 
             <!-- Testimonial 2: energy (uses 2.jpeg) with blurred face overlay -->
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <div class="testimonial-gallery-card p-3 h-100 d-flex align-items-center">
                     <div class="row w-100 align-items-center">
-                        <div class="col-7">
+                        <div class="col-md-7">
                             <blockquote class="gallery-quote mb-0">
-                                <p>« Au fil des séances j’ai appris à me reconnecter à mes ressources et j’ai retrouvé un bon niveau d’énergie »</p>
+                                <p>« Dès ma première séance de Sophrologie avec Sandrine et lors des suivantes, j'ai pu ressentir un bénéfice immédiat grâce à l'apaisement et au bien être procurés. J'ai pu désamorcer rapidement mes situations de stress, d'angoisse et de confusion pour retrouver une harmonie entre mon corps et mon esprit. Cet accompagnement pour une reprise de conscience et une réhabilitation de ma confiance en moi m'a permise de sortir d'une période de crises délicate et de revenir progressivement à un équilibre de vie plus serein. Merci Sandrine pour ta bienveillance et ton attention précieuse. »</p>
                                 <footer class="blockquote-footer">Mlle U</footer>
                             </blockquote>
                         </div>
-                        <div class="col-5 text-center">
+                        <div class="col-md-5 text-center">
                             <div class="portrait-wrapper mx-auto position-relative">
                                 <img src="<?php echo e(asset('images/testimonial/2.jpg')); ?>" alt="Témoignage énergie" class="img-fluid rounded shadow-sm portrait-image" />
                                 <!-- Circular blurred overlay to protect identity (adjust position/size if needed) -->
@@ -581,8 +587,8 @@
     }
 
     .portrait-wrapper { 
-        width: 120px;
-        height: 160px;
+        width: 200px;
+        height: 354px;
         overflow: hidden;
         display: inline-block;
     }
@@ -616,6 +622,118 @@
     /* CTA */
     .section-cta {
         background-color: white;
+    }
+
+    /* Butterfly flying animation in Quote Section */
+    .butterfly-container {
+        position: relative;
+        overflow: visible;
+    }
+.butterfly {
+    position: absolute;
+    width: 58px;
+    height: auto;
+    pointer-events: none;
+    z-index: 5;
+    filter: drop-shadow(0 6px 10px rgba(0,0,0,0.12));
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    opacity: 0.3; /* Low opacity for all butterflies */
+}
+.butterfly-1 {
+    left: -40px;
+    top: 15%;
+    animation: flyA 12s ease-in-out infinite;
+}
+
+.butterfly-2 {
+    left: 10%;
+    top: 75%;
+    width: 50px;
+    animation: flyB 14s ease-in-out infinite;
+}
+
+.butterfly-3 {
+    left: 80%;
+    top: 40%;
+    width: 44px;
+    animation: flyC 13s ease-in-out infinite;
+}
+
+.butterfly-4 {
+    left: 90%;
+    top: 20%;
+    width: 38px;
+    animation: flyD 15s ease-in-out infinite;
+}
+
+/* Remove the flutter animation completely */
+.butterfly::after {
+    content: '';
+    display: block;
+}
+
+/* Updated flight paths - stay within screen bounds */
+@keyframes flyA {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    25%  { transform: translate(180px, -30px) rotate(10deg); }
+    50%  { transform: translate(320px, 20px) rotate(-5deg); }
+    75%  { transform: translate(180px, 50px) rotate(8deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes flyB {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    25%  { transform: translate(150px, -60px) rotate(-8deg); }
+    50%  { transform: translate(280px, 10px) rotate(12deg); }
+    75%  { transform: translate(150px, 40px) rotate(-10deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes flyC {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    25%  { transform: translate(-120px, -40px) rotate(8deg); }
+    50%  { transform: translate(-220px, 30px) rotate(-10deg); }
+    75%  { transform: translate(-120px, 50px) rotate(5deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes flyD {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    25%  { transform: translate(-100px, -50px) rotate(-10deg); }
+    50%  { transform: translate(-200px, 20px) rotate(12deg); }
+    75%  { transform: translate(-100px, 45px) rotate(-8deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+    /* combine flight with flutter for a natural effect */
+    .butterfly {
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+    }
+    
+    .butterfly-1 { animation-name: flyA; animation-duration: 9s; }
+    .butterfly-2 { animation-name: flyB; animation-duration: 11s; }
+    .butterfly-3 { animation-name: flyC; animation-duration: 10.5s; }
+    .butterfly-4 { animation-name: flyD; animation-duration: 8.5s; }
+
+    .butterfly::after {
+        content: '';
+        display: block;
+        animation: flutter 0.8s ease-in-out infinite;
+    }
+
+    /* smaller on very small screens and reduce motion for accessibility */
+    @media (max-width: 575.98px) {
+        .butterfly { width: 34px; }
+        .butterfly-2 { display: none; } /* hide one to avoid clutter on phone */
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .butterfly, .butterfly::after {
+            animation: none !important;
+            opacity: 1 !important;
+        }
     }
 
     @media (max-width: 991.98px) {

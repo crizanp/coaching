@@ -15,9 +15,10 @@
                         <p class="mb-0">"<?php echo e(__('messages.about.hero.quote')); ?>"</p>
                     </blockquote>
                     <div class="mt-4">
-                        <a href="<?php echo e(route('practices', app()->getLocale())); ?>" class="btn btn-white">
-                            <?php echo e(__('messages.nav.practices')); ?>
+                                                <!-- <a href="<?php echo e(route('contact.index', app()->getLocale())); ?>" class="btn btn-white"> -->
 
+                        <a href="<?php echo e(route('practices', app()->getLocale())); ?>" class="btn btn-white">
+                            Comment je vous accompagne ?
                         </a>
                     </div>
                 </div>
@@ -451,7 +452,7 @@
         }
         
         .stats-number {
-            font-size: 2.5rem;
+            font-size: 2rem;
         }
         
         .stats-card {

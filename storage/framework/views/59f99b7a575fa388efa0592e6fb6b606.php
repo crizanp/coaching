@@ -56,12 +56,12 @@
                                 </h5>
                                 <p class="card-text"><?php echo e($locationData['address']); ?></p>
                             </div>
-                            <div class="col-md-4 text-md-end">
+                            <!-- <div class="col-md-4 text-md-end">
                                 <a href="<?php echo e(route('booking.index', app()->getLocale())); ?>" class="btn btn-outline-primary">
                                     <i class="fas fa-arrow-left me-2"></i>
                                     Choisir un autre lieu
                                 </a>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
