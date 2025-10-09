@@ -1,9 +1,9 @@
-@extends('layouts.frontend')
 
-@section('title', __('messages.privacy.page.title'))
-@section('description', __('messages.privacy.page.description'))
 
-@section('content')
+<?php $__env->startSection('title', __('messages.privacy.page.title')); ?>
+<?php $__env->startSection('description', __('messages.privacy.page.description')); ?>
+
+<?php $__env->startSection('content'); ?>
 <section class="section-padding" style="background: white; margin-top: 94px;">
     <div class="container">
         <div class="row justify-content-center">
@@ -74,19 +74,20 @@
                     <h2>10. Contact</h2>
                     <p>Pour toute question relative à cette politique de confidentialité, vous pouvez adresser une demande directement sur le site : <a href="http://ssjchrysalide.com/fr/contact" target="_blank" rel="noopener">http://ssjchrysalide.com/fr/contact</a>.</p>
 
-                    <p class="text-muted mt-4"><small>Dernière mise à jour : {{ date('d/m/Y') }}</small></p>
+                    <p class="text-muted mt-4"><small>Dernière mise à jour : <?php echo e(date('d/m/Y')); ?></small></p>
                 </div>
             </div>
         </div>
     </div>
 </section>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('styles')
+<?php $__env->startPush('styles'); ?>
 <style>
     .legal-content { font-size: 1.05rem; line-height: 1.8; }
     .legal-content h1 { font-size: 2rem; margin-bottom: 1rem; }
     .legal-content h2 { margin-top: 1.5rem; margin-bottom: .75rem; font-size: 1.25rem; }
     .legal-content ul { margin-left: 1.25rem; }
 </style>
-@endpush
+<?php $__env->stopPush(); ?>
+<?php echo $__env->make('layouts.frontend', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH D:\client-fiverr\coaching\resources\views/privacy-policy.blade.php ENDPATH**/ ?>

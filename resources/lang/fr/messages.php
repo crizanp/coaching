@@ -218,6 +218,8 @@ return [
     'events.event_full' => 'Événement complet',
     'events.event_full_description' => 'Cet événement est complet, mais n\'hésitez pas à nous contacter pour être ajouté à la liste d\'attente.',
     'events.registration_closed' => 'Inscriptions fermées',
+
+
     'events.contact_for_info' => 'Contactez-nous pour plus d\'informations',
     'events.tba' => 'À définir',
     
@@ -452,38 +454,7 @@ return [
     'footer.privacy_policy' => 'Politique de Confidentialité',
     'footer.terms_conditions' => 'Conditions Générales',
 
-    // Privacy Policy
-    'privacy.page.title' => 'Politique de Confidentialité - SSJCHRYSALIDE',
-    'privacy.page.description' => 'Politique de confidentialité de SSJCHRYSALIDE - Protection de vos données personnelles et respect de votre vie privée.',
-    'privacy.hero.subtitle' => 'Protection de vos données personnelles',
-    'privacy.section1.title' => '1. Collecte des informations',
-    'privacy.section1.content' => 'Nous collectons des informations lorsque vous vous inscrivez sur notre site, réservez un rendez-vous, ou remplissez un formulaire de contact. Les informations collectées incluent votre nom, votre adresse e-mail, votre numéro de téléphone et d\'autres informations pertinentes.',
-    'privacy.section2.title' => '2. Utilisation des informations',
-    'privacy.section2.content' => 'Toute information que nous collectons auprès de vous peut être utilisée pour :',
-    'privacy.section2.list' => [
-        'Personnaliser votre expérience et répondre à vos besoins individuels',
-        'Fournir un contenu publicitaire personnalisé',
-        'Améliorer notre site web',
-        'Améliorer le service client et vos besoins de prise en charge',
-        'Vous contacter par e-mail ou téléphone',
-        'Administrer un concours, une promotion, ou une enquête'
-    ],
-    'privacy.section3.title' => '3. Confidentialité du commerce en ligne',
-    'privacy.section3.content' => 'Nous sommes les seuls propriétaires des informations collectées sur ce site. Vos informations personnelles ne seront pas vendues, échangées, transférées, ou données à une autre société pour n\'importe quelle raison, sans votre consentement, en dehors de ce qui est nécessaire pour répondre à une demande et/ou transaction.',
-    'privacy.section4.title' => '4. Divulgation à des tiers',
-    'privacy.section4.content' => 'Nous ne vendons, n\'échangeons et ne transférons pas vos informations personnelles identifiables à des tiers. Cela ne comprend pas les tierces parties de confiance qui nous aident à exploiter notre site web ou à mener nos affaires, tant que ces parties conviennent de garder ces informations confidentielles.',
-    'privacy.section5.title' => '5. Protection des informations',
-    'privacy.section5.content' => 'Nous mettons en œuvre une variété de mesures de sécurité pour préserver la sécurité de vos informations personnelles. Nous utilisons un cryptage à la pointe de la technologie pour protéger les informations sensibles transmises en ligne.',
-    'privacy.section6.title' => '6. Cookies',
-    'privacy.section6.content' => 'Nous utilisons des cookies pour améliorer votre expérience, recueillir des informations statistiques générales et pour les opérations du site. Les cookies sont de petits fichiers qu\'un site ou son prestataire de services transfère sur le disque dur de votre ordinateur par l\'intermédiaire de votre navigateur Web.',
-    'privacy.section7.title' => '7. Consentement',
-    'privacy.section7.content' => 'En utilisant notre site, vous consentez à notre politique de confidentialité.',
-    'privacy.section8.title' => '8. Contact',
-    'privacy.section8.content' => 'Si vous avez des questions concernant cette politique de confidentialité, vous pouvez nous contacter à :',
-    'privacy.contact.company' => 'SSJCHRYSALIDE',
-    'privacy.contact.email' => 'Email: contact@ssjchrysalide.com',
-    'privacy.contact.phone' => 'Téléphone: +596 696 103 622',
-    'privacy.last_updated' => 'Dernière mise à jour :',
+    
 
     // Terms and Conditions
     'terms.page.title' => 'Conditions Générales - SSJCHRYSALIDE',
