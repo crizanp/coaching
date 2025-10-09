@@ -9,7 +9,7 @@
         <div class="carousel-inner">
             <!-- Slide 1: Appointment -->
             <div class="carousel-item active">
-                <div class="hero-slide" style="background: url('<?php echo e(asset('images/hero/1.png')); ?>'); background-size: cover; background-position: center;">
+                <div class="hero-slide slide-1" style="background: url('<?php echo e(asset('images/hero/1.png')); ?>'); background-size: cover; background-position: center;">
                     <div class="container h-100 position-relative">
                         <!-- Text overlay -->
                         <div class="hero-text-overlay">
@@ -31,7 +31,7 @@
 
             <!-- Slide 2: All Services -->
             <div class="carousel-item">
-                <div class="hero-slide" style="background: url('<?php echo e(asset('images/hero/2.png')); ?>'); background-size: cover; background-position: center;">
+                <div class="hero-slide slide-2" style="background: url('<?php echo e(asset('images/hero/2.png')); ?>'); background-size: cover; background-position: center;">
                     <div class="container h-100 position-relative">
                         <!-- Text overlay -->
                         <div class="hero-text-overlay">
@@ -53,7 +53,7 @@
 
             <!-- Slide 3: Contact Us -->
             <div class="carousel-item">
-                <div class="hero-slide" style="background: url('<?php echo e(asset('images/hero/3.png')); ?>'); background-size: cover; background-position: center;">
+                <div class="hero-slide slide-3" style="background: url('<?php echo e(asset('images/hero/3.png')); ?>'); background-size: cover; background-position: center;">
                     <div class="container h-100 position-relative">
                         <!-- Text overlay -->
                         <div class="hero-text-overlay">
@@ -132,7 +132,7 @@
         
         <div class="row g-4">
             <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <div class="col-xl-4 col-lg-6 col-md-6 fade-in">
+            <div class="col-xl-6 col-lg-6 col-md-6 fade-in">
                 <div class="card h-100">
                     <div class="card-body text-center">
                         <div class="service-icon">
@@ -252,13 +252,13 @@
             <div class="col-lg-12">
                 <div class="testimonial-gallery-card p-3 h-100 d-flex align-items-center">
                     <div class="row w-100 align-items-center">
-                        <div class="col-md-7">
+                        <div class="col-md-9">
                             <blockquote class="gallery-quote mb-0">
                                 <p>« Grâce à la sophrologie j’ai pu avoir une meilleure gestion de la douleur lors de mon accouchement. »</p>
                                 <footer class="blockquote-footer">Mlle L</footer>
                             </blockquote>
                         </div>
-                        <div class="col-md-5 text-center">
+                        <div class="col-md-3 text-center">
                             <div class="portrait-wrapper mx-auto">
                                 <img src="<?php echo e(asset('images/testimonial/1.jpeg')); ?>" alt="Témoignage accouchement" class="img-fluid rounded shadow-sm portrait-image" />
                             </div>
@@ -271,13 +271,13 @@
             <div class="col-lg-12">
                 <div class="testimonial-gallery-card p-3 h-100 d-flex align-items-center">
                     <div class="row w-100 align-items-center">
-                        <div class="col-md-7">
+                        <div class="col-md-9">
                             <blockquote class="gallery-quote mb-0">
                                 <p>« Dès ma première séance de Sophrologie avec Sandrine et lors des suivantes, j'ai pu ressentir un bénéfice immédiat grâce à l'apaisement et au bien être procurés. J'ai pu désamorcer rapidement mes situations de stress, d'angoisse et de confusion pour retrouver une harmonie entre mon corps et mon esprit. Cet accompagnement pour une reprise de conscience et une réhabilitation de ma confiance en moi m'a permise de sortir d'une période de crises délicate et de revenir progressivement à un équilibre de vie plus serein. Merci Sandrine pour ta bienveillance et ton attention précieuse. »</p>
                                 <footer class="blockquote-footer">Mlle U</footer>
                             </blockquote>
                         </div>
-                        <div class="col-md-5 text-center">
+                        <div class="col-md-3 text-center">
                             <div class="portrait-wrapper mx-auto position-relative">
                                 <img src="<?php echo e(asset('images/testimonial/2.jpg')); ?>" alt="Témoignage énergie" class="img-fluid rounded shadow-sm portrait-image" />
                                 <!-- Circular blurred overlay to protect identity (adjust position/size if needed) -->
@@ -774,6 +774,23 @@
         .section-testimonials .carousel-item {
             padding: 1rem 0 2rem;
         }
+
+        /* Use mobile hero images for small screens */
+    .hero-slide.slide-1 {
+        background-image: url('<?php echo e(asset("images/hero/mobile/1.png")); ?>') !important;
+        background-size: cover;
+        background-position: center;
+    }
+    .hero-slide.slide-2 {
+        background-image: url('<?php echo e(asset("images/hero/mobile/2.png")); ?>') !important;
+        background-size: cover;
+        background-position: center;
+    }
+    .hero-slide.slide-3 {
+        background-image: url('<?php echo e(asset("images/hero/mobile/3.png")); ?>') !important;
+        background-size: cover;
+        background-position: center;
+    }
     }
 </style>
 <?php $__env->stopPush(); ?>
