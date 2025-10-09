@@ -170,8 +170,8 @@
         }
 
         .btn-primary {
-            background: #F7B2BD;
-            border: none;
+          background: #73e4d8;
+    border: 2px solid #0eaac3;
             border-radius: 25px;
             padding: 12px 30px;
             font-weight: 600;
@@ -183,7 +183,9 @@
         .btn-primary:hover {
             transform: translateY(-3px);
             color: #362c2cff;
-            background: #F7B2BD;
+                border: 2px solid #0eaac3;
+
+            background: #ffffffff;
             box-shadow: 0 8px 25px rgba(214, 169, 164, 0.6);
         }
 
@@ -191,23 +193,21 @@
             border-radius: 999px;
             white-space: nowrap;
         }
+ .btn-outline-primary {
+            border: 2px solid #0eaac3;
 
-        .btn-outline-primary {
-            border: 2px solid var(--primary-pink);
-            color: var(--primary-pink);
-            border-radius: 25px;
-            padding: 12px 30px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
+        color:black;
+        border-radius: 50px;
+        padding: 12px 30px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
 
-        .btn-outline-primary:hover {
-            background: var(--primary-pink);
-            color: white;
-            transform: translateY(-2px);
-            border: none;
-        }
-
+    .btn-outline-primary:hover {
+       background: #73e4d8;
+    border: 2px solid #0eaac3;
+        transform: translateY(-2px);
+    }
         /* Sticky WhatsApp floating button (site-wide) */
         .whatsapp-fab {
             position: fixed;
@@ -349,9 +349,9 @@
         }
 
         .btn-hero-primary {
-            background: rgba(255, 255, 255, 0.9);
-            color: #2c3e50;
-            border: none;
+            background: #73e4d8;
+    border: 2px solid #0eaac3;
+    color: #000000;
             border-radius: 50px;
             padding: 15px 35px;
             font-weight: 600;
@@ -581,7 +581,7 @@
             padding: 30px;
             margin: 20px 0;
             position: relative;
-            border: 1px solid rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.18);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
@@ -723,8 +723,8 @@
         }
 
         .accordion-button:not(.collapsed) {
-            background: var(--primary-pink);
-            color: white;
+            background: #73e4d8;
+            color: #000000;
             box-shadow: none;
         }
 

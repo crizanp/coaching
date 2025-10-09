@@ -10,7 +10,7 @@
         <div class="row align-items-center">
             <div class="col-lg-6 mb-4 mb-lg-0">
                 <div class="fade-in">
-                    <h1 class="section-title"><?php echo e(__('messages.about.hero.title')); ?></h1>
+                    <h1 class="section-title" ><?php echo e(__('messages.about.hero.title')); ?></h1>
                     <blockquote class="blockquote">
                         <p class="mb-0">"<?php echo e(__('messages.about.hero.quote')); ?>"</p>
                     </blockquote>
@@ -462,9 +462,9 @@
 
     /* Scoped white button for the about hero */
     .btn-white {
-        background: #ffffff;
-        color: var(--primary-pink) !important;
-        border: 1px solid rgba(0,0,0,0.08);
+        background: #73e4d8;
+        color: #000000 !important;
+        border: 1px solid #07a6eaff;
         padding: 0.6rem 1.1rem;
         border-radius: 12px;
         box-shadow: 0 6px 18px rgba(0,0,0,0.06);
@@ -479,8 +479,10 @@
     .btn-white:hover,
     .btn-white:focus {
         transform: translateY(-2px);
-        box-shadow: 0 10px 26px rgba(0,0,0,0.09);
+        background-color: white;
         text-decoration: none;
+                border: 1px solid #07a6eaff;
+
     }
 
     .btn-white:active {

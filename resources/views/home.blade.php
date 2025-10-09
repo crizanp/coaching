@@ -456,9 +456,9 @@
     
     /* Button Styling */
     .btn-hero-primary {
-        background: white;
-        border: 2px solid #F7B2BD;
-        color: #D63384;
+       background: #73e4d8;
+    border: 2px solid #0eaac3;
+    color: #000000;
         padding: 0.9rem 2.5rem;
         font-size: 1.05rem;
         font-weight: 600;
@@ -472,9 +472,9 @@
     .btn-hero-primary:hover {
         transform: translateY(-3px);
         box-shadow: 0 12px 35px rgba(247, 178, 189, 0.4);
-        background: #F7B2BD;
-        color: white;
-        border-color: #F7B2BD;
+        background: #fffefeff;
+        color: black;
+        border-color: #0eaac3;
     }
 
     /* Quote Section */

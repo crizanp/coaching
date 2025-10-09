@@ -318,8 +318,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     .btn-primary {
-        background: var(--primary-pink);
-        border: none;
+background: #73e4d8;
+    border: 2px solid #0eaac3;
         border-radius: 50px;
         padding: 15px 40px;
         font-weight: 600;

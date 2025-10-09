@@ -395,8 +395,8 @@
     }
 
     .btn-primary {
-        background: var(--primary-pink);
-        border: none;
+       background: #73e4d8;
+    border: 2px solid #0eaac3;
         border-radius: 50px;
         padding: 12px 30px;
         font-weight: 600;
@@ -411,8 +411,9 @@
     }
 
     .btn-outline-primary {
-        border: 2px solid var(--primary-pink);
-        color: var(--primary-pink);
+            border: 2px solid #0eaac3;
+
+        color:black;
         border-radius: 50px;
         padding: 12px 30px;
         font-weight: 600;
@@ -420,8 +421,8 @@
     }
 
     .btn-outline-primary:hover {
-        background: var(--primary-pink);
-        border-color: var(--primary-pink);
+       background: #73e4d8;
+    border: 2px solid #0eaac3;
         transform: translateY(-2px);
     }
 
