@@ -77,7 +77,7 @@
                 </div>
 
                 <!-- Alternative Booking Form -->
-                <div class="card mt-4 fade-in">
+                <!-- <div class="card mt-4 fade-in">
                     <div class="card-header">
                         <h5 class="mb-0">
                             <i class="fas fa-form me-2"></i>
@@ -293,7 +293,7 @@ unset($__errorArgs, $__bag); ?>
                             </div>
                         </form>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -304,7 +304,6 @@ unset($__errorArgs, $__bag); ?>
 <style>
     /* Calendly Section */
     .calendly-section {
-        padding: 2rem 0;
         background: #f8f9fa;
         border-radius: 15px;
         margin-bottom: 2rem;

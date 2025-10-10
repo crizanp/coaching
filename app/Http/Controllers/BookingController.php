@@ -115,14 +115,14 @@ class BookingController extends Controller
             'fort-de-france' => [
                 'name' => 'Fort-de-France',
                 'display_name' => 'Fort-de-France',
-                'calendly_url' => 'https://calendly.com/rdv1-ssjchrysalide',
+                'calendly_url' => 'https://calendly.com/rdv1-ssjchrysalide/30min',
                 'address' => 'Centre-ville de Fort-de-France, Martinique',
                 'description' => 'Consultations à Fort-de-France'
             ],
             'riviere-salee' => [
                 'name' => 'Rivière Salée',
                 'display_name' => 'Rivière Salée',
-                'calendly_url' => 'https://calendly.com/rdv2-ssjchrysalide',
+                'calendly_url' => 'https://calendly.com/rdv2-ssjchrysalide/30min',
                 'address' => 'Cabinet à Rivière Salée, Martinique',
                 'description' => 'Consultations à Rivière Salée'
             ]

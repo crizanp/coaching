@@ -212,7 +212,6 @@
 <style>
     /* Calendly Section */
     .calendly-section {
-        padding: 2rem 0;
         background: #f8f9fa;
         border-radius: 15px;
         margin-bottom: 2rem;
